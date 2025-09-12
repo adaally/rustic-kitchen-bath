@@ -2785,6 +2785,9 @@
         "block_order": [
           "pages_heading-0"
         ],
+        "custom_css": [
+          ".page-head {background: #3d1c1a;}"
+        ],
         "settings": {
           "parallax": false,
           "color": "#3d1c1a",
