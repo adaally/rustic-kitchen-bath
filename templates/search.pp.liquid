@@ -25,8 +25,8 @@
          </div>
          {%- endif -%}
         <div class="frm_search_input pr oh">
-           <label class="visually-hidden" for="search">{{ 'general.search.placeholder' | t }}</label>
-           <input class="search_header__input js_iput_search" autocomplete="off" type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
+           <label class="visually-hidden" for="search_header__input2">{{ 'general.search.placeholder' | t }}</label>
+           <input class="search_header__input js_iput_search" id="search_header__input2" autocomplete="off" type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
            <button class="search_header__submit js_btn_search{% if settings.ajax_search %} pe_none{% endif %}" type="submit"><i class="iccl iccl-search"></i><span class="visually-hidden">{{ 'general.search.placeholder' | t }}</span></button>
         </div>
         <div class="ld_bar_search"></div>
