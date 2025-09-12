@@ -30,8 +30,9 @@ endcase -%}
           <div class="frm_search_bd"></div>
          {%- endif -%}
           <div class="frm_search_input pr oh">
+            <label class="visually-hidden" for="search">{{ 'general.search.placeholder' | t }}</label>
             <input class="search_header__input js_iput_search" autocomplete="off" type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
-            <button class="search_header__submit js_btn_search{% if settings.ajax_search %} pe_none{% endif %}" type="submit"><i class="iccl iccl-search"></i></button>
+            <button class="search_header__submit js_btn_search{% if settings.ajax_search %} pe_none{% endif %}" type="submit"><i class="iccl iccl-search"></i><span class="visually-hidden">{{ 'general.search.placeholder' | t }}</span></button>
           </div>
           <div class="ld_bar_search"></div>
         </form>
@@ -48,7 +49,7 @@ endcase -%}
      {% capture the_snippet_auth %}{% render 'socialshopwave-widget-auth' %}{% endcapture %}
      {% if the_snippet_auth contains 'Liquid error' or settings.growave_social_login == false %}
           <div class="my-account ts__05 pr dn db_md">
-             <a class="cb chp db push_side" href="{% if customer %}{{routes.account_url}}{% else %}{{ routes.account_login_url }}{% endif %}" data-id="#nt_login_canvas"><i class="{{arric[1]}}"></i></a>
+             <a class="cb chp db push_side" href="{% if customer %}{{routes.account_url}}{% else %}{{ routes.account_login_url }}{% endif %}" data-id="#nt_login_canvas"><i class="{{arric[1]}}"></i><span class="visually-hidden">Account</span></a>
              {%- if customer -%}
              <ul class="pa pe_none op__0 tl">
                 <li><a class="db cg chp" href="{{routes.account_url}}">{{ 'general.account_text.dashboard' | t }}</a></li>
@@ -99,7 +100,7 @@ endcase -%}
            <div class="icon_cart pr in_flex al_center"><a class="pr cb chp dib push_side" data-id="#nt_cart_canvas" href="{{routes.cart_url}}"><i class="{{arric[3]}}"></i><span class="js_cat_ttprice ch_tt_price dn dib_lg fwm cd ml__5">{{cart.total_price | money}}</span></a></div>
            {%- comment -%}<div class="icon_cart pr push_side in_flex al_center" data-id="#nt_cart_canvas"><a class="pr cb chp dib" href="{{routes.cart_url}}"><i class="{{ic_stt}} {{arric[3]}}"></i><span class="op__0 ts_op pa tcount jsccount bgb br__50 cw tc">{{ cart.item_count }}</span></a><span class="ch_tt_divider dn dib_lg">/</span><span class="js_cat_ttprice ch_tt_price dn dib_lg fwm cd">{{cart.total_price | money}}</span></div>{%- endcomment -%}
          {%- else -%}
-          <div class="icon_cart pr"><a class="push_side pr cb chp db" href="{{routes.cart_url}}" data-id="#nt_cart_canvas"><i class="{{arric[3]}} pr"><span class="op__0 ts_op pa tcount jsccount bgb br__50 cw tc">{{ cart.item_count }}</span></i></a></div>
+          <div class="icon_cart pr"><a class="push_side pr cb chp db" href="{{routes.cart_url}}" data-id="#nt_cart_canvas"><span class="visually-hidden">Cart</span><i class="{{arric[3]}} pr"><span class="op__0 ts_op pa tcount jsccount bgb br__50 cw tc">{{ cart.item_count }}</span></i></a></div>
       {%- endcase -%}
    {%- endif -%}
    {%- if nt_group_btns -%}{%- render 'push_menu' with 'ml__5 dn db_lg' -%}{%- endif -%}
