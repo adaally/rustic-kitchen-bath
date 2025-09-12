@@ -1,0 +1,53 @@
+{%assign custom_tabs = product.metafields.custom-tabs%}
+
+  {%if custom_tabs.size > 0 %}
+
+   <div class="custom-tab">
+
+     {% for tab_info in custom_tabs %}
+
+        {%assign tab_name = tab_info | first%}
+
+         {%assign tab_value = tab_info | last%}
+
+          {%assign default_tab = ''%}
+
+              {% if forloop.first == true %}
+
+             {%assign default_tab = 'id="defaultTabToBeOpen"'%}
+
+             {%endif%}
+
+         <button class="tablinks" onclick="expandTab(event, '{{tab_name}}')" {{default_tab}}>{{tab_name}}</button>     
+
+     {%endfor%}
+
+   </div>
+
+  {% for tab_info in custom_tabs %}
+
+  {%assign tab_name = tab_info | first%}
+
+  {%assign tab_value = tab_info | last%}
+
+  <div id="{{tab_name}}" class="custom-tab-content">
+
+  <h3>{{tab_name}}</h3>
+
+  <p>{{tab_value}}</p>
+
+   </div>
+
+  {%endfor%}
+
+  {%endif%}
+
+<br/>
+
+
+
+<script>
+
+function expandTab(e,t){var a,l,n;for(l=document.getElementsByClassName("custom-tab-content"),a=0;a<l.length;a++)l[a].style.display="none";for(n=document.getElementsByClassName("tablinks"),a=0;a<n.length;a++)n[a].className=n[a].className.replace(" active","");document.getElementById(t).style.display="block",e.currentTarget.className+=" active"}document.getElementById("defaultTabToBeOpen").click();
+
+</script>

@@ -1,0 +1,5 @@
+/*********************** Custom CSS for Boost AI Search & Discovery  ************************/
+.boost-sd__filter-option-item-label {
+  text-transform: capitalize;
+}
+

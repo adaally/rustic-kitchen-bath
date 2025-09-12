@@ -1,0 +1,373 @@
+<link rel="stylesheet" media="print" onload="this.media='all'" href="{{ 'pagefly.4895d3d0.css' | asset_url }}">  <div style="opacity:0" class="sc-iJCRrE bojiJp __pf" id="__pf"><div data-pf-type="Body" class="sc-gSYDnn jcqGXt pf-1_"><div data-pf-type="Layout" class="sc-Arkif eJDRKz pf-2_"><div data-pf-type="CollectionPreview" class="sc-jlZJtj QgNfY pf-3_">{%- liquid
+assign hidden_cat = settings.use_hidden_cat
+assign type_filters = settings.type_filters
+assign shop_filters = settings.shop_filters
+assign admin_sp = false
+capture sck_ad
+  style 
+    echo settings.color_primary 
+  endstyle
+endcapture
+if sck_ad contains 'setting'
+  assign admin_sp = true
+endif
+assign class_main = '12'
+assign shop_des = settings.shop_des
+assign no_sidebar = true
+assign shop_sidebar = settings.shop_sidebar
+if hidden_cat == false 
+  case shop_sidebar
+    when 'right'
+      assign no_sidebar = false
+      case settings.shop_size_sidebar
+        when '1'
+          assign class_main = '10 order-1 '
+          assign class_sidebar = '2 order-12 '
+        when '2'
+          assign class_main = '9 order-1 '
+          assign class_sidebar = '3 order-12 '
+         when '3'
+          assign class_main = '8 order-1 '
+           assign class_sidebar = '4 order-12 '
+      endcase
+    when 'left'
+      assign no_sidebar = false
+      case settings.shop_size_sidebar
+        when '1'
+          assign class_main = '10'
+          assign class_sidebar = '2'
+        when '2'
+          assign class_main = '9'
+          assign class_sidebar = '3'
+        when '3'
+          assign class_main = '8'
+          assign class_sidebar = '4'
+       endcase
+   endcase
+elsif shop_sidebar == 'left' or shop_sidebar == 'right'
+   assign no_sidebar = false 
+   assign class_sidebar = '12'
+endif
+section 'cat_shop'
+section 'cat_heading'
+assign cat_des = settings.cat_des
+assign hd_up = 'sub-' |append:collection.id
+assign nav_up = linklists[hd_up].links | where:'type','collection_link'
+if type_filters == '1'
+ assign nt_filter = 'nt_filter'
+ assign lz_filter = 'lazyload'
+ assign sidebar_shop = 'sidebar_shop'
+else 
+ assign nt_filter = 'nt_filter2'
+ assign lz_filter = ''
+ assign sidebar_shop = 'sidebar_shop2'
+endif -%}
+
+{%- if nav_up.size > 0 -%}
+  {%- section 'sub-collections' -%}
+{%- else -%}
+  {%- if cat_des == '2' %}<div class="cat_des_ntt4 container container_cat tc mt__40">{{ collection.description}}</div>{%- endif -%}
+  <div class="container container_cat {{settings.pop_style}} cat_{{settings.shop_layout}} mb__60">
+     {%- assign get_url = '' | link_to_remove_tag: '' | split:'href="' | last | split:'"' | first -%}
+     {%- assign sy = collection.sort_by -%}
+     {%- if collection.current_type or sy != blank or collection.current_vendor -%} {%- assign get_url = get_url | append:'&' -%} {%- else -%} {%- assign get_url = get_url | append:'/?' -%} {%- endif -%}
+     {%- assign sort_by = sy | default: collection.default_sort_by -%}
+     <div class="cat_toolbar row fl_center al_center mt__30">
+        <div class="cat_filter col op__0 pe_none">
+        {%- assign ck = true -%}
+        {%- if settings.shop_filters -%}
+           <a rel="nofollow" href="#" data-no-instant data-opennt="#shopify-section-{{nt_filter}}" data-pos="left" data-remove="true" data-class="popup_filter" data-bg="hide_btn" class="has_icon btn_filter mgr"><i class="iccl fwb iccl-filter fwb mr__5"></i>{{ 'collections.general.filter' | t }}</a>
+           <a rel="nofollow" href="#" data-no-instant data-id="#shopify-section-{{nt_filter}}" class="btn_filter js_filter dn mgr"><i class="iccl fwb iccl-filter fwb mr__5"></i>{{ 'collections.general.filter' | t }}</a>
+        {%- elsif hidden_cat and no_sidebar == false -%}{%- assign ck = false -%}
+           <div class="cat_sidebar">
+              <a rel="nofollow" data-no-instant href="#" data-opennt="#shopify-section-{{sidebar_shop}}" data-pos="left" data-remove="true" data-class="popup_filter" data-bg="hide_btn" class="has_icon btn_sidebar mgr"><i class="iccl fwb iccl-trello fwb mr__5"></i>{{ 'collections.general.sidebar' | t }}</a>
+           </div>
+        {%- elsif no_sidebar == false -%}
+           <div class="cat_sidebar no_hidden_sidebar">
+              <a rel="nofollow" data-no-instant href="#" data-opennt="#shopify-section-{{sidebar_shop}}" data-pos="left" data-remove="true" data-class="popup_filter" data-bg="hide_btn" class="has_icon btn_sidebar mgr"><i class="iccl fwb iccl-trello fwb mr__5"></i>{{ 'collections.general.sidebar' | t }}</a>
+           </div>
+        {%- endif -%}
+        </div>
+        <div class="cat_view col-auto">
+        {%- if settings.show_column_switch and shop_des != 'packery' -%}
+           <div class="dn dev_desktop dev_view_cat">
+               <a rel="nofollow" data-no-instant href="#" data-dev="dk" data-col="6" class="pr mr__10 cat_view_page view_6"></a>
+               <a rel="nofollow" data-no-instant href="#" data-dev="dk" data-col="4" class="pr mr__10 cat_view_page view_4"></a>
+               <a rel="nofollow" data-no-instant href="#" data-dev="dk" data-col="3" class="pr mr__10 cat_view_page view_3"></a>
+               {%- if no_sidebar or hidden_cat -%}<a rel="nofollow" data-no-instant href="#" data-dev="dk" data-col="15" class="pr mr__10 cat_view_page view_15"></a>{%- endif -%}
+               {%- if no_sidebar or hidden_cat -%}<a rel="nofollow" data-no-instant href="#" data-dev="dk" data-col="2" class="pr cat_view_page view_2"></a>{%- endif -%}
+           </div>
+           <div class="dn dev_tablet dev_view_cat">
+               <a rel="nofollow" data-no-instant href="#" data-dev="tb" data-col="6" class="pr mr__10 cat_view_page view_6"></a>
+               <a rel="nofollow" data-no-instant href="#" data-dev="tb" data-col="4" class="pr mr__10 cat_view_page view_4"></a>
+               <a rel="nofollow" data-no-instant href="#" data-dev="tb" data-col="3" class="pr cat_view_page view_3"></a>
+           </div>
+           <div class="flex dev_mobile dev_view_cat">
+               <a rel="nofollow" data-no-instant href="#" data-dev="mb" data-col="12" class="pr mr__10 cat_view_page view_12"></a>
+               <a rel="nofollow" data-no-instant href="#" data-dev="mb" data-col="6" class="pr cat_view_page view_6"></a>
+           </div>
+        {%- endif -%}
+        </div>
+        {%- if no_sidebar == false and settings.shop_filters and ck -%}
+        <div class="cat_hidden_{{hidden_cat}} col tr">
+           <div class="cat_sidebar">
+              <a rel="nofollow" data-no-instant href="#" data-no-instant data-opennt="#shopify-section-{{sidebar_shop}}" data-pos="right" data-remove="true" data-class="popup_filter" data-bg="hide_btn" class="has_icon btn_sidebar mgr op__0"><i class="iccl fwb iccl-trello fwb mr__5"></i>{{ 'collections.general.sidebar' | t }}</a>
+           </div> 
+           <div class="cat_sortby cat_sortby_js dn">{%- assign option_selected = collection.sort_options | where:"value",sort_by -%}
+              <a class="in_flex fl_between al_center sortby_pick" rel="nofollow" data-no-instant href="#"><span class="sr_txt dn">{{- option_selected.first.name -}}</span><span class="sr_txt_mb">{{ 'collections.sorting.title' | t }}</span><i class="ml__5 mr__5 facl facl-angle-down"></i></a>
+              <div class="nt_sortby dn">
+                <svg class="ic_triangle_svg" viewBox="0 0 20 9" role="presentation"><path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffff"></path></svg>
+                <div class="h3 mg__0 tc cd tu ls__2 dn_lg db">{{ 'collections.sorting.title' | t }}<i class="pegk pe-7s-close fs__50 ml__5"></i></div>
+                <div class="nt_ajaxsortby wrap_sortby">
+                 {%- if type_filters == '2' -%}
+
+                      {%- assign nt_canonical_url = canonical_url | replace:'for_offest','for_no_offest' | replace:'?q=%2f%3fq%3d','?q=' -%}
+                      {%- assign txt_current_page = '?page=' |append:current_page -%} 
+                      {%- assign key_block = 'for_no_offest%3d' | append:get_fillter_offset -%}
+                      {%- assign key_block2 = '+nt+for_no_offest%3d' | append:get_fillter_offset -%}
+                      {%- assign sortby_url = nt_canonical_url | remove:key_block2 | remove:key_block | remove:txt_current_page | replace:'+nt+&sort_by','&sort_by' -%}
+
+                      {%- if nt_canonical_url contains sort_by -%}
+                        {%- for option in collection.sort_options -%}
+                          <a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ sortby_url | replace:sort_by,option.value }}">{{ option.name }}</a>
+                        {%- endfor -%}
+                      {%- else -%}
+                        {%- for option in collection.sort_options -%}
+                          <a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ sortby_url | sort_by: option.value }}">{{ option.name }}</a>
+                        {%- endfor -%}
+                      {%- endif -%}
+                 {%- else -%}
+                    
+                      {%- if get_url contains sort_by -%}
+                        {%- for option in collection.sort_options %}<a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ get_url | replace:sort_by,option.value | replace:'+nt+&sort_by','&sort_by' }}">{{ option.name }}</a>{% endfor -%}
+                      {%- else -%}
+                        {%- for option in collection.sort_options %}<a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ get_url | sort_by: option.value  | replace:'+nt+&sort_by','&sort_by'}}">{{ option.name }}</a>{% endfor -%}
+                      {%- endif -%}
+
+                 {%- endif -%}
+                </div>
+              </div>
+           </div>
+        </div>
+        {%- elsif settings.sort_enable -%}
+            <div class="cat_sortby cat_sortby_js col tr">{%- assign option_selected = collection.sort_options | where:"value",sort_by -%}
+              <a class="in_flex fl_between al_center sortby_pick" rel="nofollow" data-no-instant href="#"><span class="sr_txt dn">{{- option_selected.first.name -}}</span><span class="sr_txt_mb">{{ 'collections.sorting.title' | t }}</span><i class="ml__5 mr__5 facl facl-angle-down"></i></a>
+              <div class="nt_sortby dn">
+                <svg class="ic_triangle_svg" viewBox="0 0 20 9" role="presentation"><path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffff"></path></svg>
+                <div class="h3 mg__0 tc cd tu ls__2 dn_lg db">{{ 'collections.sorting.title' | t }}<i class="pegk pe-7s-close fs__50 ml__5"></i></div>
+                <div class="nt_ajaxsortby wrap_sortby">
+                 {%- if type_filters == '2' -%}
+
+                      {%- assign nt_canonical_url = canonical_url | replace:'for_offest','for_no_offest' | replace:'?q=%2f%3fq%3d','?q=' | replace:'+nt++nt+','+nt+' -%}
+                      {%- assign txt_current_page = '?page=' |append:current_page -%} 
+                      {%- assign key_block = 'for_no_offest%3d' | append:get_fillter_offset -%}
+                      {%- assign key_block2 = '+nt+for_no_offest%3d' | append:get_fillter_offset -%}
+                      {%- assign sortby_url = nt_canonical_url | remove:key_block2 | remove:key_block | remove:txt_current_page -%}
+                      
+                      {%- if nt_canonical_url contains sort_by -%}
+                        {%- for option in collection.sort_options -%}
+                          <a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ sortby_url | replace:sort_by,option.value | replace:'+nt+&sort_by','&sort_by'}}">{{ option.name }}</a>
+                        {%- endfor -%}
+                      {%- else -%}
+                        {%- for option in collection.sort_options -%}
+                          <a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ sortby_url | sort_by: option.value | replace:'+nt+&sort_by','&sort_by'}}">{{ option.name }}</a>
+                        {%- endfor -%}
+                      {%- endif -%}
+                 {%- else -%}
+                    
+                      {%- if get_url contains sort_by -%}
+                        {%- for option in collection.sort_options %}<a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ get_url | replace:sort_by,option.value }}">{{ option.name }}</a>{% endfor -%}
+                      {%- else -%}
+                        {%- for option in collection.sort_options %}<a class="truncate{% if sort_by == option.value %} selected{% endif %}" href="{{ get_url | sort_by: option.value }}">{{ option.name }}</a>{% endfor -%}
+                      {%- endif -%}
+
+                 {%- endif -%}
+                </div>
+              </div>
+            </div>
+        {%- else -%}<div class="col"></div>
+        {%- endif -%}
+     </div>
+
+     {%- if shop_filters and admin_sp -%}
+           <div class="filter_area"><div class="filter_area_wrap">{% if type_filters == '1' %}{%- section 'nt_filter' -%}{% else %}{%- section 'nt_filter2' -%}{% endif %}</div></div>
+       {%- elsif shop_filters -%}
+          <div class="filter_area_js filter_area {{lz_filter}} lazypreload" data-include="{{get_url}}section_id={{nt_filter}}"></div>
+     {%- endif -%}
+
+     <div class="row">
+        {%- if no_sidebar == false and admin_sp -%}<div class="js_sidebar sidebar sidebar_nt col-lg-{{class_sidebar}} col-12 space_{{settings.space_sidebar}} hidden_{{hidden_cat}}">{% if type_filters == '1' %}{%- section 'sidebar_shop' -%}{% else %}{%- section 'sidebar_shop2' -%}{% endif %}</div>
+        {%- elsif no_sidebar == false -%}<div class="js_sidebar sidebar sidebar_nt col-lg-{{class_sidebar}} col-12 space_{{settings.space_sidebar}} hidden_{{hidden_cat}} {{lz_filter}} lazypreload" data-include="{{get_url}}section_id={{sidebar_shop}}"><div class="nt_svg_loader dn"></div></div>{%- endif -%}
+        <div class="col-lg-{{class_main}} col-12">{%- section 'collection_page' -%}</div>
+     </div>
+  </div>
+  {%- if cat_des == '3' %}<div class="cat_des_ntt4 container container_cat tc mb__60">{{ collection.description}}</div>{%- endif -%}
+{%- endif -%}</div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-4_ pf-bg-lazy"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-5_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-6_"><h2 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-7_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-9_">Shop Cooking Appliances</span></h2><p class="sc-fbIWvP fkBHIM pf-10_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-12_">Turning mass-produced uniformity into products that have a beautifully imperfect handmade quality that you can see, touch and feel.</span></p></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-13_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-14_ pf-r pf-c-cb" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-15_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-f3d02e64-1593-4924-af0a-6d89bd6520b3--sofa.svg?311939" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-16_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-17_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-19_">Free-Standing Ranges</span></h3></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-20_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-1fb1788a-c548-41ac-9323-58df11fef4ea--seats.svg?311924" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-21_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-22_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-24_">Rangetops</span></h3></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-25_"><img src="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-f3e61840--zlineprofessionalmicrowavedrawerMWD1sidenewbadge_165x.jpg?v=1621983013" srcSet="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-f3e61840--zlineprofessionalmicrowavedrawerMWD1sidenewbadge.jpg?v=1621983013 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="165" height="165" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-26_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-27_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-29_">Microwaves</span></h3></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-30_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-f962e381-a587-4176-afb2-f14919f1e5a9--tablets.svg?311922" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-31_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-32_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-34_">Wall Ovens</span></h3></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-35_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-7fded8e0-4843-420f-bed8-4e8c8aee462c--cupboards.svg?311926" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-36_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-37_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-39_">Drop-in Cooktops</span></h3></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-40_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-938c3597-cb71-4dc3-9800-2b9b357c2f86--accessories.svg?311929" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-41_"/><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-42_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-44_">Induction Cooktops</span></h3></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-45_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-46_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-47_"><div data-pf-type="Tabs" class="sc-eKYRIR cSBwYK pf-48_"><div data-pf-type="TabsMenu" class="sc-bTDOke dXiuJH pf-49_"><button type="button" data-pf-tab-active="false" class="sc-hOPeYd iFjkqA pf-50_ pf-bg-lazy pf-anchor" data-pf-type="TabHeader"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-52_">New Arrivals</span></button><button type="button" data-pf-tab-active="false" class="sc-hOPeYd iFjkqA pf-53_ pf-bg-lazy pf-anchor" data-pf-type="TabHeader"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-55_">Featured</span></button><button type="button" data-pf-tab-active="true" class="sc-hOPeYd iFjkqA pf-56_ pf-bg-lazy pf-anchor" data-pf-type="TabHeader"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-58_">Best Seller</span></button></div><div data-pf-type="TabContentWrapper" class="sc-kHWWYL zRuTu pf-59_"><div data-pf-expandable="true" style="display:none" data-pf-type="TabsContent" class="sc-dsXzNU iNWOJK pf-60_ pf-bg-lazy"><div class="sc-fyjqAk jDIFKr pf-61_ pf-r pf-r-ew" style="--s-xs:7.5px;--s-lg:15px;--ew-xs:2;--ew-sm:4" data-pf-type="ProductList">{% assign collection = collections["undefined"] %}<!-- -->{% assign defaultProduct = product %}<!-- -->{% paginate collection.products by 4 %}<!-- -->{% for product in collection.products %}<div class="pf-c"><div data-product-id="{{ product.id }}" data-pf-type="ProductBox" class="sc-gkCoMD enpFfZ pf-62_">{% if product != null %}{% form "product", product, data-productid: product.id, class: "pf-product-form" %}<div class="sc-hHEiqL ccTnQh pf-63_ pf-r pf-r-eh" style="--s-xs:15px;--s-lg:0px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-64_"><div data-product-id="{{ product.id }}" data-pf-type="ProductImage" class="sc-kizEQm irzWzB pf-65_">{% assign images = product.images %}<div style="--w-xs:0" class="sc-gJpXkD bJTfBG pf-r-dg"><div data-href="{{ product.url }}" data-pf-type="MasterImage" style="order:0;--ratio:100%" class="sc-dkuGKe dIqww"><img src="{{ product.featured_image | img_url: "xNaN", scale: 2 }}" alt="{{ product.featured_image.alt }}" loading="lazy" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}"/>{% assign _product = product %}<div data-pf-type="ProductImagePagination" class="sc-cKRKFl kSUooD pf-hide pf-sm-hide pf-md-hide pf-lg-hide">{% for i in (1..images.size) %}<span></span>{% endfor %}</div></div><div class="sc-gstuGz tcgHY pf-hide pf-sm-hide pf-md-hide pf-lg-hide"><div data-pf-type="ProductImageList" class="sc-amkrK gdJPMO pf-r-dg">
+								{% assign pf_all = "" %}
+								{% assign pf_laptop = "" %}
+								{% assign pf_tablet = "" %}
+								{% assign pf_mobile = "" %}
+								{% for i in (0..images.size) limit:images.size %}
+								{% assign image = images[i] %}
+								{% if true %}
+								{% if i > 4 %}
+								{% assign pf_all = "pf-lg-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_laptop = "pf-md-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_tablet = "pf-sm-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_mobile = "pf-hide" %}
+								{% endif %}
+								{% endif %}
+							<div class="sc-kmIPcE htFMXJ pf-66_ {{pf_all}} {{pf_laptop}} {{pf_tablet}} {{pf_mobile}}" data-img-id="{{ image.id }}" data-pf-type="ImageItem"><img loading="lazy" src="{{ image.src | img_url: "master" }}" alt="{{ image.alt }}" draggable="false"/></div>{% endfor %}</div>{% if true %}<div data-pf-nav="prev" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-left"></i></div><div data-pf-nav="next" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-right"></i></div>{% endif %}</div></div></div><h3 data-product-type="title" data-product-id="{{ product.id }}" data-href="{{ product.url }}" data-pf-type="ProductTitle" class="sc-kTCsyW gxdqsh pf-68_">{{ product.title }}</h3><div data-product-type="price" data-product-id="{{ product.id }}" data-pf-type="ProductPrice" class="sc-iGkqmO ckwDLe pf-69_">{{ product.variants[0].price | money }}</div><button data-product-id="{{ product.id }}" data-checkout="same" data-soldout="Sold out" data-adding="Adding..." data-added="Thank you!" type="button" data-pf-type="ProductATC" class="sc-gzcbmu jNYWPO pf-70_"><span>Add To Cart</span></button></div></div></div>{% endform %}{% endif %}</div><script>
+				window.__pageflyProducts = window.__pageflyProducts || {};
+				window.__pageflyProducts["{{product.id}}"] = {
+					id: {{product.id | json }},
+					handle: {{product.handle | json }},
+					title: {{product.title | json }},
+					type: {{product.type | json }},
+					url: {{product.url | json }},
+					vendor: {{product.vendor | json }},
+					variants: {{product.variants | json }},
+					options: {{product.options | json }},
+					media: {{product.media | json }},
+					has_only_default_variant: {{product.has_only_default_variant | json }},
+					options_with_values: {{product.options_with_values | json }},
+					selected_variant: {{product.selected_variant | json }},
+					selected_or_first_available_variant: {{product.selected_or_first_available_variant | json }},
+					tags: {{product.tags | json }},
+					template_suffix: {{product.template_suffix | json }},
+					featured_image: {{product.featured_image | json }},
+					featured_media: {{product.featured_media | json }},
+					images: {{product.images | json }}
+				};</script></div>{% endfor %}<!-- -->{% endpaginate %}<!-- -->{% assign product = defaultProduct %}</div></div><div data-pf-expandable="true" style="display:none" data-pf-type="TabsContent" class="sc-dsXzNU iNWOJK pf-73_ pf-bg-lazy"><div class="sc-fyjqAk jDIFKr pf-74_ pf-r pf-r-ew" style="--s-xs:7.5px;--s-lg:15px;--ew-xs:2;--ew-sm:4" data-pf-type="ProductList">{% assign collection = collections["undefined"] %}<!-- -->{% assign defaultProduct = product %}<!-- -->{% paginate collection.products by 4 %}<!-- -->{% for product in collection.products %}<div class="pf-c"><div data-product-id="{{ product.id }}" data-pf-type="ProductBox" class="sc-gkCoMD enpFfZ pf-75_">{% if product != null %}{% form "product", product, data-productid: product.id, class: "pf-product-form" %}<div class="sc-hHEiqL ccTnQh pf-76_ pf-r pf-r-eh" style="--s-xs:15px;--s-lg:0px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-77_"><div data-product-id="{{ product.id }}" data-pf-type="ProductImage" class="sc-kizEQm irzWzB pf-78_">{% assign images = product.images %}<div style="--w-xs:0" class="sc-gJpXkD bJTfBG pf-r-dg"><div data-href="{{ product.url }}" data-pf-type="MasterImage" style="order:0;--ratio:100%" class="sc-dkuGKe dIqww"><img src="{{ product.featured_image | img_url: "xNaN", scale: 2 }}" alt="{{ product.featured_image.alt }}" loading="lazy" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}"/>{% assign _product = product %}<div data-pf-type="ProductImagePagination" class="sc-cKRKFl kSUooD pf-hide pf-sm-hide pf-md-hide pf-lg-hide">{% for i in (1..images.size) %}<span></span>{% endfor %}</div></div><div class="sc-gstuGz tcgHY pf-hide pf-sm-hide pf-md-hide pf-lg-hide"><div data-pf-type="ProductImageList" class="sc-amkrK gdJPMO pf-r-dg">
+								{% assign pf_all = "" %}
+								{% assign pf_laptop = "" %}
+								{% assign pf_tablet = "" %}
+								{% assign pf_mobile = "" %}
+								{% for i in (0..images.size) limit:images.size %}
+								{% assign image = images[i] %}
+								{% if true %}
+								{% if i > 4 %}
+								{% assign pf_all = "pf-lg-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_laptop = "pf-md-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_tablet = "pf-sm-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_mobile = "pf-hide" %}
+								{% endif %}
+								{% endif %}
+							<div class="sc-kmIPcE htFMXJ pf-79_ {{pf_all}} {{pf_laptop}} {{pf_tablet}} {{pf_mobile}}" data-img-id="{{ image.id }}" data-pf-type="ImageItem"><img loading="lazy" src="{{ image.src | img_url: "master" }}" alt="{{ image.alt }}" draggable="false"/></div>{% endfor %}</div>{% if true %}<div data-pf-nav="prev" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-left"></i></div><div data-pf-nav="next" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-right"></i></div>{% endif %}</div></div></div><h3 data-product-type="title" data-product-id="{{ product.id }}" data-href="{{ product.url }}" data-pf-type="ProductTitle" class="sc-kTCsyW gxdqsh pf-81_">{{ product.title }}</h3><div data-product-type="price" data-product-id="{{ product.id }}" data-pf-type="ProductPrice" class="sc-iGkqmO ckwDLe pf-82_">{{ product.variants[0].price | money }}</div><button data-product-id="{{ product.id }}" data-checkout="same" data-soldout="Sold out" data-adding="Adding..." data-added="Thank you!" type="button" data-pf-type="ProductATC" class="sc-gzcbmu jNYWPO pf-83_"><span>Add To Cart</span></button></div></div></div>{% endform %}{% endif %}</div><script>
+				window.__pageflyProducts = window.__pageflyProducts || {};
+				window.__pageflyProducts["{{product.id}}"] = {
+					id: {{product.id | json }},
+					handle: {{product.handle | json }},
+					title: {{product.title | json }},
+					type: {{product.type | json }},
+					url: {{product.url | json }},
+					vendor: {{product.vendor | json }},
+					variants: {{product.variants | json }},
+					options: {{product.options | json }},
+					media: {{product.media | json }},
+					has_only_default_variant: {{product.has_only_default_variant | json }},
+					options_with_values: {{product.options_with_values | json }},
+					selected_variant: {{product.selected_variant | json }},
+					selected_or_first_available_variant: {{product.selected_or_first_available_variant | json }},
+					tags: {{product.tags | json }},
+					template_suffix: {{product.template_suffix | json }},
+					featured_image: {{product.featured_image | json }},
+					featured_media: {{product.featured_media | json }},
+					images: {{product.images | json }}
+				};</script></div>{% endfor %}<!-- -->{% endpaginate %}<!-- -->{% assign product = defaultProduct %}</div></div><div data-pf-expandable="true" style="display:block" data-pf-type="TabsContent" class="sc-dsXzNU iNWOJK pf-86_ pf-bg-lazy"><div class="sc-fyjqAk jDIFKr pf-87_ pf-r pf-r-ew" style="--s-xs:7.5px;--s-lg:15px;--ew-xs:2;--ew-sm:4" data-pf-type="ProductList">{% assign collection = collections["undefined"] %}<!-- -->{% assign defaultProduct = product %}<!-- -->{% paginate collection.products by 4 %}<!-- -->{% for product in collection.products %}<div class="pf-c"><div data-product-id="{{ product.id }}" data-pf-type="ProductBox" class="sc-gkCoMD enpFfZ pf-88_">{% if product != null %}{% form "product", product, data-productid: product.id, class: "pf-product-form" %}<div class="sc-hHEiqL ccTnQh pf-89_ pf-r pf-r-eh" style="--s-xs:15px;--s-lg:0px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-90_"><div data-product-id="{{ product.id }}" data-pf-type="ProductImage" class="sc-kizEQm irzWzB pf-91_">{% assign images = product.images %}<div style="--w-xs:0" class="sc-gJpXkD bJTfBG pf-r-dg"><div data-href="{{ product.url }}" data-pf-type="MasterImage" style="order:0;--ratio:100%" class="sc-dkuGKe dIqww"><img src="{{ product.featured_image | img_url: "xNaN", scale: 2 }}" alt="{{ product.featured_image.alt }}" loading="lazy" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}"/>{% assign _product = product %}<div data-pf-type="ProductImagePagination" class="sc-cKRKFl kSUooD pf-hide pf-sm-hide pf-md-hide pf-lg-hide">{% for i in (1..images.size) %}<span></span>{% endfor %}</div></div><div class="sc-gstuGz tcgHY pf-hide pf-sm-hide pf-md-hide pf-lg-hide"><div data-pf-type="ProductImageList" class="sc-amkrK gdJPMO pf-r-dg">
+								{% assign pf_all = "" %}
+								{% assign pf_laptop = "" %}
+								{% assign pf_tablet = "" %}
+								{% assign pf_mobile = "" %}
+								{% for i in (0..images.size) limit:images.size %}
+								{% assign image = images[i] %}
+								{% if true %}
+								{% if i > 4 %}
+								{% assign pf_all = "pf-lg-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_laptop = "pf-md-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_tablet = "pf-sm-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_mobile = "pf-hide" %}
+								{% endif %}
+								{% endif %}
+							<div class="sc-kmIPcE htFMXJ pf-92_ {{pf_all}} {{pf_laptop}} {{pf_tablet}} {{pf_mobile}}" data-img-id="{{ image.id }}" data-pf-type="ImageItem"><img loading="lazy" src="{{ image.src | img_url: "master" }}" alt="{{ image.alt }}" draggable="false"/></div>{% endfor %}</div>{% if true %}<div data-pf-nav="prev" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-left"></i></div><div data-pf-nav="next" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-right"></i></div>{% endif %}</div></div></div><h3 data-product-type="title" data-product-id="{{ product.id }}" data-href="{{ product.url }}" data-pf-type="ProductTitle" class="sc-kTCsyW gxdqsh pf-94_">{{ product.title }}</h3><div data-product-type="price" data-product-id="{{ product.id }}" data-pf-type="ProductPrice" class="sc-iGkqmO ckwDLe pf-95_">{{ product.variants[0].price | money }}</div><button data-product-id="{{ product.id }}" data-checkout="same" data-soldout="Sold out" data-adding="Adding..." data-added="Thank you!" type="button" data-pf-type="ProductATC" class="sc-gzcbmu jNYWPO pf-96_"><span>Add To Cart</span></button></div></div></div>{% endform %}{% endif %}</div><script>
+				window.__pageflyProducts = window.__pageflyProducts || {};
+				window.__pageflyProducts["{{product.id}}"] = {
+					id: {{product.id | json }},
+					handle: {{product.handle | json }},
+					title: {{product.title | json }},
+					type: {{product.type | json }},
+					url: {{product.url | json }},
+					vendor: {{product.vendor | json }},
+					variants: {{product.variants | json }},
+					options: {{product.options | json }},
+					media: {{product.media | json }},
+					has_only_default_variant: {{product.has_only_default_variant | json }},
+					options_with_values: {{product.options_with_values | json }},
+					selected_variant: {{product.selected_variant | json }},
+					selected_or_first_available_variant: {{product.selected_or_first_available_variant | json }},
+					tags: {{product.tags | json }},
+					template_suffix: {{product.template_suffix | json }},
+					featured_image: {{product.featured_image | json }},
+					featured_media: {{product.featured_media | json }},
+					images: {{product.images | json }}
+				};</script></div>{% endfor %}<!-- -->{% endpaginate %}<!-- -->{% assign product = defaultProduct %}</div></div></div></div></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-99_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-100_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-101_"><h2 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-102_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-104_">Shop the look</span></h2><p class="sc-fbIWvP fkBHIM pf-105_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-107_">With our kitchens</span></p></div></div></div><div class="sc-hHEiqL ccTnQh pf-108_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-sm:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-109_"><img src="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-e6184016--IMG7614_360x.jpg?v=1621983206" srcSet="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-e6184016--IMG7614.jpg?v=1621983206 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="360" height="434" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-110_"/></div></div><div class="pf-c" style="--c-xs:12;--c-sm:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-111_"><img src="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-184016f9--ZLINE-Appliances24-1_360x.jpg?v=1621983328" srcSet="https://cdn.shopify.com/s/files/1/0045/8086/8170/t/19/assets/pf-184016f9--ZLINE-Appliances24-1.jpg?v=1621983328 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="360" height="435" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-112_"/></div></div><div class="pf-c" style="--c-xs:12;--c-sm:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-113_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-3fc470c6-32f9-4a16-8999-654b4217ffd1--3_360x.jpg?311920" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-3fc470c6-32f9-4a16-8999-654b4217ffd1--3.jpg?311920 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="360" height="292" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-114_"/></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-115_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-116_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-sm:5;--c-md:3;--c-lg:3"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-117_"><h2 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-118_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-120_">SALE PRODUCTS</span></h2><p class="sc-fbIWvP fkBHIM pf-121_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-123_">The shoes</span></p><p class="sc-fbIWvP fkBHIM pf-124_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-126_">Collections</span></p><p class="sc-fbIWvP fkBHIM pf-127_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-129_">Sale up to 70% off</span></p><a data-pf-type="Button" class="sc-ezzafa dspfA pf-130_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-132_">Show me more</span><i class="sc-iTVJFM oxVOu pf-131_ pfa pfa-long-arrow-right" data-pf-type="Icon"></i></a></div></div><div class="pf-c" style="--c-xs:12;--c-sm:7;--c-md:9;--c-lg:9"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-133_"><div class="sc-fyjqAk jDIFKr pf-134_ pf-r pf-r-ew" style="--s-xs:7.5px;--s-lg:15px;--ew-xs:1;--ew-md:3" data-pf-type="ProductList">{% assign collection = collections["undefined"] %}<!-- -->{% assign defaultProduct = product %}<!-- -->{% paginate collection.products by 3 %}<!-- -->{% for product in collection.products %}<div class="pf-c"><div data-product-id="{{ product.id }}" data-pf-type="ProductBox" class="sc-gkCoMD enpFfZ pf-135_">{% if product != null %}{% form "product", product, data-productid: product.id, class: "pf-product-form" %}<div class="sc-hHEiqL ccTnQh pf-136_ pf-r pf-r-eh" style="--s-xs:15px;--s-lg:0px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-lg:12"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-137_"><div data-product-id="{{ product.id }}" data-pf-type="ProductImage" class="sc-kizEQm irzWzB pf-138_">{% assign images = product.images %}<div style="--w-xs:0" class="sc-gJpXkD bJTfBG pf-r-dg"><div data-href="{{ product.url }}" data-pf-type="MasterImage" style="order:0;--ratio:100%" class="sc-dkuGKe dIqww"><img src="{{ product.featured_image | img_url: "xNaN", scale: 2 }}" alt="{{ product.featured_image.alt }}" loading="lazy" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}"/>{% assign _product = product %}<div data-pf-type="ProductImagePagination" class="sc-cKRKFl kSUooD pf-hide pf-sm-hide pf-md-hide pf-lg-hide">{% for i in (1..images.size) %}<span></span>{% endfor %}</div></div><div class="sc-gstuGz tcgHY pf-hide pf-sm-hide pf-md-hide pf-lg-hide"><div data-pf-type="ProductImageList" class="sc-amkrK gdJPMO pf-r-dg">
+								{% assign pf_all = "" %}
+								{% assign pf_laptop = "" %}
+								{% assign pf_tablet = "" %}
+								{% assign pf_mobile = "" %}
+								{% for i in (0..images.size) limit:images.size %}
+								{% assign image = images[i] %}
+								{% if true %}
+								{% if i > 4 %}
+								{% assign pf_all = "pf-lg-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_laptop = "pf-md-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_tablet = "pf-sm-hide" %}
+								{% endif %}
+								{% if i > 4 %}
+								{% assign pf_mobile = "pf-hide" %}
+								{% endif %}
+								{% endif %}
+							<div class="sc-kmIPcE htFMXJ pf-139_ {{pf_all}} {{pf_laptop}} {{pf_tablet}} {{pf_mobile}}" data-img-id="{{ image.id }}" data-pf-type="ImageItem"><img loading="lazy" src="{{ image.src | img_url: "master" }}" alt="{{ image.alt }}" draggable="false"/></div>{% endfor %}</div>{% if true %}<div data-pf-nav="prev" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-left"></i></div><div data-pf-nav="next" class="sc-iIgjPs krBuaG"><i class="pfa pfa-angle-right"></i></div>{% endif %}</div></div></div><h3 data-product-type="title" data-product-id="{{ product.id }}" data-href="{{ product.url }}" data-pf-type="ProductTitle" class="sc-kTCsyW gxdqsh pf-141_">{{ product.title }}</h3><div data-product-type="price" data-product-id="{{ product.id }}" data-pf-type="ProductPrice" class="sc-iGkqmO ckwDLe pf-142_">{{ product.variants[0].price | money }}</div><button data-product-id="{{ product.id }}" data-checkout="same" data-soldout="Sold out" data-adding="Adding..." data-added="Thank you!" type="button" data-pf-type="ProductATC" class="sc-gzcbmu jNYWPO pf-143_"><span>Add To Cart</span></button></div></div></div>{% endform %}{% endif %}</div><script>
+				window.__pageflyProducts = window.__pageflyProducts || {};
+				window.__pageflyProducts["{{product.id}}"] = {
+					id: {{product.id | json }},
+					handle: {{product.handle | json }},
+					title: {{product.title | json }},
+					type: {{product.type | json }},
+					url: {{product.url | json }},
+					vendor: {{product.vendor | json }},
+					variants: {{product.variants | json }},
+					options: {{product.options | json }},
+					media: {{product.media | json }},
+					has_only_default_variant: {{product.has_only_default_variant | json }},
+					options_with_values: {{product.options_with_values | json }},
+					selected_variant: {{product.selected_variant | json }},
+					selected_or_first_available_variant: {{product.selected_or_first_available_variant | json }},
+					tags: {{product.tags | json }},
+					template_suffix: {{product.template_suffix | json }},
+					featured_image: {{product.featured_image | json }},
+					featured_media: {{product.featured_media | json }},
+					images: {{product.images | json }}
+				};</script></div>{% endfor %}<!-- -->{% endpaginate %}<!-- -->{% assign product = defaultProduct %}</div></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-146_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-147_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-148_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5_99x.png?311912" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5.png?311912 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="99" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-149_"/></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-150_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-44be5059-8118-4fc9-9d28-8dde73a78109--4_106x.png?311914" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-44be5059-8118-4fc9-9d28-8dde73a78109--4.png?311914 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="106" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-151_"/></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-152_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-b13525fc-883b-4c39-aeb2-3646b819f44e--3_82x.png?311916" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-b13525fc-883b-4c39-aeb2-3646b819f44e--3.png?311916 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="82" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-153_"/></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-154_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-44be5059-8118-4fc9-9d28-8dde73a78109--4_106x.png?311914" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-44be5059-8118-4fc9-9d28-8dde73a78109--4.png?311914 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="106" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-155_"/></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-156_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5_99x.png?311912" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5.png?311912 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="99" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-157_"/></div></div><div class="pf-c" style="--c-xs:6;--c-sm:4;--c-md:2;--c-lg:2"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-158_"><img src="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5_99x.png?311912" srcSet="https://cdn.shopify.com/s/files/1/2170/1117/t/10/assets/pf-247b7eac-64f1-421d-ab03-131ac7eefa81--5.png?311912 1536w" sizes="(min-width: 1536px) 1536px, (min-width: 1024px) and (max-width: 1535px) 1280px, (min-width: 640px) and (max-width: 1023px) 768px, 320px" width="99" height="75" loading="lazy" data-pf-type="Image" class="sc-iBzEeX glZmJR pf-159_"/></div></div></div></div></div><div data-pf-type="Section" class="sc-hhIiOg iwisNA pf-160_"><div style="--cw:1170px" class="sc-oeezt OJJCp"><div class="sc-hHEiqL ccTnQh pf-161_ pf-r pf-r-eh" style="--s-xs:15px" data-pf-type="Row"><div class="pf-c" style="--c-xs:12;--c-sm:6;--c-md:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-162_ pf-bg-lazy"><p class="sc-fbIWvP fkBHIM pf-163_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-165_">-20%</span></p><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-166_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-168_">The layered bed</span></h3></div></div><div class="pf-c" style="--c-xs:12;--c-sm:6;--c-md:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-169_ pf-bg-lazy"><p class="sc-fbIWvP fkBHIM pf-170_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-172_">50%</span></p><div data-pf-type="Block" class="sc-jgPyTC fuJtcf pf-173_"><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-174_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-176_">Bed room furniture</span></h3><p class="sc-fbIWvP fkBHIM pf-177_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-179_">Beds, Dresses &amp; more</span></p></div></div></div><div class="pf-c" style="--c-xs:12;--c-sm:6;--c-md:4;--c-lg:4"><div data-pf-type="Column" class="sc-laZMeE ljWfRO pf-180_ pf-bg-lazy"><p class="sc-fbIWvP fkBHIM pf-181_" data-pf-type="Paragraph"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-183_">Most popular items</span></p><h3 data-pf-type="Heading" class="sc-ciSkZP hNMEMQ pf-184_"><span data-pf-type="Text" class="sc-daBunf eQUdeu pf-186_">ON SALE<br>40% OFF</span></h3></div></div></div></div></div></div></div></div><script>window.__pagefly_setting__={"baseURL":"https://apps.pagefly.io","analyticsURL":"https://analytics.pagefly.io","isBackend":false,"cdnURL":"https://cdn.pagefly.io","pageflyVersion":"3.3.1","shopDomain":"rustic-kitchen-bath.myshopify.com","elementData":{"pf-65_":{"listPosition":2,"limit":{"all":5,"laptop":5,"tablet":5,"mobile":5},"spacing":{"all":"10px","laptop":"10px","tablet":"10px","mobile":"10px"},"listLayout":1,"hoverAction":2,"onHover":0,"clickAction":1,"imageSource":"featured","id":"48d0c8ee-bb43-4992-a62c-3322b03adfcb","_type":"ProductImage"},"pf-67_":{"applyCondition":false,"collectionSource":"all","collectionIds":[],"tags":"","id":"c8eebb43-e992-462c-b322-b03adfcb6900","_type":"ProductBadge"},"pf-78_":{"listPosition":2,"limit":{"all":5,"laptop":5,"tablet":5,"mobile":5},"spacing":{"all":"10px","laptop":"10px","tablet":"10px","mobile":"10px"},"listLayout":1,"hoverAction":2,"onHover":0,"clickAction":1,"imageSource":"featured","id":"3adfcb69-0038-4b95-a1d0-6688b482be62","_type":"ProductImage"},"pf-80_":{"applyCondition":false,"collectionSource":"all","collectionIds":[],"tags":"","id":"cb690038-cb95-41d0-a688-b482be6216ec","_type":"ProductBadge"},"pf-91_":{"listPosition":2,"limit":{"all":5,"laptop":5,"tablet":5,"mobile":5},"spacing":{"all":"10px","laptop":"10px","tablet":"10px","mobile":"10px"},"listLayout":1,"hoverAction":2,"onHover":0,"clickAction":1,"imageSource":"featured","id":"82be6216-ec11-4b2f-b738-6ff02f674828","_type":"ProductImage"},"pf-93_":{"applyCondition":false,"collectionSource":"all","collectionIds":[],"tags":"","id":"6216ec11-fb2f-4738-aff0-2f674828d440","_type":"ProductBadge"},"pf-138_":{"listPosition":2,"limit":{"all":5,"laptop":5,"tablet":5,"mobile":5},"spacing":{"all":"10px","laptop":"10px","tablet":"10px","mobile":"10px"},"listLayout":1,"hoverAction":2,"onHover":0,"clickAction":1,"imageSource":"featured","id":"29228aba-bc42-4738-a6fd-ab7c3a87f255","_type":"ProductImage"},"pf-140_":{"applyCondition":false,"collectionSource":"all","collectionIds":[],"tags":"","id":"8ababc42-d738-46fd-ab7c-3a87f255c4b8","_type":"ProductBadge"}},"pageTitle":"Cooking Collection Page","pageType":"collection","pageId":"4895d3d0-9b81-4ac5-aac4-31ab0836994b","lazyLoad":true,"forceByPassGoogleLightHouse":false,"imageLazyLoad":true,"nativeImageLazyLoad":true,"useThemeJQ":false,"fontLink":"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@400;500;600;700&family=Playball:wght@400&display=swap","trackingIDs":[{"elementIndex":65,"elementId":"48d0c8ee-bb43-4992-a62c-3322b03adfcb","elementType":"ProductImage","elementName":"ProductImage"},{"elementIndex":68,"elementId":"eebb43e9-9226-4c33-a2b0-3adfcb690038","elementType":"ProductTitle","elementName":"ProductTitle"},{"elementIndex":70,"elementId":"43e99226-2c33-42b0-badf-cb690038cb95","elementType":"ProductATC","elementName":"ProductATC"},{"elementIndex":78,"elementId":"3adfcb69-0038-4b95-a1d0-6688b482be62","elementType":"ProductImage","elementName":"ProductImage"},{"elementIndex":81,"elementId":"690038cb-9561-4066-88b4-82be6216ec11","elementType":"ProductTitle","elementName":"ProductTitle"},{"elementIndex":83,"elementId":"38cb9561-d066-48b4-82be-6216ec11fb2f","elementType":"ProductATC","elementName":"ProductATC"},{"elementIndex":91,"elementId":"82be6216-ec11-4b2f-b738-6ff02f674828","elementType":"ProductImage","elementName":"ProductImage"},{"elementIndex":94,"elementId":"16ec11fb-2ff7-486f-b02f-674828d44013","elementType":"ProductTitle","elementName":"ProductTitle"},{"elementIndex":96,"elementId":"11fb2ff7-386f-402f-a748-28d44013bc97","elementType":"ProductATC","elementName":"ProductATC"},{"elementIndex":138,"elementId":"29228aba-bc42-4738-a6fd-ab7c3a87f255","elementType":"ProductImage","elementName":"ProductImage"},{"elementIndex":141,"elementId":"babc42d7-3826-4dab-bc3a-87f255c4b8f4","elementType":"ProductTitle","elementName":"ProductTitle"},{"elementIndex":143,"elementId":"42d73826-fdab-4c3a-87f2-55c4b8f49ec8","elementType":"ProductATC","elementName":"ProductATC"}],"shopifyProxyPath":"/a/pf_preview"};window.__pagefly_setting__.moneyFormat={{shop.money_format|json}};</script><script src="https://cdn.pagefly.io/pagefly/3.3.1/core/helper.js" defer></script>

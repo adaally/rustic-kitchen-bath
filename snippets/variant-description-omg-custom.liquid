@@ -1,0 +1,37 @@
+{%- if content_for_header contains 'variant-description-app' -%}
+<!-- snippets/variant-description-omg-custom.liquid -->
+{%- assign selected_variant_description = product.selected_or_first_available_variant.metafields['products']['aval_date'] -%}
+{%- if selected_variant_description == '-' -%}
+  {%- assign selected_variant_description = '' -%}
+{%- else -%}
+  {%- assign selected_variant_description = settings.variant_description_msg | append: selected_variant_description -%}
+{%- endif -%}
+                         
+<style>
+  [data-variant-description-app="product description"]:empty {
+    display: none;
+  }
+</style>                      
+
+{%- if selected_variant_description != blank -%}
+<div data-variant-description-app="variant description" style="margin-bottom: 1rem;">{{- selected_variant_description -}}</div> 
+{%- endif -%}
+<div data-variant-description-app="product description" style="margin-bottom: 1rem;"></div>  
+<script type="application/json" data-variant-description-app="data">
+  {
+    "{{ product.handle }}": {
+      "product": "",
+      "variants": {
+      {%- for variant in product.variants -%}
+        {%- assign meta = variant.metafields['products']['aval_date'] -%}
+        {%- if meta == '-' -%}
+          {%- assign meta = '' -%}
+        {%- else -%}
+           {%- assign meta = settings.variant_description_msg | append: meta -%}
+        {%- endif -%}
+        "{{ variant.id }}": {{ meta | json }}{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    }
+  }}
+</script>
+{%- endif -%}

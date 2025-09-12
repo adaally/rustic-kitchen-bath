@@ -1,0 +1,139 @@
+{{ 'cs-single-image.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        margin-top: {{ section.settings.top_margin }}rem;
+        margin-bottom: {{ section.settings.bottom_margin }}rem;
+        padding-top: {{ section.settings.top_padding }}rem;
+        padding-bottom: {{ section.settings.bottom_padding }}rem;
+    }    
+    #shopify-section-{{ section.id }} .cs-image-desktop {
+      display: block;
+    }
+    #shopify-section-{{ section.id }} .cs-image-mobile {
+      display: none;
+    }    
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} {
+          margin-top: {{ section.settings.top_margin | divided_by: 3 }}rem;
+          margin-bottom: {{ section.settings.bottom_margin | divided_by: 3 }}rem;
+          padding-top: {{ section.settings.top_padding | divided_by: 3 }}rem;
+          padding-bottom: {{ section.settings.bottom_padding | divided_by: 3 }}rem;
+      }
+      {% if section.settings.image_mobile != blank %}
+        #shopify-section-{{ section.id }} .cs-image-desktop {
+          display: none;
+        }
+        #shopify-section-{{ section.id }} .cs-image-mobile {
+          display: block;
+        }
+      {% endif %}
+    }
+{% endstyle %}
+
+<div class="cs-container">
+    <div class="cs-grid">
+       {% if section.settings.image != blank %}
+          <div class="cs-image-desktop">
+            {% if section.settings.image_link != blank %}
+              <a href="{{ section.settings.image_link }}"{% if section.settings.new_tab %} target="_blank"{% endif %}>
+                {{ section.settings.image | image_url: width: 1920 | image_tag: widths: '768, 1024, 1360' }}
+              </a>
+            {% else %}
+              {{ section.settings.image | image_url: width: 1920 | image_tag: widths: '768, 1024, 1360' }}
+            {% endif %}            
+          </div>
+       {% endif %}
+       {% if section.settings.image_mobile != blank %}
+        <div class="cs-image-mobile">
+          {% if section.settings.image_link != blank %}
+            <a href="{{ section.settings.image_link }}"{% if section.settings.new_tab %} target="_blank"{% endif %}>
+              {{ section.settings.image_mobile | image_url: width: 768 | image_tag: widths: '480, 540, 768' }}
+            </a>
+          {% else %}
+            {{ section.settings.image_mobile | image_url: width: 768 | image_tag: widths: '480, 540, 768' }}
+          {% endif %}
+        </div>
+     {% endif %}
+    </div>    
+</div>
+
+{% schema %}
+{
+    "name": "Custom Single Image",
+    "class": "cs-single-image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image Mobile",
+        "info": "If this is empty, the image desktop will show in mobile."
+      },
+      {
+        "type": "url",
+        "id": "image_link",
+        "label": "Image Link"
+      },
+      {
+        "type": "checkbox",
+        "id": "new_tab",
+        "label": "Open link in new tab",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Margins and Paddings"
+      }, 
+      {
+        "type": "range",
+        "id": "top_margin",
+        "label": "Top Margin",
+        "min": 0,
+        "max": 100,
+        "unit": "rem",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "bottom_margin",
+        "label": "Bottom Margin",
+        "min": 0,
+        "max": 100,
+        "unit": "rem",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "top_padding",
+        "label": "Top Padding",
+        "min": 0,
+        "max": 100,
+        "unit": "rem",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "bottom_padding",
+        "label": "Bottom Padding",
+        "min": 0,
+        "max": 100,
+        "unit": "rem",
+        "step": 1,
+        "default": 0
+      }
+    ],
+    "presets": [
+        {
+            "name": "Custom Single Image"
+        }
+    ]
+}
+{% endschema %}
