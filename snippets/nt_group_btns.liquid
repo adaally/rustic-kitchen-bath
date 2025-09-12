@@ -38,9 +38,9 @@ endcase -%}
         <div class="search_h_break pa w__100"></div>
         <div class="search_header__prs fwsb cd pa dn js_prs_search product_list_widget"></div> 
      </div>
-    <a class="icon_search push_side cb chp dn_lg" data-id="#nt_search_canvas" href="{{ routes.search_url }}"><i class="{{arric[0]}}"></i><span class="visually-hidden" aria-hidden="true">{{ 'general.search.placeholder' | t }}</span></a>
+    <a class="icon_search push_side cb chp dn_lg" data-id="#nt_search_canvas" href="{{ routes.search_url }}"><i class="{{arric[0]}}"></i><span class="visually-hidden">{{ 'general.search.placeholder' | t }}</span></a>
     {%- else -%}
-    <a class="icon_search push_side cb chp" data-id="#nt_search_canvas" href="{{ routes.search_url }}"><i class="{{arric[0]}}"></i><span class="visually-hidden" aria-hidden="true">{{ 'general.search.placeholder' | t }}</span></a>
+    <a class="icon_search push_side cb chp" data-id="#nt_search_canvas" href="{{ routes.search_url }}"><i class="{{arric[0]}}"></i><span class="visually-hidden">{{ 'general.search.placeholder' | t }}</span></a>
     {%- endif -%}
    {%- endif -%}
    {%- if shop.customer_accounts_enabled and settings.show_acc -%}
