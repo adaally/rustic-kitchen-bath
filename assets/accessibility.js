@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     function renderResponsive() {
         const navBtn = document.querySelector('[data-id="#nt_menu_canvas"]');
-        console.log(navBtn, "FOUND BTN")
         if(!navBtn) return;
 
-        if(window.innerWidth > 1023 ) {
+        if(window.innerWidth > 1023) {
             const newLinkSpan = document.createElement("span");
             for (const attr of navBtn.attributes) {
                 newLinkSpan.setAttribute(attr.name, attr.value);
@@ -16,6 +15,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run on load
     renderResponsive();
-    // Run again on resize
-    window.addEventListener('resize', renderResponsive);
 });
