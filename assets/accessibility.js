@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             for (const attr of navBtn.attributes) {
                 newLinkSpan.setAttribute(attr.name, attr.value);
             }
-            newLinkSpan.innerHTML = navBtn.innerHTML
+            newLinkSpan.innerHTML = navBtn.innerHTML;
+            navBtn.replaceWith(newLinkSpan);
         }
     }
 
