@@ -1731,7 +1731,7 @@
             "type": "help",
             "settings": {
               "title": "Need Help?",
-              "text": "<i class=\"pegk pe-7s-call fwb mr__10\"></i>1 (866) 212-9706<br><i class=\"pegk pe-7s-mail fwb mr__10\"></i><a class=\"cg\" href=\"mailto:contact@rustickitchenandbath.com\">Email Us</a>"
+              "text": "<i class=\"pegk pe-7s-call fwb mr__10\"></i>1 (866) 212-9706<br><i class=\"pegk pe-7s-mail fwb mr__10\"></i><a href=\"mailto:contact@rustickitchenandbath.com\">Email Us</a>"
             }
           }
         },
