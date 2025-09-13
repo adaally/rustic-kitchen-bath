@@ -17,31 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderResponsive();
 
     function fixFormRealtorProgramRegistration() {
-        const FORM_ID = "#formGeneratorForm";
-        console.log(FORM_ID, "ID")
+        const FORM_ID = "formGeneratorForm";
         const observer = new MutationObserver((mutationsList, observer) => {
-            console.log(mutationsList, "mutation")
-        for (const mutation of mutationsList) {
+            for (const mutation of mutationsList) {
             mutation.addedNodes.forEach((node) => {
-                // if (node.id === FORM_ID) {
-                //     console.log("form added:", node);
-
-                //     // ✅ Stop observing once the form is found
-                //     observer.disconnect();
-                // }
-                // If the form might be nested inside other added nodes
-                if (node.querySelector && node.querySelector(FORM_ID)) {
-                    const form = node.querySelector(FORM_ID);
-                    console.log("formNew nested inside:", form);
-
+                if (node.id === FORM_ID) {
+                observer.disconnect(); // stop once found
+                callback(node);
+                } else if (node.querySelector) {
+                const form = node.querySelector(`#${FORM_ID}`);
+                if (form) {
                     observer.disconnect();
+                    callback(form);
                 }
-
+                }
             });
-        }
+            }
         });
 
-        // Watch the whole document (or narrow to a container)
         observer.observe(document.body, { childList: true, subtree: true });
     }
 
