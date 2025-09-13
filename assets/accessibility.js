@@ -17,39 +17,56 @@ document.addEventListener('DOMContentLoaded', () => {
     renderResponsive();
 
     function fixFormRealtorProgramRegistration() {
-        const FORM_ID = "formGeneratorForm";
-        const iframeObserver = new MutationObserver((mutations, obs) => {
-            const iframe = document.querySelector(iframeSelector);
-            if (iframe) {
-            obs.disconnect(); // stop watching once iframe is found
 
-            // Second: wait for iframe to load
+    }
+
+    // fixFormRealtorProgramRegistration();
+
+    function onPxFormReady(callback) {
+        const container = document.querySelector(".pxFormGenerator");
+        if (!container) {
+            console.warn("pxFormGenerator not found");
+            return;
+        }
+
+        const iframeObserver = new MutationObserver((mutations, obs) => {
+            const iframe = container.querySelector("iframe");
+            if (iframe) {
+            obs.disconnect(); // stop once iframe found
+
             iframe.addEventListener("load", () => {
+                try {
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-                // Third: watch for the form inside the iframe
-                const form = iframeDoc.querySelector(`#${FORM_ID}`);
+                // If the form is already there
+                const form = iframeDoc.querySelector("#formGeneratorForm");
                 if (form) {
                     callback(form);
                     return;
                 }
 
+                // Otherwise watch for it
                 const formObserver = new MutationObserver((mutations, obs2) => {
-                    const newForm = iframeDoc.querySelector(`#${FORM_ID}`);
+                    const newForm = iframeDoc.querySelector("#formGeneratorForm");
                     if (newForm) {
-                        obs2.disconnect();
-                        callback(newForm);
+                    obs2.disconnect();
+                    callback(newForm);
                     }
                 });
 
                 formObserver.observe(iframeDoc, { childList: true, subtree: true });
+                } catch (err) {
+                console.error("Cannot access iframe (cross-origin?)", err);
+                }
             });
             }
         });
 
-        // Start observing the main document for iframe insertion
-        iframeObserver.observe(document.body, { childList: true, subtree: true });
-    }
+        iframeObserver.observe(container, { childList: true, subtree: true });
+        }
 
-    fixFormRealtorProgramRegistration();
+        // 👉 Usage
+        onPxFormReady((form) => {
+            console.log("✅ Form is ready inside iframe:", form);
+        });
 });
