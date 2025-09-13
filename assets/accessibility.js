@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixFormRealtorProgramRegistration() {
         const FORM_ID = "#formGeneratorForm";
+        console.log(FORM_ID, "ID")
         const observer = new MutationObserver((mutationsList, observer) => {
+            console.log(mutationsList, "mutation")
         for (const mutation of mutationsList) {
             mutation.addedNodes.forEach((node) => {
                 // if (node.id === FORM_ID) {
