@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     function renderResponsive() {
         const navBtn = document.querySelector('[data-id="#nt_menu_canvas"]');
-
+        console.log(navBtn, "FOUND BTN")
         if(!navBtn) return;
 
         if(window.innerWidth < 1024 ) {
