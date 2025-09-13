@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(navBtn, "FOUND BTN")
         if(!navBtn) return;
 
-        if(window.innerWidth < 1024 ) {
+        if(window.innerWidth > 1023 ) {
             const newLinkSpan = document.createElement("span");
             for (const attr of navBtn.attributes) {
                 newLinkSpan.setAttribute(attr.name, attr.value);
