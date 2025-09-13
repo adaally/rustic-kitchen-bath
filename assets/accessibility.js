@@ -18,24 +18,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixFormRealtorProgramRegistration() {
         const FORM_ID = "formGeneratorForm";
-        const observer = new MutationObserver((mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-            mutation.addedNodes.forEach((node) => {
-                if (node.id === FORM_ID) {
-                observer.disconnect(); // stop once found
-                callback(node);
-                } else if (node.querySelector) {
-                const form = node.querySelector(`#${FORM_ID}`);
+        const iframeObserver = new MutationObserver((mutations, obs) => {
+            const iframe = document.querySelector(iframeSelector);
+            if (iframe) {
+            obs.disconnect(); // stop watching once iframe is found
+
+            // Second: wait for iframe to load
+            iframe.addEventListener("load", () => {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                // Third: watch for the form inside the iframe
+                const form = iframeDoc.querySelector(`#${FORM_ID}`);
                 if (form) {
-                    observer.disconnect();
                     callback(form);
+                    return;
                 }
-                }
+
+                const formObserver = new MutationObserver((mutations, obs2) => {
+                    const newForm = iframeDoc.querySelector(`#${FORM_ID}`);
+                    if (newForm) {
+                        obs2.disconnect();
+                        callback(newForm);
+                    }
+                });
+
+                formObserver.observe(iframeDoc, { childList: true, subtree: true });
             });
             }
         });
 
-        observer.observe(document.body, { childList: true, subtree: true });
+        // Start observing the main document for iframe insertion
+        iframeObserver.observe(document.body, { childList: true, subtree: true });
     }
 
     fixFormRealtorProgramRegistration();
