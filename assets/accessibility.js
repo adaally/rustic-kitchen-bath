@@ -24,23 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(mutations => {
                 mutations.forEach(mutation => {
                 if (mutation.attributeName === "class" && item.classList.contains("lazyloaded")) {
-                    // ✅ Your method here
 
                     const hiddenText = item.querySelector(".banner_hzoom.nt_promotion a.pa .visually-hidden.hidden-text");
                     const title = items[index].querySelector("a.lh__1");
-                    console.log(title, "title")
-                    console.log(hiddenText, "hiddentext")
                     if(title) {
                         hiddenText.innerText = title.innerText;
                     }
 
-                    // Optional: stop observing once it's done
                     observer.disconnect();
                 }
                 });
             });
 
-        observer.observe(item, { attributes: true });
+            observer.observe(item, { attributes: true });
         });
     }
 
