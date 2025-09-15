@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (mutation.attributeName === "class" && item.classList.contains("lazyloaded")) {
                     // ✅ Your method here
 
-                    const hiddenText = item.querySelector(".menu-item .banner_hzoom.nt_promotion a.pa .visually-hidden.hidden-text");
-                    const title = hiddenText.closest(".menu-item a.lh__1");
+                    const hiddenText = item.querySelector(".banner_hzoom.nt_promotion a.pa .visually-hidden.hidden-text");
+                    const title = hiddenText.closest("a");
                     console.log(title, "title")
                     console.log(hiddenText, "hiddentext")
                     if(title) {
