@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // ✅ Your method here
 
                     const hiddenText = item.querySelector(".banner_hzoom.nt_promotion a.pa .visually-hidden.hidden-text");
-                    const title = hiddenText.closest("a");
+                    const title = hiddenText.closest(".lh__1");
                     console.log(title, "title")
                     console.log(hiddenText, "hiddentext")
                     if(title) {
