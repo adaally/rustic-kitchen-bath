@@ -12,7 +12,7 @@
 	         {%- for link in llists -%}
 	            {%- if link.links != blank -%}
 			         <div class="menu-item has-children{% if link.active %} current{% endif %}">
-			            <a href="{{ link.url }}">attempt{%- render 'tt_inc',title:link.title -%}</a>
+			            <a href="{{ link.url }}">{%- render 'tt_inc',title:link.title -%}</a>
 			            <ul class="sub-menu sub-menu-2 pa op__0">
 			            	{%- for child_link in link.links -%}
 				            	{%- if child_link.links != blank -%}
@@ -31,7 +31,7 @@
 			            </ul>
 			         </div>
 	            {%- else -%}
-			         <div class="menu-item{% if link.active %} current{% endif %}"><a href="{{ link.url }}">{%- render 'tt_inc',title:link.title -%}</a></div>
+			         <div class="menu-item{% if link.active %} current{% endif %}"><a href="{{ link.url }}">attempt{%- render 'tt_inc',title:link.title -%}</a></div>
 			      {%- endif -%}
 	         {%- endfor -%}
 
