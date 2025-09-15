@@ -15,4 +15,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run on load
     renderResponsive();
+
+    function fixMenuEmptyLink() {
+        const items = document.querySelectorAll(".lazy_menu.lazyload");
+
+        items.forEach(item => {
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                if (mutation.attributeName === "class" && item.classList.contains("lazyloaded")) {
+                    // ✅ Your method here
+                    console.log("Lazyloaded:", item);
+                    console.log("RUN")
+
+                    // Optional: stop observing once it's done
+                    observer.disconnect();
+                }
+                });
+            });
+
+        observer.observe(item, { attributes: true });
+        });
+    }
+
+    fixMenuEmptyLink();
 });
