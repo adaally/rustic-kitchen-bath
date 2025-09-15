@@ -12,26 +12,26 @@
 	         {%- for link in llists -%}
 	            {%- if link.links != blank -%}
 			         <div class="menu-item has-children{% if link.active %} current{% endif %}">
-			            <a href="{{ link.url }}">{%- render 'tt_inc',title:link.title -%}</a>
+			            <a href="{{ link.url }}">link1{%- render 'tt_inc',title:link.title -%}</a>
 			            <ul class="sub-menu sub-menu-2 pa op__0">
 			            	{%- for child_link in link.links -%}
 				            	{%- if child_link.links != blank -%}
 					               <li class="menu-item has-children{% if child_link.active %} current{% endif %}">
-					                  <a href="{{ child_link.url }}">{%- render 'tt_inc',title:child_link.title -%}</a>
+					                  <a href="{{ child_link.url }}">link2{%- render 'tt_inc',title:child_link.title -%}</a>
 					                  <ul class="sub-menu sub-menu-3 pa op__0">
 					                  	{%- for grandchild_link in child_link.links -%}
-					                        <li class="menu-item{% if menu.active %} current{% endif %}"><a href="{{ grandchild_link.url }}">{%- render 'tt_inc',title:grandchild_link.title -%}</a></li>
+					                        <li class="menu-item{% if menu.active %} current{% endif %}"><a href="{{ grandchild_link.url }}">link3{%- render 'tt_inc',title:grandchild_link.title -%}</a></li>
 					                     {%- endfor -%}
 					                  </ul>
 					               </li>
 				               {%- else -%}
-				                  <li class="menu-item{% if child_link.active %} current{% endif %}"><a href="{{ child_link.url }}">{%- render 'tt_inc',title:child_link.title -%}</a></li>
+				                  <li class="menu-item{% if child_link.active %} current{% endif %}"><a href="{{ child_link.url }}">link3-3{%- render 'tt_inc',title:child_link.title -%}</a></li>
 				               {%- endif -%}
 			               {%- endfor -%}
 			            </ul>
 			         </div>
 	            {%- else -%}
-			         <div class="menu-item{% if link.active %} current{% endif %}"><a href="{{ link.url }}">attempt{%- render 'tt_inc',title:link.title -%}</a></div>
+			         <div class="menu-item{% if link.active %} current{% endif %}"><a href="{{ link.url }}">link3-4{%- render 'tt_inc',title:link.title -%}</a></div>
 			      {%- endif -%}
 	         {%- endfor -%}
 
@@ -51,7 +51,7 @@
 		            {%- capture cl -%}{% cycle 'a8dacc', '56cfe1' %}{%- endcapture -%}
 		            <div class="nt_bg_lz pr_lazy_img lazyload item__position {{block.settings.img_align}}" data-bg="https://placehold.it/530x600.png/{{cl}}/{{cl}}?text=1" style="padding-top:100%;"></div>
 		          {%- endif -%}
-		          {%- if block.settings.url != blank %}<a href="{{ block.settings.url }}" target="{{block.settings.open_link}}" class="pa t__0 l__0 r__0 b__0"></a>{% endif -%}
+		          {%- if block.settings.url != blank %}<a href="{{ block.settings.url }}" target="{{block.settings.open_link}}" class="pa t__0 l__0 r__0 b__0"><span class="visually-hidden">{{ block.settings.lb }}</span></a>{% endif -%}
 		          <div class="nt_promotion_html pa t__0 l__0 {{block.settings.txt_align}} pe_none">{{block.settings.html}}</div>
 		        </div>
 	         </div>
