@@ -49,17 +49,51 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector("form");
             if(form) {
                 setTimeout(() => {
-                    console.log(form.querySelectorAll("div"),"divs")
                     form.querySelectorAll("div").forEach(item => {
                         item.removeAttribute("tabindex");
                         item.removeAttribute("aria-describedby");
                         item.removeAttribute("aria-label");
-                });
-                    console.log(form.querySelectorAll("label"),"labels")
+                    });
                     form.querySelectorAll("label").forEach(item => {
                         item.removeAttribute("tabindex");
                         item.removeAttribute("aria-label");
                     });
+
+                    const fieldset = form.querySelector("#fieldset-id");
+                    if(fieldset) {
+                        const firstLabel = fieldset.querySelector(":scope > label");
+                        const newLegend = document.createElement("legend");
+                        newLegend.className = firstLabel.className;
+                        newLegend.innerText = firstLabel.innerText;
+                        firstLabel.replaceWith(newLegend);
+
+                        fieldset.querySelector(".checkbox-list > label").forEach(item => {
+                            const span = document.createElement("span");
+                            span.className = item.className;
+
+                            // Move all children into the new <span>
+                            while (item.firstChild) {
+                                span.appendChild(item.firstChild);
+                            }
+
+                            // Replace <label> with <span>
+                            item.replaceWith(span);
+                        });
+                        
+                        
+                        const newFieldset = document.createElement("fieldset");
+                        newFieldset.className = fieldset.className;
+
+                        while(fieldset.firstChild) {
+                            newFieldset.appendChild(fieldset.firstChild);
+                        }
+
+                        fieldset.replaceWith(newFieldset);
+                    }
+
+
+
+
                     obs.disconnect();
                 }, 2000);
             }
