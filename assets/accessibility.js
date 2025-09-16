@@ -52,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.disconnect();
             }
         });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     }
 
     fixBuildCustomKitchenPackageForm();
