@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         newLegend.innerText = firstLabel.innerText;
                         firstLabel.replaceWith(newLegend);
 
-                        fieldset.querySelector(".checkbox-list > label").forEach(item => {
+                        fieldset.querySelectorAll(".checkbox-list > label").forEach(item => {
                             const span = document.createElement("span");
                             span.className = item.className;
 
