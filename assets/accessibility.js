@@ -49,17 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector("form");
             if(form) {
                 setTimeout(() => {
+                    console.log(form.querySelectorAll("div"),"divs")
                     form.querySelectorAll("div").forEach(item => {
-                    item.removeAttribute("tabindex");
-                    item.removeAttribute("aria-describedby");
-                    item.removeAttribute("aria-label");
+                        item.removeAttribute("tabindex");
+                        item.removeAttribute("aria-describedby");
+                        item.removeAttribute("aria-label");
                 });
-
-                form.querySelectorAll("label").forEach(item => {
-                    item.removeAttribute("tabindex");
-                    item.removeAttribute("aria-label");
-                });
-                obs.disconnect();
+                    console.log(form.querySelectorAll("label"),"labels")
+                    form.querySelectorAll("label").forEach(item => {
+                        item.removeAttribute("tabindex");
+                        item.removeAttribute("aria-label");
+                    });
+                    obs.disconnect();
                 }, 1000);
             }
         });
