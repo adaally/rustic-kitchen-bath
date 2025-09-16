@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new MutationObserver((mutation, obs) => {
             const form = document.querySelector("form");
             if(form) {
-                form.querySelectorAll("div").forEach(item => {
+                setTimeout(() => {
+                    form.querySelectorAll("div").forEach(item => {
                     item.removeAttribute("tabindex");
                     item.removeAttribute("aria-describedby");
                     item.removeAttribute("aria-label");
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.removeAttribute("aria-label");
                 });
                 obs.disconnect();
+                }, 1000);
             }
         });
 
