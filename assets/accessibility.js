@@ -41,4 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixMenuEmptyLink();
+
+    function fixBuildCustomKitchenPackageForm() {
+        if(window.location.pathname !== '/build-a-custom-kitchen-package') return;
+
+        const observer = new MutationObserver((mutation, obs) => {
+            const form = document.querySelector("form");
+            if(form) {
+                console.log(form, "FOUND")
+                obs.disconnect();
+            }
+        });
+    }
+
+    fixBuildCustomKitchenPackageForm();
 });
