@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         item.removeAttribute("aria-label");
                     });
 
-                    const fieldset = form.querySelector("#fieldset-id");
+                    const fieldset = form.querySelector(".checkbox-multi");
                     if(fieldset) {
                         const firstLabel = fieldset.querySelector(":scope > label");
                         const newLegend = document.createElement("legend");
