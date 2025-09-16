@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         item.removeAttribute("aria-label");
                     });
                     obs.disconnect();
-                }, 1000);
+                }, 4000);
             }
         });
 
