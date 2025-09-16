@@ -63,12 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             item.classList.add('visually-hidden');
                         });
 
-
                         const firstLabel = fieldset.querySelector(":scope > label");
-                        const newLegend = document.createElement("legend");
-                        newLegend.className = firstLabel.className;
-                        newLegend.innerText = firstLabel.innerText;
-                        firstLabel.replaceWith(newLegend);
+
+                        if(firstLabel) {
+                            const newLegend = document.createElement("legend");
+                            newLegend.className = firstLabel.className;
+                            newLegend.innerText = firstLabel.innerText;
+                            firstLabel.replaceWith(newLegend);
+                        }
 
                         fieldset.querySelectorAll(".checkbox-list > label").forEach(item => {
                             const span = document.createElement("span");
