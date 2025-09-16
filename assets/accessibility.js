@@ -46,10 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!window.location.pathname.endsWith("/build-a-custom-kitchen-package")) return;
 
         const observer = new MutationObserver((mutation, obs) => {
-            console.log("LOOKING")
             const form = document.querySelector("form");
             if(form) {
-                console.log(form, "FOUND")
+                form.querySelectorAll("div").forEach(item => {
+                    item.removeAttribute("tabindex");
+                    item.removeAttribute("aria-describedby");
+                    item.removeAttribute("aria-label");
+                });
+
+                form.querySelectorAll("label").forEach(item => {
+                    item.removeAttribute("tabindex");
+                    item.removeAttribute("aria-label");
+                });
                 obs.disconnect();
             }
         });
