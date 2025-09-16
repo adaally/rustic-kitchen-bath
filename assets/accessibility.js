@@ -49,18 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector("form");
             if(form) {
                 setTimeout(() => {
-                    form.querySelectorAll("div").forEach(item => {
+                    form.querySelectorAll("div, label").forEach(item => {
                         item.removeAttribute("tabindex");
                         item.removeAttribute("aria-describedby");
-                        item.removeAttribute("aria-label");
-                    });
-                    form.querySelectorAll("label").forEach(item => {
-                        item.removeAttribute("tabindex");
                         item.removeAttribute("aria-label");
                     });
 
                     const fieldset = form.querySelector(".checkbox-multi");
                     if(fieldset) {
+                        
+                        fieldset.querySelectorAll("input").forEach(item => {
+                            item.style.display = 'block';
+                            item.classList.add('visually-hidden');
+                        });
+
+
                         const firstLabel = fieldset.querySelector(":scope > label");
                         const newLegend = document.createElement("legend");
                         newLegend.className = firstLabel.className;
@@ -71,12 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             const span = document.createElement("span");
                             span.className = item.className;
 
-                            // Move all children into the new <span>
                             while (item.firstChild) {
                                 span.appendChild(item.firstChild);
                             }
 
-                            // Replace <label> with <span>
                             item.replaceWith(span);
                         });
                         
@@ -90,9 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         fieldset.replaceWith(newFieldset);
                     }
-
-
-
 
                     obs.disconnect();
                 }, 2000);
