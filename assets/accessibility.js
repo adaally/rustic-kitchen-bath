@@ -43,9 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fixMenuEmptyLink();
 
     function fixBuildCustomKitchenPackageForm() {
+        console.log(window.location.pathname)
         if(window.location.pathname !== '/build-a-custom-kitchen-package') return;
 
         const observer = new MutationObserver((mutation, obs) => {
+            console.log("LOOKING")
             const form = document.querySelector("form");
             if(form) {
                 console.log(form, "FOUND")
