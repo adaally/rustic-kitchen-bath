@@ -63,7 +63,7 @@
 
     // Enable only the visible ones
     swiperLogo.slides.forEach(slide => {
-      if (slide.classList.contains("swiper-slide-active")) {
+      if (slide.classList.contains("swiper-slide-visible")) {
         const link = slide.querySelector("a");
         if (link) link.setAttribute("tabindex", "0");
       }
