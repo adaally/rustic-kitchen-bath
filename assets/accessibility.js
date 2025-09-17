@@ -131,14 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // usage
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title", (parents) => {
-            console.log("All inner elements are loaded:", parents);
-            parents.forEach((element, index) => {
-
-            });
-            document.querySelectorAll("[data-opennt]").forEach((element, index) => {
-                const titleModal = parents[index].querySelector(".product-title a");
-                console.log(titleModal)
-                element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`)
-            });
+            setTimeout(() => {
+                document.querySelectorAll("[data-opennt]").forEach((element, index) => {
+                    const titleModal = parents[index].querySelector(".product-title a");
+                    console.log(titleModal)
+                    element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`)
+                });
+            }, 1000);
         });
 });
