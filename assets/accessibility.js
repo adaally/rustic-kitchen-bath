@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                     const titleModal = parents[index].querySelector(".product-title a");
-                    console.log(titleModal)
+                    console.log(titleModal.innerText)
                     element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`)
                 });
             }, 4000);
