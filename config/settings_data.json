@@ -5256,7 +5256,7 @@
         ],
         "custom_css": [],
         "settings": {
-          "title": "<div class=\"h3\">Why Rustic Kitchen and Bath?</div>",
+          "title": "<div class=\"h3\" style=\"margin-top: 10px; margin-bottom: 10px;\">Why Rustic Kitchen and Bath?</div>",
           "sub_title": "",
           "sub_font": "2",
           "style_title": "title_12",
