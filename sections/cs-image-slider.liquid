@@ -54,6 +54,34 @@
   </div>
 </div>
 <script>
+  function updateAriaLabel(swiperLogo) {
+    const total = swiperLogo.slides.length;
+    setTimeout(() => {
+      swiperLogo.slides.forEach((slide, index) => {
+        slide.setAttribute("aria-label", `Slide ${index + 1} of ${total}`);
+      });
+    }, 1000);
+  }
+  function updateTabIndex(swiperLogo) {
+
+    // Enable only the visible ones
+    swiperLogo.slides.forEach(slide => {
+      const active = slide.classList.contains("swiper-slide-visible");
+      slide.setAttribute("aria-hidden", active ? "false" : "true");
+      const link = slide.querySelector("a");
+      if (link) {
+        link.setAttribute("tabindex", active ? "0" : "-1");
+        link.setAttribute("aria-hidden", active ? "false" : "true");
+      }
+    });
+
+    // Force navigation buttons to be skipped
+    const prevBtn = swiperLogo.navigation?.prevEl;
+    const nextBtn = swiperLogo.navigation?.nextEl;
+    if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
+    if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
+  }
+  
   document.addEventListener("DOMContentLoaded", () => {
     var perView = {{ section.settings.slides_per_view }}  
     var swiperLogo = new Swiper(".mySwiper-{{ section.id }}", {    
@@ -81,6 +109,17 @@
           spaceBetween: 10,
           slidesPerView: perView,
           slidesPerGroup: perView,
+        },
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        on: {
+          init: function (swiper) {
+            updateAriaLabel(swiper);
+            updateTabIndex(swiper);
+          },
+          slideChange: function (swiper) {
+            updateTabIndex(swiper);
+          }
         }
       }
     })
