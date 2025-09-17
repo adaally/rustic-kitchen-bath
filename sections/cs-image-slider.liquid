@@ -54,18 +54,18 @@
   </div>
 </div>
 <script>
-    function updateAriaLabel(swiperLogo) {
-    const total = swiperLogo.slides.length;
+    function updateAriaLabel(swiper) {
+    const total = swiper.slides.length;
     setTimeout(() => {
-      swiperLogo.slides.forEach((slide, index) => {
+      swiper.slides.forEach((slide, index) => {
         slide.setAttribute("aria-label", `Slide ${index + 1} of ${total}`);
       });
     }, 1000);
   }
 
-  function updateTabIndex(swiperBanner) {
+  function updateTabIndex(swiper) {
     // Enable only the visible ones
-    swiperLogo.slides.forEach(slide => {
+    swiper.slides.forEach(slide => {
       const active = slide.classList.contains("swiper-slide-visible");
       slide.setAttribute("aria-hidden", active ? "false" : "true");
       const link = slide.querySelector("a");
@@ -76,8 +76,8 @@
     });
 
      // Force navigation buttons to be skipped
-    const prevBtn = swiperBanner.navigation?.prevEl;
-    const nextBtn = swiperBanner.navigation?.nextEl;
+    const prevBtn = swiper.navigation?.prevEl;
+    const nextBtn = swiper.navigation?.nextEl;
     if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
     if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
   }
@@ -114,12 +114,12 @@
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
       on: {
-          init: function (swiperBanner) {
-            updateAriaLabel(swiperBanner);
-            updateTabIndex(swiperBanner);
+          init: function (swiper) {
+            updateAriaLabel(swiper);
+            updateTabIndex(swiper);
           },
-          slideChange: function (swiperBanner) {
-            updateTabIndex(swiperBanner);
+          slideChange: function (swiper) {
+            updateTabIndex(swiper);
           }
       }
     })
