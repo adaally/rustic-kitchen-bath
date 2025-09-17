@@ -107,19 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixBuildCustomKitchenPackageForm();
 
-    function addAriaLabelToProductModalButton() {
-        document.querySelectorAll("[data-opennt]").forEach(element => {
-            const id = element.getAttribute("data-opennt");
-            const titleModal = document.querySelector(`${id}`);
-            setTimeout(() => {
-console.log(titleModal.querySelector(".product-title"))
-            }, 1000);
-            // element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);.cd.chp
-        });
-    }
-
-    addAriaLabelToProductModalButton();
-
     function onAllChildrenReady(parentSelector, childSelector, callback) {
         const parents = document.querySelectorAll(parentSelector);
         const readyParents = new Set();
@@ -150,7 +137,7 @@ console.log(titleModal.querySelector(".product-title"))
             });
             document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                 const titleModal = parents[index].querySelector(".product-title");
-                element.setAttribute("aria-label", titleModal)
+                element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`)
             });
         });
 });
