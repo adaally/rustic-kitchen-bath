@@ -85,6 +85,8 @@
       var perView = {{ section.settings.slides_per_view }}  
       var swiperLogo = new Swiper(".mySwiper-{{ section.id }}", {    
         spaceBetween: 14,
+          watchSlidesProgress: true,
+          watchSlidesVisibility: true, // 👈 required for .swiper-slide-visible
         pagination: {
           el: ".swiper-pagination",
           clickable: true
