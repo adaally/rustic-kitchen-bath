@@ -63,25 +63,15 @@
     }, 1000);
   }
   function updateTabIndex(swiperLogo) {
-    // Reset all links to tabindex -1
-    swiperLogo.slides.forEach(slide => {
-      const link = slide.querySelector("a");
-      if (link) {
-        link.setAttribute("tabindex", "-1");
-        link.setAttribute("aria-hidden", "true");
-      }
-    });
 
     // Enable only the visible ones
     swiperLogo.slides.forEach(slide => {
       const active = slide.classList.contains("swiper-slide-visible");
       slide.setAttribute("aria-hidden", active ? "false" : "true");
-      if(active) {
-        const link = slide.querySelector("a");
-        if (link) {
-          link.setAttribute("tabindex", "0");
-          link.setAttribute("aria-hidden", "false");
-        }
+      const link = slide.querySelector("a");
+      if (link) {
+        link.setAttribute("tabindex", active ? "0" : "-1");
+        link.setAttribute("aria-hidden", active ? "false" : "true");
       }
     });
 
