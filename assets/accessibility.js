@@ -131,12 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // usage
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title a", (parents) => {
-            setTimeout(() => {
-                document.querySelectorAll("[data-opennt]").forEach((element, index) => {
-                    const titleModal = parents[index].querySelector(".product-title a");
-                    console.log(titleModal.innerText)
-                    element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`)
-                });
-            }, 4000);
+            const titleModal = parents[index].querySelector(".product-title a");
+            console.log(titleModal.innerHTML)
+            element.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`);
         });
 });
