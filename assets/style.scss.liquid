@@ -10263,7 +10263,7 @@ a.currency-item.flagst4.flagst4-md {
     font-size: 1.3em;
 }
 
-.checkbox-multiple > span:has(input[type="checkbox"]:focus-visible) label span {
+.checkbox-multiple > span:has(input[type="checkbox"]:focus-visible) label span, .cs-image-desktop:has(a:focus-visible) {
     outline: .2rem solid #000 !important;
     outline-offset: .2rem;
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
@@ -10275,4 +10275,8 @@ a.currency-item.flagst4.flagst4-md {
 
 input:not([type=submit]):not([type=checkbox]) {
   color: #757575;
+}
+
+.cs-image-desktop:has(a:focus-visible) {
+
 }
