@@ -101,10 +101,9 @@
           init: updateTabIndex,
           slideChange: updateTabIndex
         }
-      })
-    }
+      });
 
-    function updateTabIndex() {
+      function updateTabIndex() {
         // Reset all links to tabindex -1
         swiperBanner.slides.forEach(slide => {
           const link = slide.querySelector("a");
@@ -120,12 +119,12 @@
       }
     }
 
-    bannerSlide()
+    bannerSlide();
 
     document.addEventListener("shopify:section:load", function(event) {
-      bannerSlide()
-    })
-  })
+      bannerSlide();
+    });
+  });
 </script>
 
 {% schema %}
