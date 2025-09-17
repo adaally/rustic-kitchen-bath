@@ -80,7 +80,6 @@
       var perView = {{ section.settings.slides_per_view }}  
       var swiperLogo = new Swiper(".mySwiper-{{ section.id }}", {    
         spaceBetween: 14,
-        watchSlidesVisibility: true,
         pagination: {
           el: ".swiper-pagination",
           clickable: true
@@ -106,6 +105,8 @@
             slidesPerGroup: perView,
           }
         },
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
         on: {
           init: updateTabIndex,
           slideChange: updateTabIndex
