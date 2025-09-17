@@ -94,25 +94,23 @@
   }
 
   function updateTabIndex(swiperBanner) {
-        // Reset all links to tabindex -1
-        swiperBanner.slides.forEach(slide => {
-          const link = slide.querySelector("a");
-          if (link) link.setAttribute("tabindex", "-1");
-        });
-
-        // Set tabindex=0 only on active slide
-        const activeSlide = swiperBanner.slides[swiperBanner.activeIndex];
-        if (activeSlide) {
-          const activeLink = activeSlide.querySelector("a");
-          if (activeLink) activeLink.setAttribute("tabindex", "0");
-        }
-
-         // Force navigation buttons to be skipped
-        const prevBtn = swiperBanner.navigation?.prevEl;
-        const nextBtn = swiperBanner.navigation?.nextEl;
-        if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
-        if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
+    // Enable only the visible ones
+    swiperLogo.slides.forEach(slide => {
+      const active = slide.classList.contains("swiper-slide-visible");
+      slide.setAttribute("aria-hidden", active ? "false" : "true");
+      const link = slide.querySelector("a");
+      if (link) {
+        link.setAttribute("tabindex", active ? "0" : "-1");
+        link.setAttribute("aria-hidden", active ? "false" : "true");
       }
+    });
+
+     // Force navigation buttons to be skipped
+    const prevBtn = swiperBanner.navigation?.prevEl;
+    const nextBtn = swiperBanner.navigation?.nextEl;
+    if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
+    if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
+  }
   document.addEventListener("DOMContentLoaded", () => {
     function bannerSlide() {
       var swiperBanner = new Swiper(".mySwiper-{{ section.id }}", {
