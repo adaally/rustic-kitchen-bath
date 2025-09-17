@@ -54,6 +54,26 @@
   </div>
 </div>
 <script>
+  function updateTabIndex(swiperLogo) {
+        // Reset all links to tabindex -1
+        swiperLogo.slides.forEach(slide => {
+          const link = slide.querySelector("a");
+          if (link) link.setAttribute("tabindex", "-1");
+        });
+
+        // Set tabindex=0 only on active slide
+        const activeSlide = swiperLogo.slides[swiperLogo.activeIndex];
+        if (activeSlide) {
+          const activeLink = activeSlide.querySelector("a");
+          if (activeLink) activeLink.setAttribute("tabindex", "0");
+        }
+
+         // Force navigation buttons to be skipped
+        const prevBtn = swiperLogo.navigation?.prevEl;
+        const nextBtn = swiperLogo.navigation?.nextEl;
+        if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
+        if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
+  }
   document.addEventListener("DOMContentLoaded", () => {
     function initSlide() {  
       var perView = {{ section.settings.slides_per_view }}  
@@ -83,6 +103,10 @@
             slidesPerView: perView,
             slidesPerGroup: perView,
           }
+        },
+        on: {
+          init: updateTabIndex,
+          slideChange: updateTabIndex
         }
       })
     }
