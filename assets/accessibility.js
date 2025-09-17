@@ -107,16 +107,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixBuildCustomKitchenPackageForm();
 
-    function addAriaLabelToProductModalButton() {
-        document.querySelectorAll("[data-opennt]").forEach(element => {
-            const id = element.getAttribute("data-opennt");
-            const titleModal = document.querySelector(`${id}`);
-            setTimeout(() => {
-console.log(titleModal.querySelector(".product-title"))
-            }, 1000);
-            // element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);.cd.chp
-        });
-    }
+//     function addAriaLabelToProductModalButton() {
+//         document.querySelectorAll("[data-opennt]").forEach(element => {
+//             const id = element.getAttribute("data-opennt");
+//             const titleModal = document.querySelector(`${id}`);
+//             setTimeout(() => {
+// console.log(titleModal.querySelector(".product-title"))
+//             }, 1000);
+//             // element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);.cd.chp
+//         });
+//     }
 
-    addAriaLabelToProductModalButton();
+//     addAriaLabelToProductModalButton();
+
+    function onAllChildrenReady(parentSelector, childSelector, callback) {
+        const parents = document.querySelectorAll(parentSelector);
+        const readyParents = new Set();
+
+        parents.forEach(parent => {
+            const observer = new MutationObserver(() => {
+            if (parent.querySelector(childSelector)) {
+                readyParents.add(parent);
+                observer.disconnect();
+
+                // if all parents are ready, fire callback
+                if (readyParents.size === parents.length) {
+                callback(Array.from(readyParents));
+                }
+            }
+            });
+
+            // start observing
+            observer.observe(parent, { childList: true, subtree: true });
+        });
+        }
+
+        // usage
+        onAllChildrenReady("[id^='pin_mfp_']", ".product-title", (parents) => {
+            console.log("All inner elements are loaded:", parents);
+        });
 });
