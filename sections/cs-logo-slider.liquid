@@ -112,10 +112,15 @@
             slidesPerGroup: perView,
           }
         },
-        on: {
+        {% comment %} on: {
           init: updateTabIndex,
           slideChange: updateTabIndex
-        }
+        }, {% endcomment %}
+        a11y: {
+          enabled: true
+        },
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
       })
     }
 
