@@ -106,4 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixBuildCustomKitchenPackageForm();
+
+    function addAriaLabelToProductModalButton() {
+        document.querySelectorAll("[data-opennt]").forEach(element => {
+            const id = element.getAttribute("data-opennt");
+            const titleModal = document.querySelector(`${id} .cd.chp`);
+            element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);
+        });
+    }
+
+    addAriaLabelToProductModalButton();
 });
