@@ -66,7 +66,7 @@
 
     // Enable only the visible ones
     swiper.slides.forEach(slide => {
-      const active = slide.classList.contains("swiper-slide-visible");
+      const active = slide.classList.contains("swiper-slide-visible");swiper-slide-active
       slide.setAttribute("aria-hidden", active ? "false" : "true");
       const link = slide.querySelector("a");
       if (link) {
@@ -83,7 +83,8 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    var perView = {{ section.settings.slides_per_view }}  
+    function imageSlide() {
+          var perView = {{ section.settings.slides_per_view }}  
     var swiper = new Swiper(".mySwiper-{{ section.id }}", {    
       spaceBetween: 14,
       pagination: {
@@ -122,6 +123,12 @@
           }
         }
       }
+    })
+    }
+    imageSlide()
+
+    document.addEventListener("shopify:section:load", function(event) {
+      imageSlide()
     })
   })
 </script>
