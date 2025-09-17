@@ -84,10 +84,10 @@
 </div>
 
 <script>
-  function updateAriaLabel(swiperLogo) {
-    const total = swiperLogo.slides.length;
+  function updateAriaLabel(swiperBanner) {
+    const total = swiperBanner.slides.length;
     setTimeout(() => {
-      swiperLogo.slides.forEach((slide, index) => {
+      swiperBanner.slides.forEach((slide, index) => {
         slide.setAttribute("aria-label", `Slide ${index + 1} of ${total}`);
       });
     }, 1000);
@@ -95,7 +95,7 @@
 
   function updateTabIndex(swiperBanner) {
     // Enable only the visible ones
-    swiperLogo.slides.forEach(slide => {
+    swiperBanner.slides.forEach(slide => {
       const active = slide.classList.contains("swiper-slide-visible");
       slide.setAttribute("aria-hidden", active ? "false" : "true");
       const link = slide.querySelector("a");
