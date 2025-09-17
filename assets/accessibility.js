@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addAriaLabelToProductModalButton() {
         document.querySelectorAll("[data-opennt]").forEach(element => {
+            console.log(element)
             const id = element.getAttribute("data-opennt");
             const titleModal = document.querySelector(`${id} .cd.chp`);
             element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);
