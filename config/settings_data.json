@@ -5847,7 +5847,7 @@
           "51310873-31e8-4bef-9e8a-5682338a2199"
         ],
         "settings": {
-          "title": "<h3>SHOP THE LOOK</h3>",
+          "title": "<h2 class=\"h3\">SHOP THE LOOK</h2>",
           "sub_title": "#ATHOMEWITHRUSTIC",
           "sub_font": "2",
           "style_title": "title_1",
