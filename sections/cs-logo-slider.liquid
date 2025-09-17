@@ -74,8 +74,6 @@
       }
     }
 
-    console.log(swiperLogo.slides)
-
          // Force navigation buttons to be skipped
         const prevBtn = swiperLogo.navigation?.prevEl;
         const nextBtn = swiperLogo.navigation?.nextEl;
@@ -112,15 +110,10 @@
             slidesPerGroup: perView,
           }
         },
-        {% comment %} on: {
+        on: {
           init: updateTabIndex,
           slideChange: updateTabIndex
-        }, {% endcomment %}
-        a11y: {
-          enabled: true
-        },
-        watchSlidesProgress: true,
-        watchSlidesVisibility: true,
+        }
       })
     }
 
