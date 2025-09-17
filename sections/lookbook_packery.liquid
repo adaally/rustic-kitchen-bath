@@ -33,17 +33,17 @@
                 {%- case block.type -%}
                  {%- when 'img' %}{% break %}
                  {%- when 'pr' -%}{% assign offset = offset | plus:1 -%}{%- if block.settings.product == blank -%}{%- continue -%}{%- endif -%}
-                     <div tabindex="0" role="button" {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_pr pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
+                     <div {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_pr pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
                        <span class="zoompin"></span>
                        {%- if block.settings.type != '3' -%}
-                          <span class="pin_tt pin_tt_js dn db_mb"><i class="nav_link_icon"></i></span><span data-opennt="#pin_mfp_{{block.id}}" data-ani='none' data-class='mfp__pin' class="pin_tt mfp_js dn_md"><i class="nav_link_icon"></i></span>
+                          <span tabindex="0" role="button" class="pin_tt pin_tt_js dn db_mb"><i class="nav_link_icon"></i></span><span data-opennt="#pin_mfp_{{block.id}}" data-ani='none' data-class='mfp__pin' class="pin_tt mfp_js dn_md"><i class="nav_link_icon"></i></span>
                        {%- else -%}
                          <span class="pin_tt pin_tt_js dn db_mb"><span class="truncate">{{block.settings.shorttxt}}</span></span><span data-opennt="#pin_mfp_{{block.id}}" data-ani='none' data-class='mfp__pin' class="pin_tt mfp_js dn_md"><span class="truncate">{{block.settings.shorttxt}}</span></span>
                        {%- endif -%}
                        <div id="pin_mfp_{{block.id}}"><div class="pin_lazy_js pin__popup--{{block.settings.pos_pin}} pin__popup--{{block.settings.effect}} lazyload" data-include="{{routes_local}}products/{{block.settings.product}}/?view=lbjs"></div></div>
                      </div>
                   {%- when 'txt' -%}{% assign offset = offset | plus:1 -%}
-                     <div tabindex="0" role="button" {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_txt pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
+                     <div {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_txt pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
                           <span class="zoompin"></span>
                           {%- if block.settings.type != '3' -%}
                              <span class="pin_tt pin_tt_js dn db_mb"><i class="nav_link_icon"></i></span><span data-opennt="#pin_mfp_{{block.id}}" data-ani='none' data-class='mfp__pin pin__type_txt' class="pin_tt mfp_js dn_md"><i class="nav_link_icon"></i></span>
@@ -53,7 +53,7 @@
                          <div id="pin_mfp_{{block.id}}"><div class="pin__popup pin__popup--{{block.settings.pos_pin}} pin__popup--{{block.settings.effect}} op__0 pa"><div class="popup__title">{{block.settings.heading}}</div><div class="popup__content">{{block.settings.text}}</div></div></div>
                      </div>
                   {%- else -%}{% assign offset = offset | plus:1 -%}
-                     <div tabindex="0" role="button" {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_url pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
+                     <div {{ block.shopify_attributes }} class="pin__type pin__type_{{block.id}} pa op__0 pe_none pin__type_url pin__size--{{block.settings.pos_size}} pin_ic_{{block.settings.type}}">
                        <span class="zoompin"></span>
                        {%- if block.settings.type != '3' -%}
                          <a href='{{block.settings.url}}' target="{{block.settings.open_link}}" class="pin_tt cw"><i class="nav_link_icon"></i></a>
