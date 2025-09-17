@@ -97,6 +97,12 @@
           const activeLink = activeSlide.querySelector("a");
           if (activeLink) activeLink.setAttribute("tabindex", "0");
         }
+
+         // Force navigation buttons to be skipped
+        const prevBtn = swiperBanner.navigation?.prevEl;
+        const nextBtn = swiperBanner.navigation?.nextEl;
+        if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
+        if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
       }
   document.addEventListener("DOMContentLoaded", () => {
 
