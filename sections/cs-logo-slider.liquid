@@ -61,12 +61,18 @@
           if (link) link.setAttribute("tabindex", "-1");
         });
 
-        // Set tabindex=0 only on active slide
-        const activeSlide = swiperLogo.slides[swiperLogo.activeIndex];
-        if (activeSlide) {
-          const activeLink = activeSlide.querySelector("a");
-          if (activeLink) activeLink.setAttribute("tabindex", "0");
-        }
+    // Get how many slides are visible at once
+    const slidesPerView = swiperLogo.params.slidesPerView;
+    const activeIndex = swiperLogo.activeIndex;
+
+    // Enable tabindex=0 from activeIndex → activeIndex + slidesPerView - 1
+    for (let i = activeIndex; i < activeIndex + slidesPerView; i++) {
+      const slide = swiperLogo.slides[i];
+      if (slide) {
+        const link = slide.querySelector("a");
+        if (link) link.setAttribute("tabindex", "0");
+      }
+    }
 
          // Force navigation buttons to be skipped
         const prevBtn = swiperLogo.navigation?.prevEl;
