@@ -55,38 +55,32 @@
 </div>
 <script>
   function updateTabIndex(swiperLogo) {
-        // Reset all links to tabindex -1
-        swiperLogo.slides.forEach(slide => {
-          const link = slide.querySelector("a");
-          if (link) link.setAttribute("tabindex", "-1");
-        });
+    // Reset all links to tabindex -1
+    swiperLogo.slides.forEach(slide => {
+      const link = slide.querySelector("a");
+      if (link) link.setAttribute("tabindex", "-1");
+    });
 
-    // Get how many slides are visible at once
-    const slidesPerView = swiperLogo.params.slidesPerView;
-    const activeIndex = swiperLogo.activeIndex;
-
-    // Enable tabindex=0 from activeIndex → activeIndex + slidesPerView - 1
-    for (let i = activeIndex; i < activeIndex + slidesPerView; i++) {
-      const slide = swiperLogo.slides[i];
-      if (slide) {
+    // Enable only the visible ones
+    swiperLogo.slides.forEach(slide => {
+      if (slide.classList.contains("swiper-slide-visible")) {
         const link = slide.querySelector("a");
         if (link) link.setAttribute("tabindex", "0");
       }
-    }
+    });
 
-         // Force navigation buttons to be skipped
-        const prevBtn = swiperLogo.navigation?.prevEl;
-        const nextBtn = swiperLogo.navigation?.nextEl;
-        if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
-        if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
+    // Force navigation buttons to be skipped
+    const prevBtn = swiperLogo.navigation?.prevEl;
+    const nextBtn = swiperLogo.navigation?.nextEl;
+    if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
+    if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
   }
   document.addEventListener("DOMContentLoaded", () => {
     function initSlide() {  
       var perView = {{ section.settings.slides_per_view }}  
       var swiperLogo = new Swiper(".mySwiper-{{ section.id }}", {    
         spaceBetween: 14,
-          watchSlidesProgress: true,
-          watchSlidesVisibility: true, // 👈 required for .swiper-slide-visible
+        watchSlidesVisibility: true, // 👈 required for .swiper-slide-visible
         pagination: {
           el: ".swiper-pagination",
           clickable: true
