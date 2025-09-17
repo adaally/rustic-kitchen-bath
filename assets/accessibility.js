@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixBuildCustomKitchenPackageForm();
 
-//     function addAriaLabelToProductModalButton() {
-//         document.querySelectorAll("[data-opennt]").forEach(element => {
-//             const id = element.getAttribute("data-opennt");
-//             const titleModal = document.querySelector(`${id}`);
-//             setTimeout(() => {
-// console.log(titleModal.querySelector(".product-title"))
-//             }, 1000);
-//             // element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);.cd.chp
-//         });
-//     }
+    function addAriaLabelToProductModalButton() {
+        document.querySelectorAll("[data-opennt]").forEach(element => {
+            const id = element.getAttribute("data-opennt");
+            const titleModal = document.querySelector(`${id}`);
+            setTimeout(() => {
+console.log(titleModal.querySelector(".product-title"))
+            }, 1000);
+            // element.setAttribute("aria-label", `Open modal for ${titleModal.innerText}`);.cd.chp
+        });
+    }
 
-//     addAriaLabelToProductModalButton();
+    addAriaLabelToProductModalButton();
 
     function onAllChildrenReady(parentSelector, childSelector, callback) {
         const parents = document.querySelectorAll(parentSelector);
@@ -145,5 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // usage
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title", (parents) => {
             console.log("All inner elements are loaded:", parents);
+            parents.forEach((element, index) => {
+
+            });
+            document.querySelectorAll("[data-opennt]").forEach((element, index) => {
+                const titleModal = parents[index].querySelector(".product-title");
+                element.setAttribute("aria-label", titleModal)
+            });
         });
 });
