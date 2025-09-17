@@ -54,6 +54,12 @@
   </div>
 </div>
 <script>
+  function updateAriaLabel(swiperLogo) {
+    const total = swiperLogo.slides.length;
+    swiperLogo.slides.forEach((slide, index) => {
+      slide.setAttribute("aria-label", `Logo ${index + 1} of ${total}`)
+    });
+  }
   function updateTabIndex(swiperLogo) {
     // Reset all links to tabindex -1
     swiperLogo.slides.forEach(slide => {
@@ -108,8 +114,13 @@
         watchSlidesProgress: true,
         watchSlidesVisibility: true,
         on: {
-          init: updateTabIndex,
-          slideChange: updateTabIndex
+          init: {
+
+            updateTabIndex(swiperLogo);
+          },
+          slideChange: {
+            updateTabIndex(swiperLogo);
+          }
         }
       })
     }
