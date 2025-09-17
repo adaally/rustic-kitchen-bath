@@ -92,11 +92,12 @@
         });
 
         // Set tabindex=0 only on active slide
-        const activeSlide = swiperBanner.slides[swiperBanner.activeIndex];
-        if (activeSlide) {
-          const activeLink = activeSlide.querySelector("a");
-          if (activeLink) activeLink.setAttribute("tabindex", "0");
+      swiperLogo.slides.forEach(slide => {
+        if (slide.classList.contains("swiper-slide-visible")) {
+          const link = slide.querySelector("a");
+          if (link) link.setAttribute("tabindex", "0");
         }
+      });
 
          // Force navigation buttons to be skipped
         const prevBtn = swiperBanner.navigation?.prevEl;
