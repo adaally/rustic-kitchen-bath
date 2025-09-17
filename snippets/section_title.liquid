@@ -4,7 +4,7 @@
 {%- if sett_title != blank -%}
 	{%- if style_title != 'title_10' -%}
 		<div class="wrap_title {{section_title}} des_{{style_title}} sub_title_size_{{section.settings.sub_title | size}}">
-		<h3 class="section-title tc pr flex fl_center al_center fs__24 {{style_title}}"><span class="mr__10 ml__10">{{sett_title}}</span></h3>
+		<h2 class="section-title tc pr flex fl_center al_center fs__24 {{style_title}}"><span class="mr__10 ml__10">{{sett_title}}</span></h2>
 		<span class="dn tt_divider"><span></span><i class="dn clpr{{section.settings.show_clpr}} {{style_title |split:'+' | last }} la-{{section.settings.ic_tt}}"></i><span></span></span><span class="section-subtitle db tc{% if section.settings.sub_font == '2' %} sub-title{% endif %}">{{section.settings.sub_title}}</span>
 		</div>
 	{%- else -%}
