@@ -57,6 +57,7 @@
   function updateAriaLabel(swiperLogo) {
     const total = swiperLogo.slides.length;
     swiperLogo.slides.forEach((slide, index) => {
+      console.log(slide, index)
       slide.setAttribute("aria-label", `Logo ${index + 1} of ${total}`);
     });
   }
