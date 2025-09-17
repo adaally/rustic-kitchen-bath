@@ -56,10 +56,11 @@
 <script>
   function updateAriaLabel(swiperLogo) {
     const total = swiperLogo.slides.length;
-    swiperLogo.slides.forEach((slide, index) => {
-      console.log(slide, index)
-      slide.setAttribute("aria-label", `Logo ${index + 1} of ${total}`);
-    });
+    setTimeout(() => {
+      swiperLogo.slides.forEach((slide, index) => {
+        slide.setAttribute("aria-label", `Logo ${index + 1} of ${total}`);
+      });
+    }, 1000);
   }
   function updateTabIndex(swiperLogo) {
     // Reset all links to tabindex -1
