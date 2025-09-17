@@ -100,6 +100,22 @@
       })
     }
 
+    function updateTabIndex() {
+        // Reset all links to tabindex -1
+        swiperBanner.slides.forEach(slide => {
+          const link = slide.querySelector("a");
+          if (link) link.setAttribute("tabindex", "-1");
+        });
+
+        // Set tabindex=0 only on active slide
+        const activeSlide = swiperBanner.slides[swiperBanner.activeIndex];
+        if (activeSlide) {
+          const activeLink = activeSlide.querySelector("a");
+          if (activeLink) activeLink.setAttribute("tabindex", "0");
+        }
+      }
+    }
+
     bannerSlide()
 
     document.addEventListener("shopify:section:load", function(event) {
