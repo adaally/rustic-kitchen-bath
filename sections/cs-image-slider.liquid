@@ -81,10 +81,10 @@
     if (prevBtn) prevBtn.setAttribute("tabindex", "-1");
     if (nextBtn) nextBtn.setAttribute("tabindex", "-1");
   }
-  
+
   document.addEventListener("DOMContentLoaded", () => {
     var perView = {{ section.settings.slides_per_view }}  
-    var swiperLogo = new Swiper(".mySwiper-{{ section.id }}", {    
+    var swiperBanner = new Swiper(".mySwiper-{{ section.id }}", {    
       spaceBetween: 14,
       pagination: {
         el: ".swiper-pagination",
@@ -114,12 +114,12 @@
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
       on: {
-          init: function (swiper) {
-            updateAriaLabel(swiper);
-            updateTabIndex(swiper);
+          init: function (swiperBanner) {
+            updateAriaLabel(swiperBanner);
+            updateTabIndex(swiperBanner);
           },
-          slideChange: function (swiper) {
-            updateTabIndex(swiper);
+          slideChange: function (swiperBanner) {
+            updateTabIndex(swiperBanner);
           }
       }
     })
