@@ -17,7 +17,7 @@
 
   <div class="nt_se_{{sid}} {{section.settings.layout}}">
      {%- render 'section_title',section:section,section_title:'mb__30' -%}
-    <div role="list" class="js_packery row ins_spaces_{{section.settings.space}} {{section.settings.image_size}} {{section.settings.image_ratio}} position_{{section.settings.image_position}}{% if sett_equal %} equal_nt{% endif %}" data-packery='{ "itemSelector": ".col_ins","columnWidth": ".grid-sizer","gutter": 0,"percentPosition": true,"originLeft": {{ltr}} }'>
+    <div role="list" aria-label="{{ section.settings.title }}" class="js_packery row ins_spaces_{{section.settings.space}} {{section.settings.image_size}} {{section.settings.image_ratio}} position_{{section.settings.image_position}}{% if sett_equal %} equal_nt{% endif %}" data-packery='{ "itemSelector": ".col_ins","columnWidth": ".grid-sizer","gutter": 0,"percentPosition": true,"originLeft": {{ltr}} }'>
       {%- if arr_img.size > 0 -%}{% assign offset = 0 -%}<div class="grid-sizer"></div>
         {%- for bl in arr_img -%}{% assign check = true %}{% assign index = 0 %}{% assign offset = offset | plus:1 -%}
           {%- assign image = bl.settings.image %}{% assign ratio = image.aspect_ratio |default:1.0 %}{% assign url = bl.settings.url -%}
