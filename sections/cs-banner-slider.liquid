@@ -84,6 +84,15 @@
 </div>
 
 <script>
+  function updateAriaLabel(swiperLogo) {
+    const total = swiperLogo.slides.length;
+    setTimeout(() => {
+      swiperLogo.slides.forEach((slide, index) => {
+        slide.setAttribute("aria-label", `Slide ${index + 1} of ${total}`);
+      });
+    }, 1000);
+  }
+
   function updateTabIndex(swiperBanner) {
         // Reset all links to tabindex -1
         swiperBanner.slides.forEach(slide => {
@@ -118,8 +127,13 @@
           prevEl: ".swiper-button-prev",
         },
         on: {
-          init: updateTabIndex,
-          slideChange: updateTabIndex
+          init: function (swiper) {
+            updateAriaLabel(swiper);
+            updateTabIndex(swiper);
+          },
+          slideChange: function (swiper) {
+            updateTabIndex(swiper);
+          }
         }
       })
     }
