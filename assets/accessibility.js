@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title a", (parents) => {
             document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                 const titleModal = parents[index].querySelector(".product-title a");
-                console.log(titleModal.innerHTML)
                 element.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`)
             });
         });
