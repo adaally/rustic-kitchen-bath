@@ -1,20 +1,34 @@
 /*********************** Custom JS for Boost AI Search & Discovery  ************************/
 
-// Test 
-console.log('boost-sd-custom.js is loading');
-
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('boost-sd-custom.js');
+    function fixDuplicateLinks() {
+        document.querySelectorAll('.boost-sd__product-item:not(.fixed)').forEach(function(item) {
+            const imageLink = item.querySelector('.boost-sd__product-link-image');
+            const titleLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+            
+            if (imageLink && titleLink) {
+                const wrapper = document.createElement('a');
+                wrapper.href = imageLink.href;
+                wrapper.innerHTML = item.innerHTML;
+                
+                item.innerHTML = '';
+                item.appendChild(wrapper);
+                
+                wrapper.querySelectorAll('a').forEach(function(link) {
+                    const div = document.createElement('div');
+                    div.innerHTML = link.innerHTML;
+                    div.className = link.className;
+                    link.parentNode.replaceChild(div, link);
+                });
+                
+                item.classList.add('fixed');
+            }
+        });
+    }
     
+    setTimeout(fixDuplicateLinks, 1000);
     
-    setTimeout(function() {
-        const productItems = document.querySelectorAll('.boost-sd__product-item');
-        console.log(productItems.length, 'boost-sd product items');
-        
-        const pfsItems = document.querySelectorAll('.boost-pfs-filter-product-item');
-        console.log(pfsItems.length, 'boost-pfs product items');
-        
-        
-        alert('boost-sd-custom.js ' + productItems.length + ' SD items and ' + pfsItems.length + ' PFS items');
-    }, 2000);
+    new MutationObserver(function() {
+        setTimeout(fixDuplicateLinks, 100);
+    }).observe(document.body, { childList: true, subtree: true });
 });
