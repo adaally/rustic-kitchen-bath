@@ -59,7 +59,7 @@
 	            <div class="quantity pr qty__true"> 
 	               <input type="number" class="input-text qty text tc qty_pr_js" step="1" min="1" max="{% if current_variant.inventory_quantity <= 0  and current_variant.inventory_management == 'shopify' %}999{% elsif current_variant.inventory_management != null %}{{current_variant.inventory_quantity}}{% else %}9999{% endif %}" name="quantity" value="1" size="4" pattern="[0-9]*" inputmode="numeric">
 	               <div class="qty tc fs__14">
-	                  <button type="button" class="plus db cb pa pd__0 pr__15 tr r__0"><i class="facl facl-plus"></i></button><button type="button" class="minus db cb pa pd__0 pl__15 tl l__0"><i class="facl facl-minus"></i></button>
+	                  <button type="button" class="plus db cb pa pd__0 pr__15 tr r__0"><i class="facl facl-plus"></i><span class="visually-hidden">Add quantity</span></button><button type="button" class="minus db cb pa pd__0 pl__15 tl l__0"><i class="facl facl-minus"></i><span class="visually-hidden">Minus quantity</span></button>
 	               </div>
 	            </div>
 	            <a href="{{ url_last }}" class="pr_atc_ tc dib js_addtc {{tooltip}} truncate" data-id="{{ variant.id }}" rel="nofollow"><span class="tt_txt">{{txt}}</span><i class="iccl iccl-cart"></i><span>{{txt}}</span></a>
