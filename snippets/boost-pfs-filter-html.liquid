@@ -5,20 +5,21 @@
 {% raw %}
 <div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-grid {{gridWidthClass}}{{soldOutClass}}{{saleClass}} {{itemActiveSwapClass}}">
     <div class="boost-pfs-filter-product-item-inner">
-        <div class="boost-pfs-filter-product-item-image">
-            {{itemImages}}
-            <div class="boost-pfs-filter-product-item-label">{{itemLabels}}{{itemTagLabels}}</div>
-        </div>
-
-        <div class="boost-pfs-filter-product-bottom">
-          <div class="boost-pfs-filter-product-bottom-inner">
-            <a href="{{itemUrl}}#" class="boost-pfs-filter-product-item-title">{{itemTitle}}</a>
-            {{itemVendor}}
-            {{itemReviews}}
-            {{itemPrice}}
-            {{itemSwatches}}
-          </div>
-        </div>
+        <a href="{{itemUrl}}" class="boost-pfs-filter-product-item-link">
+            <div class="boost-pfs-filter-product-item-image">
+                {{itemImagesNoLink}}
+                <div class="boost-pfs-filter-product-item-label">{{itemLabels}}{{itemTagLabels}}</div>
+            </div>
+            <div class="boost-pfs-filter-product-bottom">
+              <div class="boost-pfs-filter-product-bottom-inner">
+                <div class="boost-pfs-filter-product-item-title">{{itemTitle}}</div>
+                {{itemVendor}}
+                {{itemReviews}}
+                {{itemPrice}}
+                {{itemSwatches}}
+              </div>
+            </div>
+        </a>
     </div>
 </div>
 {% endraw %}
