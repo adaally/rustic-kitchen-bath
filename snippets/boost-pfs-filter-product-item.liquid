@@ -333,39 +333,41 @@
           {{- sold_out_class -}}
           {{- sale_class -}}"  {{ data_image_width_height }}>
 	<div class="boost-pfs-filter-product-item-inner">
-    <div class="boost-pfs-filter-product-item-image" data-boost-image-loading-animation>
-		<a href="{{- product_url -}}" class="boost-pfs-filter-product-item-image-link lazyload boost-pfs-filter-crop-image-position-{{- product_img_crop -}}"
-		style="padding-top: {{- padding_top -}}%;">
-			<img class="boost-pfs-filter-product-item-main-image lazyload Image--lazyLoad"
-			data-src="{{- preview_image | img_url: image_size -}}"
-			data-srcset="{{- data_src_set -}}"
-			data-widths="[{{ data_widths_range }}]"
-			src="{{- img_default_src -}}"
-			data-sizes="auto"
-			alt="{{- product.title | escape -}}"
-			{{ data_img_flip }} />
-		</a>
-		{%- if show_label == true -%}
-		<div class="boost-pfs-filter-product-item-label">
-			{{- sold_out_label -}}
-			{{- sale_label -}}
-			{{- label_by_tag -}}
-		</div>
-		{%- endif -%}
-    </div>
-		<div class="boost-pfs-filter-product-bottom">
-			<div class="boost-pfs-filter-product-bottom-inner">
-				<a href="{{- product_url -}}#" class="boost-pfs-filter-product-item-title">{{- product.title -}}</a>
-				{{- product_vendor -}}
-				{{- product_review -}}
-				{{- product_price -}}
-				{%- if product_item_type == 'list' -%}
-				<p class="boost-pfs-filter-des">{{- product.content | strip_html | truncatewords: 40 -}}</p>
-				{%- endif -%}
-        {%- if swatch_enable -%}
-				  {{- product_swatch -}}
+    <a href="{{- product_url -}}" class="boost-pfs-filter-product-item-link">
+      <div class="boost-pfs-filter-product-item-image" data-boost-image-loading-animation>
+        <div class="boost-pfs-filter-product-item-image-wrapper lazyload boost-pfs-filter-crop-image-position-{{- product_img_crop -}}"
+        style="padding-top: {{- padding_top -}}%;">
+          <img class="boost-pfs-filter-product-item-main-image lazyload Image--lazyLoad"
+          data-src="{{- preview_image | img_url: image_size -}}"
+          data-srcset="{{- data_src_set -}}"
+          data-widths="[{{ data_widths_range }}]"
+          src="{{- img_default_src -}}"
+          data-sizes="auto"
+          alt="{{- product.title | escape -}}"
+          {{ data_img_flip }} />
+        </div>
+        {%- if show_label == true -%}
+        <div class="boost-pfs-filter-product-item-label">
+          {{- sold_out_label -}}
+          {{- sale_label -}}
+          {{- label_by_tag -}}
+        </div>
         {%- endif -%}
-			</div>
-		</div>
+      </div>
+      <div class="boost-pfs-filter-product-bottom">
+        <div class="boost-pfs-filter-product-bottom-inner">
+          <div class="boost-pfs-filter-product-item-title">{{- product.title -}}</div>
+          {{- product_vendor -}}
+          {{- product_review -}}
+          {{- product_price -}}
+          {%- if product_item_type == 'list' -%}
+          <p class="boost-pfs-filter-des">{{- product.content | strip_html | truncatewords: 40 -}}</p>
+          {%- endif -%}
+          {%- if swatch_enable -%}
+            {{- product_swatch -}}
+          {%- endif -%}
+        </div>
+      </div>
+    </a>
 	</div>
 </div>
