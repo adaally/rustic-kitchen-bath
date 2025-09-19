@@ -20,6 +20,12 @@ function fixRedundantLinks() {
                 div.className = link.className;
                 link.parentNode.replaceChild(div, link);
             });
+
+            wrapper.querySelectorAll('button').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
             
             item.classList.add('fixed');
         }
