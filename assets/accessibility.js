@@ -133,7 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title a", (parents) => {
             document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                 const titleModal = parents[index].querySelector(".product-title a");
-                element.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`)
+                //This is because the element to change is before the current element with ID
+                const prevSibling = element.previousElementSibling;
+                prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`)
             });
         });
 });
