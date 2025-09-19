@@ -3,7 +3,7 @@
 function fixRedundantLinks() {
     document.querySelectorAll('.boost-sd__product-item:not(.fixed)').forEach(function(item) {
         const imageLink = item.querySelector('.boost-sd__product-link-image');
-        if (imageLink)
+        if (imageLink) { 
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
@@ -33,12 +33,22 @@ function fixRedundantLinks() {
             });
 
             item.classList.add('fixed');
-        }
+        } 
     });
 }
 
-setTimeout(fixRedundantLinks, 1000);
+if (document.body) {
+    setTimeout(fixRedundantLinks, 1000);
 
-new MutationObserver(function() {
-    setTimeout(fixRedundantLinks, 100);
-}).observe(document.body, { childList: true, subtree: true });
+    new MutationObserver(function() {
+        setTimeout(fixRedundantLinks, 100);
+    }).observe(document.body, { childList: true, subtree: true });
+} else {
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(fixRedundantLinks, 1000);
+
+        new MutationObserver(function() {
+            setTimeout(fixRedundantLinks, 100);
+        }).observe(document.body, { childList: true, subtree: true });
+    });
+}
