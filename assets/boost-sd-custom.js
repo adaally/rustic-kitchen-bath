@@ -14,7 +14,7 @@ function fixRedundantLinks() {
             item.innerHTML = '';
             item.appendChild(wrapper);
             
-             wrapper.querySelectorAll('a').forEach(function(link) {
+            wrapper.querySelectorAll('a').forEach(function(link) {
                 const div = document.createElement('div');
                 div.innerHTML = link.innerHTML;
                 div.className = link.className;
@@ -26,8 +26,7 @@ function fixRedundantLinks() {
                 link.parentNode.replaceChild(div, link);
             });
             
-             wrapper.addEventListener('click', function(e) {
-              
+            wrapper.addEventListener('click', function(e) {
                 if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                     return; 
                 }
@@ -39,8 +38,21 @@ function fixRedundantLinks() {
     });
 }
 
-setTimeout(fixRedundantLinks, 1000);
+function initScript() {
+    if (!document.body) {
+        setTimeout(initScript, 100);
+        return;
+    }
+    
+    setTimeout(fixRedundantLinks, 1000);
+    
+    new MutationObserver(function() {
+        setTimeout(fixRedundantLinks, 100);
+    }).observe(document.body, { childList: true, subtree: true });
+}
 
-new MutationObserver(function() {
-    setTimeout(fixRedundantLinks, 100);
-}).observe(document.body, { childList: true, subtree: true });
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScript);
+} else {
+    initScript();
+}
