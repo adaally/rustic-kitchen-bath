@@ -33,11 +33,14 @@ function fixRedundantLinks() {
             reactButtons.forEach(function(buttonData) {
                 const targetContainer = wrapper.querySelector('.boost-sd__product-image-row--bottom .boost-sd__product-image-column--in-bottom');
                 if (targetContainer) {
-                    buttonData.element.addEventListener('click', function(e) {
-                        e.stopPropagation(); 
-                    });
                     targetContainer.appendChild(buttonData.element);
                 }
+            });
+            
+            wrapper.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); 
+                });
             });
             
             item.classList.add('fixed');
