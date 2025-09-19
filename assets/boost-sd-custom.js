@@ -35,7 +35,8 @@ function fixRedundantLinks() {
                 if (targetContainer) {
                     buttonData.element.addEventListener('click', function(e) {
                         e.stopPropagation();
-                    });
+                        e.preventDefault();
+                    }, true);
                     targetContainer.appendChild(buttonData.element);
                 }
             });
