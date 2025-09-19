@@ -38,9 +38,17 @@ function fixRedundantLinks() {
             });
             
             wrapper.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
+                console.log('Adding event listener to button:', button.className);
+                
                 button.addEventListener('click', function(e) {
-                    e.stopPropagation(); 
+                    console.log('Button clicked, stopping propagation:', button.className);
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
                 });
+            });
+            
+            wrapper.addEventListener('click', function(e) {
+                console.log('Wrapper clicked');
             });
             
             item.classList.add('fixed');
