@@ -3,20 +3,4 @@
   text-transform: capitalize;
 }
 
-.boost-sd__product-link-wrapper {
-  pointer-events: auto;
-  position: relative;
-}
-
-.boost-sd__product-link-wrapper * {
-  pointer-events: none;
-}
-
-.boost-sd__product-link-wrapper button {
-  pointer-events: auto !important;
-  position: relative;
-  z-index: 999;
-}
-
-
 
