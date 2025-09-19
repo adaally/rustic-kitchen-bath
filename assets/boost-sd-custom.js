@@ -6,19 +6,15 @@ function fixRedundantLinks() {
         const titleLink = item.querySelector('a:not(.boost-sd__product-link-image)');
         
         if (imageLink && titleLink) {
-            const reactButtons = [];
-            item.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
-                reactButtons.push({
-                    element: button,
-                    parent: button.parentNode
-                });
+            const itemContent = item.cloneNode(true);
+            itemContent.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
                 button.remove();
             });
             
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
-            wrapper.innerHTML = item.innerHTML;
+            wrapper.innerHTML = itemContent.innerHTML;
             
             item.innerHTML = '';
             item.appendChild(wrapper);
@@ -30,25 +26,13 @@ function fixRedundantLinks() {
                 link.parentNode.replaceChild(div, link);
             });
             
-            reactButtons.forEach(function(buttonData) {
-                const targetContainer = wrapper.querySelector('.boost-sd__product-image-row--bottom .boost-sd__product-image-column--in-bottom');
-                if (targetContainer) {
-                    targetContainer.appendChild(buttonData.element);
-                }
-            });
-            
             wrapper.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
-                console.log('Adding event listener to button:', button.className);
+                console.log('Adding event listener to preserved React button:', button.className);
                 
                 button.addEventListener('click', function(e) {
-                    console.log('Button clicked, stopping propagation:', button.className);
+                    console.log('React button clicked, stopping propagation:', button.className);
                     e.stopPropagation();
-                    e.stopImmediatePropagation();
                 });
-            });
-            
-            wrapper.addEventListener('click', function(e) {
-                console.log('Wrapper clicked');
             });
             
             item.classList.add('fixed');
