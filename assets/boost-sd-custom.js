@@ -1,7 +1,7 @@
 /*********************** Custom JS for Boost AI Search & Discovery  ************************/
 
 document.addEventListener('DOMContentLoaded', function() {
-    function fixRedundantLinks() {
+    function fixRedundantinks() {
         document.querySelectorAll('.boost-sd__product-item:not(.fixed)').forEach(function(item) {
             const imageLink = item.querySelector('.boost-sd__product-link-image');
             const titleLink = item.querySelector('a:not(.boost-sd__product-link-image)');
@@ -26,5 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    setTimeout(fixRedundantLinks, 1000);
+    setTimeout(fixRedundantinks, 1000);
+    
+    new MutationObserver(function() {
+        setTimeout(fixRedundantinks, 100);
+    }).observe(document.body, { childList: true, subtree: true });
 });
