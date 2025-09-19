@@ -26,7 +26,3 @@ function fixRedundantLinks() {
 }
 
 setTimeout(fixRedundantLinks, 1000);
-
-new MutationObserver(function() {
-    setTimeout(fixRedundantLinks, 100);
-}).observe(document.body, { childList: true, subtree: true });
