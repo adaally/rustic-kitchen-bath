@@ -3,13 +3,16 @@
 function fixRedundantLinks() {
     document.querySelectorAll('.boost-sd__product-item:not(.fixed)').forEach(function(item) {
         const imageLink = item.querySelector('.boost-sd__product-link-image');
-        const titleLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+        const titleLink = item.querySelector('.boost-sd__product-info a, .boost-sd__product-link:not(.boost-sd__product-link-image)');
         
         if (imageLink && titleLink) {
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
-            wrapper.innerHTML = item.innerHTML;
+            
+            while (item.firstChild) {
+                wrapper.appendChild(item.firstChild);
+            }
             
             item.innerHTML = '';
             item.appendChild(wrapper);
@@ -26,11 +29,11 @@ function fixRedundantLinks() {
                 link.parentNode.replaceChild(div, link);
             });
             
-            wrapper.addEventListener('click', function(e) {
-                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-                    return; 
-                }
-                window.location.href = wrapper.href;
+           
+            wrapper.querySelectorAll('button').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); 
+                });
             });
             
             item.classList.add('fixed');
@@ -38,21 +41,8 @@ function fixRedundantLinks() {
     });
 }
 
-function initScript() {
-    if (!document.body) {
-        setTimeout(initScript, 100);
-        return;
-    }
-    
-    setTimeout(fixRedundantLinks, 1000);
-    
-    new MutationObserver(function() {
-        setTimeout(fixRedundantLinks, 100);
-    }).observe(document.body, { childList: true, subtree: true });
-}
+setTimeout(fixRedundantLinks, 1000);
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScript);
-} else {
-    initScript();
-}
+new MutationObserver(function() {
+    setTimeout(fixRedundantLinks, 100);
+}).observe(document.body, { childList: true, subtree: true });
