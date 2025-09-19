@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         lazyImg.classList.contains('lazyloaded')
                         ) {
                         console.log('Element finished loading!', getFocusableElements(container));
-                        
+                        trapFocus(container);
                         observer.disconnect();
                         }
                     });
@@ -164,6 +164,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+
+        function trapFocus(container) {
+            const focusables = getFocusableElements(container);
+            if (focusables.length === 0) return;
+
+            // Focus first element
+            focusables[0].focus();
+
+            container.addEventListener('keydown', (e) => {
+                if (e.key !== 'Tab') return;
+
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            });
+            }
 
         function getFocusableElements(container) {
             return Array.from(
