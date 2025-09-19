@@ -6,7 +6,6 @@ function fixRedundantLinks() {
         const titleLink = item.querySelector('a:not(.boost-sd__product-link-image)');
         
         if (imageLink && titleLink) {
-            // Código original simple que funciona
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
@@ -15,7 +14,6 @@ function fixRedundantLinks() {
             item.innerHTML = '';
             item.appendChild(wrapper);
             
-            // Convertir enlaces a divs (sin tocar botones)
             wrapper.querySelectorAll('a').forEach(function(link) {
                 const div = document.createElement('div');
                 div.innerHTML = link.innerHTML;
