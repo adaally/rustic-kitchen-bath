@@ -9,17 +9,9 @@ function fixRedundantLinks() {
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
+            wrapper.innerHTML = item.innerHTML;
             
-            const imageSection = imageLink.parentElement;
-            const infoSection = titleLink.parentElement;
-            
-            const tempDiv = document.createElement('div');
-            item.appendChild(tempDiv);
-            
-            wrapper.appendChild(imageSection);
-            wrapper.appendChild(infoSection);
-            
-            item.removeChild(tempDiv);
+            item.innerHTML = '';
             item.appendChild(wrapper);
             
             wrapper.querySelectorAll('a').forEach(function(link) {
@@ -27,12 +19,6 @@ function fixRedundantLinks() {
                 div.innerHTML = link.innerHTML;
                 div.className = link.className;
                 link.parentNode.replaceChild(div, link);
-            });
-            
-            wrapper.querySelectorAll('button').forEach(function(button) {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
             });
             
             item.classList.add('fixed');
