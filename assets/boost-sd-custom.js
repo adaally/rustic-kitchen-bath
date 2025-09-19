@@ -34,9 +34,8 @@ function fixRedundantLinks() {
                 const targetContainer = wrapper.querySelector('.boost-sd__product-image-row--bottom .boost-sd__product-image-column--in-bottom');
                 if (targetContainer) {
                     buttonData.element.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }, true);
+                        e.stopPropagation(); 
+                    });
                     targetContainer.appendChild(buttonData.element);
                 }
             });
