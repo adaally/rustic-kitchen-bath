@@ -9,12 +9,18 @@ function fixRedundantLinks() {
       const wrapper = document.createElement('a');
       wrapper.href = imageLink.href;
       wrapper.className = 'boost-sd__product-link-wrapper';
+      wrapper.style.display = "block"; 
+
+      const buttonsContainer = item.querySelector('.boost-sd__product-image-row--bottom');
 
       while (item.firstChild) {
         wrapper.appendChild(item.firstChild);
       }
-
       item.appendChild(wrapper);
+
+      if (buttonsContainer) {
+        wrapper.querySelector('.boost-sd__product-image-wrapper')?.appendChild(buttonsContainer);
+      }
 
       wrapper.querySelectorAll('a').forEach(function(link) {
         if (!link.classList.contains('boost-sd__product-link-wrapper')) {
@@ -30,12 +36,10 @@ function fixRedundantLinks() {
         }
       });
 
-      wrapper.addEventListener('click', function(e) {
-        const isButton = e.target.closest('button, .boost-sd__button');
-        if (isButton) {
-          e.preventDefault();  
-          e.stopPropagation(); 
-        }
+      item.querySelectorAll('button').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
       });
 
       item.classList.add('fixed');
@@ -48,3 +52,4 @@ setTimeout(fixRedundantLinks, 1000);
 new MutationObserver(function() {
   setTimeout(fixRedundantLinks, 100);
 }).observe(document.body, { childList: true, subtree: true });
+
