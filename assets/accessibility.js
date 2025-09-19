@@ -142,7 +142,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("element clicked")
                     const id = element.getAttribute("data-opennt");
                     const container = document.querySelector(id);
-                    console.log(getFocusableElements(container), id);
+                    const lazyImg = container.querySelector(".product-image.lazyload");
+
+                    const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (
+                        mutation.type === 'attributes' &&
+                        mutation.attributeName === 'class' &&
+                        lazyImg.classList.contains('lazyloaded')
+                        ) {
+                        console.log('Element finished loading!', lazyImg);
+                        
+                        observer.disconnect();
+                        }
+                    });
+                    });
+
+                    observer.observe(lazyImg, { attributes: true });
+
+                    
                 });
             });
         });
