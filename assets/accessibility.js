@@ -140,6 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
                     console.log("element clicked")
+                    const id = element.getAttribute("data-opennt");
+                    const container = document.querySelector(id);
+                    console.log(container, id);
                 });
             });
         });
