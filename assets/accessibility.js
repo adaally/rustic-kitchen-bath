@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.attributeName === 'class' &&
                         lazyImg.classList.contains('lazyloaded')
                         ) {
-                        console.log('Element finished loading!', lazyImg);
+                        console.log('Element finished loading!', getFocusableElements(container));
                         
                         observer.disconnect();
                         }
