@@ -8,10 +8,11 @@ function fixRedundantLinks() {
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
 
+           
             while (item.firstChild) {
                 wrapper.appendChild(item.firstChild);
             }
-
+           
             item.appendChild(wrapper);
 
             wrapper.querySelectorAll('a').forEach(function(link) {
@@ -28,27 +29,18 @@ function fixRedundantLinks() {
 
             wrapper.querySelectorAll('button').forEach(function(button) {
                 button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     e.stopPropagation();
                 });
             });
 
             item.classList.add('fixed');
-        } 
+        }
     });
 }
 
-if (document.body) {
-    setTimeout(fixRedundantLinks, 1000);
+setTimeout(fixRedundantLinks, 1000);
 
-    new MutationObserver(function() {
-        setTimeout(fixRedundantLinks, 100);
-    }).observe(document.body, { childList: true, subtree: true });
-} else {
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(fixRedundantLinks, 1000);
-
-        new MutationObserver(function() {
-            setTimeout(fixRedundantLinks, 100);
-        }).observe(document.body, { childList: true, subtree: true });
-    });
-}
+new MutationObserver(function() {
+    setTimeout(fixRedundantLinks, 100);
+}).observe(document.body, { childList: true, subtree: true });
