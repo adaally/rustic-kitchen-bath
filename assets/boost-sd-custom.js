@@ -8,6 +8,7 @@ function fixRedundantLinks() {
         if (imageLink && titleLink) {
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
+            wrapper.className = 'boost-sd__product-link-wrapper';
             wrapper.innerHTML = item.innerHTML;
             
             item.innerHTML = '';
