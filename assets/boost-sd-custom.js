@@ -14,9 +14,15 @@ function fixRedundantLinks() {
             const wrapper = document.createElement('a');
             wrapper.href = imageLink.href;
             wrapper.className = 'boost-sd__product-link-wrapper';
-            wrapper.innerHTML = itemContent.innerHTML;
+            wrapper.innerHTML = itemContent.innerHTML; 
             
-            item.innerHTML = '';
+            const children = Array.from(item.children);
+            children.forEach(function(child) {
+                if (!child.querySelector('button[class*="boost-sd__btn"]')) {
+                    wrapper.appendChild(child);
+                }
+            });
+            
             item.appendChild(wrapper);
             
             wrapper.querySelectorAll('a').forEach(function(link) {
@@ -26,8 +32,16 @@ function fixRedundantLinks() {
                 link.parentNode.replaceChild(div, link);
             });
             
+            item.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
+                const targetContainer = wrapper.querySelector('.boost-sd__product-image-row--bottom .boost-sd__product-image-column--in-bottom');
+                if (targetContainer) {
+                    console.log('Moving React button to wrapper:', button.className);
+                    targetContainer.appendChild(button); 
+                }
+            });
+            
             wrapper.querySelectorAll('button[class*="boost-sd__btn"]').forEach(function(button) {
-                console.log('Adding event listener to preserved React button:', button.className);
+                console.log('Adding event listener to moved React button:', button.className);
                 
                 button.addEventListener('click', function(e) {
                     console.log('React button clicked, stopping propagation:', button.className);
