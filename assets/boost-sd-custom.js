@@ -22,25 +22,25 @@ function fixRedundantLinks() {
             });
             
             item.classList.add('fixed');
-            
-            setTimeout(function() {
-                if (typeof boostPFS !== 'undefined' && boostPFS.init) {
-                    boostPFS.init();
-                }
-                
-                if (typeof boostPFS !== 'undefined' && boostPFS.initFilter) {
-                    boostPFS.initFilter();
-                }
-                
-                const event = new Event('DOMContentLoaded');
-                document.dispatchEvent(event);
-            }, 100);
         }
     });
 }
 
-setTimeout(fixRedundantLinks, 1000);
+function afterRender() {
+    fixRedundantLinks();
+}
 
-new MutationObserver(function() {
-  setTimeout(fixRedundantLinks, 100);
-}).observe(document.body, { childList: true, subtree: true });
+if (typeof boostWidgetIntegration !== 'undefined') {
+    boostWidgetIntegration.regisCustomization(afterRender);
+} else {
+    setTimeout(function() {
+        if (typeof boostWidgetIntegration !== 'undefined') {
+            boostWidgetIntegration.regisCustomization(afterRender);
+        } else {
+            setTimeout(fixRedundantLinks, 1000);
+            new MutationObserver(function() {
+                setTimeout(fixRedundantLinks, 100);
+            }).observe(document.body, { childList: true, subtree: true });
+        }
+    }, 1000);
+}
