@@ -28,7 +28,6 @@ function fixRedundantLinks() {
 
             wrapper.querySelectorAll('button').forEach(function(button) {
                 button.addEventListener('click', function(e) {
-                    e.preventDefault();
                     e.stopPropagation();
                 });
             });
