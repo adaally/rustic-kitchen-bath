@@ -9,7 +9,7 @@ assign gift_pr_id = gift_pr.id -%}
 {%- for item in cart.items -%}{%- assign item_id = item.id -%}{%- assign item_key = item.key -%}{%- assign item_url = item.url -%}
    <div class="mini_cart_item js_cart_item cart_item_{{item_id}} flex al_center pr oh{% if gift_pr_id == item.product_id %} gift_item_true{% endif %}">
       <div class="ld_cart_bar"></div>
-      <a href="{{item_url}}" class="mini_cart_img">
+      <a href="{{item_url}}" class="mini_cart_img" aria-label="{{ item.product.title }}">
         {%- if item.image != blank -%}
         {%- assign img_url = item | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
         <img class="lz_op_ef w__100 lazyload" src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20{{item.image.width}}%20{{item.image.height}}%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ img_url }}" data-widths="[120, 240]" data-sizes="auto" alt="{{ item.alt | escape }}">
