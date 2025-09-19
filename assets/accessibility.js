@@ -136,6 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 //This is because the element to change is before the current element with ID
                 const prevSibling = element.previousElementSibling;
                 prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`)
+
+                //Listen when clicked to add focus trap
+                element.addEventListener('click', () => {
+                    console.log("element clicked")
+                });
             });
         });
 });
