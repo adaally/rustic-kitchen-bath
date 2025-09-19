@@ -142,8 +142,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("element clicked")
                     const id = element.getAttribute("data-opennt");
                     const container = document.querySelector(id);
-                    console.log(container, id);
+                    console.log(getFocusableElements(container), id);
                 });
             });
         });
+
+        function getFocusableElements(container) {
+            return Array.from(
+                container.querySelectorAll(
+                    `
+                    a[href],
+                    button:not([disabled]),
+                    input:not([disabled]),
+                    select:not([disabled]),
+                    textarea:not([disabled]),
+                    [tabindex]:not([tabindex="-1"])
+                    `
+                )
+            );
+        }
 });
