@@ -1,87 +1,56 @@
 /*********************** Custom JS for Boost AI Search & Discovery  ************************/
 
 /**
- * Processes a single product item once it's confirmed to be fully rendered.
+ * Processes a single product item to fix its link structure.
  * @param {HTMLElement} item The product item element to restructure.
  */
-function restructureItem(item) {
+function restructureItemFinal(item) {
   if (item.classList.contains('structure-fixed')) {
     return;
   }
 
-  const imageLink = item.querySelector('.boost-sd__product-link-image');
-  const detailsContainer = item.querySelector('.boost-sd__product-item-grid-view-layout-details');
+  const mainLink = item.querySelector('.boost-sd__product-link-image');
+  const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+  const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
 
-  if (!imageLink || !detailsContainer) {
-    console.error('[Boost Fix] Restructure failed unexpectedly after element was confirmed.', item);
-    return;
-  }
+  if (mainLink && secondLink && infoBlock) {
+    console.log('[Boost Fix v5] All elements found. Restructuring item:', item);
 
-  const titleLink = detailsContainer.querySelector('.boost-sd__product-link');
-  const titleElement = detailsContainer.querySelector('.boost-sd__product-item-title');
+    mainLink.appendChild(infoBlock);
 
-  imageLink.appendChild(detailsContainer);
+    secondLink.remove();
 
-  if (titleLink && titleElement && titleLink.parentNode) {
-    const newTitleDiv = document.createElement('div');
-    newTitleDiv.className = titleLink.className;
-    newTitleDiv.appendChild(titleElement);
-    titleLink.parentNode.replaceChild(newTitleDiv, titleLink);
-  }
-
-  item.classList.add('structure-fixed');
-  // console.log('[Boost Fix] Successfully restructured item:', item);
-}
-
-/**
- * Waits for a specific product item to be fully rendered by polling for a key inner element.
- * @param {HTMLElement} item The product item's outer shell.
- * @param {number} maxRetries The maximum number of times to check before giving up.
- */
-function waitForElementAndProcess(item, maxRetries = 20) {
-  if (maxRetries <= 0) {
-    console.error('[Boost Fix] Gave up waiting for details container on item:', item);
-    return;
-  }
-
-  const detailsContainer = item.querySelector('.boost-sd__product-item-grid-view-layout-details');
-
-  if (detailsContainer) {
-    restructureItem(item);
+    item.classList.add('structure-fixed');
   } else {
-    setTimeout(() => {
-      waitForElementAndProcess(item, maxRetries - 1);
-    }, 100); 
+    if (!item.querySelector('.boost-sd__product-link-image')) console.warn('[Boost Fix v5] Main link not found');
+    if (!item.querySelector('a:not(.boost-sd__product-link-image)')) console.warn('[Boost Fix v5] Second link not found');
   }
 }
 
-function initProductRestructureObserver() {
+function initProductRestructureObserverFinal() {
   const productList = document.querySelector('.boost-sd__product-list');
   if (!productList) {
-    setTimeout(initProductRestructureObserver, 250);
+    setTimeout(initProductRestructureObserverFinal, 250);
     return;
   }
+
+  console.log('[Boost Fix v5] Observer initialized.');
+
+  const processItems = () => {
+    const itemsToProcess = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+    itemsToProcess.forEach(restructureItemFinal);
+  };
 
   const observer = new MutationObserver((mutationsList) => {
     for (const mutation of mutationsList) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        mutation.addedNodes.forEach(node => {
-          if (node.nodeType === 1) {
-            if (node.matches('.boost-sd__product-item')) {
-              waitForElementAndProcess(node);
-            }
-            else {
-              const items = node.querySelectorAll('.boost-sd__product-item');
-              items.forEach(waitForElementAndProcess);
-            }
-          }
-        });
-      }
+        if (mutation.type === 'childList') {
+            setTimeout(processItems, 250);
+            return; 
+        }
     }
   });
 
-  const initialItems = productList.querySelectorAll('.boost-sd__product-item');
-  initialItems.forEach(waitForElementAndProcess);
+  processItems();
 
   observer.observe(productList, {
     childList: true,
@@ -90,7 +59,7 @@ function initProductRestructureObserver() {
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initProductRestructureObserver);
+  document.addEventListener('DOMContentLoaded', initProductRestructureObserverFinal);
 } else {
-  initProductRestructureObserver();
+  initProductRestructureObserverFinal();
 }
