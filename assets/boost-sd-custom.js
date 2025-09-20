@@ -4,6 +4,7 @@
  * Processes a single product item to fix its link structure.
  * @param {HTMLElement} item The product item element to restructure.
  */
+
 function restructureItemFinal(item) {
   if (item.classList.contains('structure-fixed')) {
     return;
