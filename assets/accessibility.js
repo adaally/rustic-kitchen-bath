@@ -275,4 +275,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         fixRedundantThumbnailLinks();
+
+        function fixThumbnailImageAlts() {
+            if (!window.location.pathname.includes('/collections/')) return;
+
+            function clearImageAlts() {
+                const productImages = document.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img');
+                productImages.forEach(img => {
+                    if (img.alt) {
+                        img.alt = '';
+                    }
+                });
+            }
+
+            function initImageAltObserver() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (!productList) {
+                    setTimeout(initImageAltObserver, 250);
+                    return;
+                }
+
+                let observer;
+                let processTimeout;
+
+                const processImages = () => {
+                    clearTimeout(processTimeout);
+                    
+                    processTimeout = setTimeout(() => {
+                        clearImageAlts();
+                        
+                        setTimeout(() => {
+                            const remainingImages = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                            if (remainingImages.length === 0) {
+                                observer.disconnect();
+                            }
+                        }, 2000);
+                    }, 250);
+                };
+
+                observer = new MutationObserver((mutationsList) => {
+                    for (const mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            processImages();
+                            return;
+                        }
+                    }
+                });
+
+                processImages();
+
+                observer.observe(productList, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+
+            initImageAltObserver();
+        }
+
+        fixThumbnailImageAlts();
+
 });
