@@ -335,23 +335,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixThumbnailImageAlts();
 
-        function getCollectionName() {
-            const path = window.location.pathname;
-            const match = path.match(/\/collections\/([^\/]+)/);
-            if (match) {
-                const collectionSlug = match[1];
-                const formatted = collectionSlug
-                    .replace(/-/g, ' ')
-                    .split(' ')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ');
-                return `${formatted}'s collection`;
-            }
-            return "Products collection";
-        }
-
         function addThumbnailListRoles() {
             if (!window.location.pathname.includes('/collections/')) return;
+
+            function getCollectionName() {
+                const path = window.location.pathname;
+                const match = path.match(/\/collections\/([^\/]+)/);
+                if (match) {
+                    const collectionSlug = match[1];
+                    const formatted = collectionSlug
+                        .replace(/-/g, ' ')
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    return `${formatted}'s collection`;
+                }
+                return "Products collection";
+            }
 
             function addRoles() {
                 const productList = document.querySelector('.boost-sd__product-list');
