@@ -28,7 +28,7 @@ function restructureItemFinal(item) {
 function initProductRestructureObserverFinal() {
   const productList = document.querySelector('.boost-sd__product-list');
   if (!productList) {
-    console.log("initProductRestructureObserverFinal")
+    console.log('initProductRestructureObserverFinal');
     setTimeout(initProductRestructureObserverFinal, 250);
     return;
   }
