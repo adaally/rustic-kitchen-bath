@@ -413,4 +413,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
         addThumbnailListRoles();
 
+        function fixQuickViewButtonLabels() {
+            if (!window.location.pathname.includes('/collections/')) return;
+
+            function addAriaLabels() {
+                const quickViewButtons = document.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+                quickViewButtons.forEach(button => {
+                    button.setAttribute('aria-label', 'Quick view');
+                });
+            }
+
+            function initQuickViewObserver() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (!productList) {
+                    setTimeout(initQuickViewObserver, 250);
+                    return;
+                }
+
+                let observer;
+                let processTimeout;
+
+                const processButtons = () => {
+                    clearTimeout(processTimeout);
+                    
+                    processTimeout = setTimeout(() => {
+                        addAriaLabels();
+                        
+                        setTimeout(() => {
+                            const remainingButtons = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+                            if (remainingButtons.length === 0) {
+                                observer.disconnect();
+                            }
+                        }, 2000);
+                    }, 250);
+                };
+
+                observer = new MutationObserver((mutationsList) => {
+                    for (const mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            processButtons();
+                            return;
+                        }
+                    }
+                });
+
+                processButtons();
+
+                observer.observe(productList, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+
+            initQuickViewObserver();
+        }
+
+        fixQuickViewButtonLabels();
+
 });
