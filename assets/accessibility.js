@@ -335,4 +335,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixThumbnailImageAlts();
 
+        function addThumbnailListRoles() {
+            if (!window.location.pathname.includes('/collections/')) return;
+
+            function addRoles() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (productList && !productList.hasAttribute('role')) {
+                    productList.setAttribute('role', 'list');
+                }
+
+                const productItems = document.querySelectorAll('.boost-sd__product-item:not([role])');
+                productItems.forEach(item => {
+                    item.setAttribute('role', 'listitem');
+                });
+            }
+
+            function initRoleObserver() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (!productList) {
+                    setTimeout(initRoleObserver, 250);
+                    return;
+                }
+
+                let observer;
+                let processTimeout;
+
+                const processRoles = () => {
+                    clearTimeout(processTimeout);
+                    
+                    processTimeout = setTimeout(() => {
+                        addRoles();
+                        
+                        setTimeout(() => {
+                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not([role])');
+                            if (remainingItems.length === 0) {
+                                observer.disconnect();
+                            }
+                        }, 2000);
+                    }, 250);
+                };
+
+                observer = new MutationObserver((mutationsList) => {
+                    for (const mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            processRoles();
+                            return;
+                        }
+                    }
+                });
+
+                processRoles();
+
+                observer.observe(productList, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+
+            initRoleObserver();
+        }
+
+        addThumbnailListRoles();
+
 });
