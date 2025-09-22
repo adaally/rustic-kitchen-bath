@@ -206,4 +206,73 @@ document.addEventListener('DOMContentLoaded', () => {
                 )
             );
         }
+
+        function fixBoostProductLinks() {
+            if (!window.location.pathname.includes('/collections/')) return;
+
+            function restructureProductItem(item) {
+                if (item.classList.contains('structure-fixed')) {
+                    return;
+                }
+
+                const mainLink = item.querySelector('.boost-sd__product-link-image');
+                const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+                const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
+
+                if (mainLink && secondLink && infoBlock) {
+                    mainLink.appendChild(infoBlock);
+                    secondLink.remove();
+                    mainLink.classList.add('boost-sd__product-link-wrapper');
+                    item.classList.add('structure-fixed');
+                }
+            }
+
+            function initBoostObserver() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (!productList) {
+                    setTimeout(initBoostObserver, 250);
+                    return;
+                }
+
+                let observer;
+                let processTimeout;
+
+                const processItems = () => {
+                    clearTimeout(processTimeout);
+                    
+                    processTimeout = setTimeout(() => {
+                        const itemsToProcess = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                        itemsToProcess.forEach(restructureProductItem);
+                        
+                        // If no new items appear for 2 seconds, assume we're done
+                        setTimeout(() => {
+                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                            if (remainingItems.length === 0) {
+                                observer.disconnect();
+                            }
+                        }, 2000);
+                    }, 250);
+                };
+
+                observer = new MutationObserver((mutationsList) => {
+                    for (const mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            processItems();
+                            return;
+                        }
+                    }
+                });
+
+                processItems();
+
+                observer.observe(productList, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+
+            initBoostObserver();
+        }
+
+        fixBoostProductLinks();
 });
