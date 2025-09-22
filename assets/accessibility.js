@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        function fixRedundantProductLinks() {
+        function fixRedundantThumbnailLinks() {
             if (!window.location.pathname.includes('/collections/')) return;
 
             function restructureProductItem(item) {
@@ -274,5 +274,5 @@ document.addEventListener('DOMContentLoaded', () => {
             initBoostObserver();
         }
 
-        fixRedundantProductLinks();
+        fixRedundantThumbnailLinks();
 });
