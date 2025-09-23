@@ -207,30 +207,10 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-       function fixThumbnailAccessibility() {
+        function fixThumbnailAccessibility() {
             if (!window.location.pathname.includes('/collections/')) return;
 
-            function getCollectionName() {
-                const headerTitle = document.querySelector('.boost-sd__header-title');
-                if (headerTitle && headerTitle.textContent.trim()) {
-                    return `${headerTitle.textContent.trim()}'s collection`;
-                }
-                
-                const path = window.location.pathname;
-                const match = path.match(/\/collections\/([^\/]+)/);
-                if (match) {
-                    const collectionSlug = match[1];
-                    const formatted = collectionSlug
-                        .replace(/-/g, ' ')
-                        .split(' ')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ');
-                    return `${formatted}'s collection`;
-                }
-                return "Products collection";
-            }
-
-            function restructureProductLinks(item) {
+            function restructureProductItem(item) {
                 if (item.classList.contains('structure-fixed')) {
                     return;
                 }
@@ -254,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            function addListRoles() {
+            function addAccessibilityRoles() {
                 const productList = document.querySelector('.boost-sd__product-list');
                 if (productList && !productList.hasAttribute('role')) {
                     productList.setAttribute('role', 'list');
@@ -274,13 +254,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            function getCollectionName() {
+                const path = window.location.pathname;
+                const match = path.match(/\/collections\/([^\/]+)/);
+                if (match) {
+                    const collectionSlug = match[1];
+                    const formatted = collectionSlug
+                        .replace(/-/g, ' ')
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    return `${formatted}'s collection`;
+                }
+                return "Products collection";
+            }
+
             function processAllAccessibilityFixes() {
                 const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                itemsToProcess.forEach(restructureProductLinks);
-                
+                itemsToProcess.forEach(restructureProductItem);
+
                 clearImageAlts();
-                addListRoles();
+                addAccessibilityRoles();
                 addQuickViewLabels();
+            }
+
+            function isProcessingComplete() {
+                const productList = document.querySelector('.boost-sd__product-list');
+                if (!productList) return false;
+
+                const unprocessedItems = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                const imagesWithAlt = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                const itemsWithoutRole = productList.querySelectorAll('.boost-sd__product-item:not([role])');
+                const buttonsWithoutLabel = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+
+                return unprocessedItems.length === 0 && 
+                    imagesWithAlt.length === 0 && 
+                    itemsWithoutRole.length === 0 && 
+                    buttonsWithoutLabel.length === 0;
             }
 
             function initAccessibilityObserver() {
@@ -300,13 +310,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         processAllAccessibilityFixes();
                         
                         setTimeout(() => {
-                            const remainingImages = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
-                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not([role])');
-                            const remainingButtons = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
-                            const remainingLinks = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                            
-                            if (remainingImages.length === 0 && remainingItems.length === 0 && remainingButtons.length === 0 && remainingLinks.length === 0) {
+                            if (isProcessingComplete()) {
                                 observer.disconnect();
+                                console.log('Thumbnail accessibility fixes completed');
                             }
                         }, 2000);
                     }, 250);
@@ -331,5 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             initAccessibilityObserver();
         }
+
+        fixThumbnailAccessibility();
 
 });
