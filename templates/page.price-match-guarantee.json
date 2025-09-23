@@ -23,8 +23,8 @@
     "16418590762e2da601": {
       "type": "rich_text",
       "settings": {
-        "title": "<h1 class=\"h2\">Price Match Guarantee</h1>",
-        "sub_title": "<h4> Have 100% Confidence you're getting the absolute best price on your purchase today! <h4></h4>\n</h4>",
+        "title": "Price Match Guarantee",
+        "sub_title": "<h2 class=\"h4\"> Have 100% Confidence you're getting the absolute best price on your purchase today! <h4></h4>\n</h2>",
         "sub_font": "1",
         "style_title": "title_1",
         "ic_tt": "gem",
