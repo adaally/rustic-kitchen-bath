@@ -269,15 +269,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
+                
+                console.log('=== PAGINATION DEBUG ===');
+                console.log('Active page element:', activePage);
+                console.log('Current page number:', currentPageNumber);
 
                 const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
-                allPageButtons.forEach(button => {
+                console.log('Total page buttons found:', allPageButtons.length);
+                
+                allPageButtons.forEach((button, index) => {
                     const pageNum = parseInt(button.textContent.trim());
+                    const hasActiveClass = button.classList.contains('boost-sd__pagination-number--active');
+                    console.log(`Button ${index + 1}: page ${pageNum}, hasActiveClass: ${hasActiveClass}, current aria-label: "${button.getAttribute('aria-label')}"`);
+                    
                     if (!isNaN(pageNum)) {
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
-                            button.setAttribute('aria-label', `Current page, page ${pageNum}`);
+                            const newLabel = `Current page, page ${pageNum}`;
+                            button.setAttribute('aria-label', newLabel);
+                            console.log(`  -> Updated to: "${newLabel}"`);
                         } else {
-                            button.setAttribute('aria-label', `Go to page ${pageNum}`);
+                            const newLabel = `Go to page ${pageNum}`;
+                            button.setAttribute('aria-label', newLabel);
+                            console.log(`  -> Updated to: "${newLabel}"`);
                         }
                     }
                 });
@@ -298,6 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     pagination.setAttribute('role', 'navigation');
                     pagination.setAttribute('aria-label', 'Pagination');
                 }
+                
+                console.log('=== END PAGINATION DEBUG ===');
             }
 
             function getCollectionName() {
@@ -356,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
+                        console.log('Processing accessibility fixes...');
                         processAllAccessibilityFixes();
                         
                         setTimeout(() => {
