@@ -270,19 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
 
-                // First remove aria-current from ALL buttons
                 const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
-                allPageButtons.forEach(button => {
-                    button.removeAttribute('aria-current');
-                });
-
-                // Then update each button based on current state
                 allPageButtons.forEach(button => {
                     const pageNum = parseInt(button.textContent.trim());
                     if (!isNaN(pageNum)) {
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
                             button.setAttribute('aria-label', `Current page, page ${pageNum}`);
-                            button.setAttribute('aria-current', 'page');
                         } else {
                             button.setAttribute('aria-label', `Go to page ${pageNum}`);
                         }
@@ -308,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function getCollectionName() {
-                const h1Element = document.querySelector('.boost-sd__header-title');
+                const h1Element = document.querySelector('.boost-sdheader-title');
                 if (h1Element && h1Element.textContent.trim()) {
                     const collectionName = h1Element.textContent.trim();
                     return `${collectionName}'s collection`;
@@ -376,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 observer = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
-                        if (mutation.type === 'childList') {
+                        if (mutation.type === 'childList' || mutation.type === 'attributes') {
                             processChanges();
                             return;
                         }
@@ -388,6 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(list, {
                     childList: true,
                     subtree: true,
+                    attributes: true,
+                    attributeFilter: ['class']
                 });
             }
 
