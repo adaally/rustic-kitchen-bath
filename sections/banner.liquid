@@ -23,16 +23,26 @@
           </a>
           <div class="pa t__0 l__0 b__0 r__0 flex column shadow_wrap {{block.settings.txt_align}} {{block.settings.banner_align}}{% if block.settings.url != blank %} pe_none{% endif %}">
             {%- if cat_design == '1' -%}
-              <h3 class="fwm fs__24 mg__0 mb__5 ls__1 lh__1">{{block.settings.title}}</h3>
-              <h4 class="mg__0 fs__14">{{block.settings.title_2}}</h4>
+              {%- if block.settings.title != blank -%}
+                <h3 class="fwm fs__24 mg__0 mb__5 ls__1 lh__1">{{block.settings.title}}</h3>
+              {%- endif -%}
+              {%- if block.settings.title_2 != blank -%}
+                <h4 class="mg__0 fs__14">{{block.settings.title_2}}</h4>
+              {%- endif -%}
             {%- else %}{% assign title_2 = block.settings.title_2 | split:'|' -%}
               {%- if title_2[1] != blank -%}
-                <h3 class="fwm fs__20 mg__0 mb__5 ls__1">{{block.settings.title}}</h3>
+                {%- if block.settings.title != blank -%}
+                  <h3 class="fwm fs__20 mg__0 mb__5 ls__1">{{block.settings.title}}</h3>
+                {%- endif -%}
                 <h4 class="mg__0 fs__60 lh__1">{{title_2[0] | strip}}</h4>
                 <h3 class="fwm fs__20 mg__0 ls__1">{{title_2[1] | strip}}</h3>
               {%- else -%}
-                <h3 class="fwm fs__18 mg__0 mb__5 ls__1">{{block.settings.title}}</h3>
-                <h4 class="mg__0 fs__50 lh__1">{{block.settings.title_2}}</h4>
+                {%- if block.settings.title != blank -%}
+                  <h3 class="fwm fs__18 mg__0 mb__5 ls__1">{{block.settings.title}}</h3>
+                {%- endif -%}
+                {%- if block.settings.title_2 != blank -%}
+                  <h4 class="mg__0 fs__50 lh__1">{{block.settings.title_2}}</h4>
+                {%- endif -%}
               {%- endif -%}
             {%- endif -%}
           </div>
@@ -40,7 +50,7 @@
       </div>
     {%- endfor -%}
   </div>
-</div> 
+</div>
 
 {%- render 'section_css' -%}
 {%- style -%}
