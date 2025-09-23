@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-       function fixThumbnailAccessibility() {
+      function fixThumbnailAccessibility() {
             if (!window.location.pathname.includes('/collections/')) return;
 
             let productList = null;
@@ -324,7 +324,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return "Products collection";
             }
 
+            function isProductProcessingComplete() {
+                const list = getProductList();
+                if (!list) return false;
 
+                const unprocessedItems = list.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role])');
+                const buttonsWithoutLabel = list.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+
+                return unprocessedItems.length === 0 && 
+                    imagesWithAlt.length === 0 && 
+                    itemsWithoutRole.length === 0 && 
+                    buttonsWithoutLabel.length === 0;
+            }
 
             function initAccessibilityObserver() {
                 const list = getProductList();
@@ -333,50 +346,76 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                let observer;
+                let productObserver;
+                let paginationObserver;
                 let processTimeout;
 
-                const processChanges = () => {
+                const processProductChanges = () => {
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
-                        console.log('Processing accessibility fixes...');
-                        processAllAccessibilityFixes();
+                        console.log('Processing product accessibility fixes...');
+                        
+                        const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                        itemsToProcess.forEach(restructureProductItem);
+
+                        clearImageAlts();
+                        addAccessibilityRoles();
+                        addQuickViewLabels();
                         
                         setTimeout(() => {
-                            if (isProcessingComplete()) {
-                                observer.disconnect();
-                                console.log('Thumbnail accessibility fixes completed');
+                            if (isProductProcessingComplete()) {
+                                productObserver.disconnect();
+                                console.log('Product accessibility fixes completed');
                             }
                         }, 2000);
                     }, 250);
                 };
 
-                observer = new MutationObserver((mutationsList) => {
+                const processPaginationChanges = () => {
+                    console.log('Processing pagination accessibility fixes...');
+                    addPaginationLabels();
+                };
+
+                // Product observer
+                productObserver = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                            console.log('MutationObserver detected change:', mutation.type, mutation.target);
-                            processChanges();
+                            console.log('Product MutationObserver detected change:', mutation.type);
+                            processProductChanges();
                             return;
                         }
                     }
                 });
 
-                processChanges();
+                // Pagination observer
+                paginationObserver = new MutationObserver((mutationsList) => {
+                    for (const mutation of mutationsList) {
+                        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                            console.log('Pagination MutationObserver detected change:', mutation.type);
+                            processPaginationChanges();
+                            return;
+                        }
+                    }
+                });
 
-                // Observe both product list and pagination
-                observer.observe(list, {
+                // Start product processing
+                processProductChanges();
+
+                // Observe product list
+                productObserver.observe(list, {
                     childList: true,
                     subtree: true,
                     attributes: true,
                     attributeFilter: ['class']
                 });
 
-                // Also observe pagination separately if it exists
+                // Observe pagination permanently
                 const pagination = document.querySelector('.boost-sd__pagination');
                 if (pagination) {
-                    console.log('Also observing pagination container');
-                    observer.observe(pagination, {
+                    console.log('Setting up permanent pagination observer');
+                    processPaginationChanges();
+                    paginationObserver.observe(pagination, {
                         childList: true,
                         subtree: true,
                         attributes: true,
