@@ -269,28 +269,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
-                
-                console.log('=== PAGINATION DEBUG ===');
-                console.log('Active page element:', activePage);
-                console.log('Current page number:', currentPageNumber);
 
                 const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
-                console.log('Total page buttons found:', allPageButtons.length);
                 
                 allPageButtons.forEach((button, index) => {
                     const pageNum = parseInt(button.textContent.trim());
                     const hasActiveClass = button.classList.contains('boost-sd__pagination-number--active');
-                    console.log(`Button ${index + 1}: page ${pageNum}, hasActiveClass: ${hasActiveClass}, current aria-label: "${button.getAttribute('aria-label')}"`);
                     
                     if (!isNaN(pageNum)) {
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
                             const newLabel = `Current page, page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
-                            console.log(`  -> Updated to: "${newLabel}"`);
                         } else {
                             const newLabel = `Go to page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
-                            console.log(`  -> Updated to: "${newLabel}"`);
                         }
                     }
                 });
@@ -312,7 +304,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     pagination.setAttribute('aria-label', 'Pagination');
                 }
                 
-                console.log('=== END PAGINATION DEBUG ===');
             }
 
             function getCollectionName() {
@@ -381,7 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 productObserver = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                            console.log('Product MutationObserver detected change:', mutation.type);
                             processProductChanges();
                             return;
                         }
@@ -392,7 +382,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 paginationObserver = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                            console.log('Pagination MutationObserver detected change:', mutation.type);
                             processPaginationChanges();
                             return;
                         }
