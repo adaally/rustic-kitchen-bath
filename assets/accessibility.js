@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const h1Element = document.querySelector('.boost-sdheader-title');
                 if (h1Element && h1Element.textContent.trim()) {
                     const collectionName = h1Element.textContent.trim();
-                    return `${collectionName} collection`;
+                    return `${collectionName}'s collection`;
                 }
                 return "Products collection";
             }
