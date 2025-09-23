@@ -270,12 +270,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
 
-                const pageNumbers = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
-                pageNumbers.forEach(button => {
+                // First remove aria-current from ALL buttons
+                const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
+                allPageButtons.forEach(button => {
+                    button.removeAttribute('aria-current');
+                });
+
+                // Then update each button based on current state
+                allPageButtons.forEach(button => {
                     const pageNum = parseInt(button.textContent.trim());
                     if (!isNaN(pageNum)) {
-                        button.removeAttribute('aria-current');
-                        
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
                             button.setAttribute('aria-label', `Current page, page ${pageNum}`);
                             button.setAttribute('aria-current', 'page');
