@@ -127,7 +127,7 @@
         "16504745673c3e18a5-1"
       ],
       "settings": {
-        "title": "<h1 class=\"h2\">Sign Up to Become a Pro Today!</h1>",
+        "title": "Sign Up to Become a Pro Today!",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
@@ -151,7 +151,7 @@
     "165047317683b7eb80": {
       "type": "rich_text",
       "settings": {
-        "title": "<h4> BENEFITS OF JOINING OUR PROGRAM <h4></h4>\n</h4>",
+        "title": "<h3 class=\"h4\">BENEFITS OF JOINING OUR PROGRAM</h3>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
