@@ -32,7 +32,7 @@
     {%- if section.settings.img_position == '1' -%}{{- image_layout -}}{%- endif -%}
     <div class="col-12 col-md-6 txt_col_img">
       <div class="flex column pl__20 pr__20 pb__20 pt__20 shadow_wrap {{section.settings.txt_align}} {{cl_arr[1]}}">
-          <h3 class="mb__20 mt__0 fs__30 {{cl_arr[0]}} lh__1">{{section.settings.title}}</h3>
+          <h2 class="h3 mb__20 mt__0 fs__30 {{cl_arr[0]}} lh__1">{{section.settings.title}}</h2>
           {{section.settings.text}}
         {%- if url != blank and section.settings.button_label -%}<p class="mg__0"><a class="button {{cl_arr[2]}}" href="{{url}}" target="{{section.settings.open_link}}">{{section.settings.button_label}}</a></p>{%- endif -%}
       </div>
