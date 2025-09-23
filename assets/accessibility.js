@@ -312,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             if (isProcessingComplete()) {
                                 observer.disconnect();
-                                console.log('Thumbnail accessibility fixes completed');
                             }
                         }, 2000);
                     }, 250);
