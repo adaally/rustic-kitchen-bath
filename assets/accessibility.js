@@ -210,6 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
         function fixThumbnailAccessibility() {
             if (!window.location.pathname.includes('/collections/')) return;
 
+            let productList = null;
+            function getProductList() {
+                if (!productList) {
+                    productList = document.querySelector('.boost-sd__product-list');
+                }
+                return productList;
+            }
+
             function restructureProductItem(item) {
                 if (item.classList.contains('structure-fixed')) {
                     return;
@@ -235,10 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function addAccessibilityRoles() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (productList && !productList.hasAttribute('role')) {
-                    productList.setAttribute('role', 'list');
-                    productList.setAttribute('aria-label', getCollectionName());
+                const list = getProductList();
+                if (list && !list.hasAttribute('role')) {
+                    list.setAttribute('role', 'list');
+                    list.setAttribute('aria-label', getCollectionName());
                 }
 
                 const productItems = document.querySelectorAll('.boost-sd__product-item:not([role])');
@@ -279,13 +287,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function isProcessingComplete() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (!productList) return false;
+                const list = getProductList();
+                if (!list) return false;
 
-                const unprocessedItems = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                const imagesWithAlt = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
-                const itemsWithoutRole = productList.querySelectorAll('.boost-sd__product-item:not([role])');
-                const buttonsWithoutLabel = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+                const unprocessedItems = list.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role])');
+                const buttonsWithoutLabel = list.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
 
                 return unprocessedItems.length === 0 && 
                     imagesWithAlt.length === 0 && 
@@ -294,8 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function initAccessibilityObserver() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (!productList) {
+                const list = getProductList();
+                if (!list) {
                     setTimeout(initAccessibilityObserver, 250);
                     return;
                 }
@@ -328,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 processChanges();
 
-                observer.observe(productList, {
+                observer.observe(list, {
                     childList: true,
                     subtree: true,
                 });
@@ -338,5 +346,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         fixThumbnailAccessibility();
-
 });
