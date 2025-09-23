@@ -263,16 +263,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function getCollectionName() {
-                const path = window.location.pathname;
-                const match = path.match(/\/collections\/([^\/]+)/);
-                if (match) {
-                    const collectionSlug = match[1];
-                    const formatted = collectionSlug
-                        .replace(/-/g, ' ')
-                        .split(' ')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ');
-                    return `${formatted}'s collection`;
+                const h1Element = document.querySelector('.boost-sdheader-title');
+                if (h1Element && h1Element.textContent.trim()) {
+                    const collectionName = h1Element.textContent.trim();
+                    return `${collectionName} collection`;
                 }
                 return "Products collection";
             }
