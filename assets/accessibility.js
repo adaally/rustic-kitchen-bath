@@ -345,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
-                        console.log('Processing product accessibility fixes...');
                         
                         const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
                         itemsToProcess.forEach(restructureProductItem);
@@ -357,14 +356,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             if (isProductProcessingComplete()) {
                                 productObserver.disconnect();
-                                console.log('Product accessibility fixes completed');
                             }
                         }, 2000);
                     }, 250);
                 };
 
                 const processPaginationChanges = () => {
-                    console.log('Processing pagination accessibility fixes...');
                     addPaginationLabels();
                 };
 
