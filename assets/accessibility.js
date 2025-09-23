@@ -386,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                            console.log('MutationObserver detected change:', mutation.type, mutation.target);
                             processChanges();
                             return;
                         }
@@ -394,12 +395,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 processChanges();
 
+                // Observe both product list and pagination
                 observer.observe(list, {
                     childList: true,
                     subtree: true,
                     attributes: true,
                     attributeFilter: ['class']
                 });
+
+                // Also observe pagination separately if it exists
+                const pagination = document.querySelector('.boost-sd__pagination');
+                if (pagination) {
+                    console.log('Also observing pagination container');
+                    observer.observe(pagination, {
+                        childList: true,
+                        subtree: true,
+                        attributes: true,
+                        attributeFilter: ['class']
+                    });
+                }
             }
 
             initAccessibilityObserver();
