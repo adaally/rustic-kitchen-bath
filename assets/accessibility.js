@@ -270,10 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
 
-                const pageNumbers = pagination.querySelectorAll('.boost-sd__pagination-number:not([aria-label]):not(.boost-sd__pagination-number--disabled)');
+                const pageNumbers = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
                 pageNumbers.forEach(button => {
                     const pageNum = parseInt(button.textContent.trim());
                     if (!isNaN(pageNum)) {
+                        button.removeAttribute('aria-current');
+                        
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
                             button.setAttribute('aria-label', `Current page, page ${pageNum}`);
                             button.setAttribute('aria-current', 'page');
@@ -283,13 +285,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev:not([aria-label])');
+                const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev');
                 if (prevButton) {
                     const prevPageNumber = currentPageNumber - 1;
                     prevButton.setAttribute('aria-label', `Go to page ${prevPageNumber}`);
                 }
 
-                const nextButton = pagination.querySelector('.boost-sd__pagination-button--next:not([aria-label])');
+                const nextButton = pagination.querySelector('.boost-sd__pagination-button--next');
                 if (nextButton) {
                     const nextPageNumber = currentPageNumber + 1;
                     nextButton.setAttribute('aria-label', `Go to page ${nextPageNumber}`);
@@ -302,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function getCollectionName() {
-                const h1Element = document.querySelector('.boost-sd__header-title');
+                const h1Element = document.querySelector('.boost-sdheader-title');
                 if (h1Element && h1Element.textContent.trim()) {
                     const collectionName = h1Element.textContent.trim();
                     return `${collectionName}'s collection`;
@@ -333,14 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let paginationComplete = true;
                 if (pagination) {
                     const paginationWithoutRole = !pagination.hasAttribute('role');
-                    const pageNumbersWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-number:not([aria-label]):not(.boost-sd__pagination-number--disabled)');
-                    const prevWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-button--prev:not([aria-label])');
-                    const nextWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-button--next:not([aria-label])');
-                    
-                    paginationComplete = !paginationWithoutRole && 
-                                    pageNumbersWithoutLabel.length === 0 && 
-                                    prevWithoutLabel.length === 0 && 
-                                    nextWithoutLabel.length === 0;
+                    paginationComplete = !paginationWithoutRole;
                 }
 
                 return unprocessedItems.length === 0 && 
@@ -365,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     processTimeout = setTimeout(() => {
                         processAllAccessibilityFixes();
-
+                        
                         setTimeout(() => {
                             if (isProcessingComplete()) {
                                 observer.disconnect();
