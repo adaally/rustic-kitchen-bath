@@ -1,1 +1,142 @@
-{"sections":{"new-page":{"type":"new-page","settings":{"layout":"nt_full","cl_bg":"#fff","mg":"50px,,20px,","pd":"","mg_mb":"","pd_mb":""}},"16418590762e2da601":{"type":"rich_text","settings":{"title":"<h2> Price Match Guarantee <h2><\/h2>\n<\/h2>","sub_title":"<h4> Have 100% Confidence you're getting the absolute best price on your purchase today! <h4><\/h4>\n<\/h4>","sub_font":"1","style_title":"title_1","ic_tt":"gem","show_clpr":false,"content":"","align":"tc","layout":"container","cl_bg":"","mg":"50px,,50px,","pd":"","mg_mb":"","pd_mb":""}},"16310553887a402aed":{"type":"image_text","settings":{"image":"shopify:\/\/shop_images\/The_Copper_Collection_7.png","img_align":"center","img_position":"1","image_ratio":"ratio1_1","text_size":"60,18","title":"How is this Possible?","text":"<p>At Rustic Kitchen and Bath we're dedicated to customer satisfaction. Discount codes, price matching, and promotional pricing can not be applied to purchases retroactively after the customer has already purchased, and may only be applied to future purchases within the discount code or promotion lifespan. Shipping fees are nonrefundable.<\/p>","button_label":"Shop Now","button_link":"","open_link":"_blank","txt_align":"tc","use_shadow":false,"cl_txt":"dark","layout":"nt_full","cl_bg":"#ffffff","mg":"","pd":"40px","mg_mb":"","pd_mb":""}},"163105587726186585":{"type":"image_text","settings":{"image":"shopify:\/\/shop_images\/The_Copper_Collection_8.png","img_align":"center","img_position":"2","image_ratio":"ratio1_1","text_size":"60,18","title":"Shop With Confidence","text":"<p>No need to hassle searching the entire web or running to various stores to find the best deal. Rustic Kitchen and Bath is here to ensure you will get the best price without having to bargain and stress about who has the best price. <\/p>","button_label":"Shop Now","button_link":"","open_link":"_blank","txt_align":"tc","use_shadow":false,"cl_txt":"dark","layout":"nt_full","cl_bg":"#ffffff","mg":"0px, 0px, 0px, 0px","pd":"0px, 0px, 0px, 0px","mg_mb":"0px, 0px, 0px, 0px","pd_mb":""}},"16418594756cb9edc8":{"type":"image_text","settings":{"image":"shopify:\/\/shop_images\/Family_3.png","img_align":"center","img_position":"1","image_ratio":"ratio1_1","text_size":"60,18","title":"How Does the Price Match Work?","text":"<p>Simple as 1,2,3.  <\/p><p>If you find another authorized retailer who's selling the same product at a lower price. Simply contact us, provide us the competitor's link to product and we will credit you the difference. <\/p><p>Yep, that easy.<\/p>","button_label":"Shop Now","button_link":"","open_link":"_blank","txt_align":"tc","use_shadow":false,"cl_txt":"dark","layout":"nt_full","cl_bg":"","mg":"50px,,50px,","pd":"","mg_mb":"","pd_mb":""}},"1641859563a28a9af1":{"type":"rich_text","settings":{"title":"Terms & Conditions","sub_title":"","sub_font":"2","style_title":"title_1","ic_tt":"gem","show_clpr":false,"content":"<p><strong>• <\/strong>The competitor must be an Authorized Retailer of the item <\/p><p><strong>• <\/strong>Discounter or auction websites like eBay, Overstock etc. don't apply <\/p><p><strong>• <\/strong>Product must be new and match same specifications (original) <\/p><p><strong>• <\/strong>Does not apply to promotions such as rebates, buy one get one free etc.<\/p><p><strong>• <\/strong>Price match does not apply to out of stock items<\/p><p><strong>• <\/strong>Price match includes tax and shipping (if charged) <\/p>","align":"tc","layout":"container","cl_bg":"","mg":"50px,,50px,","pd":"","mg_mb":"","pd_mb":""}}},"order":["new-page","16418590762e2da601","16310553887a402aed","163105587726186585","16418594756cb9edc8","1641859563a28a9af1"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "new-page": {
+      "type": "new-page",
+      "settings": {
+        "layout": "nt_full",
+        "cl_bg": "#ffffff",
+        "mg": "50px,,20px,",
+        "pd": "",
+        "mg_mb": "",
+        "pd_mb": ""
+      }
+    },
+    "16418590762e2da601": {
+      "type": "rich_text",
+      "settings": {
+        "title": "<h1 class=\"h2\">Price Match Guarantee</h1>",
+        "sub_title": "<h4> Have 100% Confidence you're getting the absolute best price on your purchase today! <h4></h4>\n</h4>",
+        "sub_font": "1",
+        "style_title": "title_1",
+        "ic_tt": "gem",
+        "show_clpr": false,
+        "content": "",
+        "align": "tc",
+        "layout": "container",
+        "cl_bg": "",
+        "mg": "50px,,50px,",
+        "pd": "",
+        "mg_mb": "",
+        "pd_mb": ""
+      }
+    },
+    "16310553887a402aed": {
+      "type": "image_text",
+      "settings": {
+        "image": "shopify://shop_images/The_Copper_Collection_7.png",
+        "img_align": "center",
+        "img_position": "1",
+        "image_ratio": "ratio1_1",
+        "text_size": "60,18",
+        "title": "How is this Possible?",
+        "text": "<p>At Rustic Kitchen and Bath we're dedicated to customer satisfaction. Discount codes, price matching, and promotional pricing can not be applied to purchases retroactively after the customer has already purchased, and may only be applied to future purchases within the discount code or promotion lifespan. Shipping fees are nonrefundable.</p>",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "open_link": "_blank",
+        "txt_align": "tc",
+        "use_shadow": false,
+        "cl_txt": "dark",
+        "layout": "nt_full",
+        "cl_bg": "#ffffff",
+        "mg": "",
+        "pd": "40px",
+        "mg_mb": "",
+        "pd_mb": ""
+      }
+    },
+    "163105587726186585": {
+      "type": "image_text",
+      "settings": {
+        "image": "shopify://shop_images/The_Copper_Collection_8.png",
+        "img_align": "center",
+        "img_position": "2",
+        "image_ratio": "ratio1_1",
+        "text_size": "60,18",
+        "title": "Shop With Confidence",
+        "text": "<p>No need to hassle searching the entire web or running to various stores to find the best deal. Rustic Kitchen and Bath is here to ensure you will get the best price without having to bargain and stress about who has the best price. </p>",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "open_link": "_blank",
+        "txt_align": "tc",
+        "use_shadow": false,
+        "cl_txt": "dark",
+        "layout": "nt_full",
+        "cl_bg": "#ffffff",
+        "mg": "0px, 0px, 0px, 0px",
+        "pd": "0px, 0px, 0px, 0px",
+        "mg_mb": "0px, 0px, 0px, 0px",
+        "pd_mb": ""
+      }
+    },
+    "16418594756cb9edc8": {
+      "type": "image_text",
+      "settings": {
+        "image": "shopify://shop_images/Family_3.png",
+        "img_align": "center",
+        "img_position": "1",
+        "image_ratio": "ratio1_1",
+        "text_size": "60,18",
+        "title": "How Does the Price Match Work?",
+        "text": "<p>Simple as 1,2,3.  </p><p>If you find another authorized retailer who's selling the same product at a lower price. Simply contact us, provide us the competitor's link to product and we will credit you the difference. </p><p>Yep, that easy.</p>",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "open_link": "_blank",
+        "txt_align": "tc",
+        "use_shadow": false,
+        "cl_txt": "dark",
+        "layout": "nt_full",
+        "cl_bg": "",
+        "mg": "50px,,50px,",
+        "pd": "",
+        "mg_mb": "",
+        "pd_mb": ""
+      }
+    },
+    "1641859563a28a9af1": {
+      "type": "rich_text",
+      "settings": {
+        "title": "Terms & Conditions",
+        "sub_title": "",
+        "sub_font": "2",
+        "style_title": "title_1",
+        "ic_tt": "gem",
+        "show_clpr": false,
+        "content": "<p><strong>• </strong>The competitor must be an Authorized Retailer of the item </p><p><strong>• </strong>Discounter or auction websites like eBay, Overstock etc. don't apply </p><p><strong>• </strong>Product must be new and match same specifications (original) </p><p><strong>• </strong>Does not apply to promotions such as rebates, buy one get one free etc.</p><p><strong>• </strong>Price match does not apply to out of stock items</p><p><strong>• </strong>Price match includes tax and shipping (if charged) </p>",
+        "align": "tc",
+        "layout": "container",
+        "cl_bg": "",
+        "mg": "50px,,50px,",
+        "pd": "",
+        "mg_mb": "",
+        "pd_mb": ""
+      }
+    }
+  },
+  "order": [
+    "new-page",
+    "16418590762e2da601",
+    "16310553887a402aed",
+    "163105587726186585",
+    "16418594756cb9edc8",
+    "1641859563a28a9af1"
+  ]
+}
