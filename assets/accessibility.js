@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!window.location.pathname.includes('/collections/')) return;
 
             let productList = null;
+
             function getProductList() {
                 if (!productList) {
                     productList = document.querySelector('.boost-sd__product-list');
@@ -262,6 +263,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            function addPaginationLabels() {
+                const pagination = document.querySelector('.boost-sd__pagination');
+                if (!pagination) return;
+
+                const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
+                const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
+
+                const pageNumbers = pagination.querySelectorAll('.boost-sd__pagination-number:not([aria-label]):not(.boost-sd__pagination-number--disabled)');
+                pageNumbers.forEach(button => {
+                    const pageNum = parseInt(button.textContent.trim());
+                    if (!isNaN(pageNum)) {
+                        if (button.classList.contains('boost-sd__pagination-number--active')) {
+                            button.setAttribute('aria-label', `Current page, page ${pageNum}`);
+                            button.setAttribute('aria-current', 'page');
+                        } else {
+                            button.setAttribute('aria-label', `Go to page ${pageNum}`);
+                        }
+                    }
+                });
+
+                const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev:not([aria-label])');
+                if (prevButton) {
+                    const prevPageNumber = currentPageNumber - 1;
+                    prevButton.setAttribute('aria-label', `Go to page ${prevPageNumber}`);
+                }
+
+                const nextButton = pagination.querySelector('.boost-sd__pagination-button--next:not([aria-label])');
+                if (nextButton) {
+                    const nextPageNumber = currentPageNumber + 1;
+                    nextButton.setAttribute('aria-label', `Go to page ${nextPageNumber}`);
+                }
+
+                if (!pagination.hasAttribute('role')) {
+                    pagination.setAttribute('role', 'navigation');
+                    pagination.setAttribute('aria-label', 'Pagination');
+                }
+            }
+
             function getCollectionName() {
                 const h1Element = document.querySelector('.boost-sd__header-title');
                 if (h1Element && h1Element.textContent.trim()) {
@@ -278,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearImageAlts();
                 addAccessibilityRoles();
                 addQuickViewLabels();
+                addPaginationLabels();
             }
 
             function isProcessingComplete() {
@@ -288,11 +328,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
                 const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role])');
                 const buttonsWithoutLabel = list.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+                
+                const pagination = document.querySelector('.boost-sd__pagination');
+                let paginationComplete = true;
+                if (pagination) {
+                    const paginationWithoutRole = !pagination.hasAttribute('role');
+                    const pageNumbersWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-number:not([aria-label]):not(.boost-sd__pagination-number--disabled)');
+                    const prevWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-button--prev:not([aria-label])');
+                    const nextWithoutLabel = pagination.querySelectorAll('.boost-sd__pagination-button--next:not([aria-label])');
+                    
+                    paginationComplete = !paginationWithoutRole && 
+                                    pageNumbersWithoutLabel.length === 0 && 
+                                    prevWithoutLabel.length === 0 && 
+                                    nextWithoutLabel.length === 0;
+                }
 
                 return unprocessedItems.length === 0 && 
                     imagesWithAlt.length === 0 && 
                     itemsWithoutRole.length === 0 && 
-                    buttonsWithoutLabel.length === 0;
+                    buttonsWithoutLabel.length === 0 &&
+                    paginationComplete;
             }
 
             function initAccessibilityObserver() {
@@ -310,10 +365,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     processTimeout = setTimeout(() => {
                         processAllAccessibilityFixes();
-                        
+
                         setTimeout(() => {
                             if (isProcessingComplete()) {
                                 observer.disconnect();
+                                console.log('Thumbnail accessibility fixes completed');
                             }
                         }, 2000);
                     }, 250);
