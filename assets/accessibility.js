@@ -211,6 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!window.location.pathname.includes('/collections/')) return;
 
             function getCollectionName() {
+                const headerTitle = document.querySelector('.boost-sd__header-title');
+                if (headerTitle && headerTitle.textContent.trim()) {
+                    return `${headerTitle.textContent.trim()}'s collection`;
+                }
+                
                 const path = window.location.pathname;
                 const match = path.match(/\/collections\/([^\/]+)/);
                 if (match) {
@@ -223,6 +228,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     return `${formatted}'s collection`;
                 }
                 return "Products collection";
+            }
+
+            function restructureProductLinks(item) {
+                if (item.classList.contains('structure-fixed')) {
+                    return;
+                }
+
+                const mainLink = item.querySelector('.boost-sd__product-link-image');
+                const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+                const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
+
+                if (mainLink && secondLink && infoBlock) {
+                    mainLink.appendChild(infoBlock);
+                    secondLink.remove();
+                    mainLink.classList.add('boost-sd__product-link-wrapper');
+                    item.classList.add('structure-fixed');
+                }
             }
 
             function clearImageAlts() {
@@ -253,6 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function processAllAccessibilityFixes() {
+                const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                itemsToProcess.forEach(restructureProductLinks);
+                
                 clearImageAlts();
                 addListRoles();
                 addQuickViewLabels();
@@ -278,8 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             const remainingImages = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
                             const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not([role])');
                             const remainingButtons = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
+                            const remainingLinks = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
                             
-                            if (remainingImages.length === 0 && remainingItems.length === 0 && remainingButtons.length === 0) {
+                            if (remainingImages.length === 0 && remainingItems.length === 0 && remainingButtons.length === 0 && remainingLinks.length === 0) {
                                 observer.disconnect();
                             }
                         }, 2000);
