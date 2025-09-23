@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        function fixThumbnailAccessibility() {
+       function fixThumbnailAccessibility() {
             if (!window.location.pathname.includes('/collections/')) return;
 
             let productList = null;
@@ -324,38 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return "Products collection";
             }
 
-            function processAllAccessibilityFixes() {
-                const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                itemsToProcess.forEach(restructureProductItem);
 
-                clearImageAlts();
-                addAccessibilityRoles();
-                addQuickViewLabels();
-                addPaginationLabels();
-            }
-
-            function isProcessingComplete() {
-                const list = getProductList();
-                if (!list) return false;
-
-                const unprocessedItems = list.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
-                const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role])');
-                const buttonsWithoutLabel = list.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
-                
-                const pagination = document.querySelector('.boost-sd__pagination');
-                let paginationComplete = true;
-                if (pagination) {
-                    const paginationWithoutRole = !pagination.hasAttribute('role');
-                    paginationComplete = !paginationWithoutRole;
-                }
-
-                return unprocessedItems.length === 0 && 
-                    imagesWithAlt.length === 0 && 
-                    itemsWithoutRole.length === 0 && 
-                    buttonsWithoutLabel.length === 0 &&
-                    paginationComplete;
-            }
 
             function initAccessibilityObserver() {
                 const list = getProductList();
