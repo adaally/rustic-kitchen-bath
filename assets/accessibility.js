@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function getCollectionName() {
-                const h1Element = document.querySelector('.boost-sdheader-title');
+                const h1Element = document.querySelector('.boost-sd__header-title');
                 if (h1Element && h1Element.textContent.trim()) {
                     const collectionName = h1Element.textContent.trim();
                     return `${collectionName}'s collection`;
