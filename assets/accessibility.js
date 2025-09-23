@@ -207,135 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        function fixRedundantThumbnailLinks() {
-            if (!window.location.pathname.includes('/collections/')) return;
-
-            function restructureProductItem(item) {
-                if (item.classList.contains('structure-fixed')) {
-                    return;
-                }
-
-                const mainLink = item.querySelector('.boost-sd__product-link-image');
-                const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
-                const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
-
-                if (mainLink && secondLink && infoBlock) {
-                    mainLink.appendChild(infoBlock);
-                    secondLink.remove();
-                    mainLink.classList.add('boost-sd__product-link-wrapper');
-                    item.classList.add('structure-fixed');
-                }
-            }
-
-            function initBoostObserver() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (!productList) {
-                    setTimeout(initBoostObserver, 250);
-                    return;
-                }
-
-                let observer;
-                let processTimeout;
-
-                const processItems = () => {
-                    clearTimeout(processTimeout);
-                    
-                    processTimeout = setTimeout(() => {
-                        const itemsToProcess = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                        itemsToProcess.forEach(restructureProductItem);
-                        
-                        // If no new items appear for 2 seconds, assume we're done
-                        setTimeout(() => {
-                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                            if (remainingItems.length === 0) {
-                                observer.disconnect();
-                            }
-                        }, 2000);
-                    }, 250);
-                };
-
-                observer = new MutationObserver((mutationsList) => {
-                    for (const mutation of mutationsList) {
-                        if (mutation.type === 'childList') {
-                            processItems();
-                            return;
-                        }
-                    }
-                });
-
-                processItems();
-
-                observer.observe(productList, {
-                    childList: true,
-                    subtree: true,
-                });
-            }
-
-            initBoostObserver();
-        }
-
-        fixRedundantThumbnailLinks();
-
-        function fixThumbnailImageAlts() {
-            if (!window.location.pathname.includes('/collections/')) return;
-
-            function clearImageAlts() {
-                const productImages = document.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img');
-                productImages.forEach(img => {
-                    if (img.alt) {
-                        img.alt = '';
-                    }
-                });
-            }
-
-            function initImageAltObserver() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (!productList) {
-                    setTimeout(initImageAltObserver, 250);
-                    return;
-                }
-
-                let observer;
-                let processTimeout;
-
-                const processImages = () => {
-                    clearTimeout(processTimeout);
-                    
-                    processTimeout = setTimeout(() => {
-                        clearImageAlts();
-                        
-                        setTimeout(() => {
-                            const remainingImages = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
-                            if (remainingImages.length === 0) {
-                                observer.disconnect();
-                            }
-                        }, 2000);
-                    }, 250);
-                };
-
-                observer = new MutationObserver((mutationsList) => {
-                    for (const mutation of mutationsList) {
-                        if (mutation.type === 'childList') {
-                            processImages();
-                            return;
-                        }
-                    }
-                });
-
-                processImages();
-
-                observer.observe(productList, {
-                    childList: true,
-                    subtree: true,
-                });
-            }
-
-            initImageAltObserver();
-        }
-
-        fixThumbnailImageAlts();
-
-        function addThumbnailListRoles() {
+       function fixThumbnailAccessibility() {
             if (!window.location.pathname.includes('/collections/')) return;
 
             function getCollectionName() {
@@ -353,7 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return "Products collection";
             }
 
-            function addRoles() {
+            function clearImageAlts() {
+                const productImages = document.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                productImages.forEach(img => {
+                    img.alt = '';
+                });
+            }
+
+            function addListRoles() {
                 const productList = document.querySelector('.boost-sd__product-list');
                 if (productList && !productList.hasAttribute('role')) {
                     productList.setAttribute('role', 'list');
@@ -366,82 +245,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            function initRoleObserver() {
-                const productList = document.querySelector('.boost-sd__product-list');
-                if (!productList) {
-                    setTimeout(initRoleObserver, 250);
-                    return;
-                }
-
-                let observer;
-                let processTimeout;
-
-                const processRoles = () => {
-                    clearTimeout(processTimeout);
-                    
-                    processTimeout = setTimeout(() => {
-                        addRoles();
-                        
-                        setTimeout(() => {
-                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not([role])');
-                            if (remainingItems.length === 0) {
-                                observer.disconnect();
-                            }
-                        }, 2000);
-                    }, 250);
-                };
-
-                observer = new MutationObserver((mutationsList) => {
-                    for (const mutation of mutationsList) {
-                        if (mutation.type === 'childList') {
-                            processRoles();
-                            return;
-                        }
-                    }
-                });
-
-                processRoles();
-
-                observer.observe(productList, {
-                    childList: true,
-                    subtree: true,
-                });
-            }
-
-            initRoleObserver();
-        }
-
-        addThumbnailListRoles();
-
-        function fixQuickViewButtonLabels() {
-            if (!window.location.pathname.includes('/collections/')) return;
-
-            function addAriaLabels() {
+            function addQuickViewLabels() {
                 const quickViewButtons = document.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
                 quickViewButtons.forEach(button => {
                     button.setAttribute('aria-label', 'Quick view');
                 });
             }
 
-            function initQuickViewObserver() {
+            function processAllAccessibilityFixes() {
+                clearImageAlts();
+                addListRoles();
+                addQuickViewLabels();
+            }
+
+            function initAccessibilityObserver() {
                 const productList = document.querySelector('.boost-sd__product-list');
                 if (!productList) {
-                    setTimeout(initQuickViewObserver, 250);
+                    setTimeout(initAccessibilityObserver, 250);
                     return;
                 }
 
                 let observer;
                 let processTimeout;
 
-                const processButtons = () => {
+                const processChanges = () => {
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
-                        addAriaLabels();
+                        processAllAccessibilityFixes();
                         
                         setTimeout(() => {
+                            const remainingImages = productList.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                            const remainingItems = productList.querySelectorAll('.boost-sd__product-item:not([role])');
                             const remainingButtons = productList.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
-                            if (remainingButtons.length === 0) {
+                            
+                            if (remainingImages.length === 0 && remainingItems.length === 0 && remainingButtons.length === 0) {
                                 observer.disconnect();
                             }
                         }, 2000);
@@ -451,13 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList') {
-                            processButtons();
+                            processChanges();
                             return;
                         }
                     }
                 });
 
-                processButtons();
+                processChanges();
 
                 observer.observe(productList, {
                     childList: true,
@@ -465,9 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            initQuickViewObserver();
+            initAccessibilityObserver();
         }
-
-        fixQuickViewButtonLabels();
 
 });
