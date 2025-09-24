@@ -82,10 +82,22 @@
 				
 					$button.addClass('loading');
 				  });
-				  $('body').on( "klaviyo.subscribe.success klaviyo.subscribe.error",  function(e){
-				  	console.log('klaviyo.subscribe.success')
-				    $(e.target).find('[type="submit"]').removeClass('loading');
-				  });
+				  $('body').on("klaviyo.subscribe.error", function(e) {
+					console.log('klaviyo.subscribe.error triggered');
+					var $form = $(e.target);
+					var $button = $form.find('[type="submit"]');
+					
+					// Remove loading from button
+					$button.removeClass('loading');
+					
+					// Show custom error message
+					$form.find('.email_error').removeClass('dn');
+				});
+
+				$('body').on("klaviyo.subscribe.success", function(e) {
+					console.log('klaviyo.subscribe.success');
+					$(e.target).find('[type="submit"]').removeClass('loading');
+				});
 
 				});
          }
