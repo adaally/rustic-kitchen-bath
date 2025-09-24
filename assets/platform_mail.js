@@ -63,24 +63,16 @@
 				    });
 				  });
 
-				                    $(".nt_ajax_klsp").submit(function(e) {
-				                    	var $form = $(this).closest('form');
-				  					$form.find('[type="submit"]').addClass('loading');
-				                      $form.find('.email_error').addClass('dn');
-				  				  });
-				  
-				  				  $('body').on( "klaviyo.subscribe.error", function(e, data) {
-				  				    var $form = $(e.target);
-				  				    $form.find('.email_error').removeClass('dn');
-				  				    $form.find('[type="submit"]').removeClass('loading');
-				  				  });
-				  
-				  				  $('body').on( "klaviyo.subscribe.success", function(e) {
-				  				    var $form = $(e.target);
-				                      var $success_message = $form.find('.success_message');
-				                      $success_message.slideDown(100);
-				  				    $(e.target).find('[type="submit"]').removeClass('loading');
-				  				  });
+				  $(".nt_ajax_klsp").submit(function(e) {
+				  	var $form = $(this).closest('form'),
+				  	    $button = $form.find('[type="submit"]');
+				         $button.addClass('loading')
+				  });
+				  $('body').on( "klaviyo.subscribe.success klaviyo.subscribe.error",  function(e){
+				  	console.log('klaviyo.subscribe.success')
+				    $(e.target).find('[type="submit"]').removeClass('loading');
+				  });
+
 				});
          }
 
