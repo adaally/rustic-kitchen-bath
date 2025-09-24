@@ -49,34 +49,6 @@
 			   });
 			  
          } else {
-				 $(".nt_ajax_klsp").submit(function(e) {
-					console.log('Submit handler triggered');
-				  	var $form = $(this).closest('form'),
-					$button = $form.find('[type="submit"]'),
-					$email = $form.find('input[type="email"]'),
-					emailValue = $email.val();
-
-					console.log('Email value:', emailValue);
-				
-					// Clear previous errors
-					$form.find('.email_error').addClass('dn');
-					console.log('Cleared previous errors');
-					
-					// Basic email validation
-					var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-					if (!emailRegex.test(emailValue)) {
-						console.log('Email validation failed');
-						e.preventDefault();
-						e.stopImmediatePropagation();
-						$form.find('.email_error').removeClass('dn');
-						console.log('Should show error now');
-						return false;
-					}
-					
-					console.log('Email validation passed');
-					$button.addClass('loading');
-				  });
-
 	            //https://help.klaviyo.com/hc/en-us/articles/115005249588-Add-and-Customize-a-Legacy-Embedded-Signup-Form
 				$script(JSNTT4.data('klaviyo'), function() {
 
@@ -91,7 +63,11 @@
 				    });
 				  });
 
-				 
+				  $(".nt_ajax_klsp").submit(function(e) {
+				  	var $form = $(this).closest('form'),
+				  	    $button = $form.find('[type="submit"]');
+				        $button.addClass('loading')
+				  });
 				  $('body').on( "klaviyo.subscribe.success klaviyo.subscribe.error",  function(e){
 				  	console.log('klaviyo.subscribe.success')
 				    $(e.target).find('[type="submit"]').removeClass('loading');
