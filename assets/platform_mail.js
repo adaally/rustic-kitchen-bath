@@ -70,13 +70,13 @@
 					emailValue = $email.val();
 				
 					// Clear previous errors
-					$form.find('.email_error').hide();
+					$form.find('.email_error').addClass('dn');
 					
 					// Basic email validation
 					var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 					if (!emailRegex.test(emailValue)) {
 						e.preventDefault();
-						$form.find('.email_error').show();
+						$form.find('.email_error').removeClass('dn');
 						return false;
 					}
 					
