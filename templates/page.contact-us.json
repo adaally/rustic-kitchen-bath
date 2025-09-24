@@ -274,7 +274,7 @@
     "49e1b5ba-ef2c-4480-93a5-af4be8f2b5e6": {
       "type": "rich_text",
       "settings": {
-        "title": "<h3>Manufacturer's Contacts</h3>",
+        "title": "<h2 class=\"h3\">Manufacturer's Contacts</h2>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
