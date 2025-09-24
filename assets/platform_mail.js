@@ -67,6 +67,7 @@
 					if (!emailRegex.test(emailValue)) {
 						console.log('Email validation failed');
 						e.preventDefault();
+						e.stopImmediatePropagation();
 						$form.find('.email_error').removeClass('dn');
 						console.log('Should show error now');
 						return false;
