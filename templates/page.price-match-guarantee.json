@@ -115,7 +115,7 @@
       "type": "rich_text",
       "custom_css": [],
       "settings": {
-        "title": "<h2 class=\"h3\">Terms & Conditions</h2>",
+        "title": "<h2 class=\"h3 terms\">Terms & Conditions</h2>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
