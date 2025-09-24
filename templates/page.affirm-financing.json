@@ -223,7 +223,7 @@
         "16310564818dab084c-5"
       ],
       "settings": {
-        "title": "<h2 class=\"visually-hidden\">FAQ's</h2>",
+        "title": "<h2 class=\"h3 visually-hidden\">FAQ's</h2>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
