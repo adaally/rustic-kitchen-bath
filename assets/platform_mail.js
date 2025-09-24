@@ -65,8 +65,22 @@
 
 				  $(".nt_ajax_klsp").submit(function(e) {
 				  	var $form = $(this).closest('form'),
-				  	    $button = $form.find('[type="submit"]');
-				         $button.addClass('loading')
+					$button = $form.find('[type="submit"]'),
+					$email = $form.find('input[type="email"]'),
+					emailValue = $email.val();
+				
+					// Clear previous errors
+					$form.find('.email_error').hide();
+					
+					// Basic email validation
+					var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+					if (!emailRegex.test(emailValue)) {
+						e.preventDefault();
+						$form.find('.email_error').show();
+						return false;
+					}
+					
+					$button.addClass('loading');
 				  });
 				  $('body').on( "klaviyo.subscribe.success klaviyo.subscribe.error",  function(e){
 				  	console.log('klaviyo.subscribe.success')
