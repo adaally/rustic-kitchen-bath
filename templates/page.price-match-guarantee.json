@@ -114,7 +114,7 @@
     "1641859563a28a9af1": {
       "type": "rich_text",
       "settings": {
-        "title": "Terms & Conditions",
+        "title": "<h2 class=\"h3\">Terms & Conditions</h2>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
