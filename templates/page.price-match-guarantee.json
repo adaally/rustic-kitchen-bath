@@ -113,9 +113,7 @@
     },
     "1641859563a28a9af1": {
       "type": "rich_text",
-      "custom_css": [
-        ".section_title_new span h2 {font-size: 27px; font-weight: 600; margin: 0;}"
-      ],
+      "custom_css": [],
       "settings": {
         "title": "<h2 class=\"h3\">Terms & Conditions</h2>",
         "sub_title": "",
