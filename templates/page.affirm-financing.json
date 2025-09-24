@@ -223,7 +223,7 @@
         "16310564818dab084c-5"
       ],
       "settings": {
-        "title": "FAQ's",
+        "title": "<h2 class=\"visually-hidden\">FAQ's</h2>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
@@ -237,7 +237,7 @@
         "cl_overlay": "#000000",
         "cl_opacity": 0,
         "section_bg_color": "#ffffff",
-        "tt_cl": "#ffffff",
+        "tt_cl": "#000000",
         "hd_bg": "#ffffff",
         "hd_cl": "#222222",
         "hd_bg_atc": "#3d1c1a",
