@@ -93,7 +93,7 @@
     "16547335166d6ab47b": {
       "type": "rich_text",
       "settings": {
-        "title": "<h1 class=\"visually-hidden\">Contact Us</h1>Having Issues with a Product or Order?",
+        "title": "<h1 class=\"visually-hidden\" contact us><h2 class=\"h3 terms\">Having Issues with a Product or Order?</h2></h1>",
         "sub_title": "",
         "sub_font": "2",
         "style_title": "title_1",
