@@ -22,7 +22,7 @@
                {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
             </div>
            <div class="mc4wp-response klaviyo_messages">
-             <div class="shopify-message success_message dn"><i class="las la-check"></i>{{ 'general.newsletter_form.confirmation' | t }}</div>
+             <div class="shopify-message success_message dn" role="alert"><i class="las la-check"></i>{{ 'general.newsletter_form.confirmation' | t }}</div>
              <div class="shopify-error error_message dn"></div>
            </div>
       </form>
