@@ -12,17 +12,18 @@
 
 {%- case settings.platform_email -%}
   {%- when '3' -%}
-      <form id="klaviyo_frm_{{section.id}}" class="js_mail_agree mc4wp-form klaviyo_sub_frm pr z_100{%- if settings.ajax_klaviyo and settings.klaviyo_list_id != blank %} nt_ajax_klsp{%- endif -%}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" novalidate>
+      <form id="klaviyo_frm_{{section.id}}" class="js_mail_agree mc4wp-form klaviyo_sub_frm pr z_100{%- if settings.ajax_klaviyo and settings.klaviyo_list_id != blank %} nt_ajax_klsp{%- endif -%}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET">
         <input type="hidden" name="g" value="{{settings.klaviyo_list_id}}">
             <div class="mc4wp-form-fields">
                <div class="signup-newsletter-form row no-gutters pr oh {{class}}">
-                  <div class="{{class_email}} col_email"><label class="visually-hidden" for="email-footer1">{{ 'general.newsletter_form.email_placeholder' | t }}</label><input type="email" name="email" id="email-footer1" autocomplete="email" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}*"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"><div class="shopify-error error_message dn" role="alert">Enter an email address in the format example@example.com</div></div>
+                  <div class="{{class_email}} col_email"><label class="visually-hidden" for="email-footer1">{{ 'general.newsletter_form.email_placeholder' | t }}</label><input type="email" name="email" id="email-footer1" autocomplete="email" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}*"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
                   <div class="{{class_btn}}"><button type="submit" class="css_add_ld btn_new_icon_{{btn_icon}} w__100 submit-btn truncate klaviyo_btn{% if checkbox_mail %} mail_agree pr{% endif %}"><span>{{ 'general.newsletter_form.submit' | t }}</span></button></div>
                </div>
                {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
             </div>
            <div class="mc4wp-response klaviyo_messages">
              <div class="shopify-message success_message dn" role="alert"><i class="las la-check"></i>{{ 'general.newsletter_form.confirmation' | t }}</div>
+             <div class="shopify-error error_message dn" role="alert">Enter an email address in the format example@example.com</div>
            </div>
       </form>
 
