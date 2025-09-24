@@ -98,7 +98,7 @@
       {%- if social_icons -%}
         {%- for social_link in socials %}{% if settings[social_link] != blank -%}
           <div role="listitem">
-            <a data-no-instant rel="noopener noreferrer nofollow" href="{{ settings[social_link] | escape }}" target="{{target}}" class="{{socials_icon[forloop.index0] | remove:'-play'}} cb {{class_tooltip}}"><span class="tt_txt">{{socials_txt[forloop.index0] | t }}</span><i class="facl facl-{{socials_icon[forloop.index0]}}"></i></a>
+            <a data-no-instant rel="noopener noreferrer nofollow" href="{{ settings[social_link] | escape }}" target="{{target}}" class="{{socials_icon[forloop.index0] | remove:'-play'}} cb {{class_tooltip}}" aria-label="{{socials_icon[forloop.index0] | remove:'-play' | capitalize}}"><span class="tt_txt">{{socials_txt[forloop.index0] | t }}</span><i class="facl facl-{{socials_icon[forloop.index0]}}"></i></a>
           </div>
         {%- endif %}{% endfor -%}
       {%- endif -%}
