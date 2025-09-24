@@ -49,21 +49,7 @@
 			   });
 			  
          } else {
-	            //https://help.klaviyo.com/hc/en-us/articles/115005249588-Add-and-Customize-a-Legacy-Embedded-Signup-Form
-				$script(JSNTT4.data('klaviyo'), function() {
-
-				  $.each($('.klaviyo_sub_frm'), function(){
-				  	var brand = $(this).attr('brand') || 'Kalles Klaviyo';
-				    KlaviyoSubscribe.attachToForms('#'+$(this).attr('id'), {
-				      custom_success_message: true,
-				      extra_properties: {$source: 'NewsletterPopup',Brand: brand},
-				      success: function ($form) {
-				        $form.find('[type="submit"]').removeClass('loading');
-				      }
-				    });
-				  });
-
-				  $(".nt_ajax_klsp").submit(function(e) {
+				 $(".nt_ajax_klsp").submit(function(e) {
 					console.log('Submit handler triggered');
 				  	var $form = $(this).closest('form'),
 					$button = $form.find('[type="submit"]'),
@@ -89,6 +75,22 @@
 					console.log('Email validation passed');
 					$button.addClass('loading');
 				  });
+
+	            //https://help.klaviyo.com/hc/en-us/articles/115005249588-Add-and-Customize-a-Legacy-Embedded-Signup-Form
+				$script(JSNTT4.data('klaviyo'), function() {
+
+				  $.each($('.klaviyo_sub_frm'), function(){
+				  	var brand = $(this).attr('brand') || 'Kalles Klaviyo';
+				    KlaviyoSubscribe.attachToForms('#'+$(this).attr('id'), {
+				      custom_success_message: true,
+				      extra_properties: {$source: 'NewsletterPopup',Brand: brand},
+				      success: function ($form) {
+				        $form.find('[type="submit"]').removeClass('loading');
+				      }
+				    });
+				  });
+
+				 
 				  $('body').on( "klaviyo.subscribe.success klaviyo.subscribe.error",  function(e){
 				  	console.log('klaviyo.subscribe.success')
 				    $(e.target).find('[type="submit"]').removeClass('loading');
