@@ -30,7 +30,7 @@
     "enable_new_pp": false,
     "enable_pro_pr_pp": false,
     "enable_ck_pp": false,
-    "enable_salse_pp": true,
+    "enable_salse_pp": false,
     "platform_email": "3",
     "klaviyo_list_id": "WxM7WW",
     "checkbox_mail": true,
