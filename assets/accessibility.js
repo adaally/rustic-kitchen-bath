@@ -415,36 +415,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixThumbnailAccessibility();
 
-        function cartWidgetAccessibility() {
-             const cartSection = document.getElementById('shopify-section-cart_widget');
-             const cartCanvas = document.getElementById('nt_cart_canvas');
-     
-             if (!cartSection || !cartCanvas) {
-                 return;
-             }
- 
+         function cartWidgetAccessibility() {
+            const cartSection = document.getElementById('shopify-section-cart_widget');
+            const cartCanvas = document.getElementById('nt_cart_canvas');
+        
+            if (!cartSection || !cartCanvas) {
+                return;
+            }
+        
+            // Añadir tabindex para que no sea focusable
+            cartSection.setAttribute('tabindex', '-1');
+        
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
                         const cartIsVisible = cartCanvas.classList.contains('current_hover');
-                        if (cartIsVisible) {
-                            cartSection.classList.remove('cart-widget-hidden');
-                        } else {
-                            cartSection.classList.add('cart-widget-hidden');
-                        }
+                        cartSection.setAttribute('aria-hidden', !cartIsVisible);
                     }
                 });
             });
-    
+        
             observer.observe(cartCanvas, {
                 attributes: true
             });
-    
-            // Initial check
+        
+            // Estado inicial
             const cartIsVisible = cartCanvas.classList.contains('current_hover');
-            if (!cartIsVisible) {
-                cartSection.classList.add('cart-widget-hidden');
-            }
+            cartSection.setAttribute('aria-hidden', !cartIsVisible);
         }
     
         cartWidgetAccessibility();
