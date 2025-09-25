@@ -28,7 +28,7 @@
 		               </div>
 		            </div>
       		   {%- when 'mail' -%}
-		            <aside id="block_{{block.id}}" class="widget widget_text">
+		            <div id="block_{{block.id}}" class="widget widget_text">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer newl_des_{{block.settings.newl_des}}">
 		                  <p>{{block.settings.sub_title}}</p>
@@ -42,7 +42,7 @@
 					            <p class="mt__20 payment_footer_svg">{%- for img in arr -%}<img class="lazyload" src="https://cdn.shopify.com/s/assets/payment_icons/generic-dfdcaf09b6731ca14dd7441354c0ad8bc934184eb15ae1fda6a6b9e307675485.svg" data-src="{{ img | payment_type_img_url }}" alt="{{img | replace:'_',' '}}" />{%- endfor -%}</p>
 					          {%- endif -%}
 		               </div>
-		            </aside>
+		            </div>
             {%- when 'collection' -%}
                 {%- liquid
                  assign on_sale_txt = 'products.product.on_sale' | t
