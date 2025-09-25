@@ -479,7 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                             (node.matches && node.matches('span[role="alert"]') ? node : null);
                                 if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
                                     errorMsg.textContent = 'Enter an email address in the format example@example.com';
-                                    errorObserver.disconnect();
                                 }
                             }
                         });
