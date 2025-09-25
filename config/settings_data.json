@@ -27,9 +27,10 @@
     "falling_snow": false,
     "catalog_mode": false,
     "enable_toolbar": true,
-    "enable_new_pp": true,
+    "enable_new_pp": false,
     "enable_pro_pr_pp": false,
     "enable_ck_pp": false,
+    "enable_salse_pp": true,
     "platform_email": "3",
     "klaviyo_list_id": "WxM7WW",
     "checkbox_mail": true,
@@ -6990,6 +6991,50 @@
           "pr_summary_sdr-6"
         ],
         "settings": {}
+      },
+      "newsletter_pp": {
+        "type": "newsletter_pp",
+        "blocks": {
+          "newsletter_pp-0": {
+            "type": "img",
+            "settings": {}
+          },
+          "newsletter_pp-1": {
+            "type": "content",
+            "settings": {
+              "title": "Sign up our newsletter and save 25% off for the next purchase!",
+              "sub": "Subscribe to our newsletters and don’t miss new arrivals, the latest fashion updates and our promotions.",
+              "newl_des": "1",
+              "btn_icon": false,
+              "txt": "Your Information will never be shared with any third party.",
+              "btn_ck": true,
+              "txt2": "Do not show it anymore."
+            }
+          }
+        },
+        "block_order": [
+          "newsletter_pp-0",
+          "newsletter_pp-1"
+        ],
+        "settings": {
+          "des": "2",
+          "fix_h": false,
+          "fix_h_mb": false,
+          "mb": false,
+          "index": true,
+          "product": false,
+          "collection": false,
+          "article": false,
+          "blog": false,
+          "cart": false,
+          "page": false,
+          "number_pages": 0,
+          "pp_version": 1,
+          "day_next": 7,
+          "after": "scroll",
+          "time_delay": 2,
+          "scroll_delay": 800
+        }
       }
     },
     "content_for_index": [
