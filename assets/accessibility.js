@@ -471,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const errorMessage = popup.querySelector('span[role="alert"]');
+                console.log(errorMessage);
                 if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
                     errorMessage.textContent = 'Enter an email address in the format example@example.com';
                 }
