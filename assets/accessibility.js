@@ -460,7 +460,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     h1.setAttribute('aria-level', '1');
 
                     septemberTitle.parentNode.replaceChild(h1, septemberTitle);
+                }
 
+                const emailInput = popup.querySelector('input[type="email"]');
+                if (emailInput && emailInput.placeholder) {
+                    const currentPlaceholder = emailInput.placeholder;
+                    if (!currentPlaceholder.includes('*')) {
+                        emailInput.placeholder = currentPlaceholder + ' *';
+                    }
                 }
             }
 
