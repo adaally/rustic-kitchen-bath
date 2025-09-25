@@ -455,7 +455,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     h1.style.cssText = septemberTitle.style.cssText;
                     h1.style.whiteSpace = 'nowrap';
                     h1.textContent = septemberTitle.textContent;
-                    h1.setAttribute('aria-level', '1');
                     septemberTitle.parentNode.replaceChild(h1, septemberTitle);
                 }
 
