@@ -451,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
             function applySeptemberSavingsAccessibility(popup) {
 
                 const septemberTitle = popup.querySelector('span[style*="font-size: 47px"]');
+                console.log(septemberTitle);
                 if (septemberTitle && septemberTitle.textContent.includes('SEPTEMBER SAVINGS')) {
                     const h1 = document.createElement('h1');
                     h1.style.cssText = septemberTitle.style.cssText;
