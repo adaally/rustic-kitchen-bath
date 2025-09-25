@@ -1133,3 +1133,36 @@ jQuery_T4NT( window ).on( "load", function($) {
 //           }
 //       };
 //   } 
+
+
+$(document).ready(function() {
+    var $cartSection = $("#shopify-section-cart_widget");
+    var cartCanvas = document.getElementById('nt_cart_canvas');
+
+    if ($cartSection.length === 0 || !cartCanvas) {
+        return;
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                var cartIsVisible = $(cartCanvas).hasClass('act_opened');
+                if (cartIsVisible) {
+                    $cartSection.removeClass('cart-widget-hidden');
+                } else {
+                    $cartSection.addClass('cart-widget-hidden');
+                }
+            }
+        });
+    });
+
+    observer.observe(cartCanvas, {
+        attributes: true
+    });
+
+    // Initial check
+    var cartIsVisible = $(cartCanvas).hasClass('act_opened');
+    if (!cartIsVisible) {
+        $cartSection.addClass('cart-widget-hidden');
+    }
+});
