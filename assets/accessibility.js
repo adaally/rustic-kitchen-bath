@@ -423,7 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         
-            // Añadir tabindex para que no sea focusable
             cartSection.setAttribute('tabindex', '-1');
         
             const observer = new MutationObserver(function(mutations) {
@@ -439,7 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 attributes: true
             });
         
-            // Estado inicial
             const cartIsVisible = cartCanvas.classList.contains('current_hover');
             cartSection.setAttribute('aria-hidden', !cartIsVisible);
         }
