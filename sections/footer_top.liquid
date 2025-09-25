@@ -7,7 +7,7 @@
       		{%- case block.type -%}
       		   {%- when 'logo' -%}
                 {%- assign image = block.settings.image -%}
-		            <aside id="block_{{block.id}}" class="widget widget_text widget_logo">
+		            <div id="block_{{block.id}}" class="widget widget_text widget_logo">
                    {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30{% if image != blank %} dn_md{% endif %}"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer">
 		                  <div class="footer-contact">
@@ -26,7 +26,7 @@
                           endif -%}
 		                  </div>
 		               </div>
-		            </aside>
+		            </div>
       		   {%- when 'mail' -%}
 		            <aside id="block_{{block.id}}" class="widget widget_text">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
