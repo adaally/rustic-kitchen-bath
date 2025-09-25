@@ -415,31 +415,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixThumbnailAccessibility();
 
-         function cartWidgetAccessibility() {
+        function cartWidgetAccessibility() {
             const cartSection = document.getElementById('shopify-section-cart_widget');
             const cartCanvas = document.getElementById('nt_cart_canvas');
-        
+
             if (!cartSection || !cartCanvas) {
                 return;
             }
-        
-            cartSection.setAttribute('tabindex', '-1');
-        
+
+            const initialVisible = cartCanvas.classList.contains('current_hover');
+            if (initialVisible) {
+                cartSection.removeAttribute('tabindex');
+            } else {
+                cartSection.setAttribute('tabindex', '-1');
+            }
+            cartSection.setAttribute('aria-hidden', !initialVisible);
+
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
                         const cartIsVisible = cartCanvas.classList.contains('current_hover');
+                        if (cartIsVisible) {
+                            cartSection.removeAttribute('tabindex');
+                        } else {
+                            cartSection.setAttribute('tabindex', '-1');
+                        }
                         cartSection.setAttribute('aria-hidden', !cartIsVisible);
                     }
                 });
             });
-        
+
             observer.observe(cartCanvas, {
                 attributes: true
             });
-        
-            const cartIsVisible = cartCanvas.classList.contains('current_hover');
-            cartSection.setAttribute('aria-hidden', !cartIsVisible);
         }
     
         cartWidgetAccessibility();
