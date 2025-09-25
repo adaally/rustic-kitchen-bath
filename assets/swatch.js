@@ -1704,44 +1704,43 @@
     };
 
     geckoShopify.AgreeEmailCheckout = function() {
-      
-      if ( !nt_settings.checkbox_mail ) return;
+        if (nt_settings.checkbox_mail) {
+            body.on("click", ".mail_agree", function(t) {
+                t.preventDefault();
+                t.stopPropagation();
+                var e = $(this).closest("form");
+                var email = e.find('[type="email"]').val();
+                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                var $result = e.find('.mc4wp-response');
+                var $error_div = $result.find('.error_message');
 
-      body.on('click', '.mail_agree', function(e) {
+                if (email.length < 1) {
+                    e.addClass("error_css_email");
+                    $error_div.text('Please enter your email address.').parent().slideDown(100);
+                    return false;
+                }
 
-        e.preventDefault();e.stopPropagation();
-        var frm = $(this).closest('form');
-          if (frm.find('[type="email"]').val().length < 1 ) {
-            frm.addClass('error_css_email');
-            return false;
-          }
-          frm.addClass('error_css_checkbox');
+                if (!emailRegex.test(email)) {
+                    e.removeClass("error_css_email");
+                    $error_div.text('Enter an email address in the format example@example.com').parent().slideDown(100);
+                    return false;
+                }
+                
+                $result.find('.shopify-warning').slideUp(100);
+                e.addClass("error_css_checkbox");
+            });
 
-      });
+            body.on("keyup", '.js_mail_agree [type="email"]', function(t) {
+                var e = $(this).closest("form");
+                $(this).val().length < 1 ? e.addClass("error_css_email") : e.removeClass("error_css_email");
+            });
 
-      body.on('keyup', '.js_mail_agree [type="email"]', function(e) {
-
-        //e.preventDefault();e.stopPropagation();
-        var frm = $(this).closest('form');
-          if ($(this).val().length < 1 ) {
-            frm.addClass('error_css_email');
-          } else {
-            frm.removeClass('error_css_email');
-          }
-
-      });
-
-      body.on('click', 'input[type="checkbox"].css_agree_ck', function(e) {
-        //e.preventDefault();
-        var _form = $(this).closest('form'),
-            _btn = _form.find('[type=submit]');
-        
-        if ($(this).is(':checked')) {
-          _btn.removeClass('mail_agree');_form.removeClass('error_css_checkbox');
-        } else {
-            _btn.addClass('mail_agree');
-          }
-      });
+            body.on("click", 'input[type="checkbox"].css_agree_ck', function(t) {
+                var e = $(this).closest("form"),
+                    a = e.find("[type=submit]");
+                $(this).is(":checked") ? (a.removeClass("mail_agree"), e.removeClass("error_css_checkbox")) : a.addClass("mail_agree");
+            });
+        }
     };
 
     geckoShopify.AgreeCheckout = function() {
