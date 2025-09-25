@@ -1146,7 +1146,7 @@ $(document).ready(function() {
     var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.attributeName === 'class') {
-                var cartIsVisible = $(cartCanvas).hasClass('act_opened');
+                var cartIsVisible = $(cartCanvas).hasClass('current_hover');
                 if (cartIsVisible) {
                     $cartSection.removeClass('cart-widget-hidden');
                 } else {
@@ -1161,7 +1161,7 @@ $(document).ready(function() {
     });
 
     // Initial check
-    var cartIsVisible = $(cartCanvas).hasClass('act_opened');
+    var cartIsVisible = $(cartCanvas).hasClass('current_hover');
     if (!cartIsVisible) {
         $cartSection.addClass('cart-widget-hidden');
     }
