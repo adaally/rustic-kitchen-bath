@@ -455,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (septemberTitle && septemberTitle.textContent.includes('SEPTEMBER SAVINGS')) {
                     const h1 = document.createElement('h1');
                     h1.style.cssText = septemberTitle.style.cssText;
+                    h1.style.whiteSpace = 'nowrap';
                     h1.textContent = septemberTitle.textContent;
                     h1.setAttribute('aria-level', '1');
 
