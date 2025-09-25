@@ -97,7 +97,7 @@
 		            </aside>
 
       		  {%- else -%}
-		            <aside id="block_{{block.id}}" class="widget widget_nav_menu">
+		            <div id="block_{{block.id}}" class="widget widget_nav_menu">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="menu_footer widget_footer">
 		               	{%- assign menu = block.settings.menu -%}
@@ -110,7 +110,7 @@
 		                  {%- else -%}Pick a linked list to show here.
 		                  {%- endif -%}
 		               </div>
-		            </aside>
+		            </div>
 
       		{%- endcase -%}
       	</div>
