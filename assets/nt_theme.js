@@ -1138,6 +1138,7 @@ jQuery_T4NT( window ).on( "load", function($) {
 $(document).ready(function() {
     var $cartSection = $("#shopify-section-cart_widget");
     var cartCanvas = document.getElementById('nt_cart_canvas');
+    console.log(cartCanvas);
 
     if ($cartSection.length === 0 || !cartCanvas) {
         return;
