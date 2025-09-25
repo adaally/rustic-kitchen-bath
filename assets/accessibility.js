@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (emailInput && emailInput.placeholder) {
                     const currentPlaceholder = emailInput.placeholder;
                     if (!currentPlaceholder.includes('*')) {
-                        emailInput.placeholder = currentPlaceholder + ' *';
+                        emailInput.placeholder = currentPlaceholder + '*';
                     }
                 }
             }
