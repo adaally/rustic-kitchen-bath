@@ -7,7 +7,7 @@
       		{%- case block.type -%}
       		   {%- when 'logo' -%}
                 {%- assign image = block.settings.image -%}
-		            <div id="block_{{block.id}}" class="widget widget_text widget_logo">
+		            <aside id="block_{{block.id}}" class="widget widget_text widget_logo">
                    {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30{% if image != blank %} dn_md{% endif %}"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer">
 		                  <div class="footer-contact">
@@ -26,9 +26,9 @@
                           endif -%}
 		                  </div>
 		               </div>
-		            </div>
+		            </aside>
       		   {%- when 'mail' -%}
-		            <div id="block_{{block.id}}" class="widget widget_text">
+		            <aside id="block_{{block.id}}" class="widget widget_text">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer newl_des_{{block.settings.newl_des}}">
 		                  <p>{{block.settings.sub_title}}</p>
@@ -42,12 +42,12 @@
 					            <p class="mt__20 payment_footer_svg">{%- for img in arr -%}<img class="lazyload" src="https://cdn.shopify.com/s/assets/payment_icons/generic-dfdcaf09b6731ca14dd7441354c0ad8bc934184eb15ae1fda6a6b9e307675485.svg" data-src="{{ img | payment_type_img_url }}" alt="{{img | replace:'_',' '}}" />{%- endfor -%}</p>
 					          {%- endif -%}
 		               </div>
-		            </div>
+		            </aside>
             {%- when 'collection' -%}
                 {%- liquid
                  assign on_sale_txt = 'products.product.on_sale' | t
                  assign save_js = 'products.product.save_js' | t: saved_amount:'saved_amount' -%}
-                <div id="block_{{block.id}}" class="widget widget_product_list">
+                <aside id="block_{{block.id}}" class="widget widget_product_list">
                   {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
                    {%- if block.settings.collection == blank -%}
                       <p class="mg__0 mb__30">{{ 'homepage.onboarding.no_content' | t }}</p>
@@ -58,9 +58,9 @@
                       {%- endfor -%}
                    </div>
                    {%- endif -%}
-                </div>
+                </aside>
             {%- when 'post' -%}{%- assign date = block.settings.date -%}
-                <div id="block_{{block.id}}" class="widget widget_post_list">
+                <aside id="block_{{block.id}}" class="widget widget_post_list">
                   {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
                    {%- if block.settings.blog == blank -%}
                       <p class="mg__0 mb__30">{{ 'homepage.onboarding.no_content' | t }}</p>
@@ -71,33 +71,33 @@
                       {%- endfor -%}
                    </div>
                    {%- endif -%}
-                </div>
+                </aside>
             {%- when 'instagram' -%}{%- assign col = block.settings.col_pr -%}{%- assign col_tb = block.settings.col_pr_tb -%}{%- assign col_mb = block.settings.col_pr_mb -%}
-                <div id="block_{{block.id}}" class="widget widget_instagram">
+                <aside id="block_{{block.id}}" class="widget widget_instagram">
                   {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
                    <div class="widget_footer nt_instagram_wrap row equal_nt ins_spaces_{{block.settings.space}} ins_rounded_{{block.settings.rounded_ins}} nt_cover ratio1_1 position_8 js_nt_ist" data-id='{{col}}{{col_tb}}{{col_mb}}{{block.settings.limit}}{{block.settings.open_link}}' data-cl='{{col}}' data-cltb='{{col_tb}}' data-clmb='{{col_mb}}' data-acc='{{block.settings.acc2 | default:settings.global_acc}}' data-limit='{{block.settings.limit }}' data-target='{{block.settings.open_link}}'><div class="lds_bginfinity pr"></div></div>
-                </div>
+                </aside>
 
             {%- when 'instagram2' -%}{%- assign col = block.settings.col_pr -%}{%- assign col_tb = block.settings.col_pr_tb -%}{%- assign col_mb = block.settings.col_pr_mb -%}
-                <div id="block_{{block.id}}" class="widget widget_instagram">
+                <aside id="block_{{block.id}}" class="widget widget_instagram">
                   {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
                    <div class="widget_footer nt_instagram_wrap row equal_nt ins_spaces_{{block.settings.space}} ins_rounded_{{block.settings.rounded_ins}} nt_cover ratio1_1 position_8 js_nt_ist" data-id='{{col}}{{col_tb}}{{col_mb}}{{block.settings.limit}}{{block.settings.open_link}}' data-cl='{{col}}' data-cltb='{{col_tb}}' data-clmb='{{col_mb}}' data-acc='ins_19041994' data-limit='{{block.settings.limit }}' data-target='{{block.settings.open_link}}'><div class="lds_bginfinity pr"></div></div>
-                </div>
+                </aside>
 
       		   {%- when 'text' -%}
-		            <div id="block_{{block.id}}" class="widget widget_text">
+		            <aside id="block_{{block.id}}" class="widget widget_text">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer">{{block.settings.content}}</div>
-		            </div>
+		            </aside>
 
       		   {%- when 'html' -%}
-		            <div id="block_{{block.id}}" class="widget widget_text">
+		            <aside id="block_{{block.id}}" class="widget widget_text">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="textwidget widget_footer">{{block.settings.content}}</div>
-		            </div>
+		            </aside>
 
       		  {%- else -%}
-		            <div id="block_{{block.id}}" class="widget widget_nav_menu">
+		            <aside id="block_{{block.id}}" class="widget widget_nav_menu">
 		               {%- if block.settings.title != blank -%}<h2 class="widget-title fwsb flex al_center fl_between fs__16 mg__0 mb__30"><span class="txt_title">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></h2>{%- endif -%}
 		               <div class="menu_footer widget_footer">
 		               	{%- assign menu = block.settings.menu -%}
@@ -110,7 +110,7 @@
 		                  {%- else -%}Pick a linked list to show here.
 		                  {%- endif -%}
 		               </div>
-		            </div>
+		            </aside>
 
       		{%- endcase -%}
       	</div>
