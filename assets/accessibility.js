@@ -443,4 +443,75 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         cartWidgetAccessibility();
+
+        function fixSeptemberSavingsAccessibility() {
+            let observer;
+            let processTimeout;
+
+            function applySeptemberSavingsAccessibility(popup) {
+
+                const septemberTitle = popup.querySelector('span[style*="font-size: 47px"]');
+                if (septemberTitle && septemberTitle.textContent.includes('SEPTEMBER SAVINGS')) {
+                    const h1 = document.createElement('h1');
+                    h1.style.cssText = septemberTitle.style.cssText;
+                    h1.textContent = septemberTitle.textContent;
+                    h1.setAttribute('aria-level', '1');
+
+                    septemberTitle.parentNode.replaceChild(h1, septemberTitle);
+
+                }
+            }
+
+            function processPopupChanges() {
+                clearTimeout(processTimeout);
+
+                processTimeout = setTimeout(() => {
+                    const popup = document.querySelector('[data-testid="POPUP"]');
+                    if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
+                        applySeptemberSavingsAccessibility(popup);
+                        if (observer) {
+                            observer.disconnect();
+                        }
+                    }
+                }, 250);
+            }
+
+            observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach((node) => {
+                            if (node.nodeType === 1) { // Element node
+                                const popup = node.querySelector && node.querySelector('[data-testid="POPUP"]');
+                                if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
+                                    processPopupChanges();
+                                    return;
+                                }
+
+                                if (node.matches && node.matches('[data-testid="POPUP"]') &&
+                                    node.textContent.includes('SEPTEMBER SAVINGS')) {
+                                    processPopupChanges();
+                                    return;
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+            setTimeout(() => {
+                const existingPopup = document.querySelector('[data-testid="POPUP"]');
+                if (existingPopup && existingPopup.textContent.includes('SEPTEMBER SAVINGS')) {
+                    applySeptemberSavingsAccessibility(existingPopup);
+                }
+            }, 1000);
+
+        }
+
+        fixSeptemberSavingsAccessibility();
+
 });
