@@ -444,21 +444,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
         cartWidgetAccessibility();
 
-        function fixSeptemberSavingsAccessibility() {
+       function fixSeptemberSavingsAccessibility() {
             let observer;
             let processTimeout;
 
             function applySeptemberSavingsAccessibility(popup) {
-
                 const septemberTitle = popup.querySelector('span[style*="font-size: 47px"]');
-                console.log(septemberTitle);
                 if (septemberTitle && septemberTitle.textContent.includes('SEPTEMBER SAVINGS')) {
                     const h1 = document.createElement('h1');
                     h1.style.cssText = septemberTitle.style.cssText;
                     h1.style.whiteSpace = 'nowrap';
                     h1.textContent = septemberTitle.textContent;
                     h1.setAttribute('aria-level', '1');
-
                     septemberTitle.parentNode.replaceChild(h1, septemberTitle);
                 }
 
@@ -466,12 +463,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (emailInput && emailInput.placeholder) {
                     const currentPlaceholder = emailInput.placeholder;
                     if (!currentPlaceholder.includes('*')) {
-                        emailInput.placeholder = currentPlaceholder + '*';
+                        emailInput.placeholder = currentPlaceholder + ' *';
                     }
                 }
 
                 const errorMessage = popup.querySelector('span[role="alert"]');
-                console.log(errorMessage);
                 if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
                     errorMessage.textContent = 'Enter an email address in the format example@example.com';
                 }
@@ -480,20 +476,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     mutations.forEach((mutation) => {
                         mutation.addedNodes.forEach((node) => {
                             if (node.nodeType === 1) {
-                                const errorMsg = node.querySelector('span[role="alert"]') || (node.matches && node.matches('span[role="alert"]') ? node : null);
+                                const errorMsg = node.querySelector('span[role="alert"]') ||
+                                            (node.matches && node.matches('span[role="alert"]') ? node : null);
                                 if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
                                     errorMsg.textContent = 'Enter an email address in the format example@example.com';
-                                    errorObserver.disconnect(); 
+                                    errorObserver.disconnect();
                                 }
                             }
                         });
                     });
                 });
+
+                errorObserver.observe(popup, {
+                    childList: true,
+                    subtree: true
+                });
             }
 
             function processPopupChanges() {
                 clearTimeout(processTimeout);
-
                 processTimeout = setTimeout(() => {
                     const popup = document.querySelector('[data-testid="POPUP"]');
                     if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
@@ -509,13 +510,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (const mutation of mutations) {
                     if (mutation.type === 'childList') {
                         mutation.addedNodes.forEach((node) => {
-                            if (node.nodeType === 1) { // Element node
+                            if (node.nodeType === 1) {
                                 const popup = node.querySelector && node.querySelector('[data-testid="POPUP"]');
                                 if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
                                     processPopupChanges();
                                     return;
                                 }
-
                                 if (node.matches && node.matches('[data-testid="POPUP"]') &&
                                     node.textContent.includes('SEPTEMBER SAVINGS')) {
                                     processPopupChanges();
@@ -538,9 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     applySeptemberSavingsAccessibility(existingPopup);
                 }
             }, 1000);
-
         }
 
-        fixSeptemberSavingsAccessibility();
+    fixSeptemberSavingsAccessibility();
 
 });
