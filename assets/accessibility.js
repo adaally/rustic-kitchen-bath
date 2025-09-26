@@ -558,17 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (checkbox) checkbox.setAttribute('tabindex', '2');
             if (termsLink) termsLink.setAttribute('tabindex', '3');
             if (submitButton) submitButton.setAttribute('tabindex', '4');
-
-
-            const newsletterArea = form.closest('.widget.widget_text');
-            if (newsletterArea) {
-                newsletterArea.addEventListener('click', (e) => {
-                    if (!e.target.matches('input, button, a, label')) {
-                        emailInput.focus();
-                        e.preventDefault();
-                    }
-                });
-            }
         }
 
         const existingForms = document.querySelectorAll('footer form.klaviyo_sub_frm');
