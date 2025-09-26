@@ -554,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const termsLink = form.querySelector('label[for*="new_check_agree"] a');
             const submitButton = form.querySelector('button[type="submit"]');
 
-            // if (emailInput) emailInput.setAttribute('tabindex', '1');
+            if (emailInput) emailInput.setAttribute('tabindex', '1');
             if (checkbox) checkbox.setAttribute('tabindex', '2');
             if (termsLink) termsLink.setAttribute('tabindex', '3');
             if (submitButton) submitButton.setAttribute('tabindex', '4');
