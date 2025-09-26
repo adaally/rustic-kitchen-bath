@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixSeptemberSavingsAccessibility();
 
-    function fixFocusTabOrder() {
+    function fixKlaviyoNewsletterTabOrder() {
         function applyTabOrder(form) {
             const emailInput = form.querySelector('input[type="email"]');
             const checkbox = form.querySelector('input[type="checkbox"].css_agree_ck');
@@ -560,8 +560,37 @@ document.addEventListener('DOMContentLoaded', () => {
             if (submitButton) submitButton.setAttribute('tabindex', '4');
         }
 
+        function setupErrorMessages(form) {
+            const errorMessage = form.querySelector('.shopify-error.error_message');
+
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        if (form.classList.contains('error_css_email')) {
+                            if (errorMessage) {
+                                errorMessage.textContent = 'Enter an email address in the format example@example.com';
+                                errorMessage.classList.remove('dn');
+                            }
+                        } else {
+                            if (errorMessage) {
+                                errorMessage.classList.add('dn');
+                            }
+                        }
+                    }
+                });
+            });
+
+            observer.observe(form, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        }
+
         const existingForms = document.querySelectorAll('footer form.klaviyo_sub_frm');
-        existingForms.forEach(applyTabOrder);
+        existingForms.forEach(form => {
+            applyTabOrder(form);
+            setupErrorMessages(form);
+        });
 
         // Observer for dynamic Klaviyo forms in footer
         const observer = new MutationObserver((mutations) => {
@@ -569,9 +598,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 mutation.addedNodes.forEach((node) => {
                     if (node.nodeType === 1) {
                         const form = node.querySelector && node.querySelector('footer form.klaviyo_sub_frm');
-                        if (form) applyTabOrder(form);
+                        if (form) {
+                            applyTabOrder(form);
+                            setupErrorMessages(form);
+                        }
                         if (node.matches && node.matches('footer form.klaviyo_sub_frm')) {
                             applyTabOrder(node);
+                            setupErrorMessages(node);
                         }
                     }
                 });
@@ -584,6 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    fixFocusTabOrder();
+    fixKlaviyoNewsletterTabOrder();
 
 });
