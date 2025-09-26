@@ -548,4 +548,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixSeptemberSavingsAccessibility();
 
+    function fixFocusTabOrder() {
+        function applyTabOrder(form) {
+            const emailInput = form.querySelector('input[type="email"]');
+            const checkbox = form.querySelector('input[type="checkbox"].css_agree_ck');
+            const termsLink = form.querySelector('label[for*="new_check_agree"] a');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            if (emailInput) emailInput.setAttribute('tabindex', '1');
+            if (checkbox) checkbox.setAttribute('tabindex', '2');
+            if (termsLink) termsLink.setAttribute('tabindex', '3');
+            if (submitButton) submitButton.setAttribute('tabindex', '4');
+        }
+
+        const existingForms = document.querySelectorAll('footer form.klaviyo_sub_frm');
+        existingForms.forEach(applyTabOrder);
+
+        // Observer for dynamic Klaviyo forms in footer
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        const form = node.querySelector && node.querySelector('footer form.klaviyo_sub_frm');
+                        if (form) applyTabOrder(form);
+                        if (node.matches && node.matches('footer form.klaviyo_sub_frm')) {
+                            applyTabOrder(node);
+                        }
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixFocusTabOrder();
+
 });
