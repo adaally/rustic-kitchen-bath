@@ -563,18 +563,41 @@ document.addEventListener('DOMContentLoaded', () => {
         function setupErrorMessages(form) {
             const errorMessage = form.querySelector('.shopify-error.error_message');
 
+            // Create checkbox error message if it doesn't exist
+            let checkboxError = form.querySelector('.checkbox-error-message');
+            if (!checkboxError) {
+                checkboxError = document.createElement('span');
+                checkboxError.className = 'checkbox-error-message';
+                checkboxError.style.cssText = 'color: #ffffff; font-size: 12px; margin-left: 8px; display: none;';
+                checkboxError.textContent = 'This field is required';
+
+                const checkboxLabel = form.querySelector('label[for*="new_check_agree"]');
+                if (checkboxLabel) {
+                    checkboxLabel.appendChild(checkboxError);
+                }
+            }
+
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+
+                        // Handle error_css_email
                         if (form.classList.contains('error_css_email')) {
                             if (errorMessage) {
                                 errorMessage.textContent = 'Enter an email address in the format example@example.com';
                                 errorMessage.classList.remove('dn');
                             }
-                        } else {
-                            if (errorMessage) {
-                                errorMessage.classList.add('dn');
+                        } else if (errorMessage) {
+                            errorMessage.classList.add('dn');
+                        }
+
+                        // Handle error_css_checkbox
+                        if (form.classList.contains('error_css_checkbox')) {
+                            if (checkboxError) {
+                                checkboxError.style.display = 'inline';
                             }
+                        } else if (checkboxError) {
+                            checkboxError.style.display = 'none';
                         }
                     }
                 });
