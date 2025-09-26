@@ -399,7 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Observe pagination permanently
                 const pagination = document.querySelector('.boost-sd__pagination');
                 if (pagination) {
-                    console.log('Setting up permanent pagination observer');
                     processPaginationChanges();
                     paginationObserver.observe(pagination, {
                         childList: true,
