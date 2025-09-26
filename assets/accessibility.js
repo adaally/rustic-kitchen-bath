@@ -549,17 +549,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixFocusTabOrder() {
         function applyTabOrder(form) {
-            const newsletterContainer = form.closest('.widget.widget_text');
             const emailInput = form.querySelector('input[type="email"]');
             const checkbox = form.querySelector('input[type="checkbox"].css_agree_ck');
             const termsLink = form.querySelector('label[for*="new_check_agree"] a');
             const submitButton = form.querySelector('button[type="submit"]');
 
-            if (newsletterContainer) newsletterContainer.setAttribute('tabindex', '1');
-            if (emailInput) emailInput.setAttribute('tabindex', '2');
-            if (checkbox) checkbox.setAttribute('tabindex', '3');
-            if (termsLink) termsLink.setAttribute('tabindex', '4');
-            if (submitButton) submitButton.setAttribute('tabindex', '5');
+            // if (emailInput) emailInput.setAttribute('tabindex', '1');
+            if (checkbox) checkbox.setAttribute('tabindex', '2');
+            if (termsLink) termsLink.setAttribute('tabindex', '3');
+            if (submitButton) submitButton.setAttribute('tabindex', '4');
         }
 
         const existingForms = document.querySelectorAll('footer form.klaviyo_sub_frm');
