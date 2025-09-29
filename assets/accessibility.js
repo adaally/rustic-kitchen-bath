@@ -156,9 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const elementnew2 = container.querySelector('.pin__popup');
                     console.log(elementnew2,'pre')
                     if(elementnew2) {
-                                        elementnew2.style.transform = 'scale(1)';
-                                        elementnew2.style.opacity = '1';
-                                        elementnew2.style.visibility = 'visible';
+                                        elementnew2.classList.remove('close-modal-new')
                                     }
 
             const observer = new MutationObserver((mutations) => {
@@ -186,9 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     const elementnew = container.querySelector('.pin__popup');
                                     console.log("Escape pressed, closing modal...", elementnew);
                                     if(elementnew) {
-                                        elementnew.style.transform = 'scale(0)';
-                                        elementnew.style.opacity = '0';
-                                        elementnew.style.visibility = 'hidden';
+                                        elementnew.classList.add('close-modal-new')
                                     }
                                     
                                     document.removeEventListener("keydown", handleEsc);
