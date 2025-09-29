@@ -174,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                                         function handleOutsideClick(ev) {
                                                             if (!container.contains(ev.target)) {
                                                                 console.log("Clicked outside after Escape, closing modal...");
-                                                                closeModal(container);
                                                                 document.removeEventListener("click", handleOutsideClick);
                                                             }
                                                         }
