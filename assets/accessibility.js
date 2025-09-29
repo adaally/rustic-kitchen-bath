@@ -159,8 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.attributeName === 'class' &&
                         lazyImg.classList.contains('lazyloaded')
                         ) {
+                            const modal = container.closest('.mfp-wrap');
+                            if(modal) {
+                               trapFocus(modal);
+                            } else {
+                                trapFocus(container);
+                            }
                             
-                            trapFocus(container.closest('.mfp-wrap'))
                             const stars = container.querySelector('.jdgm-prev-badge__stars');
                             if(stars) {
                                 stars.removeAttribute('role');
@@ -169,17 +174,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                console.log("Escape pressed: next outside click will close modal");
-
-                                                        function handleOutsideClick(ev) {
-                                                            if (!container.contains(ev.target)) {
-                                                                console.log("Clicked outside after Escape, closing modal...");
-                                                                document.removeEventListener("click", handleOutsideClick);
-                                                            }
-                                                        }
-
-                                                        // wait for a click outside
-                                                        document.addEventListener("click", handleOutsideClick);
+                                    console.log("Escape pressed, closing modal...");
+                                    element.click();
+                                    const elementnew = element.querySelector('.pin__popup')
+                                    elementnew.style.transform = 'scale(1)'
+                                    elementnew.style.opacity = '1'
+                                    elementnew.style.visibility = 'visible'
+                                    document.removeEventListener("keydown", handleEsc);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
