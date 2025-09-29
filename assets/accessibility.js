@@ -142,12 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
                     fixModalProduct(element);
-                    const elementnew = container.querySelector('.pin__popup');
-                    if(elementnew) {
-                                        elementnew.style.transform = 'scale(0)';
-                                        elementnew.style.opacity = '0';
-                                        elementnew.style.visibility = 'hidden';
-                                    }
                 });
             });
         });
@@ -157,6 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const container = document.querySelector(id);
             const lazyImg = container.querySelector(".product-image.lazyload");
             if(!lazyImg) return;
+
+            
+                    const elementnew2 = container.querySelector('.pin__popup');
+                    if(elementnew2) {
+                                        elementnew2.style.transform = 'scale(1)';
+                                        elementnew2.style.opacity = '1';
+                                        elementnew2.style.visibility = 'visible';
+                                    }
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
