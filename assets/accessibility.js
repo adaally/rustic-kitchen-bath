@@ -166,9 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
                             }
-                            }
-                        });
-                    });
+                            observer.disconnect();
+                        }
+                });
+            });
                     
             
             observer.observe(lazyImg, { attributes: true });
