@@ -159,7 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.attributeName === 'class' &&
                         lazyImg.classList.contains('lazyloaded')
                         ) {
-                            trapFocus(container)
+                            
+                            trapFocus(container.closest('.mfp-wrap'))
                             const stars = container.querySelector('.jdgm-prev-badge__stars');
                             if(stars) {
                                 stars.removeAttribute('role');
