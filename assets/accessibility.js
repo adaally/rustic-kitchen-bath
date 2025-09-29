@@ -136,12 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 //This is because the element to change is before the current element with ID
                 const prevSibling = element.previousElementSibling;
                 prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`);
-                element.addEventListener('click', () => {
-                    prevSibling.click();
-                })
+                // element.addEventListener('click', () => {
+                //     prevSibling.click();
+                // })
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                                const id = element.getAttribute("data-opennt");
+                    fixModalProduct(element);
+                });
+            });
+        });
+
+        function fixModalProduct(element) {
+            const id = element.getAttribute("data-opennt");
             const container = document.querySelector(id);
             const lazyImg = container.querySelector(".product-image.lazyload");
 
@@ -160,18 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
                             }
-                            observer.disconnect();
                             }
                         });
                     });
 
             observer.observe(lazyImg, { attributes: true });
-                });
-            });
-        });
-
-        function fixModalProduct(element) {
-
         }
 
         function trapFocus(container) {
