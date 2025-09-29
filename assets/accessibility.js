@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(stars, 'stars')
                             if(stars) {
                                 stars.removeAttribute('role');
-                                stars.removeAttribute9('tabindex');
+                                stars.removeAttribute('tabindex');
                             }
                             observer.disconnect();
                             }
