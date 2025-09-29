@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const prevSibling = element.previousElementSibling;
                 prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`);
                 element.addEventListener('click', () => {
-                    prevSibling.click();
+                    fixModalProduct(element);
                 })
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
