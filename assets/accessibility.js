@@ -548,17 +548,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fixSeptemberSavingsAccessibility();
 
     function fixKlaviyoNewsletterTabOrder() {
-        function applyTabOrder(form) {
-            const emailInput = form.querySelector('input[type="email"]');
-            const checkbox = form.querySelector('input[type="checkbox"].css_agree_ck');
-            const termsLink = form.querySelector('label[for*="new_check_agree"] a');
-            const submitButton = form.querySelector('button[type="submit"]');
-
-            if (emailInput) emailInput.setAttribute('tabindex', '1');
-            if (checkbox) checkbox.setAttribute('tabindex', '2');
-            if (termsLink) termsLink.setAttribute('tabindex', '3');
-            if (submitButton) submitButton.setAttribute('tabindex', '4');
-        }
 
         function setupErrorMessages(form) {
             const errorMessage = form.querySelector('.shopify-error.error_message');
@@ -611,7 +600,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const existingForms = document.querySelectorAll('footer form.klaviyo_sub_frm');
         existingForms.forEach(form => {
-            applyTabOrder(form);
             setupErrorMessages(form);
         });
 
@@ -622,11 +610,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (node.nodeType === 1) {
                         const form = node.querySelector && node.querySelector('footer form.klaviyo_sub_frm');
                         if (form) {
-                            applyTabOrder(form);
                             setupErrorMessages(form);
                         }
                         if (node.matches && node.matches('footer form.klaviyo_sub_frm')) {
-                            applyTabOrder(node);
                             setupErrorMessages(node);
                         }
                     }
