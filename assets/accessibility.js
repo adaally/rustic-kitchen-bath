@@ -142,6 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
                     fixModalProduct(element);
+                    const elementnew = container.querySelector('.pin__popup');
+                    if(elementnew) {
+                                        elementnew.style.transform = 'scale(0)';
+                                        elementnew.style.opacity = '0';
+                                        elementnew.style.visibility = 'hidden';
+                                    }
                 });
             });
         });
@@ -177,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     const elementnew = container.querySelector('.pin__popup');
                                     console.log("Escape pressed, closing modal...", elementnew);
                                     if(elementnew) {
-                                        elementnew.style.transform = 'scale(0)'
-                                        elementnew.style.opacity = '0'
-                                        elementnew.style.visibility = 'hidden'
+                                        elementnew.style.transform = 'scale(0)';
+                                        elementnew.style.opacity = '0';
+                                        elementnew.style.visibility = 'hidden';
                                     }
                                     
                                     document.removeEventListener("keydown", handleEsc);
