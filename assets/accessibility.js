@@ -144,22 +144,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lazyImg = container.querySelector(".product-image.lazyload");
 
                     const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (
-                        mutation.type === 'attributes' &&
-                        mutation.attributeName === 'class' &&
-                        lazyImg.classList.contains('lazyloaded')
-                        ) {
-                        console.log('Element finished loading!', getFocusableElements(container));
-                        trapFocus(container);
-                        const stars = container.querySelector('.jdgm-prev-badge__stars');
-                        if(stars) {
-                            stars.removeAttribute('role');
-                            stars.removeAttribute9('tabindex');
-                        }
-                        observer.disconnect();
-                        }
-                    });
+                        mutations.forEach((mutation) => {
+                            if (
+                            mutation.type === 'attributes' &&
+                            mutation.attributeName === 'class' &&
+                            lazyImg.classList.contains('lazyloaded')
+                            ) {
+                            console.log('Element finished loading!', getFocusableElements(container));
+                            trapFocus(container);
+                            const stars = container.querySelector('.jdgm-prev-badge__stars');
+                            console.log(stars, 'stars')
+                            if(stars) {
+                                stars.removeAttribute('role');
+                                stars.removeAttribute9('tabindex');
+                            }
+                            observer.disconnect();
+                            }
+                        });
                     });
 
                     observer.observe(lazyImg, { attributes: true });
