@@ -169,9 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                    console.log("Escape pressed, closing modal...");
-                                    element.click();
-                                    document.removeEventListener("keydown", handleEsc);
+                                console.log("Escape pressed: next outside click will close modal");
+
+                                                        function handleOutsideClick(ev) {
+                                                            if (!container.contains(ev.target)) {
+                                                                console.log("Clicked outside after Escape, closing modal...");
+                                                                closeModal(container);
+                                                                document.removeEventListener("click", handleOutsideClick);
+                                                            }
+                                                        }
+
+                                                        // wait for a click outside
+                                                        document.addEventListener("click", handleOutsideClick);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
