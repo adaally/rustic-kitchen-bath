@@ -135,22 +135,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 const titleModal = parents[index].querySelector(".product-title a");
                 //This is because the element to change is before the current element with ID
                 const prevSibling = element.previousElementSibling;
-                prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`)
-
+                prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`);
+                element.addEventListener('', () => {
+                    fixModalProduct(element);
+                })
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    element.click();
-                    const id = element.getAttribute("data-opennt");
-                    const container = document.querySelector(id);
-                    const lazyImg = container.querySelector(".product-image.lazyload");
+                    fixModalProduct(element);
+                });
+            });
+        });
 
-                    const observer = new MutationObserver((mutations) => {
-                        mutations.forEach((mutation) => {
-                            if (
-                            mutation.type === 'attributes' &&
-                            mutation.attributeName === 'class' &&
-                            lazyImg.classList.contains('lazyloaded')
-                            ) {
+        function fixModalProduct(element) {
+            const id = element.getAttribute("data-opennt");
+            const container = document.querySelector(id);
+            const lazyImg = container.querySelector(".product-image.lazyload");
+
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (
+                        mutation.type === 'attributes' &&
+                        mutation.attributeName === 'class' &&
+                        lazyImg.classList.contains('lazyloaded')
+                        ) {
                             console.log('Element finished loading!', getFocusableElements(container));
                             trapFocus(container);
                             const stars = container.querySelector('.jdgm-prev-badge__stars');
@@ -164,12 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     });
 
-                    observer.observe(lazyImg, { attributes: true });
-
-                    
-                });
-            });
-        });
+            observer.observe(lazyImg, { attributes: true });
+        }
 
         function trapFocus(container) {
             const focusables = getFocusableElements(container);
