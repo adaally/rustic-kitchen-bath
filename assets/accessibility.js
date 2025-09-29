@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
+                    element.click();
                     const id = element.getAttribute("data-opennt");
                     const container = document.querySelector(id);
                     const lazyImg = container.querySelector(".product-image.lazyload");
