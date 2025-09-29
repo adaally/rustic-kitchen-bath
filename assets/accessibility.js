@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             
                     const elementnew2 = container.querySelector('.pin__popup');
+                    console.log(elementnew2,'pre')
                     if(elementnew2) {
                                         elementnew2.style.transform = 'scale(1)';
                                         elementnew2.style.opacity = '1';
