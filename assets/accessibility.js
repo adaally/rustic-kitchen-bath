@@ -175,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     console.log("Escape pressed, closing modal...");
-                                    element.click();
                                     const elementnew = element.querySelector('.pin__popup');
                                     if(elementnew) {
                                         elementnew.style.transform = 'scale(1)'
