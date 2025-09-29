@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // usage
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title a", (parents) => {
-            console.log(parents,'parents')
             document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                 const titleModal = parents[index].querySelector(".product-title a");
                 //This is because the element to change is before the current element with ID
@@ -153,6 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         ) {
                         console.log('Element finished loading!', getFocusableElements(container));
                         trapFocus(container);
+                        const stars = container.querySelector('.jdgm-prev-badge__stars');
+                        if(stars) {
+                            stars.removeAttribute('role');
+                            stars.removeAttribute9('tabindex');
+                        }
                         observer.disconnect();
                         }
                     });
