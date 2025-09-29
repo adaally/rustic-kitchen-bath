@@ -159,10 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.attributeName === 'class' &&
                         lazyImg.classList.contains('lazyloaded')
                         ) {
-                            console.log('Element finished loading!', getFocusableElements(container));
-                            trapFocus(container);
+                            trapFocus(container)
                             const stars = container.querySelector('.jdgm-prev-badge__stars');
-                            console.log(stars, 'stars')
                             if(stars) {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
