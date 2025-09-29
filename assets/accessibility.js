@@ -166,6 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
                             }
+
+                            function handleEsc(event) {
+                                if (event.key === "Escape" || event.key === "Esc") {
+                                    console.log("Escape pressed, closing modal...");
+                                    element.click();
+                                    document.removeEventListener("keydown", handleEsc);
+                                }
+                            }
+                            document.addEventListener("keydown", handleEsc);
                             observer.disconnect();
                         }
                 });
