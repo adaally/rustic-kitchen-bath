@@ -177,9 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     console.log("Escape pressed, closing modal...");
                                     const elementnew = element.querySelector('.pin__popup');
                                     if(elementnew) {
-                                        elementnew.style.transform = 'scale(1)'
-                                        elementnew.style.opacity = '1'
-                                        elementnew.style.visibility = 'visible'
+                                        elementnew.style.transform = 'scale(0)'
+                                        elementnew.style.opacity = '0'
+                                        elementnew.style.visibility = 'hidden'
                                     }
                                     
                                     document.removeEventListener("keydown", handleEsc);
