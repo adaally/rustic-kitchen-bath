@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = element.getAttribute("data-opennt");
             const container = document.querySelector(id);
             const lazyImg = container.querySelector(".product-image.lazyload");
+            if(!lazyImg) return;
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
@@ -169,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         });
                     });
-
+                    
+            
             observer.observe(lazyImg, { attributes: true });
         }
 
