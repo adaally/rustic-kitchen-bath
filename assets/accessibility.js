@@ -127,10 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // start observing
             observer.observe(parent, { childList: true, subtree: true });
         });
-        }
+    }
 
         // usage
         onAllChildrenReady("[id^='pin_mfp_']", ".product-title a", (parents) => {
+            console.log(parents,'parents')
             document.querySelectorAll("[data-opennt]").forEach((element, index) => {
                 const titleModal = parents[index].querySelector(".product-title a");
                 //This is because the element to change is before the current element with ID
@@ -139,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    console.log("element clicked")
                     const id = element.getAttribute("data-opennt");
                     const container = document.querySelector(id);
                     const lazyImg = container.querySelector(".product-image.lazyload");
