@@ -160,10 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(btnClose) {
                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
-                   document.body.click();
-                                    setTimeout(() => {
-                                        prevSibling.focus();
-                                    }, 500);
 
                                 });
             }
@@ -207,8 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(btnClose) {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
-                                    console.log('redcall')
-                                    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+document.body.click();
 
                                 });
                             }
