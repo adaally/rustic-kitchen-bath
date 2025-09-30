@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 lazyImg = container.querySelector(".product-image.lazyloaded");
             }
 
-            const btnClose = container.closest('.mfp-wrap') && container.closest('.mfp-wrap').querySelector('.mfp-close');
+            let btnClose = container.closest('.mfp-wrap') && container.closest('.mfp-wrap').querySelector('.mfp-close');
             if(btnClose) {
                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
