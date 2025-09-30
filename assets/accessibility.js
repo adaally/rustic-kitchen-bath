@@ -184,11 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                    const elementnew = container.querySelector('.pin__popup');
-                                    console.log("Escape pressed, closing modal...", elementnew);
-                                    if(elementnew) {
-                                        elementnew.classList.add('close-modal-new')
-                                    }
+document.body.click();
                                     
                                     document.removeEventListener("keydown", handleEsc);
                                 }
