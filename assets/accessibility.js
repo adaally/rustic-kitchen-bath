@@ -177,7 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     document.body.click();
-                                    element.focus();
+                                    setTimeout(() => {
+                                        element.focus();
+                                        console.log(element)
+                                    }, 200);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
