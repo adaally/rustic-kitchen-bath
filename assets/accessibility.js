@@ -155,15 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!lazyImg) {
                 lazyImg = container.querySelector(".product-image.lazyloaded");
             }
-            const btnClose = container.closest('.mfp-wrap')
-            console.log(container)
-            if(btnClose) {
-                btnClose.addEventListener('click', () => {
-                    setTimeout(() => {
-                        prevSibling.focus();
-                    }, 500);
-                });
-            }
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
@@ -172,6 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.attributeName === 'class' &&
                         lazyImg.classList.contains('lazyloaded')
                         ) {
+
+                            
+                            const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
+                            console.log(btnClose)
+                            if(btnClose) {
+                                btnClose.addEventListener('click', () => {
+                                    setTimeout(() => {
+                                        prevSibling.focus();
+                                    }, 500);
+                                });
+                            }
+
                             const modal = container.closest('.mfp-wrap');
                             if(modal) {
                                trapFocus(modal);
