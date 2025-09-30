@@ -168,7 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
                             console.log(btnClose)
                             if(btnClose) {
-                                btnClose.addEventListener('click', () => {
+                                btnClose.addEventListener('click', (e) => {
+                                    e.preventDefault();
 document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
                                 });
