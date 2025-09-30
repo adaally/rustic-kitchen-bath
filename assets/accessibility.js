@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(btnClose) {
                                 btnClose.addEventListener('click', () => {
                                     setTimeout(() => {
-                                        console.log('clicked')
+                                        console.log('clicked', prevSibling)
                                         prevSibling.focus();
                                     }, 1100);
                                 });
