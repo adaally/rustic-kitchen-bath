@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 //This is because the element to change is before the current element with ID
                 const prevSibling = element.previousElementSibling;
                 prevSibling.setAttribute("aria-label", `Open modal for ${titleModal.innerHTML}`);
+
+                //We need to simulate the click to the correct element that is focusable
                 element.addEventListener('click', () => {
                     prevSibling.click();
                 })
@@ -151,8 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const container = document.querySelector(id);
             const lazyImg = container.querySelector(".product-image.lazyload");
             if(!lazyImg) return;
-
-            
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     document.body.click();
+                                    element.focus();
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
