@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(btnClose) {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
+                                    console.log('redcall')
 document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
                                 });
