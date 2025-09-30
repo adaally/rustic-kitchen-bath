@@ -143,12 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    fixModalProduct(element);
+                    fixModalProduct(element, prevSibling);
                 });
             });
         });
 
-        function fixModalProduct(element) {
+        function fixModalProduct(element, prevSibling) {
             const id = element.getAttribute("data-opennt");
             const container = document.querySelector(id);
             const lazyImg = container.querySelector(".product-image.lazyload");
@@ -177,7 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     document.body.click();
-                                    prevSibling.focus();
+                                    setTimeout(() => {
+                                        prevSibling.focus();
+                                    }, 100);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
