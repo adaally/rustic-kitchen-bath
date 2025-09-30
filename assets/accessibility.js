@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
                                     e.stopImmediatePropagation();
+                                    $.magnificPopup.close();
                                     const escEvent = new KeyboardEvent("keydown", {
   key: "Escape",       // or "Esc" for old browsers
   keyCode: 27,         // legacy
