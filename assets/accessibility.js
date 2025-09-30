@@ -156,6 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 lazyImg = container.querySelector(".product-image.lazyloaded");
             }
 
+            const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close');
+            if(btnClose) {
+                btnClose.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    console.log('redcall')
+                                    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+                                });
+            }
+
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (
@@ -196,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
                                     console.log('redcall')
-document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+                                    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
                                 });
                             }
