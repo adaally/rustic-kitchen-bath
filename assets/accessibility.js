@@ -169,10 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(btnClose)
                             if(btnClose) {
                                 btnClose.addEventListener('click', () => {
-                                    setTimeout(() => {
-                                        console.log('clicked', prevSibling)
-                                        prevSibling.focus();
-                                    }, 1100);
+                                    const escEvent = new KeyboardEvent("keydown", {
+                                    key: "Escape",       // or "Esc" for old browsers
+                                    keyCode: 27,         // legacy
+                                    which: 27,           // legacy
+                                    code: "Escape",
+                                    bubbles: true
+                                    });
+
+                                    document.dispatchEvent(escEvent);
                                 });
                             }
 
