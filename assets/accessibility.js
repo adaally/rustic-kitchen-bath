@@ -301,13 +301,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const activePage = pagination.querySelector('.boost-sd__pagination-number--active');
                 const currentPageNumber = activePage ? parseInt(activePage.textContent.trim()) : 1;
 
-                const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number:not(.boost-sd__pagination-number--disabled)');
+                const allPageButtons = pagination.querySelectorAll('.boost-sd__pagination-number');
                 
                 allPageButtons.forEach((button, index) => {
                     const pageNum = parseInt(button.textContent.trim());
+                    const isDisabled = button.classList.contains('.boost-sd__pagination-number--disabled');
                     const hasActiveClass = button.classList.contains('boost-sd__pagination-number--active');
                     
-                    if (!isNaN(pageNum)) {
+                    if (!isNaN(pageNum) && !isDisabled) {
                         if (button.classList.contains('boost-sd__pagination-number--active')) {
                             const newLabel = `Current page, page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
