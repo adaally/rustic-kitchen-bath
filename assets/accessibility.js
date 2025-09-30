@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
                                     e.stopImmediatePropagation();
-                                    document.body.click();
+                                    prevSibling.click();
                                     console.log('clicked out')
                                     setTimeout(() => {
                                         prevSibling.focus();
