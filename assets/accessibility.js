@@ -164,17 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         lazyImg.classList.contains('lazyloaded')
                         ) {
 
-                            
-                            const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
-                            console.log(btnClose)
-                            if(btnClose) {
-                                btnClose.addEventListener('click', (e) => {
-                                    e.preventDefault();
-document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-
-                                });
-                            }
-
                             const modal = container.closest('.mfp-wrap');
                             if(modal) {
                                trapFocus(modal);
@@ -197,6 +186,19 @@ document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: tr
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
+
+                            
+
+                            
+                            const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
+                            console.log(btnClose)
+                            if(btnClose) {
+                                btnClose.addEventListener('click', (e) => {
+                                    e.preventDefault();
+document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+                                });
+                            }
                             observer.disconnect();
                         }
                 });
