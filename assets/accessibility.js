@@ -315,6 +315,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             const newLabel = `Page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
                         }
+                    } else {
+                        button.setAttribute('aria-hidden', 'true');
+                        button.setAttribute('tabindex', '-1');
                     }
                 });
 
