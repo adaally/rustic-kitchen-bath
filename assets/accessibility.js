@@ -151,8 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function fixModalProduct(element, prevSibling) {
             const id = element.getAttribute("data-opennt");
             const container = document.querySelector(id);
-            const lazyImg = container.querySelector(".product-image.lazyload");
-            if(!lazyImg) return;
+            let lazyImg = container.querySelector(".product-image.lazyload");
+            if(!lazyImg) {
+                lazyImg = container.querySelector(".product-image.lazyloaded");
+            }
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
