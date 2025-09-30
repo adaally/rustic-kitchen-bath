@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     e.preventDefault();
                                     e.stopImmediatePropagation();
                                     document.body.click();
+                                    console.log('clicked out')
                                     setTimeout(() => {
                                         prevSibling.focus();
                                     }, 500);
