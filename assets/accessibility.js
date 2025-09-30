@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             
 
                             
-                            const btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
+                            btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
                             console.log(btnClose)
                             if(btnClose) {
                                 btnClose.addEventListener('click', (e) => {
