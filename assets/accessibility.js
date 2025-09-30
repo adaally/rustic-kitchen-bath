@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     setTimeout(() => {
                                         console.log('clicked')
                                         prevSibling.focus();
-                                    }, 800);
+                                    }, 1100);
                                 });
                             }
 
