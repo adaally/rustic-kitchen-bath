@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(btnClose) {
                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
-
+e.stopImmediatePropagation();
                                 });
             }
 
