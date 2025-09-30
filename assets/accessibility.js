@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(btnClose) {
                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
-$.magnificPopup.close();
                                 });
             }
 
@@ -203,7 +202,7 @@ $.magnificPopup.close();
                             if(btnClose) {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
-document.body.click();
+                                        e.stopImmediatePropagation();
 
                                 });
                             }
