@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     document.body.click();
                                     setTimeout(() => {
                                         prevSibling.focus();
-                                    }, 100);
+                                    }, 500);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
