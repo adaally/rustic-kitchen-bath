@@ -169,15 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(btnClose)
                             if(btnClose) {
                                 btnClose.addEventListener('click', () => {
-                                    const escEvent = new KeyboardEvent("keydown", {
-                                    key: "Escape",       // or "Esc" for old browsers
-                                    keyCode: 27,         // legacy
-                                    which: 27,           // legacy
-                                    code: "Escape",
-                                    bubbles: true
-                                    });
+document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
-                                    document.dispatchEvent(escEvent);
                                 });
                             }
 
