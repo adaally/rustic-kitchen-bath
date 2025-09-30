@@ -324,11 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev');
                 if (prevButton) {
                     prevButton.setAttribute('aria-hidden', 'true');
+                    prevButton.setAttribute('tabindex', '-1');
                 }
 
                 const nextButton = pagination.querySelector('.boost-sd__pagination-button--next');
                 if (nextButton) {
                     nextButton.setAttribute('aria-hidden', 'true');
+                    nextButton.setAttribute('tabindex', '-1');
                 }
 
                 if (!pagination.hasAttribute('role')) {
