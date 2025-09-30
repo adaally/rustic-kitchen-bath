@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
+                                    console.log('scaped')
                                     document.body.click();
                                     setTimeout(() => {
                                         prevSibling.focus();
@@ -203,11 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 btnClose.addEventListener('click', (e) => {
                                     e.preventDefault();
                                     e.stopImmediatePropagation();
-                                    prevSibling.click();
-                                    console.log('clicked out')
-                                    setTimeout(() => {
-                                        prevSibling.focus();
-                                    }, 500);
+                                    const escEvent = new KeyboardEvent("keydown", {
+  key: "Escape",       // or "Esc" for old browsers
+  keyCode: 27,         // legacy
+  which: 27,           // legacy
+  code: "Escape",
+  bubbles: true
+});
+
+document.dispatchEvent(escEvent);
                                 });
                             }
                             observer.disconnect();
