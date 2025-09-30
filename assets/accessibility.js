@@ -156,13 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 lazyImg = container.querySelector(".product-image.lazyloaded");
             }
 
-            let btnClose = container.closest('.mfp-wrap') && container.closest('.mfp-wrap').querySelector('.mfp-close');
-            if(btnClose) {
-                btnClose.addEventListener('click', (e) => {
-                                    e.preventDefault();
-                                });
-            }
-
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (
@@ -194,28 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
-
-                            
-
-                            
-                            btnClose = container.closest('.mfp-wrap').querySelector('.mfp-close')
-                            console.log(btnClose)
-                            if(btnClose) {
-                                btnClose.addEventListener('click', (e) => {
-                                    e.preventDefault();
-                                    e.stopImmediatePropagation();
-                                    $.magnificPopup.close();
-                                    const escEvent = new KeyboardEvent("keydown", {
-  key: "Escape",       // or "Esc" for old browsers
-  keyCode: 27,         // legacy
-  which: 27,           // legacy
-  code: "Escape",
-  bubbles: true
-});
-
-document.dispatchEvent(escEvent);
-                                });
-                            }
                             observer.disconnect();
                         }
                 });
