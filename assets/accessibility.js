@@ -155,6 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!lazyImg) {
                 lazyImg = container.querySelector(".product-image.lazyloaded");
             }
+            const btnClose = container.querySelector('.mfp-close');
+            if(btnClose) {
+                btnClose.addEventListener('click', () => {
+                    setTimeout(() => {
+                        prevSibling.focus();
+                    }, 500);
+                });
+            }
 
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
@@ -178,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                    console.log('scaped', prevSibling)
                                     document.body.click();
                                     setTimeout(() => {
                                         prevSibling.focus();
