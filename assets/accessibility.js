@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const newLabel = `Current page, page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
                         } else {
-                            const newLabel = `Go to page ${pageNum}`;
+                            const newLabel = `Page ${pageNum}`;
                             button.setAttribute('aria-label', newLabel);
                         }
                     }
@@ -320,14 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev');
                 if (prevButton) {
-                    const prevPageNumber = currentPageNumber - 1;
-                    prevButton.setAttribute('aria-label', `Go to page ${prevPageNumber}`);
+                    prevButton.setAttribute('aria-hidden', 'true');
                 }
 
                 const nextButton = pagination.querySelector('.boost-sd__pagination-button--next');
                 if (nextButton) {
-                    const nextPageNumber = currentPageNumber + 1;
-                    nextButton.setAttribute('aria-label', `Go to page ${nextPageNumber}`);
+                    nextButton.setAttribute('aria-hidden', 'true');
                 }
 
                 if (!pagination.hasAttribute('role')) {
