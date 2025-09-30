@@ -177,8 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     document.body.click();
-                                    
-                                    document.removeEventListener("keydown", handleEsc);
                                 }
                             }
                             document.addEventListener("keydown", handleEsc);
