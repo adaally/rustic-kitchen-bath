@@ -243,6 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let productList = null;
 
+            document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon').forEach(btn => {
+                btn.setAttribute('role', 'button');
+                btn.setAttribute('tabindex', '0');
+            });
+
             function getProductList() {
                 if (!productList) {
                     productList = document.querySelector('.boost-sd__product-list');
