@@ -243,10 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let productList = null;
 
-            document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon').forEach(btn => {
-                btn.setAttribute('role', 'button');
-                btn.setAttribute('tabindex', '0');
-            });
+            function addButtonRoleToGridIcons() {
+                document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon').forEach(btn => {
+                    btn.setAttribute('role', 'button');
+                    btn.setAttribute('tabindex', '0');
+                });
+            }
 
             function getProductList() {
                 if (!productList) {
@@ -385,6 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
                         itemsToProcess.forEach(restructureProductItem);
 
+                        addButtonRoleToGridIcons();
                         clearImageAlts();
                         addAccessibilityRoles();
                         addQuickViewLabels();
