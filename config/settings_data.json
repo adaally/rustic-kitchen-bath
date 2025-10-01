@@ -7132,5 +7132,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".boost-sd__button:focus-visible, .boost-sd__button:focus {opacity: 1; outline: 0.15rem solid #000 !important;}"
+    ]
   }
 }
