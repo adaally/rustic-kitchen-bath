@@ -309,13 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const hasActiveClass = button.classList.contains('boost-sd__pagination-number--active');
                     
                     if (!isNaN(pageNum) && !isDisabled) {
-                        if (button.classList.contains('boost-sd__pagination-number--active')) {
-                            const newLabel = `Current page, page ${pageNum}`;
-                            button.setAttribute('aria-label', newLabel);
-                        } else {
-                            const newLabel = `Page ${pageNum}`;
-                            button.setAttribute('aria-label', newLabel);
-                        }
+                        const newLabel = `Page ${pageNum}`;
+                        button.setAttribute('aria-label', newLabel);
+                        button.setAttribute('aria-current', hasActiveClass ? 'true' : 'false');
                     } else {
                         button.setAttribute('aria-hidden', 'true');
                         button.setAttribute('tabindex', '-1');
