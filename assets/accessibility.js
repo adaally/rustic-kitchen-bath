@@ -422,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         addButtonRoleToGridIcons();
                         changeProductsCountToH2();
+                        fixFilterDropdown();
                         clearImageAlts();
                         addAccessibilityRoles();
                         addQuickViewLabels();
