@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let isOpen = combobox.getAttribute('aria-expanded') === 'true';
                     let currentIndex = options.findIndex(opt => opt.getAttribute('aria-selected') === 'true' || opt.classList.contains('boost-sd__sorting-option--active'));
-
+                    console.log(currentIndex)
                     // if(currentIndex === -1) {
 
                     // }
