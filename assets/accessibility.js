@@ -251,9 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.setAttribute('aria-label', index === gridViewIndex ? 'Grid view' : 'List view');
                 });
                 document.querySelectorAll('.boost-sd__view-as .boost-sd__tooltip-content').forEach((btn, index) => {
-                    btn.setAttribute('role', 'button');
-                    btn.setAttribute('tabindex', '0');
-                    btn.setAttribute('aria-label', index === gridViewIndex ? 'Grid view' : 'List view');
+                    btn.setAttribute('aria-hidden', 'true');
                 });
             }
 
