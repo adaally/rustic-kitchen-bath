@@ -269,10 +269,97 @@ document.addEventListener('DOMContentLoaded', () => {
                     dropdown.setAttribute('role', 'listbox');
                     dropdown.id = 'sort-list';
 
-                    dropdown.querySelectorAll('li').forEach(element => {
-                        element.setAttribute('role', 'option');
+                    const options = dropdown.querySelectorAll('li');
+
+                    options.forEach(element => element.setAttribute('role', 'option'));
+
+                    const valueSpan = combobox.querySelector('.boost-sd__sorting-value');
+
+                    let isOpen = combobox.getAttribute('aria-expanded') === 'true';
+                    let currentIndex = options.findIndex(opt => opt.getAttribute('aria-selected') === 'true' || opt.classList.contains('boost-sd__sorting-option--active'));
+
+                    // if(currentIndex === -1) {
+
+                    // }
+
+                    // Toggle open/close
+                    function toggleList(open) {
+                        isOpen = open;
+                        combobox.setAttribute('aria-expanded', String(open));
+                        if (open) {
+                            options[currentIndex].focus();
+                        }
+                    }
+
+                    // Update selection
+                    function selectOption(index) {
+                    options.forEach(opt => opt.removeAttribute('aria-selected'));
+                    options[index].setAttribute('aria-selected', 'true');
+                    currentIndex = index;
+                    valueSpan.textContent = options[index].textContent;
+                    toggleList(false);
+                    }
+
+                    // Make options focusable
+                    options.forEach(opt => opt.setAttribute('tabindex', '-1'));
+
+                    // Handle combobox button click
+                    combobox.addEventListener('click', e => {
+                    if (e.target.closest('[role="option"]')) return; // let option handler run
+                    toggleList(!isOpen);
                     });
-                }
+
+                    // Handle keyboard on combobox
+                    combobox.addEventListener('keydown', e => {
+                    if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        toggleList(true);
+                    } else if (isOpen) {
+                        switch (e.key) {
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            currentIndex = (currentIndex + 1) % options.length;
+                            options[currentIndex].focus();
+                            break;
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            currentIndex = (currentIndex - 1 + options.length) % options.length;
+                            options[currentIndex].focus();
+                            break;
+                        case 'Enter':
+                        case ' ':
+                            e.preventDefault();
+                            selectOption(currentIndex);
+                            break;
+                        case 'Escape':
+                            e.preventDefault();
+                            toggleList(false);
+                            break;
+                        }
+                    }
+                    });
+
+                    // Handle clicking on an option
+                    options.forEach((opt, index) => {
+                    opt.addEventListener('click', () => selectOption(index));
+                    opt.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectOption(index);
+                        }
+                    });
+                    });
+
+                    // Close list if clicked outside
+                    document.addEventListener('click', e => {
+                    if (!combobox.contains(e.target)) {
+                        toggleList(false);
+                    }
+                    });
+
+                    // Initialize closed
+                    toggleList(false);
+                                    }
             }
 
             function changeProductsCountToH2() {
