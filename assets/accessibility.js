@@ -255,6 +255,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            function changeProductsCountToH2() {
+                const subtitleCount = document.querySelector('.boost-sd__toolbar-item .boost-sd__product-count');
+                if(subtitleCount) {
+                    subtitleCount.setAttribute('aria-level', '2');
+                    subtitleCount.setAttribute('role', 'heading');
+                }
+            }
+
             function getProductList() {
                 if (!productList) {
                     productList = document.querySelector('.boost-sd__product-list');
@@ -393,6 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         itemsToProcess.forEach(restructureProductItem);
 
                         addButtonRoleToGridIcons();
+                        changeProductsCountToH2();
                         clearImageAlts();
                         addAccessibilityRoles();
                         addQuickViewLabels();
