@@ -256,20 +256,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function fixFilterDropdown() {
-                const filterBtn = document.querySelector('.boost-sd__sorting-button');
-                const dropdown = document.querySelector('.boost-sd__sorting-list');
-                if(filterBtn && dropdown) {
-                    filterBtn.setAttribute('role', 'combobox');
-                    filterBtn.setAttribute('aria-haspopup', 'listbox');
-                    filterBtn.setAttribute('aria-expanded', 'false');
-                    filterBtn.setAttribute('aria-owns', 'sort-list');
-                    filterBtn.setAttribute('tabindex', '0');
+                const combobox = document.querySelector('.boost-sd__sorting-button');
+                const listbox = document.querySelector('.boost-sd__sorting-list');
+                if(combobox && listbox) {
+                    combobox.setAttribute('role', 'combobox');
+                    combobox.setAttribute('aria-haspopup', 'listbox');
+                    combobox.setAttribute('aria-expanded', 'false');
+                    combobox.setAttribute('aria-owns', 'sort-list');
+                    combobox.setAttribute('tabindex', '0');
 
 
-                    dropdown.setAttribute('role', 'listbox');
-                    dropdown.id = 'sort-list';
+                    listbox.setAttribute('role', 'listbox');
+                    listbox.id = 'sort-list';
 
-                    const options = dropdown.querySelectorAll('li');
+                    const options = listbox.querySelectorAll('li');
 
                     options.forEach(element => element.setAttribute('role', 'option'));
 
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Initialize closed
                     toggleList(false);
-                                    }
+                }
             }
 
             function changeProductsCountToH2() {
