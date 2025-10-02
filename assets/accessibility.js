@@ -255,6 +255,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            function fixFilterDropdown() {
+                const filterBtn = document.querySelector('.boost-sd__sorting-button');
+                const dropdown = document.querySelector('.boost-sd__sorting-list');
+                if(filterBtn && dropdown) {
+                    filterBtn.setAttribute('role', 'combobox');
+                    filterBtn.setAttribute('aria-haspopup', 'listbox');
+                    filterBtn.setAttribute('aria-expanded', 'false');
+                    filterBtn.setAttribute('aria-owns', 'sort-list');
+                    filterBtn.setAttribute('tabindex', '0');
+
+
+                    dropdown.setAttribute('role', 'listbox');
+                    dropdown.id = 'sort-list';
+
+                    dropdown.querySelectorAll('li').forEach(element => {
+                        element.setAttribute('role', 'option');
+                    });
+                }
+            }
+
             function changeProductsCountToH2() {
                 const subtitleCount = document.querySelector('.boost-sd__toolbar-item .boost-sd__product-count');
                 if(subtitleCount) {
