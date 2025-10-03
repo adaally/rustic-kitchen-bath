@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Make options focusable
-                    // options.forEach(opt => opt.setAttribute('tabindex', '-1'));
+                    options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
                     // Handle combobox button click
                     combobox.addEventListener('click', e => {
