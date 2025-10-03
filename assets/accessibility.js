@@ -791,4 +791,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixKlaviyoNewsletterTabOrder();
 
+    function toggleTabindexWhenCartVisible() {
+        const cart = document.querySelector('#shopify-section-cart_widget');
+        if(!cart) return
+
+        const observer = new MutationObserver(mutations => {
+            for (const m of mutations) {
+                if (m.type === 'attributes' && m.attributeName === 'aria-hidden') {
+                    const isHidden = cart.getAttribute('aria-hidden') === 'true';
+                    console.log('aria-hidden changed:', isHidden);
+                    cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
+                        element.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+                        element.setAttribute('tabindex', isHidden ? '-1' : '0');
+                    });
+                }
+            }
+        });
+
+        observer.observe(cart, {
+            attributes: true,
+            attributeFilter: ['aria-hidden']
+        });
+    }
+
+    toggleTabindexWhenCartVisible();
+
 });
