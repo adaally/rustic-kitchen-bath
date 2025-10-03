@@ -46,11 +46,11 @@
   {% comment %}{%- render 'lazypreload' -%}{% endcomment %}
   <div id="nt_wrapper">
    {% comment %} {%- render 'header',t_name:t_name -%}{% endcomment %}
-    <div id="nt_content">
+    <main id="nt_content">
     {{ content_for_layout }} 
     {%- liquid 
        section 'gallery_des' -%}
-    </div>
+    </main>
     {% comment %}<footer id="nt_footer" class="bgbl footer-1">{%- section 'footer_top' -%}{%- section 'footer_bot' -%}</footer>{% endcomment %}
   </div>
 
