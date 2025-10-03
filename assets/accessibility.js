@@ -793,7 +793,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleTabindexWhenCartVisible() {
         const cart = document.querySelector('#shopify-section-cart_widget');
-        if(!cart) return
+        if(!cart) return;
+
+        cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
+                        element.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+                        element.setAttribute('tabindex', isHidden ? '-1' : '0');
+                    });
 
         const observer = new MutationObserver(mutations => {
             for (const m of mutations) {
