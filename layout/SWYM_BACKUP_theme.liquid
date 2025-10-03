@@ -42,7 +42,7 @@
   {%- render 'lazypreload' -%}
   <div id="nt_wrapper">
     {%- render 'header',t_name:t_name -%}
-    <main id="nt_content">{{ content_for_layout }}</main>
+    <div id="nt_content">{{ content_for_layout }}</div>
     <footer id="nt_footer" class="bgbl footer-1">{%- section 'footer_top' -%}{%- section 'footer_bot' -%}</footer>
   </div>
   {%- render 'div_html',t_name:t_name -%}
