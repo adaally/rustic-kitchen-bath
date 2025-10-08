@@ -884,7 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(btns.length === 0) return;
 
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
-            openGalleryBtn.setAttribute('aria-label', `Open modal gallery view`);
+            openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
             
             btns.forEach((element, index) => {
                 element.setAttribute('role', 'button');
