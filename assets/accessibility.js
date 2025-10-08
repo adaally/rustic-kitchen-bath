@@ -824,10 +824,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixTabListPrudct() {
         const container = document.querySelector('#shopify-section-pr_description');
         if(!container) return;
+
         const tablist = container.querySelector('[role="tablist"]');
-        console.log(tablist)
         const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
         const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+        tabs.forEach(element => {
+            console.log(element.parentNode.classList('active'), element.parentNode);
+            element.setAttribute('tabindex', element.parentNode.classList('active') ? '0', '-1')
+        });
 
         function activateTab(tab) {
             tabs.forEach((t, i) => {
