@@ -880,11 +880,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!productContainer) return;
 
         const title = productContainer.querySelector('.product_title').innerText;
-        const btnsContainer = productContainer.querySelector('.p-nav');
 
-        if(btnsContainer) {
-            btnsContainer.removeAttribute('tabindex');
-        }
+        productContainer.querySelector('.p-nav, .p-thumb, .flickity-button').forEach(element => {
+            element.setAttribute('tabindex', '-1');
+            element.setAttribute('aria-hidden', 'true');
+        });
 
         const btns = productContainer.querySelectorAll('.product-images .n-item');
 
