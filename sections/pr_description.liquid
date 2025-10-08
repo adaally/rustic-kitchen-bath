@@ -24,7 +24,7 @@
 
 {%- for i in (1..1) -%}
   {%- unless section.settings.show %}<style>#wrap_des_pr,#shopify-section-pr_description {display: none !important}</style>{% break %}{% endunless -%}
-  <ul class="ul_none ul_tabs is-flex fl_center fs__16 des_mb_{{cl_mb}} des_style_{{cl_des}}">
+  <ul class="ul_none ul_tabs is-flex fl_center fs__16 des_mb_{{cl_mb}} des_style_{{cl_des}}" role="tablist">
 
     
     
@@ -33,22 +33,22 @@
     {%- for block in section.blocks -%}
       {%- case block.type -%}
       {%- when 'add' %}{% if product.has_only_default_variant %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'buy' %}{% if nav_up_size == 0 %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'des' -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_pr_deskl">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_deskl" tabindex="-1" class="db cg truncate pr" href="#tab_pr_deskl">{{block.settings.title}}</a></li>
       {%- when 'rivui' -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_pr_reivew">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_reivew" tabindex="-1" class="db cg truncate pr" href="#tab_pr_reivew">{{block.settings.title}}</a></li>
       {%- when 'tag_pr' %}{% assign tag_arr = 'tabt4_' | append:block.settings.title %}{% if tag_arr_size == 0 %}{% continue %}{% endif %}{% assign tag_arr = pr_tags | where:tag_arr %}{% if tag_arr.size == 0 %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'text' %}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'html' %}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- else -%}
          {%- unless additions[block.type] %}{% continue %}{% endunless -%}
-         <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a class="db cg truncate pr" href="#tab_{{block.id}}">{{additions[block.type] | split:'|||' | first | strip_html | strip}}</a></li>
+         <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{additions[block.type] | split:'|||' | first | strip_html | strip}}</a></li>
       {%- endcase -%}
     {%- endfor -%}
     
@@ -66,13 +66,13 @@
     {%- case block.type -%}
 
       {%- when 'des' -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_pr_deskl" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_pr_deskl" aria-labelledby="tab_pr_deskl" {{ block.shopify_attributes }}>
       	<div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_pr_deskl"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
       	<div class="sp-tab-content">{{ product.description }}</div>
       </div>
 
       {%- when 'buy' -%}{% if nav_up_size == 0 %}{% continue %}{% endif -%} 
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
         <div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
         <div class="sp-tab-content kl_fbt_wrap js_wrap_group">
           
@@ -155,7 +155,7 @@
       <style>.kl_fbt_img:not(.kl_fbt_img_0):before{content:"+";font-size:20px}.kl_fbt_li select{width:auto;border-radius:5px;color:#222;height:36px;line-height:36px;margin-left:5px}.kl_fbt_tt_price{color:#ec0101;font-size:18px}.kl_fbt_price{color:#ec0101;font-size:15px;margin:0 5px}.kl_fbt_wrap del{color:#878787}.kl_fbt_wrap ins{text-decoration:none}.kl_fbt_li:not(:last-child){margin-bottom:10px}.js_fbt_ck,.kl_fbt_li .label{display:none}.kl_fbt_li label:before{position:relative;top:2px;content:'';display:inline-block;margin-right:4px;width:14px;height:14px;min-width:14px;border:1px solid #d4d6d8;background:#fff;box-shadow:none;background-size:0;background-repeat:no-repeat;background-position:50%;transition:all .2s ease-in-out;border-radius:2px;-webkit-appearance:none;transition:border-color .2s ease-in-out,box-shadow .2s ease-in-out,background .2s ease-in-out}.kl_fbt_li svg{display:block;width:10px;height:10px;fill:#fff;position:absolute;top:5px;left:2px;pointer-events:none;transform:scale(0);-webkit-transform:scale(0);-webkit-transition:all .25s ease-in-out;transition:all .25s ease-in-out}.js_fbt_ck:checked+label svg{transform:scale(1);-webkit-transform:scale(1)}.js_fbt_ck:not(:checked)~*{opacity:.2}.js_fbt_ck:not(:checked)+label{opacity:1}.kl_fbt_img img{width:100%;margin:5px 10px;max-width:115px}.kl_fbt_img_0.kl_fbt_img img{margin-left:0}@media (max-width:1024px){.kl_fbt_img img{margin:5px;max-width:70px}.des_style_1.des_mb_2.sp-tab .kl_fbt_img img,.des_style_2 .kl_fbt_img img{max-width:55px}.des_style_1.des_mb_2 .kl_fbt_img_0.kl_fbt_img img{margin-left:5px}.kl_fbt_img:not(.kl_fbt_img_0):before{font-size:16px}.kl_fbt_li label:before{width:24px;height:24px}.kl_fbt_li svg{width:16px;height:16px;top:-2px;left:3px}}</style> 
       
       {%- when 'add' %}{% if product.has_only_default_variant %}{% continue %}{% endif -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
       	<div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
       	<div class="sp-tab-content">
       		<table class="pr_attrs">
@@ -174,7 +174,7 @@
       </div>
       
       {%- when 'rivui' -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_pr_reivew" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_pr_reivew" aria-labelledby="tab_pr_reivew" {{ block.shopify_attributes }}>
       	<div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_pr_reivew"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
       	<div class="sp-tab-content">
           {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
@@ -197,19 +197,19 @@
       </div>
       
       {%- when 'html' -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
         <div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
         <div class="sp-tab-content">{{pages[block.settings.page].content}}</div>
       </div>
       
       {%- when 'tag_pr' %}{% if tag_arr_size == 0 %}{% continue %}{% endif %}{% assign tag_arr = 'tabt4_' | append:block.settings.title %}{% assign tag_arr = pr_tags | where:tag_arr %}{% if tag_arr.size == 0 %}{% continue %}{% endif -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
         <div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
         <div class="sp-tab-content">{{pages[block.settings.page].content}}</div>
       </div>
 
       {%- when 'text' -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
         <div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{block.settings.title}}</span><span class="nav_link_icon ml__5"></span></a></div>
         <div class="sp-tab-content">{{block.settings.text}}</div>
       </div>
@@ -217,7 +217,7 @@
       {%- else -%}
 
       {%- unless additions[block.type] %}{% continue %}{% endunless %}{% assign tab_meta = additions[block.type] | split:'|||' -%}
-      <div class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" {{ block.shopify_attributes }}>
+      <div role="tabpanel" class="panel entry-content sp-tab des_mb_{{cl_mb}} des_style_{{cl_des}}{% if ck %} active{% assign ck = false %}{% else %} dn{% endif %}" id="tab_{{block.id}}" aria-labelledby="tab_link_{{block.id}}" {{ block.shopify_attributes }}>
         <div class="js_ck_view"></div><div class="heading bgbl dn"><a class="tab-heading flex al_center fl_between pr cd chp fwm" href="#tab_{{block.id}}"><span class="txt_h_tab">{{tab_meta[0] | strip}}</span><span class="nav_link_icon ml__5"></span></a></div>
         <div class="sp-tab-content">{{tab_meta[1] | strip}}</div>
       </div>
