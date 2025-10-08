@@ -928,8 +928,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnsModal.forEach((element, index) => {
                     setImageBtnAttributes(element, index, btnsModal.length);
                 });
-                console.log(productContainer.querySelectorAll('.pswp__button--close .pswp__button--share .pswp__button--fs .pswp__button--zoom'))
-                productContainer.querySelectorAll('.pswp__button--close .pswp__button--share .pswp__button--fs .pswp__button--zoom').forEach(element => {
+                
+                productContainer.querySelectorAll('.pswp__button--close, .pswp__button--share, .pswp__button--fs, .pswp__button--zoom').forEach(element => {
                     element.setAttribute('aria-label', element.getAttribute('title'));
                 });
             }, 500)
