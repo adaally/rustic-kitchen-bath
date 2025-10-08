@@ -374,9 +374,9 @@ assign locale_url = product.url | split:'/products/' | first -%}
                                 {%- render 'nt_add_w',tooltip:"ttip_nt tooltip_top_left" -%}
                           {%- else -%}
                              <div class="quantity pr mr__10 order-1 qty__{{block.settings.show_qty}}" id="sp_qty{{call_cl}}"> 
-                                <input type="number" class="input-text qty text tc qty_pr_js" step="1" min="1" max="{% if ck_preoder %}999{% elsif inventory_management != null %}{{inventory_quantity}}{% else %}9999{% endif %}" name="quantity" value="1" size="4" pattern="[0-9]*" inputmode="numeric">
+                                <input type="number" aria-label="{{ product.title }} quantity" class="input-text qty text tc qty_pr_js" step="1" min="1" max="{% if ck_preoder %}999{% elsif inventory_management != null %}{{inventory_quantity}}{% else %}9999{% endif %}" name="quantity" value="1" size="4" pattern="[0-9]*" inputmode="numeric">
                                 <div class="qty tc fs__14">
-                                  <button type="button" class="plus db cb pa pd__0 pr__15 tr r__0"><i class="facl facl-plus"></i></button><button type="button" class="minus db cb pa pd__0 pl__15 tl l__0"><i class="facl facl-minus"></i></button>
+                                  <button type="button" class="plus db cb pa pd__0 pr__15 tr r__0" aria-label="Increase quantity of {{ product.title }}"><i class="facl facl-plus"></i></button><button type="button" class="minus db cb pa pd__0 pl__15 tl l__0" aria-label="Decrease quantity of {{ product.title }}"><i class="facl facl-minus"></i></button>
                                </div>
                              </div> 
                              <a rel="nofollow" data-no-instant href="#" class="single_stt out_stock button pe_none order-2" id="out_stock{{call_cl}}">{{'products.product.outofstock' | t}}</a>
