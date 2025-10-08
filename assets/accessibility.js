@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductImagesDisplay() {
         const productContainer = document.querySelector('.product');
-        console.log(productContainer.querySelector('.n-item'))
+        console.log(productContainer.querySelectorAll('.n-item'))
         if(!productContainer) return;
 
         const title = productContainer.querySelector('.product_title').innerText;
