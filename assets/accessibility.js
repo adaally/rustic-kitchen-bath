@@ -881,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const title = productContainer.querySelector('.product_title').innerText;
 
-        productContainer.querySelector('.p-nav, .p-thumb, .flickity-button').forEach(element => {
+        productContainer.querySelectorAll('.p-nav, .p-thumb, .flickity-button').forEach(element => {
             element.setAttribute('tabindex', '-1');
             element.setAttribute('aria-hidden', 'true');
         });
