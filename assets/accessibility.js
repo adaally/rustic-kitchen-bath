@@ -935,6 +935,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.querySelectorAll('.pswp__button--close, .pswp__button--share, .pswp__button--fs, .pswp__button--zoom').forEach(element => {
                     element.setAttribute('aria-label', element.getAttribute('title'));
                 });
+
+                trapFocus(modal);
             }, 500)
         }
     }
