@@ -2351,7 +2351,7 @@
         "type": "product-recommendations",
         "settings": {
           "show": true,
-          "title": "Often Paired Together",
+          "title": "<h2 style=\"font-size: inherit;\">Often Paired Together</h2>",
           "sub_title": "",
           "sub_font": "2",
           "style_title": "title_1",
@@ -2389,7 +2389,7 @@
         "settings": {
           "show": true,
           "unavailable_prs": "show",
-          "title": "Recently viewed products",
+          "title": "<h2 style=\"font-size: inherit;\">Recently viewed products</h2>",
           "sub_title": "",
           "sub_font": "2",
           "style_title": "title_1",
@@ -7135,7 +7135,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".boost-sd__button:focus-visible, .boost-sd__button:focus {opacity: 1; outline: 0.15rem solid #000 !important;}"
+      ".boost-sd__button:focus-visible,.boost-sd__button:focus {opacity: 1; outline: 0.15rem solid #000 !important;}"
     ]
   }
 }
