@@ -865,15 +865,24 @@ document.addEventListener('DOMContentLoaded', () => {
             default: return;
             }
             e.preventDefault();
-            next.focus(); // roving focus
+            next.focus();
         });
 
-        // Ensure focus activates with Space/Enter even if handler didn’t run
         tabs.forEach(t => t.addEventListener('keyup', e => {
-            if (e.key === ' ' || e.key === 'Enter') activateTab(e.currentTarget);
+            if (e.key === 'Enter') activateTab(e.currentTarget);
         }));
     }
 
     fixTabListPrudct();
+
+    function fixProductImagesDisplay() {
+        const productContainer = document.querySelector('.product');
+        if(!productContainer) return;
+
+        console.log(productContainer);
+        productContainer.querySelector('.p-nav');
+    }
+
+    fixProductImagesDisplay();
 
 });
