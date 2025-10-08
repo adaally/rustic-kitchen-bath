@@ -901,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
-            openGalleryBtn.addEventListener('click', () => fixImageViewModal());
+            openGalleryBtn.addEventListener('click', () => fixImageViewModal(openGalleryBtn));
             
             btns.forEach((element, index) => {
                 setImageBtnAttributes(element, index, btns.length);
@@ -933,7 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
             element.setAttribute('aria-label', `Load image ${index+1} of ${total} in gallery view`);
         }
 
-        function fixImageViewModal() {
+        function fixImageViewModal(openGalleryBtn) {
             setTimeout(() => {
                 const modal = document.querySelector('.pswp');
                 if(!modal) return;
@@ -952,7 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('aria-label', element.getAttribute('title'));
                 });
 
-                trapFocus(modal);
+                trapFocus(modal, openGalleryBtn);
             }, 500)
         }
     }
