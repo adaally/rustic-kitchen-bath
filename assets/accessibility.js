@@ -821,4 +821,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleTabindexWhenCartVisible();
 
+    function fixTabListPrudct() {
+        const container = document.querySelector('.shopify-section-pr_description');
+        if(!container) return;
+
+        const tablist = container.querySelector('[role="tablist"]');
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+        function activateTab(tab) {
+            tabs.forEach((t, i) => {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', selected);
+            t.tabIndex = selected ? 0 : -1;
+            panels[i].hidden = !selected;
+            });
+            tab.focus();
+        }
+
+        tablist.addEventListener('click', (e) => {
+            if (e.target.getAttribute('role') === 'tab') activateTab(e.target);
+        });
+
+        tablist.addEventListener('keydown', (e) => {
+            const i = tabs.indexOf(document.activeElement);
+            if (i === -1) return;
+
+            let next = null;
+            switch (e.key) {
+            case 'ArrowRight': next = tabs[(i + 1) % tabs.length]; break;
+            case 'ArrowLeft':  next = tabs[(i - 1 + tabs.length) % tabs.length]; break;
+            case 'Home':       next = tabs[0]; break;
+            case 'End':        next = tabs[tabs.length - 1]; break;
+            case 'Enter':
+            case ' ':          activateTab(tabs[i]); return;
+            default: return;
+            }
+            e.preventDefault();
+            next.focus(); // roving focus
+        });
+
+        // Ensure focus activates with Space/Enter even if handler didn’t run
+        tabs.forEach(t => t.addEventListener('keyup', e => {
+            if (e.key === ' ' || e.key === 'Enter') activateTab(e.currentTarget);
+        }));
+    }
+
 });
