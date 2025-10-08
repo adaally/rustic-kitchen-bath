@@ -903,9 +903,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('aria-hidden', 'true');
             });
 
-            const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
-            openGalleryBtn.setAttribute('aria-label', `Open modal gallery view`);
-
             observer.disconnect();
         });
 
