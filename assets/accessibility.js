@@ -877,23 +877,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductImagesDisplay() {
         const productContainer = document.querySelector('.product');
-        console.log(productContainer.querySelectorAll('.n-item'))
         if(!productContainer) return;
 
-        const title = productContainer.querySelector('.product_title').innerText;
+        const observer = new MutationObserver(() => {
+            const btns = productContainer.querySelectorAll('.product-images .n-item');
+            if(btns.length === 0) return;
+            
+            btns.forEach((element, index) => {
+                element.setAttribute('role', 'button');
+                element.setAttribute('tabindex', '0');
+                element.setAttribute('aria-label', `Image ${index+1} of ${btns.length}`);
+            });
 
-        productContainer.querySelectorAll('.p-nav, .p-thumb, .flickity-button, .btn_pnav_prev, .btn_pnav_next').forEach(element => {
-            console.log(element)
-            element.setAttribute('tabindex', '-1');
-            element.setAttribute('aria-hidden', 'true');
+            const title = productContainer.querySelector('.product_title').innerText;
+
+            productContainer.querySelectorAll('.p-nav, .p-thumb, .flickity-button, .btn_pnav_prev, .btn_pnav_next').forEach(element => {
+                element.setAttribute('tabindex', '-1');
+                element.setAttribute('aria-hidden', 'true');
+            });
+
+            observer.disconnect();
         });
 
-        const btns = productContainer.querySelectorAll('.product-images .n-item');
-
-        btns.forEach((element, index) => {
-            element.setAttribute('role', 'button');
-            element.setAttribute('tabindex', '0');
-            element.setAttribute('aria-label', `Image ${index+1} of ${btns.length}`);
+        observer.observe(productContainer, {
+            subtree: true,
+            childList: true
         });
     }
 
