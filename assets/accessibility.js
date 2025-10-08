@@ -888,7 +888,10 @@ document.addEventListener('DOMContentLoaded', () => {
             openGalleryBtn.addEventListener('click', () => {
                 setTimeout(() => {
                     const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
-                    console.log(btnsModal)
+                    productContainer.querySelectorAll('.pswp__button').forEach(element => {
+                        element.setAttribute('tabindex', '-1');
+                        element.setAttribute('aria-hidden', 'true');
+                    });
                     btnsModal.forEach((element, index) => {
                         setImageBtnAttributes(element, index, btnsModal.length);
                     });
