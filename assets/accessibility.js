@@ -879,8 +879,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const productContainer = document.querySelector('.product');
         if(!productContainer) return;
 
-        console.log(productContainer);
-        productContainer.querySelector('.p-nav');
+        const title = productContainer.querySelector('.product_title').innerText;
+        const btnsContainer = productContainer.querySelector('.p-nav');
+
+        if(btnsContainer) {
+            btnsContainer.removeAttribute('tabindex');
+        }
+
+        const btns = productContainer.querySelectorAll('.product-images .n-item');
+
+        btns.querySelectorAll('.product-images .n-item').forEach((element, index) => {
+            element.setAttribute('role', 'button');
+            element.setAttribute('tabindex', '0');
+            element.setAttribute('aria-label', `Image ${index+1} of ${btns.length}`);
+        });
     }
 
     fixProductImagesDisplay();
