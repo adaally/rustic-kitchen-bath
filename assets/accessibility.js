@@ -919,9 +919,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function fixImageViewModal() {
             setTimeout(() => {
-                const modal = document.querySelector('pswp');
+                const modal = document.querySelector('.pswp');
                 if(!modal) return;
-                
+
                 modal.querySelectorAll('.pswp__button--arrow--left, .pswp__button--arrow--right').forEach(element => {
                     element.setAttribute('tabindex', '-1');
                     element.setAttribute('aria-hidden', 'true');
