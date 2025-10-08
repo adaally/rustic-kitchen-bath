@@ -831,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tabs.forEach(element => {
             console.log(element.parentNode.classList('active'), element.parentNode);
-            element.setAttribute('tabindex', element.parentNode.classList('active') ? '0', '-1')
+            element.setAttribute('tabindex', element.parentNode.classList('active') ? '0' : '-1')
         });
 
         function activateTab(tab) {
