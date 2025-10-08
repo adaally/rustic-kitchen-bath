@@ -822,7 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleTabindexWhenCartVisible();
 
     function fixTabListPrudct() {
-        const container = document.querySelector('.shopify-section-pr_description');
+        const container = document.querySelector('#shopify-section-pr_description');
         if(!container) return;
 
         const tablist = container.querySelector('[role="tablist"]');
