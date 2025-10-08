@@ -885,6 +885,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
+            openGalleryBtn.addEventListener('click', () => {
+                console.log(document.querySelector('.pswp'))
+            });
             
             btns.forEach((element, index) => {
                 element.setAttribute('role', 'button');
