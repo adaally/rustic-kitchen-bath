@@ -886,14 +886,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
             openGalleryBtn.addEventListener('click', () => {
-                console.log(document.querySelector('.pswp'))
+                const btnsModal = document.querySelector('.pswp .pswp__thumbnails');
+                btnsModal.forEach(element => {
+                    setImageBtnAttributes(element, index, btnsModal.length);
+                });
             });
             
             btns.forEach((element, index) => {
-                element.setAttribute('role', 'button');
-                element.setAttribute('tabindex', '0');
-                element.setAttribute('image-index', index+1);
-                element.setAttribute('aria-label', `Load image ${index+1} of ${btns.length} in gallery view`);
+                setImageBtnAttributes(element, index, btns.length);
                 element.addEventListener('click', () => {
                     openGalleryBtn.setAttribute('aria-label', `Open image ${index+1} of ${btns.length} in modal`)
                 });
@@ -913,6 +913,14 @@ document.addEventListener('DOMContentLoaded', () => {
             subtree: true,
             childList: true
         });
+
+        function setImageBtnAttributes(element, index, total) {
+            if(!element) return;
+            element.setAttribute('role', 'button');
+            element.setAttribute('tabindex', '0');
+            element.setAttribute('image-index', index+1);
+            element.setAttribute('aria-label', `Load image ${index+1} of ${total} in gallery view`);
+        }
     }
 
     fixProductImagesDisplay();
