@@ -885,19 +885,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
-            openGalleryBtn.addEventListener('click', () => {
-                setTimeout(() => {
-                    const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
-                    productContainer.querySelectorAll('.pswp__button').forEach(element => {
-                        element.setAttribute('tabindex', '-1');
-                        element.setAttribute('aria-hidden', 'true');
-                    });
-                    btnsModal.forEach((element, index) => {
-                        setImageBtnAttributes(element, index, btnsModal.length);
-                    });
-                }, 500)
-                
-            });
+            openGalleryBtn.addEventListener('click', () => fixImageViewModal(productContainer));
             
             btns.forEach((element, index) => {
                 setImageBtnAttributes(element, index, btns.length);
@@ -927,6 +915,24 @@ document.addEventListener('DOMContentLoaded', () => {
             element.setAttribute('tabindex', '0');
             element.setAttribute('image-index', index+1);
             element.setAttribute('aria-label', `Load image ${index+1} of ${total} in gallery view`);
+        }
+
+        function fixImageViewModal(productContainer) {
+            setTimeout(() => {
+                productContainer.querySelectorAll('.pswp__button--arrow--left, .pswp__button--arrow--right').forEach(element => {
+                    element.setAttribute('tabindex', '-1');
+                    element.setAttribute('aria-hidden', 'true');
+                });
+
+                const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
+                btnsModal.forEach((element, index) => {
+                    setImageBtnAttributes(element, index, btnsModal.length);
+                });
+
+                productContainer.querySelectorAll('.pswp__button--close .pswp__button--share .pswp__button--fs .pswp__button--zoom').forEach(element => {
+                    element.setAttribute('aria-label', element.getAttribute('title'));
+                });
+            }, 500)
         }
     }
 
