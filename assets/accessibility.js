@@ -886,11 +886,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
             openGalleryBtn.addEventListener('click', () => {
-                const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
-                console.log(btnsModal)
-                btnsModal.forEach(element => {
-                    setImageBtnAttributes(element, index, btnsModal.length);
-                });
+                setTimeout(() => {
+                    const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
+                    console.log(btnsModal)
+                    btnsModal.forEach(element => {
+                        setImageBtnAttributes(element, index, btnsModal.length);
+                    });
+                }, 500)
+                
             });
             
             btns.forEach((element, index) => {
