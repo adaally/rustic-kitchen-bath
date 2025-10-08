@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(lazyImg, { attributes: true });
         }
 
-        function trapFocus(container) {
+        function trapFocus(container, btnOpenModal) {
             const focusables = getFocusableElements(container);
             if (focusables.length === 0) return;
 
@@ -221,7 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+
+            const offEscape = onEscape(() => {
+                if(btnOpenModal) {
+                    btnOpenModal.focus();
+                }
+            });
+
+            function onEscape(handler) {
+                function listener(e) {
+                    if (e.key === 'Escape' || e.key === 'Esc' || e.code === 'Escape') {
+                        handler(e);
+                    }
+                }
+                container.addEventListener('keydown', listener);
+                return () => container.removeEventListener('keydown', listener);
             }
+        }
 
         function getFocusableElements(container) {
             return Array.from(
