@@ -830,8 +830,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
 
         tabs.forEach(element => {
-            console.log(element.parentElement.classList('active'), element.parentElement);
-            element.setAttribute('tabindex', element.parentElement.classList('active') ? '0' : '-1')
+            console.log(element.parentElement);
+            // element.setAttribute('tabindex', element.parentElement.classList('active') ? '0' : '-1')
         });
 
         function activateTab(tab) {
