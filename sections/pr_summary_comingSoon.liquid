@@ -457,7 +457,7 @@ assign locale_url = product.url | split:'/products/' | first -%}
         </div>
       
       {%- when 'img' -%}
-        <div id="trust_seal{{call_cl}}" class="pr_trust_seal {{block.settings.al}}">
+        <div id="trust_seal{{call_cl}}" class="pr_trust_seal {{block.settings.al}}" role="list" aria-label="Accepted payments">
           {%- if block.settings.mess -%}<p class="mess_cd cb mb__10 fwm tu" style="font-size: {{block.settings.size}}px">{{block.settings.mess}}</p>{%- endif -%}
           {%- assign image = block.settings.image -%}
           {%- if block.settings.source == '1' and image != blank  -%}{%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -465,7 +465,7 @@ assign locale_url = product.url | split:'/products/' | first -%}
           {%- else block.settings.svg -%}
               {%- assign arr = block.settings.svg | remove: ' ' | split:"," -%}
             <style>.pr_trust_seal img {padding: 2.5px;height: {{block.settings.height}}px;}</style>
-            {%- for img in arr -%}<img class="lazyload img_tr_svg" src="https://cdn.shopify.com/s/assets/payment_icons/generic-dfdcaf09b6731ca14dd7441354c0ad8bc934184eb15ae1fda6a6b9e307675485.svg" data-src="{{ img | payment_type_img_url }}" alt="{{img | replace:'_',' '}} logo" />{%- endfor -%}
+            {%- for img in arr -%}<div role="listitem"><img class="lazyload img_tr_svg" src="https://cdn.shopify.com/s/assets/payment_icons/generic-dfdcaf09b6731ca14dd7441354c0ad8bc934184eb15ae1fda6a6b9e307675485.svg" data-src="{{ img | payment_type_img_url }}" alt="{{img | replace:'_',' '}} logo" /></div>{%- endfor -%}
           {%- endif -%}
         </div>
 
