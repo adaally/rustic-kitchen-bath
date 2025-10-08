@@ -888,7 +888,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const btns = productContainer.querySelectorAll('.product-images .n-item');
 
-        btns.querySelectorAll('.product-images .n-item').forEach((element, index) => {
+        btns.forEach((element, index) => {
             element.setAttribute('role', 'button');
             element.setAttribute('tabindex', '0');
             element.setAttribute('aria-label', `Image ${index+1} of ${btns.length}`);
