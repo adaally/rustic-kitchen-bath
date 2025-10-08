@@ -948,6 +948,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     setImageBtnAttributes(element, index, btnsModal.length);
                 });
 
+                const closeBtn = modal.querySelector('.pswp__button--close');
+                closeBtn.addEventListener('click', () => {
+                    openGalleryBtn.focus();
+                });
+
                 modal.querySelectorAll('.pswp__button--close, .pswp__button--share, .pswp__button--fs, .pswp__button--zoom').forEach(element => {
                     element.setAttribute('aria-label', element.getAttribute('title'));
                 });
