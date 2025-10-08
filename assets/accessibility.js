@@ -887,6 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openGalleryBtn.setAttribute('aria-label', `Open image 1 of ${btns.length} in modal`);
             openGalleryBtn.addEventListener('click', () => {
                 const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
+                console.log(btnsModal)
                 btnsModal.forEach(element => {
                     setImageBtnAttributes(element, index, btnsModal.length);
                 });
