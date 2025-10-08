@@ -95,7 +95,7 @@
   <div class="bgbl pt__20 pb__20 lh__1">
    <div class="container">
     <div class="row al_center">
-      <div class="col">{% if settings.breadcrumb_pr %}<nav class="sp-breadcrumb"><a href="/">{{ 'general.breadcrumbs.home' | t }}</a>{% if collection.url != blank %}<i class="facl facl-angle-right"></i><a href="{{collection.url}}">{{collection.title}}</a>{% endif %}<i class="facl facl-angle-right"></i>{{product.title}}</nav>{% endif %}</div>
+      <div class="col">{% if settings.breadcrumb_pr %}<nav class="sp-breadcrumb" aria-label="Bread Crumb"><a href="/">{{ 'general.breadcrumbs.home' | t }}</a>{% if collection.url != blank %}<i class="facl facl-angle-right"></i><a href="{{collection.url}}">{{collection.title}}</a>{% endif %}<span class="visually-hidden">Current page:</span><i class="facl facl-angle-right"></i>{{product.title}}</nav>{% endif %}</div>
       {%- if ck_next_pr -%}
       <div class="col-auto flex al_center">
         {%- assign next_pr = collection.next_product -%}
