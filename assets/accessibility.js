@@ -882,11 +882,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new MutationObserver(() => {
             const btns = productContainer.querySelectorAll('.product-images .n-item');
             if(btns.length === 0) return;
+
+            const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
+            openGalleryBtn.setAttribute('aria-label', `Open modal gallery view`);
             
             btns.forEach((element, index) => {
                 element.setAttribute('role', 'button');
                 element.setAttribute('tabindex', '0');
-                element.setAttribute('aria-label', `Image ${index+1} of ${btns.length}`);
+                element.setAttribute('image-index', index+1);
+                element.setAttribute('aria-label', `Load image ${index+1} of ${btns.length} in gallery view`);
+                element.addEventListener('click', () => {
+                    openGalleryBtn.setAttribute('aria-label', `Open image ${index+1} of ${btns.length} in modal`)
+                });
             });
 
             const title = productContainer.querySelector('.product_title').innerText;
@@ -895,6 +902,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('aria-hidden', 'true');
             });
+
+            const openGalleryBtn = productContainer.querySelector('.p_group_btns .show_btn_pr_gallery');
+            openGalleryBtn.setAttribute('aria-label', `Open modal gallery view`);
 
             observer.disconnect();
         });
