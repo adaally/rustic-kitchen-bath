@@ -3172,7 +3172,7 @@
            e.preventDefault();
            var _this = $(this),
                parent = _this.closest('.sp-tabs');
-           console.log('Attempt', $(this))
+           
            parent.find(".tab_title_block").removeClass("active");
            _this.closest("li").addClass("active").addClass("active");
            parent.find('.sp-tab.panel').hide().removeClass("active");
@@ -3184,7 +3184,7 @@
     geckoShopify.spAccordion =  function () {
 
       if ( $('.sp-tabs .tab-heading').length == 0 ) return;
-      
+      console.log('Attempt', $('.sp-tabs .tab-heading'))
       //$('.sp-tabs .tab-heading').click(function (e) {
         //$(document).on('click', '.nt_gallery_item a', function (e) {
       $(document).on('click', '.sp-tabs .tab-heading', function(e) {
