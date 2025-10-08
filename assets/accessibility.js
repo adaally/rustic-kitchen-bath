@@ -831,7 +831,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tabs.forEach(element => {
             const parent = element.parentElement;
-            element.setAttribute('tabindex', parent.classList.contains('active') ? '0' : '-1')
+            const isActive = parent.classList.contains('active');
+            element.setAttribute('tabindex', isActive ? '0' : '-1');
+            element.setAttribute('aria-selected', isActive);
         });
 
         function activateTab(tab) {
