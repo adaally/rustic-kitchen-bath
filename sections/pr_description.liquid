@@ -33,22 +33,22 @@
     {%- for block in section.blocks -%}
       {%- case block.type -%}
       {%- when 'add' %}{% if product.has_only_default_variant %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'buy' %}{% if nav_up_size == 0 %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'des' -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_deskl" tabindex="-1" class="db cg truncate pr" href="#tab_pr_deskl">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_deskl" class="db cg truncate pr" href="#tab_pr_deskl">{{block.settings.title}}</a></li>
       {%- when 'rivui' -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_reivew" tabindex="-1" class="db cg truncate pr" href="#tab_pr_reivew">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a role="tab" aria-selected="{{ ck }}" aria-controls="tab_pr_reivew" class="db cg truncate pr" href="#tab_pr_reivew">{{block.settings.title}}</a></li>
       {%- when 'tag_pr' %}{% assign tag_arr = 'tabt4_' | append:block.settings.title %}{% if tag_arr_size == 0 %}{% continue %}{% endif %}{% assign tag_arr = pr_tags | where:tag_arr %}{% if tag_arr.size == 0 %}{% continue %}{% endif -%}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'text' %}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- when 'html' %}
-      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
+      <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{block.settings.title}}</a></li>
       {%- else -%}
          {%- unless additions[block.type] %}{% continue %}{% endunless -%}
-         <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" tabindex="-1" class="db cg truncate pr" href="#tab_{{block.id}}">{{additions[block.type] | split:'|||' | first | strip_html | strip}}</a></li>
+         <li class="tab_title_block{% if ck %} active{% assign ck = false %}{% endif %}"><a id="tab_link_{{block.id}}" role="tab" aria-selected="{{ ck }}" aria-controls="tab_{{block.id}}" class="db cg truncate pr" href="#tab_{{block.id}}">{{additions[block.type] | split:'|||' | first | strip_html | strip}}</a></li>
       {%- endcase -%}
     {%- endfor -%}
     
