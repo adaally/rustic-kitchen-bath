@@ -3172,7 +3172,7 @@
            e.preventDefault();
            var _this = $(this),
                parent = _this.closest('.sp-tabs');
-           
+           console.log('Attempt', $(this))
            parent.find(".tab_title_block").removeClass("active");
            _this.closest("li").addClass("active").addClass("active");
            parent.find('.sp-tab.panel').hide().removeClass("active");
