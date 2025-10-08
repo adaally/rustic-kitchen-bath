@@ -3144,7 +3144,7 @@
 
     geckoShopify.clickProduct = function () {
         if (!$('body').hasClass('template-product')) return;
-
+        console.log('Attempt')
         $(".rating_sp_kl, .readm_sp_kl").click(function(e){
            e.preventDefault();
            if ( $(this).hasClass( "rating_sp_kl" ) ) {
@@ -3184,7 +3184,7 @@
     geckoShopify.spAccordion =  function () {
 
       if ( $('.sp-tabs .tab-heading').length == 0 ) return;
-      console.log('Attempt', $('.sp-tabs .tab-heading'))
+      
       //$('.sp-tabs .tab-heading').click(function (e) {
         //$(document).on('click', '.nt_gallery_item a', function (e) {
       $(document).on('click', '.sp-tabs .tab-heading', function(e) {
