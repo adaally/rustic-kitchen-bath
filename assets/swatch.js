@@ -3144,7 +3144,7 @@
 
     geckoShopify.clickProduct = function () {
         if (!$('body').hasClass('template-product')) return;
-        console.log('Attempt')
+
         $(".rating_sp_kl, .readm_sp_kl").click(function(e){
            e.preventDefault();
            if ( $(this).hasClass( "rating_sp_kl" ) ) {
