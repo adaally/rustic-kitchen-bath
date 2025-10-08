@@ -889,7 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const btnsModal = document.querySelectorAll('.pswp .pswp__thumbnails .pswp_thumb_item');
                     console.log(btnsModal)
-                    btnsModal.forEach(element => {
+                    btnsModal.forEach((element, index) => {
                         setImageBtnAttributes(element, index, btnsModal.length);
                     });
                 }, 500)
