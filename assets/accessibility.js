@@ -1007,11 +1007,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         console.log(elements,'here')
         elements.forEach(element => {
+            
+            setTimeout(() => {
             const sliderContainer = element.querySelector('.products.nt_slider');
             console.log(sliderContainer)
             if(!sliderContainer) return;
-            
-            setTimeout(() => {
                 sliderContainer.removeAttribute('tabindex');
 
             sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
@@ -1024,7 +1024,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //     element.setAttribute('aria-hidden', 'true');
             //     element.setAttribute('tabindex', '-1');
             // });
-        });
+        }, 1000);
     }
 
     fixProductSlider();
