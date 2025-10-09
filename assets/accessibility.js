@@ -1005,7 +1005,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductSlider() {
         const elements = document.querySelectorAll('.product-extra');
-        console.log(elements);
+        elements.forEach(element => {
+            element.querySelector('')
+        });
     }
 
     fixProductSlider();
