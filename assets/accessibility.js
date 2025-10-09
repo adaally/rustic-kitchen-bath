@@ -1093,10 +1093,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const pagination = document.querySelector('.dib-pagination');
             console.log(pagination)
             if(pagination) {
-                const links = pagination.querySelectorAll('a');
+                const links = pagination.querySelectorAll('a, .dib-pagination-current');
                 links.forEach((link) => {
                     link.setAttribute('aria-label', `Page ${link.innerText} of ${links.length}`);
                     link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
+                    if(link.classList.contains('dib-pagination-current')) {
+                        link.setAttribute('role', 'link');
+                        link.setAttribute('tabindex', '0');
+                    }
                 });
 
 
