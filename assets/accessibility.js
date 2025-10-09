@@ -1061,7 +1061,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // fixProductSlider(); NEED TO BE FIXED, PRODUCT SLIDER
 
     function fixBlogList() {
-        console.log(document.querySelector('.dib-post-wrap'))
+        const blogContainer = document.querySelector('.dib-post-wrap');
+
+        if(!blogContainer) return;
+
+        blogContainer.setAttribute('role', 'list');
+        blogContainer.querySelectorAll(':scope > a').forEach(element => {
+            element.setAttribute('role', 'listitem');
+        });
+
     }
 
     fixBlogList();
