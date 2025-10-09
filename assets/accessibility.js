@@ -980,25 +980,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeMenusOnEscape(e) {
         if (e.key === 'Escape' || e.keyCode === 27) {
+            const nav = document.querySelector('.nt_navigation');
+            nav.classList.add('hover-disabled');
+            
             document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
                 item.classList.remove('is_hover');
                 item.classList.remove('menu_item_hover');
-                item.classList.add('esc-closed');
                 
                 const link = item.querySelector('a');
                 if (link) link.setAttribute('aria-expanded', 'false');
             });
             
-            setTimeout(function() {
-                document.querySelectorAll('.esc-closed').forEach(function(item) {
-                    item.classList.remove('esc-closed');
-                });
-            }, 100);
+            function reactivateHover() {
+                nav.classList.remove('hover-disabled');
+                nav.removeEventListener('mouseleave', reactivateHover);
+            }
+            
+            nav.addEventListener('mouseleave', reactivateHover);
         }
     }
-
-        
+            
     initMenuAriaExpanded();
     document.addEventListener('keydown', closeMenusOnEscape);
+
+    function fixProductSlider() {
+        const elements = document.querySelectorAll('.product-extra');
+        console.log(elements);
+    }
+
+    fixProductSlider();
 
 });
