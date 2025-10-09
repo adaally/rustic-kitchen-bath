@@ -1007,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         elements.forEach(element => {
             const observer = new MutationObserver(() => {
-                const thumbnailLoaded = element.querySelectorAll('.pr_grid_item a, .pr_grid_item button, .pr_grid_item .input-text, .pr_grid_item [tabindex="0"]');
+                const thumbnailLoaded = element.querySelectorAll('.products .pr_grid_item a, .products .pr_grid_item button, .products .pr_grid_item .input-text, .products .pr_grid_item [tabindex="0"]');
                 if(thumbnailLoaded.length <= 2) return;
                 console.log(thumbnailLoaded)
                 const sliderContainer = element.querySelector('.products');
