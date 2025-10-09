@@ -6,7 +6,7 @@
   else 
     assign ltr = true  
   endif -%}
-<nav class="nt_navigation {{section.settings.align}} {{section.settings.hover}} nav_arrow_{{section.settings.arrow}}"> 
+<nav class="nt_navigation {{section.settings.align}} {{section.settings.hover}} nav_arrow_{{section.settings.arrow}}" aria-label="main"> 
    <ul id="nt_menu_id" class="nt_menu in_flex wrap al_center">
    {%- for type in tp_blocks -%}
      
