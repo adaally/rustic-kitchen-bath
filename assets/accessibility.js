@@ -964,4 +964,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixProductImagesDisplay();
 
+    function closeMenusOnEscape(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
+            item.classList.remove('open');
+            const button = item.querySelector('[aria-expanded]');
+            if (button) button.setAttribute('aria-expanded', 'false');
+            });
+        }
+    }
+
+
+    document.addEventListener('keydown', closeMenusOnEscape);
+
 });
