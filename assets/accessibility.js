@@ -1091,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const pagination = blogContainer.querySelector('.dib-pagination');
+        console.log(pagination)
         if(pagination) {
             const links = pagination.querySelectorAll('a');
             links.forEach((link) => {
