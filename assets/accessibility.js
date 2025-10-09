@@ -964,17 +964,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixProductImagesDisplay();
 
+    function initMenuAriaExpanded() {
+        document.querySelectorAll('.nt_menu .has-children > a').forEach(function(link) {
+            const parentLi = link.parentElement;
+            
+            parentLi.addEventListener('mouseenter', function() {
+            link.setAttribute('aria-expanded', 'true');
+            });
+            
+            parentLi.addEventListener('mouseleave', function() {
+            link.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
     function closeMenusOnEscape(e) {
         if (e.key === 'Escape' || e.keyCode === 27) {
             document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
-            item.classList.remove('open');
-            const button = item.querySelector('[aria-expanded]');
-            if (button) button.setAttribute('aria-expanded', 'false');
+                item.classList.remove('is_hover');
+                item.classList.remove('menu_item_hover');
+                item.classList.add('esc-closed');
+                
+                const link = item.querySelector('a');
+                if (link) link.setAttribute('aria-expanded', 'false');
             });
+            
+            setTimeout(function() {
+                document.querySelectorAll('.esc-closed').forEach(function(item) {
+                    item.classList.remove('esc-closed');
+                });
+            }, 100);
         }
     }
 
-
+        
+    initMenuAriaExpanded();
     document.addEventListener('keydown', closeMenusOnEscape);
 
 });
