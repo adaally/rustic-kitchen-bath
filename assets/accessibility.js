@@ -1009,11 +1009,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const sliderContainer = element.querySelector('.products.nt_slider');
             if(!sliderContainer) return;
 
-            sliderContainer.removeAttribute('tabindex');
+            setTimeout(() => {
+                sliderContainer.removeAttribute('tabindex');
 
             sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
                 element.setAttribute('aria-hidden', 'true');
                 element.setAttribute('tabindex', '-1');
+            });
             });
 
             // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
