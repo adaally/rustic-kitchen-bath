@@ -1007,8 +1007,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         elements.forEach(element => {
             const observer = new MutationObserver(() => {
-                const thumbnailLoaded = element.querySelector('.product-image.lazyloaded');
-                if(!thumbnailLoaded) return;
+                const thumbnailLoaded = element.querySelectorAll('.pr_grid_item a, .pr_grid_item button, .pr_grid_item .input-text, .pr_grid_item [tabindex="0"]');
+                if(thumbnailLoaded.length <= 2) return;
                 const sliderContainer = element.querySelector('.products');
 
                 sliderContainer.removeAttribute('tabindex');
