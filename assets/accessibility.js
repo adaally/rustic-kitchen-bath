@@ -1007,18 +1007,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         console.log(elements,'here')
         elements.forEach(element => {
-            
-            setTimeout(() => {
-            const sliderContainer = element.querySelector('.products');
-            console.log(sliderContainer)
-            if(!sliderContainer) return;
+            const observer = new MutationObserver(() => {
+                const sliderContainer = element.querySelector('.products');
+                if(!sliderContainer) return;
+
                 sliderContainer.removeAttribute('tabindex');
 
-            sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-                element.setAttribute('aria-hidden', 'true');
-                element.setAttribute('tabindex', '-1');
+                sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                    element.setAttribute('aria-hidden', 'true');
+                    element.setAttribute('tabindex', '-1');
+                });
+
+                observer.disconnect();
             });
-            }, 1000);
+
+            observer.observe(element, {
+                childList: true,
+                subtree: true
+            });
+            
 
             // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
             //     element.setAttribute('aria-hidden', 'true');
