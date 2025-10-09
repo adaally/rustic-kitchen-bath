@@ -1014,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderContainer.querySelectorAll('.product').forEach(product => {
                     const observerThumbnail = new MutationObserver(() => {
                         const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
-                        console.log(elements)
+                        
                         // 2 is the default elements number but there are more that need to load
                         if(elements.length <= 2) return;
 
@@ -1058,6 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateVisibiliteAttributesForThumbnails(thumbnail) {
             if(!thumbnail) return;
             const isActive = thumbnail.classList.contains('is-selected');
+            console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
             thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                 element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                 element.setAttribute('tabindex', isActive ? '0' : '-1');
