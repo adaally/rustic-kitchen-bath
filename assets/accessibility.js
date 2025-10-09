@@ -1090,6 +1090,21 @@ document.addEventListener('DOMContentLoaded', () => {
             blogContainer.appendChild(newLink);
         });
 
+        const pagination = blogContainer.querySelector('.dib-pagination');
+        if(pagination) {
+            const links = pagination.querySelectorAll('a');
+            links.forEach((link) => {
+                link.setAttribute('aria-label', `Page ${link.innerText} of ${links.length}`);
+                link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
+            });
+
+
+            const paginationNav = document.createElement('nav');
+            nav.className = pagination.className;
+            nav.innerHTML = pagination.innerHTML;
+            paginationNav.replaceWith(nav);
+        }
+
     }
 
     fixBlogList();
