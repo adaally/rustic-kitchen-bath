@@ -1007,21 +1007,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         elements.forEach(element => {
             const observer = new MutationObserver(() => {
-                const thumbnailLoaded = element.querySelectorAll('.products .pr_grid_item a, .products .pr_grid_item button, .products .pr_grid_item .input-text, .products .pr_grid_item [tabindex="0"]');
-                if(thumbnailLoaded.length <= 2) return;
-                console.log(thumbnailLoaded)
                 const sliderContainer = element.querySelector('.products');
+                if(!sliderContainer) return;
 
-                sliderContainer.removeAttribute('tabindex');
+                setTimeout(() => {
+                    sliderContainer.removeAttribute('tabindex');
 
-                sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-                    element.setAttribute('aria-hidden', 'true');
-                    element.setAttribute('tabindex', '-1');
-                });
+                    sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                        element.setAttribute('aria-hidden', 'true');
+                        element.setAttribute('tabindex', '-1');
+                    });
 
-                sliderContainer.querySelectorAll('.product').forEach(element => {
-                    updateVisibiliteAttributesForThumbnails(element);
-                });
+                    sliderContainer.querySelectorAll('.product').forEach(element => {
+                        updateVisibiliteAttributesForThumbnails(element);
+                    });
+                }, 500);
+
+
 
 
                 // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
@@ -1041,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateVisibiliteAttributesForThumbnails(thumbnail) {
             if(!thumbnail) return;
             const isActive = thumbnail.classList.contains('is-selected');
-            // console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
+            console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
             thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                 element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                 element.setAttribute('tabindex', isActive ? '0' : '-1');
