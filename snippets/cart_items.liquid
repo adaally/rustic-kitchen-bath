@@ -113,10 +113,10 @@ assign gift_pr_id = gift_pr.id -%}
          </div>
          <div class="mini_cart_actions">
             <div class="quantity pr mr__10 qty__true">
-               <label class="visually-hidden" for="miniupdates_{{item_key}}">Quantity</label>
+               <label class="visually-hidden" for="miniupdates_{{item_key}}">{{ product.title }} quantity</label>
                <input type="number" id="miniupdates_{{item_key}}" data-id="{{item_key}}" class="input-text qty text tc qty_cart_js" step="1" min="{{min_qty}}" max="{% if item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %}9999{% else %}{{ item.variant.inventory_quantity }}{% endif %}" name="updates[]" value="{{ item.quantity }}" size="4" pattern="[0-9]*" inputmode="numeric">
                <div class="qty tc fs__14">
-                <button type="button" class="plus db cb pa pd__0 pr__15 tr r__0"><span class="visually-hidden">Increase quantity</span><i class="facl facl-plus"></i></button><button type="button" class="minus db cb pa pd__0 pl__15 tl l__0 qty_{{ item.quantity }}"><span class="visually-hidden">Decrease quantity</span><svg class='dn' viewBox="0 0 24 24"><use xlink:href="#scl_remove"/></svg><i class="facl facl-minus"></i></button>
+                <button aria-label="Increase quantity of {{ product.title }}" type="button" class="plus db cb pa pd__0 pr__15 tr r__0"><i class="facl facl-plus"></i></button><button aria-label="Decrease quantity of {{ product.title }}" type="button" class="minus db cb pa pd__0 pl__15 tl l__0 qty_{{ item.quantity }}"><svg class='dn' viewBox="0 0 24 24"><use xlink:href="#scl_remove"/></svg><i class="facl facl-minus"></i></button>
               </div>
             </div>
             {%- unless property_size == 0 and item.product.has_only_default_variant -%}
