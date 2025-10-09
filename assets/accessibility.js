@@ -1094,8 +1094,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(pagination)
             if(pagination) {
                 const links = pagination.querySelectorAll('a, .dib-pagination-current');
+                const totalPages = links[links-1].innerText;
                 links.forEach((link) => {
-                    link.setAttribute('aria-label', `Page ${link.innerText} of ${links.length}`);
+                    link.setAttribute('aria-label', `Page ${link.innerText} of ${totalPages}`);
                     link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
                     if(link.classList.contains('dib-pagination-current')) {
                         link.setAttribute('role', 'link');
