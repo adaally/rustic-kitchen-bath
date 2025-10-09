@@ -1060,4 +1060,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // fixProductSlider(); NEED TO BE FIXED, PRODUCT SLIDER
 
+    function fixBlogList() {
+        console.log(document.querySelector('.dib-post-wrap'))
+    }
+
+    fixBlogList();
+
 });
