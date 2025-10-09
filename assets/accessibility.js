@@ -1090,52 +1090,24 @@ document.addEventListener('DOMContentLoaded', () => {
             blogContainer.appendChild(newLink);
         });
 
-                    const pagination = document.querySelector('.dib-pagination');
-            console.log(pagination)
-            if(pagination) {
-                const links = pagination.querySelectorAll('a, .dib-pagination-current');
-                const totalPages = links[links.length-1].innerText;
-                links.forEach((link) => {
-                    link.setAttribute('aria-label', `Page ${link.innerText} of ${totalPages}`);
-                    link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
-                    if(link.classList.contains('dib-pagination-current')) {
-                        link.setAttribute('role', 'link');
-                        link.setAttribute('tabindex', '0');
-                    }
-                });
+        const pagination = document.querySelector('.dib-pagination');
+        if(pagination) {
+            const links = pagination.querySelectorAll('a, .dib-pagination-current');
+            const totalPages = links[links.length-1].innerText;
+            links.forEach((link) => {
+                link.setAttribute('aria-label', `Page ${link.innerText} of ${totalPages}`);
+                link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
+                if(link.classList.contains('dib-pagination-current')) {
+                    link.setAttribute('role', 'link');
+                    link.setAttribute('tabindex', '0');
+                }
+            });
 
-
-                const paginationNav = document.createElement('nav');
-                paginationNav.className = pagination.className;
-                paginationNav.innerHTML = pagination.innerHTML;
-                pagination.replaceWith(paginationNav);
-                observer.disconnect();
-            }
-
-        
-        // const observer = new MutationObserver(() => {
-        //     const pagination = document.querySelector('.dib-pagination');
-        //     console.log(pagination)
-        //     if(pagination) {
-        //         const links = pagination.querySelectorAll('a');
-        //         links.forEach((link) => {
-        //             link.setAttribute('aria-label', `Page ${link.innerText} of ${links.length}`);
-        //             link.setAttribute('aria-current', link.classList.contains('dib-pagination-current') ? 'true' : 'false');
-        //         });
-
-
-        //         const paginationNav = document.createElement('nav');
-        //         paginationNav.className = pagination.className;
-        //         paginationNav.innerHTML = pagination.innerHTML;
-        //         pagination.replaceWith(paginationNav);
-        //         observer.disconnect();
-        //     }
-        // });
-
-        // observer.observe(blogContainer, {
-        //     childList: true,
-        //     subtree: true
-        // });
+            const paginationNav = document.createElement('nav');
+            paginationNav.className = pagination.className;
+            paginationNav.innerHTML = pagination.innerHTML;
+            pagination.replaceWith(paginationNav);
+        }
 
 
     }
