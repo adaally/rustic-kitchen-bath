@@ -1016,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('aria-hidden', 'true');
                     element.setAttribute('tabindex', '-1');
                 });
-                
+
                 sliderContainer.querySelectorAll('.product').forEach(element => {
                     updateVisibiliteAttributesForThumbnails(element);
                 });
@@ -1039,6 +1039,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateVisibiliteAttributesForThumbnails(thumbnail) {
             if(!thumbnail) return;
             const isActive = thumbnail.classList.contains('is-selected');
+            console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
             thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                 element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                 element.setAttribute('tabindex', isActive ? '0' : '-1');
