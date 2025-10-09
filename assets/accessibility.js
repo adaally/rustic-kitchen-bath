@@ -1018,13 +1018,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('aria-hidden', 'true');
                 element.setAttribute('tabindex', '-1');
             });
-            });
+            }, 1000);
 
             // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
             //     element.setAttribute('aria-hidden', 'true');
             //     element.setAttribute('tabindex', '-1');
             // });
-        }, 1000);
+        });
     }
 
     fixProductSlider();
