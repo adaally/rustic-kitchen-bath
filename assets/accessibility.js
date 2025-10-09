@@ -1067,7 +1067,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         blogContainer.setAttribute('role', 'list');
         blogContainer.querySelectorAll(':scope > a').forEach(element => {
-            element.setAttribute('role', 'listitem');
+            const newLink = document.createElement('a');
+            newLink.className = element.className;
+            newLink.setAttribute('role', 'listitem');
+            newLink.appendChild(element);
+            blogContainer.appendChild(newLink);
         });
 
     }
