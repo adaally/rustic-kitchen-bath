@@ -1070,6 +1070,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const newLink = document.createElement('a');
             newLink.className = element.className;
             newLink.setAttribute('role', 'listitem');
+
+            element.removeAttribute('aria-label');
+
             newLink.appendChild(element);
             blogContainer.appendChild(newLink);
         });
