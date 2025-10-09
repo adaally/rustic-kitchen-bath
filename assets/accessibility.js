@@ -1077,6 +1077,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.setAttribute('alt', '');
             }
 
+            const title = element.querySelector('h2');
+            if(title) {
+                const newTitle = document.createElement('div');
+                newTitle.className = title.className;
+                newTitle.classList.add('h2');
+                title.replaceWith(newTitle);
+            }
+
             newLink.appendChild(element);
             blogContainer.appendChild(newLink);
         });
