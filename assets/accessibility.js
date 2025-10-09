@@ -1008,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(elements,'here')
         elements.forEach(element => {
             const sliderContainer = element.querySelector('.products.nt_slider');
-            coonsole.log(sliderContainer)
+            console.log(sliderContainer)
             if(!sliderContainer) return;
             
             setTimeout(() => {
