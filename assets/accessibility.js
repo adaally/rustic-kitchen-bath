@@ -1009,7 +1009,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach(element => {
             
             setTimeout(() => {
-            const sliderContainer = element.querySelector('.products.nt_slider');
+            const sliderContainer = element.querySelector('.products');
             console.log(sliderContainer)
             if(!sliderContainer) return;
                 sliderContainer.removeAttribute('tabindex');
