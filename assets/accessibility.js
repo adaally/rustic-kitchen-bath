@@ -1005,7 +1005,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductSlider() {
         const elements = document.querySelectorAll('.related.product-extra');
-        console.log(elements,'here')
         elements.forEach(element => {
             const observer = new MutationObserver(() => {
                 const sliderContainer = element.querySelector('.products');
@@ -1017,6 +1016,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('aria-hidden', 'true');
                     element.setAttribute('tabindex', '-1');
                 });
+                
+                sliderContainer.querySelectorAll('.product').forEach(element => {
+                    updateVisibiliteAttributesForThumbnails(element);
+                });
+
+
+                // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                //     element.setAttribute('aria-hidden', 'true');
+                //     element.setAttribute('tabindex', '-1');
+                // });
 
                 observer.disconnect();
             });
@@ -1025,13 +1034,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 childList: true,
                 subtree: true
             });
-            
-
-            // sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-            //     element.setAttribute('aria-hidden', 'true');
-            //     element.setAttribute('tabindex', '-1');
-            // });
         });
+
+        function updateVisibiliteAttributesForThumbnails(thumbnail) {
+            if(!thumbnail) return;
+            const isActive = thumbnail.classList.contains('is-selected');
+            thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
+                element.setAttribute('aria-hidden', isActive? 'false' : 'true');
+                element.setAttribute('tabindex', isActive ? '0' : '-1');
+            });
+        }
     }
 
     fixProductSlider();
