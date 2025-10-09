@@ -1081,6 +1081,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(title) {
                 const newTitle = document.createElement('div');
                 newTitle.className = title.className;
+                newTitle.innerText = title.innerText;
                 newTitle.classList.add('h2');
                 title.replaceWith(newTitle);
             }
