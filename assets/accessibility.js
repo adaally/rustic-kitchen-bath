@@ -1004,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', closeMenusOnEscape);
 
     function fixProductSlider() {
-        const elements = document.querySelectorAll('.product-extra');
+        const elements = document.querySelectorAll('.related.product-extra');
         console.log(elements,'here')
         elements.forEach(element => {
             const sliderContainer = element.querySelector('.products.nt_slider');
