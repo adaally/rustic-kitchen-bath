@@ -1021,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sliderContainer.querySelectorAll('.product').forEach(element => {
                         updateVisibiliteAttributesForThumbnails(element);
                     });
-                }, 500);
+                }, 1000);
 
 
 
