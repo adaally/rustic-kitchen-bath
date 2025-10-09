@@ -1010,18 +1010,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sliderContainer = element.querySelector('.products');
                 if(!sliderContainer) return;
 
-                setTimeout(() => {
-                    sliderContainer.removeAttribute('tabindex');
 
-                    sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-                        element.setAttribute('aria-hidden', 'true');
-                        element.setAttribute('tabindex', '-1');
-                    });
+                sliderContainer.querySelectorAll('.product').forEach(product => {
+                    const observerThumbnail = new MutationObserver(() => {
+                        const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
 
-                    sliderContainer.querySelectorAll('.product').forEach(element => {
-                        updateVisibiliteAttributesForThumbnails(element);
+                        // 2 is the default elements number but there are more that need to load
+                        if(elements.length <= 2) return;
+
+                        sliderContainer.removeAttribute('tabindex');
+
+                        sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                            element.setAttribute('aria-hidden', 'true');
+                            element.setAttribute('tabindex', '-1');
+                        });
+
+                        sliderContainer.querySelectorAll('.product').forEach(element => {
+                            updateVisibiliteAttributesForThumbnails(element);
+                        });
+
+                        observerThumbnail.disconnect();
                     });
-                }, 3000);
+                    
+                    
+                    observerThumbnail.observe(product, {
+                        childList: true,
+                        subtree: true
+                    });
+                });
+                
 
 
 
