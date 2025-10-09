@@ -41,7 +41,7 @@
       {%- endif -%}
       <div class="product-info mt__15">
          {%- if product.vendor.size > 0 and show_vendor -%}<div class="product-brand"><a class="cg chp" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a></div>{%- endif -%}
-         <h3 class="product-title pr fs__14 mg__0 fwm"><a class="cd chp" href="{{product.url | within: collection}}">{{product.title}}</a></h3>
+         <div class="product-title pr fs__14 mg__0 fwm"><a class="cd chp" href="{{product.url | within: collection}}">{{product.title}}</a></div>
         {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
          <span class="price dib mb__5">{%- render 'product_price',product:product,inc_price:inc_price -%}</span>
          {%- if use_rating -%}{%- render 'rating',product:product,inc_rating:inc_rating -%}{%- endif -%}
