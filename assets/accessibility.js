@@ -1072,6 +1072,10 @@ document.addEventListener('DOMContentLoaded', () => {
             newLink.setAttribute('role', 'listitem');
 
             element.removeAttribute('aria-label');
+            const img = element.querySelector('.dib-post-featured-image');
+            if(img) {
+                img.setAttribute('alt', '');
+            }
 
             newLink.appendChild(element);
             blogContainer.appendChild(newLink);
