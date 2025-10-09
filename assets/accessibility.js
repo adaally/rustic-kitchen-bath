@@ -1009,6 +1009,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const thumbnailLoaded = element.querySelectorAll('.pr_grid_item a, .pr_grid_item button, .pr_grid_item .input-text, .pr_grid_item [tabindex="0"]');
                 if(thumbnailLoaded.length <= 2) return;
+                console.log(thumbnailLoaded)
                 const sliderContainer = element.querySelector('.products');
 
                 sliderContainer.removeAttribute('tabindex');
@@ -1040,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateVisibiliteAttributesForThumbnails(thumbnail) {
             if(!thumbnail) return;
             const isActive = thumbnail.classList.contains('is-selected');
-            console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
+            // console.log(thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]'), 'here')
             thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                 element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                 element.setAttribute('tabindex', isActive ? '0' : '-1');
