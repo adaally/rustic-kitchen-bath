@@ -1100,9 +1100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             const paginationNav = document.createElement('nav');
-            nav.className = pagination.className;
-            nav.innerHTML = pagination.innerHTML;
-            paginationNav.replaceWith(nav);
+            paginationNav.className = pagination.className;
+            paginationNav.innerHTML = pagination.innerHTML;
+            pagination.replaceWith(paginationNav);
         }
 
     }
