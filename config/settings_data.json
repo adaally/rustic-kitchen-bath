@@ -894,7 +894,7 @@
           "8edbc4e7-b879-4dd6-9e36-57ea3ab13225": {
             "type": "text",
             "settings": {
-              "text": "Need Help? Call Our US-Based Call Center!<b>📞<a href=\"tel:18662129706\"> 1 (866) 212-9706</a></b>",
+              "text": "Need Help? Call Our US-Based Call Center!<b>📞<a href=\"tel:18662129706\" aria-label=\"Call Rustic Kitchen and Bath: 1 (866) 212-9706\"> 1 (866) 212-9706</a></b>",
               "hide": false,
               "col": "12"
             }
