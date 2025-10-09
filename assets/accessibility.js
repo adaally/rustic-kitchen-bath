@@ -1005,10 +1005,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductSlider() {
         const elements = document.querySelectorAll('.product-extra');
+        console.log(elements,'here')
         elements.forEach(element => {
             const sliderContainer = element.querySelector('.products.nt_slider');
+            coonsole.log(sliderContainer)
             if(!sliderContainer) return;
-
+            
             setTimeout(() => {
                 sliderContainer.removeAttribute('tabindex');
 
