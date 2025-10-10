@@ -1185,8 +1185,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
                 filterBtn.addEventListener('click', () => {
                     setTimeout(() => {
-                        const isClosedContent = filterBtn.parentNode.classList.contains('boost-sd__filter-option-label--collapsed');
+                        const parent = filterBtn.parentNode;
+                        const isClosedContent = parent.classList.contains('boost-sd__filter-option-label--collapsed');
                         filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
+
+                        parent.querySelectorAll('button').forEach(element => {
+                            element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
+                            element.setAttribute('tabindex', isClosedContent ? '-1':'0');
+                        });
+
+                        parent.querySelectorAll('span').forEach(element => {
+                            element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
+                        });
                     },100)
                 });
             });
