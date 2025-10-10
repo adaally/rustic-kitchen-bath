@@ -769,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (node.nodeType === 1) {
                                 const errorMsg = node.querySelector('span[role="alert"]') ||
                                             (node.matches && node.matches('span[role="alert"]') ? node : null);
-                                if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
+                                if (errorMsg && errorMsg.textContent.includes('This field is required')) {
                                     errorMsg.textContent = 'Enter an email address in the format example@example.com';
                                 }
                             }
