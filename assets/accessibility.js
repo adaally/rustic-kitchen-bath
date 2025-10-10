@@ -1137,7 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const observer = new MutationObserver(() => {
-            const notFoundText = document.querySelector('.pp_tracking_result_title');
+            const notFoundText = document.querySelector('h1.pp_tracking_result_title');
             console.log(notFoundText)
             if(!notFoundText) return;
             const newText = document.createElement('div');
