@@ -1108,8 +1108,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 texts.forEach((text, index) => {
                     const listElement = document.createElement('div');
                     listElement.setAttribute('role', 'listitem');
-                    listElement.innerText = `${text} ${texts.length !== index+1 ? ' | ' : ''}`;
+                    listElement.innerText = text;
+                    listElement.style.display = "inline-block";
                     listText.appendChild(listElement);
+                    
+                    if(texts.length !== index+1) {
+                        const separator = document.createElement('div');
+                        separator.setAttribute('aria-hidden', 'true');
+                        separator.style.display = "inline-block";
+                        listText.appendChild(listElement);
+                    }
+
                 });
                 newLink.appendChild(listText);
             }
