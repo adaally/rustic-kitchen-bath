@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             const btnsInside = document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon');
                             btnsInside.forEach((item) => {
-                                btn.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
+                                item.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
                             });
                         }, 300)
                     });
