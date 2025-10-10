@@ -1106,14 +1106,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 listText.innerText = '';
                 listText.setAttribute('role', 'list');
                 texts.forEach((text, index) => {
-                    const listElement = document.createElement('div');
+                    const listElement = document.createElement('span');
                     listElement.setAttribute('role', 'listitem');
                     listElement.innerText = text;
                     listElement.style.display = "inline-block";
                     listText.appendChild(listElement);
                     
                     if(texts.length !== index+1) {
-                        const separator = document.createElement('div');
+                        const separator = document.createElement('span');
                         separator.setAttribute('aria-hidden', 'true');
                         separator.style.display = "inline-block";
                         listText.appendChild(listElement);
