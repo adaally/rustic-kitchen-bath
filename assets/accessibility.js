@@ -645,8 +645,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let processTimeout;
 
             function applySeptemberSavingsAccessibility(popup) {
-                const septemberTitle = popup.querySelector('span[style*="font-size: 47px"]');
-                if (septemberTitle && septemberTitle.textContent.includes('SEPTEMBER SAVINGS')) {
+                const septemberTitle = popup.querySelector('[id^="rich-text"]');
+                if (septemberTitle) {
                     const h1 = document.createElement('h1');
                     h1.style.cssText = septemberTitle.style.cssText;
                     h1.style.whiteSpace = 'nowrap';
@@ -691,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearTimeout(processTimeout);
                 processTimeout = setTimeout(() => {
                     const popup = document.querySelector('[data-testid="POPUP"]');
-                    if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
+                    if (popup && popup.querySelector('[id^="rich-text"]')) {
                         applySeptemberSavingsAccessibility(popup);
                         if (observer) {
                             observer.disconnect();
@@ -706,12 +706,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutation.addedNodes.forEach((node) => {
                             if (node.nodeType === 1) {
                                 const popup = node.querySelector && node.querySelector('[data-testid="POPUP"]');
-                                if (popup && popup.textContent.includes('SEPTEMBER SAVINGS')) {
+                                if (popup && popup.querySelector('[id^="rich-text"]')) {
                                     processPopupChanges();
                                     return;
                                 }
                                 if (node.matches && node.matches('[data-testid="POPUP"]') &&
-                                    node.textContent.includes('SEPTEMBER SAVINGS')) {
+                                    node.querySelector('[id^="rich-text"]')) {
                                     processPopupChanges();
                                     return;
                                 }
@@ -728,7 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 const existingPopup = document.querySelector('[data-testid="POPUP"]');
-                if (existingPopup && existingPopup.textContent.includes('SEPTEMBER SAVINGS')) {
+                if (existingPopup && existingPopup.querySelector('[id^="rich-text"]')) {
                     applySeptemberSavingsAccessibility(existingPopup);
                 }
             }, 1000);
