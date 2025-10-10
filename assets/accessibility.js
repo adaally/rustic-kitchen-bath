@@ -750,6 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const emailInput = popup.querySelector('input[type="email"]');
+            console.log(emailInput)
             if (emailInput && emailInput.placeholder) {
                 const currentPlaceholder = emailInput.placeholder;
                 if (!currentPlaceholder.includes('*')) {
