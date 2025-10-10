@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title.parentNode.replaceChild(h1, title);
             }
 
-            const emailInput = popup.querySelector('input[type="email"]');
+            const emailInput = popup.querySelector('input');
             console.log(popup)
             if (emailInput && emailInput.placeholder) {
                 const currentPlaceholder = emailInput.placeholder;
