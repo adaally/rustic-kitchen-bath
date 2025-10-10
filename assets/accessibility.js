@@ -1146,8 +1146,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(index === 0) {
                     input.focus();
                 }
-
-                parents[index].appendChild(element);
             });
         }
     }
