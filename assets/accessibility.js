@@ -1174,18 +1174,28 @@ document.addEventListener('DOMContentLoaded', () => {
     fixTrackingPage();
 
     function fixProductsFilter() {
-        const filterContent = document.querySelector('.boost-sd__filter-tree-vertical-content');
-        console.log(filterContent,'filters')
-        if(!filterContent) return;
+        const observer = new MutationObserver(() => {
+            const filterContent = document.querySelector('.boost-sd__filter-tree-vertical-content');
+        
+            if(!filterContent) return;
 
-        filterContent.querySelectorAll('.boost-sd__filter-option boost-sd__filter-option').forEach(element => {
-            const isClosed = element.classList.contains('boost-sd__filter-option-label--collapsed');
-            const filterBtn = element.querySelector('.boost-sd__filter-option-title');
-            filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
-            filterBtn.addEventListener('click', () => {
-                filterBtn.setAttribute('aria-expanded', element.classList.contains('boost-sd__filter-option-label--collapsed') ? 'false': 'true');
+            filterContent.querySelectorAll('.boost-sd__filter-option boost-sd__filter-option').forEach(element => {
+                const isClosed = element.classList.contains('boost-sd__filter-option-label--collapsed');
+                const filterBtn = element.querySelector('.boost-sd__filter-option-title');
+                filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
+                filterBtn.addEventListener('click', () => {
+                    filterBtn.setAttribute('aria-expanded', element.classList.contains('boost-sd__filter-option-label--collapsed') ? 'false': 'true');
+                });
             });
+
+            observer.disconnect();
         });
+
+        observer.observe(document.body, {
+            subtree: true,
+            childList: true
+        });
+
     }
 
     fixProductsFilter();
