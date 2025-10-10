@@ -1179,6 +1179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if(!filterContent) return;
 
+            filterContent.querySelectorAll('.noUi-pips').forEach(element => {
+                element.setAttribute('aria-hidden', 'true');
+            });
+
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
                 const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                 toggleElementVisibility(filterBtn);
@@ -1186,8 +1190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (const m of muts) {
                         if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
                         const filterBtnObs = element.querySelector('.boost-sd__filter-option-title');
-                            toggleElementVisibility(filterBtnObs);
-                        
+                        toggleElementVisibility(filterBtnObs);
                     }
                 });
                 const collapseContainer = element.querySelector('.boost-sd__filter-option-label');
