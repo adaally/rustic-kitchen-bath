@@ -1126,12 +1126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const trackContainer = document.querySelector('#pp-tracking-page-app');
         if(!trackContainer) return;
 
-        const submitBtn = trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_button button');
+        const submitBtn = trackContainer.querySelector('.pp_tracking_form_order .pp_tracking_button button');
         if(submitBtn) {
             submitBtn.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_order'));
         }
 
-        const submitBtn2 = trackContainer.querySelectorAll('.pp_tracking_form_number .pp_tracking_button button');
+        const submitBtn2 = trackContainer.querySelector('.pp_tracking_form_number .pp_tracking_button button');
         if(submitBtn2) {
             submitBtn2.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_number'));
         }
