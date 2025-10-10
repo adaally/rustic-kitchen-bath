@@ -774,7 +774,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         });
                     });
-                });                
+                });
+                
+            errorObserver.observe(modal, {
+                childList: true,
+                subtree: true
+            });
 
             observer.disconnect();
         });
