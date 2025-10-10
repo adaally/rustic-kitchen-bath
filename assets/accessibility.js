@@ -1096,7 +1096,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 title.replaceWith(newTitle);
             }
 
+            const listText = element.querySelector('.dib-category-text');
+
             newLink.appendChild(element);
+
+            
+            if(listText && listText.innerText.length > 0) {
+                newLink.appendChild(listText);
+            }
+
             blogContainer.appendChild(newLink);
         });
 
