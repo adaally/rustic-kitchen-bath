@@ -261,10 +261,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function addButtonRoleToGridIcons() {
                 const gridViewIndex = 0;
-                document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon').forEach((btn, index) => {
+                const btns = document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon');
+                btns.forEach((btn, index) => {
                     btn.setAttribute('role', 'button');
                     btn.setAttribute('tabindex', '0');
                     btn.setAttribute('aria-label', index === gridViewIndex ? 'Grid view' : 'List view');
+                    btn.setAttribute('aria-pressed', index === gridViewIndex)
+                    btn.addEventListener('click', () => {
+
+                    });
                 });
                 document.querySelectorAll('.boost-sd__view-as .boost-sd__tooltip-content').forEach((btn, index) => {
                     btn.setAttribute('aria-hidden', 'true');
