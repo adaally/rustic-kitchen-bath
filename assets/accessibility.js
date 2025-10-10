@@ -263,12 +263,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const gridViewIndex = 0;
                 const btns = document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon');
                 btns.forEach((btn, index) => {
+                    const isActive = index === gridViewIndex;
                     btn.setAttribute('role', 'button');
                     btn.setAttribute('tabindex', '0');
-                    btn.setAttribute('aria-label', index === gridViewIndex ? 'Grid view' : 'List view');
-                    btn.setAttribute('aria-pressed', index === gridViewIndex)
+                    btn.setAttribute('aria-label', isActive ? 'Grid view' : 'List view');
+                    btn.setAttribute('aria-pressed', isActive);
                     btn.addEventListener('click', () => {
-
+                        btns.forEach((item) => {
+                            btn.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
+                        });
                     });
                 });
                 document.querySelectorAll('.boost-sd__view-as .boost-sd__tooltip-content').forEach((btn, index) => {
