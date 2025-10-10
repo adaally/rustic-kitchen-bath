@@ -1129,10 +1129,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBtn = trackContainer.querySelector('.pp_tracking_button button');
         if(submitBtn) {
             submitBtn.addEventListener('click', () => {
-                trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input').forEach((element, index) => {
-                    const errorText = element.querySelector('.pp_tracking_alert');
+                const parents = trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input');
+                trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input .pp_tracking_alert').forEach((element, index) => {
                     if(errorText) {
-                        const input = element.querySelector('input');
+                        const input = parents[index].querySelector('input');
                         const id = input.getAttribute('name')+"_id";
                         errorText.id = id;
                         input.setAttribute('aria-describedby', id);
