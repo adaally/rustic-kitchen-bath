@@ -1109,6 +1109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const listElement = document.createElement('span');
                     listElement.setAttribute('role', 'listitem');
                     listElement.innerText = text;
+                    listElement.classList.add('dib-category-text');
                     listElement.style.display = "inline-block";
                     listText.appendChild(listElement);
                     
@@ -1116,7 +1117,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const separator = document.createElement('span');
                         separator.setAttribute('aria-hidden', 'true');
                         separator.style.display = "inline-block";
-                        listText.appendChild(listElement);
+                        separator.classList.add('dib-category-text');
+                        listText.appendChild(separator);
                     }
 
                 });
