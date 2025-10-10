@@ -1185,12 +1185,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const obs = new MutationObserver(muts => {
                     for (const m of muts) {
                         if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
-                        console.log(m)
-                        setTimeout(() => {
-                            const filterBtnObs = element.querySelector('.boost-sd__filter-option-title');
-                            console.log(filterBtnObs)
+                        const filterBtnObs = element.querySelector('.boost-sd__filter-option-title');
                             toggleElementVisibility(filterBtnObs);
-                        },100)
                         
                     }
                 });
