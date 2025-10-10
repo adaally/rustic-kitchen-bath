@@ -1133,7 +1133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input .pp_tracking_alert').forEach((element, index) => {
                     const input = parents[index].querySelector('input');
                     const id = input.getAttribute('name')+"_id";
-                    errorText.id = id;
+                    element.id = id;
                     input.setAttribute('aria-describedby', id);
                     console.log(index === 0)
                     if(index === 0) {
