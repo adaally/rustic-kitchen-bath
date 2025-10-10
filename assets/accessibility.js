@@ -748,39 +748,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 h1.textContent = title.textContent;
                 title.parentNode.replaceChild(h1, title);
             }
+            setTimeout(() =>{
+                const emailInput = popup.querySelector('input');
+                if (emailInput && emailInput.placeholder) {
+                    const currentPlaceholder = emailInput.placeholder;
+                    if (!currentPlaceholder.includes('*')) {
+                        emailInput.placeholder = currentPlaceholder + ' *';
+                    }
 
-            const emailInput = popup.querySelector('input');
-            console.log(popup)
-            if (emailInput && emailInput.placeholder) {
-                const currentPlaceholder = emailInput.placeholder;
-                if (!currentPlaceholder.includes('*')) {
-                    emailInput.placeholder = currentPlaceholder + ' *';
+
+                    const errorContainer = emailInput.nextElementSibling;
                 }
-            }
-
-            const errorMessage = popup.querySelector('span[role="alert"]');
-            if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
-                errorMessage.textContent = 'Enter an email address in the format example@example.com';
-            }
-
-                            const errorObserver = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        mutation.addedNodes.forEach((node) => {
-                            if (node.nodeType === 1) {
-                                const errorMsg = node.querySelector('span[role="alert"]') ||
-                                            (node.matches && node.matches('span[role="alert"]') ? node : null);
-                                if (errorMsg && errorMsg.textContent.includes('This field is required')) {
-                                    errorMsg.textContent = 'Enter an email address in the format example@example.com';
-                                }
+            }, 300);
+            const errorObserver = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) {
+                            const errorMsg = node.querySelector('span[role="alert"]') || (node.matches && node.matches('span[role="alert"]') ? node : null);
+                            if (errorMsg) {
+                                errorMsg.textContent = 'Enter an email address in the format example@example.com';
                             }
-                        });
+                        }
                     });
                 });
+            });
 
-                errorObserver.observe(popup, {
-                    childList: true,
-                    subtree: true
-                });
+            errorObserver.observe(popup, {
+                childList: true,
+                subtree: true
+            });
 
             observer.disconnect();
         });
