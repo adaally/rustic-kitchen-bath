@@ -1188,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const parent = filterBtn.parentNode;
                         const isClosedContent = parent.classList.contains('boost-sd__filter-option-label--collapsed');
                         filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
-
+                        console.log(parent.querySelectorAll('button'))
                         parent.querySelectorAll('button').forEach(element => {
                             element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
                             element.setAttribute('tabindex', isClosedContent ? '-1':'0');
