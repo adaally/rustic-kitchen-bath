@@ -1180,23 +1180,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!filterContent) return;
 
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
-                const isClosed = element.classList.contains('boost-sd__filter-option-label--collapsed');
                 const filterBtn = element.querySelector('.boost-sd__filter-option-title');
-                filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
+                toggleElementVisibility(filterBtn);
                 filterBtn.addEventListener('click', () => {
                     setTimeout(() => {
-                        const parent = filterBtn.parentNode;
-                        const isClosedContent = parent.classList.contains('boost-sd__filter-option-label--collapsed');
-                        filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
-                        const grandParent = parent.parentNode;
-                        grandParent.querySelectorAll('ul button').forEach(element => {
-                            element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
-                            element.setAttribute('tabindex', isClosedContent ? '-1':'0');
-                        });
-
-                        grandParent.querySelectorAll('ul span').forEach(element => {
-                            element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
-                        });
+                        toggleElementVisibility(filterBtn);
                     },100)
                 });
             });
@@ -1209,6 +1197,21 @@ document.addEventListener('DOMContentLoaded', () => {
             childList: true
         });
 
+        function toggleElementVisibility(filterBtn) {
+            const parent = filterBtn.parentNode;
+            const isClosedContent = parent.classList.contains('boost-sd__filter-option-label--collapsed');
+            filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
+            
+            const grandParent = parent.parentNode;
+            grandParent.querySelectorAll('ul button').forEach(element => {
+                element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
+                element.setAttribute('tabindex', isClosedContent ? '-1':'0');
+            });
+
+            grandParent.querySelectorAll('ul span').forEach(element => {
+                element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
+            });
+        }
     }
 
     fixProductsFilter();
