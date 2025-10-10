@@ -1108,7 +1108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 texts.forEach((text, index) => {
                     const listElement = document.createElement('div');
                     listElement.setAttribute('role', 'listitem');
-                    listElement.innerText = text + texts.length !== index+1 ? ' | ' : '';
+                    listElement.innerText = `${text} ${texts.length !== index+1 ? ' | ' : ''}`;
                     listText.appendChild(listElement);
                 });
                 newLink.appendChild(listText);
