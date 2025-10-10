@@ -1184,9 +1184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                 filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
                 filterBtn.addEventListener('click', () => {
-                    setTimeout(() => {
-                        filterBtn.setAttribute('aria-expanded', filterBtn.getAttribute('aria-expanded') === true ? 'false': 'true');
-                    }, 300);
+                    filterBtn.setAttribute('aria-expanded', filterBtn.getAttribute('aria-expanded') === true ? 'false': 'true');
                 });
             });
 
