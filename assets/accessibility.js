@@ -1183,6 +1183,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('aria-hidden', 'true');
             });
 
+            const handleLower = filterContent.querySelector('.noUi-handle.noUi-handle-lower');
+            if(handleLower) {
+                handleLower.setAttribute('aria-label', 'Minimum Price');
+            }
+
+            const handleHigher = filterContent.querySelector('.noUi-handle.noUi-handle-upper');
+            if(handleHigher) {
+                handleHigher.setAttribute('aria-label', 'Maximun Price');
+            }
+
+
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
                 const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                 toggleElementVisibility(filterBtn);
