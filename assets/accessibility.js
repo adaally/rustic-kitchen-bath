@@ -738,10 +738,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // fixSeptemberSavingsAccessibility();
     function fixPopup1(){
         const observer = new MutationObserver(() => {
-            const modal = document.querySelector('.needsclick[role="dialog"]');
-            if(!modal) return;
+            const popup = document.querySelector('.needsclick[role="dialog"]');
+            if(!popup) return;
 
-            const title = modal.querySelector('[id^="rich-text"] span');
+            const title = popup.querySelector('[id^="rich-text"] span');
             if(title) {
                 const h1 = document.createElement('h1');
                 h1.style.cssText = title.style.cssText;
@@ -776,7 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
                 
-            errorObserver.observe(modal, {
+            errorObserver.observe(popup, {
                 childList: true,
                 subtree: true
             });
