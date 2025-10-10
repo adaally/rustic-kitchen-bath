@@ -750,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const emailInput = popup.querySelector('input[type="email"]');
-            console.log(emailInput)
+            console.log(popup)
             if (emailInput && emailInput.placeholder) {
                 const currentPlaceholder = emailInput.placeholder;
                 if (!currentPlaceholder.includes('*')) {
@@ -762,25 +762,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
                 errorMessage.textContent = 'Enter an email address in the format example@example.com';
             }
-
-            const errorObserver = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === 1) {
-                            const errorMsg = node.querySelector('span[role="alert"]') ||
-                                    (node.matches && node.matches('span[role="alert"]') ? node : null);
-                            if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
-                                errorMsg.textContent = 'Enter an email address in the format example@example.com';
-                            }
-                        }
-                        });
-                    });
-                });
-                
-            errorObserver.observe(popup, {
-                childList: true,
-                subtree: true
-            });
 
             observer.disconnect();
         });
