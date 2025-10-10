@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title.parentNode.replaceChild(h1, title);
             }
             setTimeout(() =>{
-                const emailInput = popup.querySelector('input');
+                const emailInput = popup.querySelector('input:not([data-testid="phoneNumberInput"])');
                 if (emailInput && emailInput.placeholder) {
                     const currentPlaceholder = emailInput.placeholder;
                     if (!currentPlaceholder.includes('*')) {
