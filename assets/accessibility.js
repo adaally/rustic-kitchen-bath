@@ -269,7 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.setAttribute('aria-label', isActive ? 'Grid view' : 'List view');
                     btn.setAttribute('aria-pressed', isActive);
                     btn.addEventListener('click', () => {
-                        btns.forEach((item) => {
+                        const btnsInside = document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon');
+                        btnsInside.forEach((item) => {
                             btn.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
                         });
                     });
