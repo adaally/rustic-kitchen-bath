@@ -1187,7 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         const isClosedContent = filterBtn.parentNode.classList.contains('boost-sd__filter-option-label--collapsed');
                         filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
-                    },300)
+                    },100)
                 });
             });
 
