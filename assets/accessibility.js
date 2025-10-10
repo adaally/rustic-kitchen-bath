@@ -1142,6 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newText = document.createElement('div');
             newText.className = notFoundText.className;
             newText.setAttribute('role', 'alert');
+            notFoundText.replaceWith(newText);
         });
 
         observer.observe(trackContainer, {
