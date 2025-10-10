@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // fixSeptemberSavingsAccessibility();
     function fixPopup1(){
         const observer = new MutationObserver(() => {
-            const modal = document.querySelector('.needsclick[role="modal"]');
+            const modal = document.querySelector('.needsclick[role="dialog"]');
             console.log(modal)
             if(!modal) return;
 
