@@ -650,6 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const h1 = document.createElement('h1');
                     h1.style.cssText = septemberTitle.style.cssText;
                     h1.style.whiteSpace = 'nowrap';
+                    h1.style.textAlign = 'center';
                     h1.textContent = septemberTitle.textContent;
                     septemberTitle.parentNode.replaceChild(h1, septemberTitle);
                 }
@@ -734,7 +735,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
         }
 
-    fixSeptemberSavingsAccessibility();
+    // fixSeptemberSavingsAccessibility();
+    function fixPopup1(){
+        const observer = new MutationObserver(() => {
+            const modal = document.querySelector('.needsclick[role="modal"]');
+            if(!modal) return;
+
+            const title = existinmodalgPopup.querySelector('[id^="rich-text"] span');
+            if(title) {
+                const h1 = document.createElement('h1');
+                h1.style.cssText = title.style.cssText;
+                h1.textContent = title.textContent;
+                title.parentNode.replaceChild(h1, title);
+            }
+
+            observer.disconnect();
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixPopup1();
 
     function fixKlaviyoNewsletterTabOrder() {
 
