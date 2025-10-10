@@ -155,7 +155,7 @@
 				 	{%- capture heading_text -%}{%- render 'tt_inc',title:block.settings.tt_hd -%}{%- endcapture -%}
 				 	<h2 class="type_mn_link_heading"><a href="{{ block.settings.url }}" target="{{block.settings.open_link}}">{{ heading_text }}</a></h2>
 				{% endif -%}
-					<ul class="sub-column{% if block.settings.tt_hd != blank %} not_tt_mn{% endif %}">{%- for link in llists -%}
+					<ul class="sub-column{% if block.settings.tt_hd != blank %} not_tt_mn{% endif %}"{% if block.settings.tt_hd != blank %} aria-label="{{ heading_text | strip_html | strip }}"{% endif %}>{%- for link in llists -%}
 						<li class="menu-item{% if link.active %} current{% endif %}"><a href="{{ link.url }}">{%- render 'tt_inc',title:link.title -%}</a></li>
 					 {%- endfor -%}</ul>
 	         </div>
