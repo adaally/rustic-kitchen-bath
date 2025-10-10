@@ -755,9 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!currentPlaceholder.includes('*')) {
                         emailInput.placeholder = currentPlaceholder + ' *';
                     }
-
-
-                    const errorContainer = emailInput.nextElementSibling;
                 }
             }, 300);
             const errorObserver = new MutationObserver((mutations) => {
