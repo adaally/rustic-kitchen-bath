@@ -1175,10 +1175,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductsFilter() {
         const filterContent = document.querySelector('.boost-sd__filter-tree-vertical-content');
-        console.log(fixProductsFilter,'filters')
+        console.log(filterContent,'filters')
         if(!filterContent) return;
 
-        filter.querySelectorAll('.boost-sd__filter-option boost-sd__filter-option').forEach(element => {
+        filterContent.querySelectorAll('.boost-sd__filter-option boost-sd__filter-option').forEach(element => {
             const isClosed = element.classList.contains('boost-sd__filter-option-label--collapsed');
             const filterBtn = element.querySelector('.boost-sd__filter-option-title');
             filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
