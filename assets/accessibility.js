@@ -1180,13 +1180,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!filterContent) return;
 
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
-                const filterBtn = element.querySelector('.boost-sd__filter-option-title');
-                toggleElementVisibility(filterBtn);
-                filterBtn.addEventListener('click', () => {
-                    setTimeout(() => {
+                const obs = new MutationObserver(muts => {
+                    for (const m of muts) {
+                        if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
+                        const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                         toggleElementVisibility(filterBtn);
-                    },100)
+                    }
                 });
+
+                obs.observe(element, {
+                    attributes: true,
+                    attributeFilter: ['class'],
+                    attributeOldValue: true,
+                });
+
             });
 
             observer.disconnect();
@@ -1201,7 +1208,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parent = filterBtn.parentNode;
             const isClosedContent = parent.classList.contains('boost-sd__filter-option-label--collapsed');
             filterBtn.setAttribute('aria-expanded', isClosedContent ? 'false': 'true');
-            
+
             const grandParent = parent.parentNode;
             grandParent.querySelectorAll('ul button').forEach(element => {
                 element.setAttribute('aria-hidden', isClosedContent ? 'true':'false');
