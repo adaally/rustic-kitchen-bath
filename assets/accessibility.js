@@ -1142,6 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!notFoundText) return;
             const newText = document.createElement('div');
             newText.className = notFoundText.className;
+            newText.innerText = notFoundText.innerText;
             newText.setAttribute('role', 'alert');
             notFoundText.replaceWith(newText);
         });
