@@ -742,6 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!modal) return;
 
             const title = modal.querySelector('[id^="rich-text"] span');
+            console.log(modal, title)
             if(title) {
                 const h1 = document.createElement('h1');
                 h1.style.cssText = title.style.cssText;
