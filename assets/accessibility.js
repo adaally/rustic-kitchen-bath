@@ -1142,6 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const input = parents[index].querySelector('input');
                 const id = input.getAttribute('name')+"_id";
                 element.id = id;
+                console.log(element)
                 input.setAttribute('aria-describedby', id);
                 if(index === 0) {
                     input.focus();
