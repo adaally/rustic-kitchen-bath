@@ -1179,7 +1179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if(!filterContent) return;
 
-            filterContent.querySelectorAll('.boost-sd__filter-option boost-sd__filter-option').forEach(element => {
+            filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
                 const isClosed = element.classList.contains('boost-sd__filter-option-label--collapsed');
                 const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                 filterBtn.setAttribute('aria-expanded', isClosed ? 'false': 'true');
