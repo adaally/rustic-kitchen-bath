@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // fixSeptemberSavingsAccessibility();
     function fixPopup1(){
         const observer = new MutationObserver(() => {
-            const popup = document.querySelector('.needsclick[role="dialog"]');
+            const popup = document.querySelector('.needsclick[role="dialog"]' '[data-testid="POPUP"]');
             if(!popup) return;
 
             const title = popup.querySelector('[id^="rich-text"] span');
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 subtree: true
             });
 
-            observer.disconnect();
+            
         });
         
         observer.observe(document.body, {
