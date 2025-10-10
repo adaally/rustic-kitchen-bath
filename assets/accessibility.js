@@ -1138,6 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function fixErrorTextForInputs(containerID) {
             const parents = trackContainer.querySelectorAll(containerID+' .pp_tracking_input:has(.pp_tracking_alert)');
+            console.log(trackContainer.querySelectorAll(containerID+' .pp_tracking_input .pp_tracking_alert'))
             trackContainer.querySelectorAll(containerID+' .pp_tracking_input .pp_tracking_alert').forEach((element, index) => {
                 const input = parents[index].querySelector('input');
                 const id = input.getAttribute('name')+"_id";
