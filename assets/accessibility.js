@@ -1139,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         changeH1toDivAlert();
 
         const observer = new MutationObserver(() => {
-            changeH1toDivAlert(notFoundText);
+            changeH1toDivAlert();
         });
 
         observer.observe(trackContainer, {
@@ -1147,7 +1147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             childList: true
         });
 
-        function changeH1toDivAlert(notFoundText) {
+        function changeH1toDivAlert() {
             const notFoundText = document.querySelector('h1.pp_tracking_result_title');
             if(!notFoundText) return;
             const newText = document.createElement('div');
