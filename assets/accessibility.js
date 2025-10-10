@@ -739,17 +739,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixPopup1(){
         const observer = new MutationObserver(() => {
             const modal = document.querySelector('.needsclick[role="dialog"]');
-            console.log(modal)
             if(!modal) return;
 
             const title = modal.querySelector('[id^="rich-text"] span');
-            console.log(modal, title)
             if(title) {
                 const h1 = document.createElement('h1');
                 h1.style.cssText = title.style.cssText;
                 h1.textContent = title.textContent;
                 title.parentNode.replaceChild(h1, title);
             }
+
+            const emailInput = popup.querySelector('input[type="email"]');
+            if (emailInput && emailInput.placeholder) {
+                const currentPlaceholder = emailInput.placeholder;
+                if (!currentPlaceholder.includes('*')) {
+                    emailInput.placeholder = currentPlaceholder + ' *';
+                }
+            }
+
+            const errorMessage = popup.querySelector('span[role="alert"]');
+            if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
+                errorMessage.textContent = 'Enter an email address in the format example@example.com';
+            }
+
+            const errorObserver = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) {
+                            const errorMsg = node.querySelector('span[role="alert"]') ||
+                                    (node.matches && node.matches('span[role="alert"]') ? node : null);
+                            if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
+                                errorMsg.textContent = 'Enter an email address in the format example@example.com';
+                            }
+                        }
+                        });
+                    });
+                });                
 
             observer.disconnect();
         });
