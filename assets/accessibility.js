@@ -1136,19 +1136,20 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn2.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_number'));
         }
 
-        // const observer = new MutationObserver(() => {
-        //     const notFoundText = document.querySelector('.pp_tracking_result_title');
-        //     if(!notFoundText) return;
-        //     const newText = document.createElement('div');
-        //     newText.className = notFoundText.className;
-        //     newText.setAttribute('role', 'alert');
-        //     notFoundText.replaceWith(newText);
-        // });
+        const observer = new MutationObserver(() => {
+            const notFoundText = document.querySelector('.pp_tracking_result_title');
+            console.log(notFoundText)
+            if(!notFoundText) return;
+            const newText = document.createElement('div');
+            newText.className = notFoundText.className;
+            newText.setAttribute('role', 'alert');
+            notFoundText.replaceWith(newText);
+        });
 
-        // observer.observe(trackContainer, {
-        //     subtree: true,
-        //     childList: true
-        // })
+        observer.observe(trackContainer, {
+            subtree: true,
+            childList: true
+        })
 
         function fixErrorTextForInputs(containerID) {
             const parents = trackContainer.querySelectorAll(containerID+' .pp_tracking_input:has(.pp_tracking_alert)');
