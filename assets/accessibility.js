@@ -271,9 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.addEventListener('click', () => {
                         setTimeout(() => {
                             btns.forEach((item) => {
-                            item.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
-                        });
-                        }, 100)
+                                item.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
+                            });
+                        }, 100);
                     });
                 });
                 document.querySelectorAll('.boost-sd__view-as .boost-sd__tooltip-content').forEach((btn, index) => {
