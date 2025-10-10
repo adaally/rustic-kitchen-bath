@@ -1122,4 +1122,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hideHRandBR();
 
+    function fixTrackingPage() {
+        const trackContainer = document.querySelector('#pp-tracking-page-app');
+        if(!trackContainer) return;
+
+        const submitBtn = trackContainer.querySelector('.pp_tracking_button button');
+        if(submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                trackContainer.querySelectorAll('.pp_tracking_input').forEach(element => {
+                    const errorText = element.querySelector('.pp_tracking_alert');
+                    if(errorText) {
+                        const input = element.querySelector('input');
+                        const id = input.getAttribute('name')+"_id";
+                        errorText.id = id;
+                        input.setAttribute('aria-describedby', id);
+                    }
+                });
+            });
+        }
+    }
+
+    fixTrackingPage();
+
 });
