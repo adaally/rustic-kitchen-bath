@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.needsclick[role="modal"]');
             if(!modal) return;
 
-            const title = existinmodalgPopup.querySelector('[id^="rich-text"] span');
+            const title = modal.querySelector('[id^="rich-text"] span');
             if(title) {
                 const h1 = document.createElement('h1');
                 h1.style.cssText = title.style.cssText;
