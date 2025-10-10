@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
       function fixThumbnailAccessibility() {
-            if (!window.location.pathname.includes('/collections/')) return;
+            if (!window.location.pathname.includes('/collections/') && !window.location.pathname.includes('/search')) return;
 
             let productList = null;
 
