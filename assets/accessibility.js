@@ -1180,6 +1180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!filterContent) return;
 
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
+                toggleElementVisibility(filterBtn);
                 const obs = new MutationObserver(muts => {
                     for (const m of muts) {
                         if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
