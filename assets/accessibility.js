@@ -1127,23 +1127,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!trackContainer) return;
 
         const submitBtn = trackContainer.querySelector('.pp_tracking_form_order .pp_tracking_button button');
-        // if(submitBtn) {
-        //     submitBtn.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_order'));
-        // }
+        if(submitBtn) {
+            submitBtn.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_order'));
+        }
 
-        // const submitBtn2 = trackContainer.querySelector('.pp_tracking_form_number .pp_tracking_button button');
-        // if(submitBtn2) {
-        //     submitBtn2.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_number'));
-        // }
+        const submitBtn2 = trackContainer.querySelector('.pp_tracking_form_number .pp_tracking_button button');
+        if(submitBtn2) {
+            submitBtn2.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_number'));
+        }
 
         function fixErrorTextForInputs(containerID) {
             const parents = trackContainer.querySelectorAll(containerID+' .pp_tracking_input:has(.pp_tracking_alert)');
-            console.log(trackContainer.querySelectorAll(containerID+' .pp_tracking_input .pp_tracking_alert'))
             trackContainer.querySelectorAll(containerID+' .pp_tracking_input .pp_tracking_alert').forEach((element, index) => {
                 const input = parents[index].querySelector('input');
                 const id = input.getAttribute('name')+"_id";
                 element.id = id;
-                console.log(element)
                 input.setAttribute('aria-describedby', id);
                 if(index === 0) {
                     input.focus();
