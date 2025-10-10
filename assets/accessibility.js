@@ -269,12 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.setAttribute('aria-label', isActive ? 'Grid view' : 'List view');
                     btn.setAttribute('aria-pressed', isActive);
                     btn.addEventListener('click', () => {
-                        setTimeout(() => {
-                            const btnsInside = document.querySelectorAll('.boost-sd__view-as .boost-sd__view-as-icon');
-                            btnsInside.forEach((item) => {
-                                item.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
-                            });
-                        }, 300)
+                        btns.forEach((item) => {
+                            item.setAttribute('aria-pressed', item.classList.contains('boost-sd__view-as-icon--active'));
+                        });
                     });
                 });
                 document.querySelectorAll('.boost-sd__view-as .boost-sd__tooltip-content').forEach((btn, index) => {
