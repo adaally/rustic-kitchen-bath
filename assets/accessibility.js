@@ -1194,7 +1194,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                     }
                 });
-                const collapseContainer = element.querySelector('.boost-sd__filter-option');
+                const collapseContainer = element.querySelector('.boost-sd__filter-option-label');
                 obs.observe(collapseContainer, {
                     attributes: true,
                     attributeFilter: ['class'],
