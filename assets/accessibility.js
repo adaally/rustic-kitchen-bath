@@ -1185,6 +1185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const obs = new MutationObserver(muts => {
                     for (const m of muts) {
                         if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
+                        console.log()
                         setTimeout(() => {
                             const filterBtnObs = element.querySelector('.boost-sd__filter-option-title');
                             console.log(filterBtnObs)
@@ -1193,8 +1194,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                     }
                 });
-
-                obs.observe(element, {
+                const collapseContainer = element.querySelector('boost-sd__filter-option boost-sd__filter-option');
+                obs.observe(collapseContainer, {
                     attributes: true,
                     attributeFilter: ['class'],
                     attributeOldValue: true,
