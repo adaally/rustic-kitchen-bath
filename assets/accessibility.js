@@ -1138,10 +1138,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const observer = new MutationObserver(() => {
             const notFoundText = document.querySelector('h1.pp_tracking_result_title');
-            console.log(notFoundText)
             if(!notFoundText) return;
             const newText = document.createElement('div');
-            newText.className = notFoundText.className;
+            copyAttributes(notFoundText, newText);
             newText.innerText = notFoundText.innerText;
             newText.setAttribute('role', 'alert');
             notFoundText.replaceWith(newText);
@@ -1168,4 +1167,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixTrackingPage();
 
+
+    function copyAttributes(source, target) {
+        if (!source || !target) return;
+
+        for (let attr of source.attributes) {
+            target.setAttribute(attr.name, attr.value);
+        }
+    }
 });
