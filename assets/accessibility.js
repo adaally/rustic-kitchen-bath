@@ -1116,6 +1116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(texts.length !== index+1) {
                         const separator = document.createElement('span');
                         separator.setAttribute('aria-hidden', 'true');
+                        separator.innerText = ' | '
                         separator.style.display = "inline-block";
                         separator.classList.add('dib-category-text');
                         listText.appendChild(separator);
