@@ -1102,6 +1102,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             
             if(listText && listText.innerText.length > 0) {
+                const texts = listText.innerText.split('|');
+                listText.innerText = '';
+                listText.setAttribute('role', 'list');
+                texts.forEach((text, index) => {
+                    const listElement = document.createElement('div');
+                    listElement.setAttribute('role', 'listitem');
+                    listElement.innerText = text + texts.length !== index+1 ? ' | ' : '';
+                    listText.appendChild(listElement);
+                });
                 newLink.appendChild(listText);
             }
 
