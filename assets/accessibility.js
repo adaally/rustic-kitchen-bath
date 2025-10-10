@@ -1129,13 +1129,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBtn = trackContainer.querySelector('.pp_tracking_button button');
         if(submitBtn) {
             submitBtn.addEventListener('click', () => {
-                trackContainer.querySelectorAll('.pp_tracking_input').forEach(element => {
+                trackContainer.querySelectorAll('.pp_tracking_input').forEach((element, index) => {
                     const errorText = element.querySelector('.pp_tracking_alert');
                     if(errorText) {
                         const input = element.querySelector('input');
                         const id = input.getAttribute('name')+"_id";
                         errorText.id = id;
                         input.setAttribute('aria-describedby', id);
+
+                        if(index === 0) {
+                            input.focus();
+                        }
                     }
                 });
             });
