@@ -739,6 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixPopup1(){
         const observer = new MutationObserver(() => {
             const modal = document.querySelector('.needsclick[role="modal"]');
+            console.log(modal)
             if(!modal) return;
 
             const title = modal.querySelector('[id^="rich-text"] span');
