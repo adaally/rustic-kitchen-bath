@@ -1180,11 +1180,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!filterContent) return;
 
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
+                const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                 toggleElementVisibility(filterBtn);
                 const obs = new MutationObserver(muts => {
                     for (const m of muts) {
                         if (m.type !== 'attributes' || m.attributeName !== 'class') continue;
-                        const filterBtn = element.querySelector('.boost-sd__filter-option-title');
                         toggleElementVisibility(filterBtn);
                     }
                 });
