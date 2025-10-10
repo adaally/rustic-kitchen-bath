@@ -1136,7 +1136,18 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn2.addEventListener('click', () => fixErrorTextForInputs('.pp_tracking_form_number'));
         }
 
+        changeH1toDivAlert();
+
         const observer = new MutationObserver(() => {
+            changeH1toDivAlert(notFoundText);
+        });
+
+        observer.observe(trackContainer, {
+            subtree: true,
+            childList: true
+        });
+
+        function changeH1toDivAlert(notFoundText) {
             const notFoundText = document.querySelector('h1.pp_tracking_result_title');
             if(!notFoundText) return;
             const newText = document.createElement('div');
@@ -1144,12 +1155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newText.innerText = notFoundText.innerText;
             newText.setAttribute('role', 'alert');
             notFoundText.replaceWith(newText);
-        });
-
-        observer.observe(trackContainer, {
-            subtree: true,
-            childList: true
-        })
+        }
 
         function fixErrorTextForInputs(containerID) {
             const parents = trackContainer.querySelectorAll(containerID+' .pp_tracking_input:has(.pp_tracking_alert)');
