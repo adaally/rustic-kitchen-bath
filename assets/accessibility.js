@@ -1129,6 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBtn = trackContainer.querySelector('.pp_tracking_button button');
         if(submitBtn) {
             submitBtn.addEventListener('click', () => {
+                console.log(trackContainer.querySelectorAll('.pp_tracking_input'))
                 trackContainer.querySelectorAll('.pp_tracking_input').forEach((element, index) => {
                     const errorText = element.querySelector('.pp_tracking_alert');
                     if(errorText) {
