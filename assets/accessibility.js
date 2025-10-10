@@ -1129,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBtn = trackContainer.querySelector('.pp_tracking_button button');
         if(submitBtn) {
             submitBtn.addEventListener('click', () => {
-                const parents = trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input');
+                const parents = trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input:has(.pp_tracking_alert)');
                 trackContainer.querySelectorAll('.pp_tracking_form_order .pp_tracking_input .pp_tracking_alert').forEach((element, index) => {
                     const input = parents[index].querySelector('input');
                     const id = input.getAttribute('name')+"_id";
