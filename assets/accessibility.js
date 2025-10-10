@@ -1105,6 +1105,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const texts = listText.innerText.split('|');
                 listText.innerText = '';
                 listText.setAttribute('role', 'list');
+                if(title) {
+                    listText.setAttribute('aria-label', `${title.innerText} Categories`)
+                }
                 texts.forEach((text, index) => {
                     const listElement = document.createElement('span');
                     listElement.setAttribute('role', 'listitem');
