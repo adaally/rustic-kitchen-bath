@@ -1114,4 +1114,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixBlogList();
 
+    function hideHRandBR(){
+        document.querySelectorAll('hr, br').forEach(element => {
+            element.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    hideHRandBR();
+
 });
