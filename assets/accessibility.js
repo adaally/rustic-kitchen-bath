@@ -640,102 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
         cartWidgetAccessibility();
 
-       function fixSeptemberSavingsAccessibility() {
-            let observer;
-            let processTimeout;
-
-            function applySeptemberSavingsAccessibility(popup) {
-                const septemberTitle = popup.querySelector('[id^="rich-text"]');
-                if (septemberTitle) {
-                    const h1 = document.createElement('h1');
-                    h1.style.cssText = septemberTitle.style.cssText;
-                    h1.style.whiteSpace = 'nowrap';
-                    h1.style.textAlign = 'center';
-                    h1.textContent = septemberTitle.textContent;
-                    septemberTitle.parentNode.replaceChild(h1, septemberTitle);
-                }
-
-                const emailInput = popup.querySelector('input[type="email"]');
-                if (emailInput && emailInput.placeholder) {
-                    const currentPlaceholder = emailInput.placeholder;
-                    if (!currentPlaceholder.includes('*')) {
-                        emailInput.placeholder = currentPlaceholder + ' *';
-                    }
-                }
-
-                const errorMessage = popup.querySelector('span[role="alert"]');
-                if (errorMessage && errorMessage.textContent.includes('This email is invalid')) {
-                    errorMessage.textContent = 'Enter an email address in the format example@example.com';
-                }
-
-                const errorObserver = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        mutation.addedNodes.forEach((node) => {
-                            if (node.nodeType === 1) {
-                                const errorMsg = node.querySelector('span[role="alert"]') ||
-                                            (node.matches && node.matches('span[role="alert"]') ? node : null);
-                                if (errorMsg && errorMsg.textContent.includes('This email is invalid')) {
-                                    errorMsg.textContent = 'Enter an email address in the format example@example.com';
-                                }
-                            }
-                        });
-                    });
-                });
-
-                errorObserver.observe(popup, {
-                    childList: true,
-                    subtree: true
-                });
-            }
-
-            function processPopupChanges() {
-                clearTimeout(processTimeout);
-                processTimeout = setTimeout(() => {
-                    const popup = document.querySelector('[data-testid="POPUP"]');
-                    if (popup && popup.querySelector('[id^="rich-text"]')) {
-                        applySeptemberSavingsAccessibility(popup);
-                        if (observer) {
-                            observer.disconnect();
-                        }
-                    }
-                }, 250);
-            }
-
-            observer = new MutationObserver((mutations) => {
-                for (const mutation of mutations) {
-                    if (mutation.type === 'childList') {
-                        mutation.addedNodes.forEach((node) => {
-                            if (node.nodeType === 1) {
-                                const popup = node.querySelector && node.querySelector('[data-testid="POPUP"]');
-                                if (popup && popup.querySelector('[id^="rich-text"]')) {
-                                    processPopupChanges();
-                                    return;
-                                }
-                                if (node.matches && node.matches('[data-testid="POPUP"]') &&
-                                    node.querySelector('[id^="rich-text"]')) {
-                                    processPopupChanges();
-                                    return;
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-
-            setTimeout(() => {
-                const existingPopup = document.querySelector('[data-testid="POPUP"]');
-                if (existingPopup && existingPopup.querySelector('[id^="rich-text"]')) {
-                    applySeptemberSavingsAccessibility(existingPopup);
-                }
-            }, 1000);
-        }
-
-    // fixSeptemberSavingsAccessibility();
     function fixPopup1(){
         const observer = new MutationObserver(() => {
             const popup = document.querySelector('.needsclick[role="dialog"] [data-testid="POPUP"]');
@@ -778,8 +682,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 childList: true,
                 subtree: true
             });
-
-            
         });
         
         observer.observe(document.body, {
@@ -789,6 +691,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixPopup1();
+
+    function fixPopupPrivacy() {
+        const observer = new MutationObserver(() => {
+            const popup = document.querySelector('#shopify-pc__banner');
+            if(!popup) return;
+
+            const title = popup.querySelector('.shopify-pc__banner__body-title');
+            if(title) {
+                const h1 = document.createElement('h1');
+                copyAttributes(title, h1);
+                h1.innerText = title.innerText;
+                title.replaceWith(h1);
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
 
     function fixKlaviyoNewsletterTabOrder() {
 
