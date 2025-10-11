@@ -756,6 +756,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         emailInput.placeholder = currentPlaceholder + ' *';
                     }
                 }
+
+                popup.querySelectorAll('a').forEach(element => {
+                    element.style.textDecoration = 'underline';
+                });
             }, 300);
             const errorObserver = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
