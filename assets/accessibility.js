@@ -712,6 +712,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    fixPopupPrivacy();
+
     function fixKlaviyoNewsletterTabOrder() {
 
         function setupErrorMessages(form) {
