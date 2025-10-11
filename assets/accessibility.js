@@ -705,6 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 h1.innerText = title.innerText;
                 title.replaceWith(h1);
             }
+            observer.disconnect();
         });
 
         observer.observe(document.body, {
