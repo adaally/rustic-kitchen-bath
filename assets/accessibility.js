@@ -698,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(popup)
             if(!popup) return;
 
-            const title = popup.querySelector('.shopify-pc__banner__body-title');
+            const title = popup.querySelector('#shopify-pc__banner__body-title');
             if(title) {
                 const h1 = document.createElement('h1');
                 copyAttributes(title, h1);
