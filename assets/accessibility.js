@@ -695,6 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixPopupPrivacy() {
         const observer = new MutationObserver(() => {
             const popup = document.querySelector('#shopify-pc__banner');
+            console.log(popup)
             if(!popup) return;
 
             const title = popup.querySelector('.shopify-pc__banner__body-title');
