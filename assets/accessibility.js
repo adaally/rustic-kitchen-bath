@@ -610,14 +610,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const atag = document.querySelector('.icon_cart a');
             console.log(atag)
             atag.addEventListener('click', (e) => {
-                e.preventDefault();
-                const overlay = document.querySelector('.mask-overlay');
-                console.log(overlay);
-                if(overlay) {
-                    setTimeout(() => {
-                        overlay.classList.remove('mask_opened');
-                    }, 100);
-                }
+                const link = document.querySelector('.icon_cart');
+                link.click()
+                // const overlay = document.querySelector('.mask-overlay');
+                // console.log(overlay);
+                // if(overlay) {
+                //     setTimeout(() => {
+                //         overlay.classList.remove('mask_opened');
+                //     }, 100);
+                // }
             });
 
             if (!cartSection || !cartCanvas) {
