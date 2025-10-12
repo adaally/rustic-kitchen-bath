@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartCanvas.setAttribute('aria-hidden', !isVisible);
                 console.log(cartCanvas.querySelectorAll('a, button, textarea, button, input'), 'elements')
                 cartCanvas.querySelectorAll('a, button, textarea, button, input').forEach(element => {
-                    isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
+                    !isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
                     element.setAttribute('aria-hidden', !isVisible);
                 });
             }
