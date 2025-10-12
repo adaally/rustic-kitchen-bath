@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         overlay.click();
                         cartCanvas.classList.contains('current_hover') ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
-                        ;
+                        
                     }, 100);
                 }
             });
