@@ -612,13 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
-            toggleVisibility(cartSection, initialVisible);
+            toggleVisibility(cartCanvas, initialVisible);
 
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
                         const cartIsVisible = cartCanvas.classList.contains('current_hover');
-                        toggleVisibility(cartSection, cartIsVisible);
+                        toggleVisibility(cartCanvas, cartIsVisible);
                     }
                 });
             });
@@ -627,11 +627,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 attributes: true
             });
 
-            function toggleVisibility(cartSection, isVisible) {
-                isVisible ? cartSection.removeAttribute('tabindex') : cartSection.setAttribute('tabindex', '-1');
-                cartSection.setAttribute('aria-hidden', !isVisible);
-                console.log(cartSection.querySelectorAll('a, button, textarea, button'), 'elements')
-                cartSection.querySelectorAll('a, button, textarea, button').forEach(element => {
+            function toggleVisibility(cartCanvas, isVisible) {
+                isVisible ? cartCanvas.removeAttribute('tabindex') : cartCanvas.setAttribute('tabindex', '-1');
+                cartCanvas.setAttribute('aria-hidden', !isVisible);
+                console.log(cartCanvas.querySelectorAll('a, button, textarea, button'), 'elements')
+                cartCanvas.querySelectorAll('a, button, textarea, button').forEach(element => {
                     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
                     element.setAttribute('aria-hidden', !isVisible);
                 });
