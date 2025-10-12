@@ -613,7 +613,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const overlay = document.querySelector('.mask-overlay');
                 console.log(overlay);
                 if(overlay) {
-                    overlay.classList.remove('mask_opened');
+                    setTimeout(() => {
+                        overlay.classList.remove('mask_opened');
+                    }, 100);
                 }
             });
 
