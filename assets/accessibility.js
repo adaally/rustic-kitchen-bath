@@ -611,14 +611,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(atag)
             atag.addEventListener('click', (e) => {
                 const link = document.querySelector('.icon_cart');
-                link.click()
-                // const overlay = document.querySelector('.mask-overlay');
-                // console.log(overlay);
-                // if(overlay) {
-                //     setTimeout(() => {
-                //         overlay.classList.remove('mask_opened');
-                //     }, 100);
-                // }
+                
+                const overlay = document.querySelector('.mask-overlay');
+                console.log(overlay);
+                if(overlay) {
+                    setTimeout(() => {
+                        link.click()
+                    }, 100);
+                }
             });
 
             if (!cartSection || !cartCanvas) {
