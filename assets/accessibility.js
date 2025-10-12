@@ -629,11 +629,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function toggleVisibility(cartCanvas, isVisible) {
                 isVisible ? cartCanvas.removeAttribute('tabindex') : cartCanvas.setAttribute('tabindex', '-1');
-                cartCanvas.setAttribute('aria-hidden', !isVisible);
-                console.log(cartCanvas.querySelectorAll('a, button, textarea, button, input'), 'elements')
+                cartCanvas.setAttribute('aria-hidden', isVisible);
                 cartCanvas.querySelectorAll('a, button, textarea, button, input').forEach(element => {
                     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
-                    element.setAttribute('aria-hidden', !isVisible);
+                    element.setAttribute('aria-hidden', isVisible);
                 });
             }
         }
