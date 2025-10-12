@@ -614,8 +614,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(overlay) {
                     setTimeout(() => {
                         overlay.click();
-                        cartCanvas.classList.contains('current_hover') ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
-                        
+                        const active = cartCanvas.classList.contains('current_hover');
+                        active ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
+                        if(active) {
+                            const activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)')
+                            trapFocus(activeContainer, cartLink);
+                        }
+
                     }, 100);
                 }
             });
