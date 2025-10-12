@@ -637,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     
-        cartWidgetAccessibility();
+        // cartWidgetAccessibility();
 
     function fixPopup1(){
         const observer = new MutationObserver(() => {
