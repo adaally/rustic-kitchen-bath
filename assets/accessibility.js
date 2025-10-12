@@ -612,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
-            // toggleVisibility(cartCanvas, !initialVisible);
+            toggleVisibility(cartCanvas, initialVisible);
                         console.log(initialVisible, 'isActive')
                         console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
             const observer = new MutationObserver(function(mutations) {
@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log(cartIsVisible, 'isActive')
                         console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
                         
-                        // toggleVisibility(cartCanvas, !cartIsVisible);
+                        // toggleVisibility(cartCanvas, cartIsVisible);
                     }
                 });
             });
