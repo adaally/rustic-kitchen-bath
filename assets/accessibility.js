@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
             // toggleVisibility(cartCanvas, !initialVisible);
-                        console.log(cartIsVisible, 'isActive')
+                        console.log(initialVisible, 'isActive')
                         console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
