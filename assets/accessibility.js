@@ -629,15 +629,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function toggleVisibility(cartCanvas, isVisible) {
                 isVisible ? cartCanvas.removeAttribute('tabindex') : cartCanvas.setAttribute('tabindex', '-1');
-                cartCanvas.setAttribute('aria-hidden', isVisible);
-                cartCanvas.querySelectorAll('a, button, textarea, button, input').forEach(element => {
+                // cartCanvas.setAttribute('aria-hidden', isVisible);
+                // cartCanvas.querySelectorAll('a, button, textarea, button, input').forEach(element => {
+                //     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
+                //     element.setAttribute('aria-hidden', isVisible);
+                // });
+
+                cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
+                    element.setAttribute('aria-hidden', isVisible ? 'true' : 'false');
                     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
-                    element.setAttribute('aria-hidden', isVisible);
                 });
             }
         }
     
-        // cartWidgetAccessibility();
+        cartWidgetAccessibility();
+
+        
+
+    function toggleTabindexWhenCartVisible() {
+        const cart = document.querySelector('#shopify-section-cart_widget');
+        if(!cart) return;
+        const containerHidden = cart.getAttribute('aria-hidden') === 'true';
+
+
+        const observer = new MutationObserver(mutations => {
+            for (const m of mutations) {
+                if (m.type === 'attributes' && m.attributeName === 'aria-hidden') {
+                    const isHidden = cart.getAttribute('aria-hidden') === 'true';
+                    console.log('aria-hidden changed:', isHidden);
+                    cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
+                        element.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+                        element.setAttribute('tabindex', isHidden ? '-1' : '0');
+                    });
+                }
+            }
+        });
+
+        observer.observe(cart, {
+            attributes: true,
+            attributeFilter: ['aria-hidden']
+        });
+    }
+
+    // toggleTabindexWhenCartVisible();
 
     function fixPopup1(){
         const observer = new MutationObserver(() => {
@@ -796,36 +830,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixKlaviyoNewsletterTabOrder();
-
-    function toggleTabindexWhenCartVisible() {
-        const cart = document.querySelector('#shopify-section-cart_widget');
-        if(!cart) return;
-        const containerHidden = cart.getAttribute('aria-hidden') === 'true';
-        cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
-                        element.setAttribute('aria-hidden', containerHidden ? 'true' : 'false');
-                        element.setAttribute('tabindex', containerHidden ? '-1' : '0');
-                    });
-
-        const observer = new MutationObserver(mutations => {
-            for (const m of mutations) {
-                if (m.type === 'attributes' && m.attributeName === 'aria-hidden') {
-                    const isHidden = cart.getAttribute('aria-hidden') === 'true';
-                    console.log('aria-hidden changed:', isHidden);
-                    cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
-                        element.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
-                        element.setAttribute('tabindex', isHidden ? '-1' : '0');
-                    });
-                }
-            }
-        });
-
-        observer.observe(cart, {
-            attributes: true,
-            attributeFilter: ['aria-hidden']
-        });
-    }
-
-    toggleTabindexWhenCartVisible();
 
     function fixTabListPrudct() {
         const container = document.querySelector('#shopify-section-pr_description');
