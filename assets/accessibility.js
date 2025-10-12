@@ -612,6 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
             atag.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     if (atag) {
+                        console.log('click')
                     atag.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
                     atag.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
                     }
