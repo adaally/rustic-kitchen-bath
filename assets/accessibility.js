@@ -612,19 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
-            setTimeout(() => {
-                            toggleVisibility(cartCanvas, initialVisible);
-                        console.log(initialVisible, 'isActive')
-                        console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
-            }, 300);
+            toggleVisibility(cartCanvas, initialVisible);
+            
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
                         const cartIsVisible = cartCanvas.classList.contains('current_hover');
-                        console.log(cartIsVisible, 'isActive')
-                        console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
-                        
-                        // toggleVisibility(cartCanvas, cartIsVisible);
+                        toggleVisibility(cartCanvas, cartIsVisible);
                     }
                 });
             });
@@ -635,12 +629,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function toggleVisibility(cartCanvas, isVisible) {
                 isVisible ? cartCanvas.removeAttribute('tabindex') : cartCanvas.setAttribute('tabindex', '-1');
-                // cartCanvas.setAttribute('aria-hidden', isVisible);
-                // cartCanvas.querySelectorAll('a, button, textarea, button, input').forEach(element => {
-                //     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
-                //     element.setAttribute('aria-hidden', isVisible);
-                // });
-
                 cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex], .mini_cart_dis, .mini_cart_note').forEach(element => {
                     element.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
                     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
