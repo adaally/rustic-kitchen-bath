@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // });
 
                 cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
-                    element.setAttribute('aria-hidden', isVisible ? 'true' : 'false');
+                    element.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
                     isVisible ? element.setAttribute('tabindex', '0') : element.setAttribute('tabindex', '-1');
                 });
             }
