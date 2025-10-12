@@ -608,12 +608,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartCanvas = document.getElementById('nt_cart_canvas');
 
             const atag = document.querySelector('.icon_cart a');
-            console.log(atag)
             atag.addEventListener('click', (e) => {
-                const link = document.querySelector('.icon_cart');
-                
                 const overlay = document.querySelector('.mask-overlay');
-                console.log(overlay);
                 if(overlay) {
                     setTimeout(() => {
                         overlay.click()
