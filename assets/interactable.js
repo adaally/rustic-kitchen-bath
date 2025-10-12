@@ -198,6 +198,7 @@
    geckoShopify.cartPosDropdown = function() {
      
       if (!body.hasClass('cart_pos_dropdown') || touchevents || body.hasClass('template-cart')) return;
+      console.log('here hovered')
         var $cart = $('#nt_cart_canvas'),
             $icon_cart = $('.cart_pos_dropdown .icon_cart'),
             $window = $(window),
