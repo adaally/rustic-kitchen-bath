@@ -224,7 +224,6 @@
            interval: 100,
            timeout: 100, 
            over:function(t){
-            console.log('hovered')
               //console.log(t);
             //console.log('a11');
               top = $icon_cart.offset().top + 40;
