@@ -607,13 +607,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartSection = document.getElementById('shopify-section-cart_widget');
             const cartCanvas = document.getElementById('nt_cart_canvas');
 
+            const atag = document.querySelector('.icon_cart a');
+            console.log(atag)
+            atag.addEventListener(() => {
+                const overlay = document.querySelector('.mask-overlay');
+                console.log(overlay);
+                if(overlay) {
+                    overlay.classList.remove('mask_opened');
+                }
+            });
+
             if (!cartSection || !cartCanvas) {
                 return;
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
             toggleVisibility(cartCanvas, initialVisible);
-            
+
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
@@ -636,36 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     
-        cartWidgetAccessibility();
-
-        
-
-    function toggleTabindexWhenCartVisible() {
-        const cart = document.querySelector('#shopify-section-cart_widget');
-        if(!cart) return;
-        const containerHidden = cart.getAttribute('aria-hidden') === 'true';
-
-
-        const observer = new MutationObserver(mutations => {
-            for (const m of mutations) {
-                if (m.type === 'attributes' && m.attributeName === 'aria-hidden') {
-                    const isHidden = cart.getAttribute('aria-hidden') === 'true';
-                    console.log('aria-hidden changed:', isHidden);
-                    cart.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
-                        element.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
-                        element.setAttribute('tabindex', isHidden ? '-1' : '0');
-                    });
-                }
-            }
-        });
-
-        observer.observe(cart, {
-            attributes: true,
-            attributeFilter: ['aria-hidden']
-        });
-    }
-
-    // toggleTabindexWhenCartVisible();
+    cartWidgetAccessibility();
 
     function fixPopup1(){
         const observer = new MutationObserver(() => {
