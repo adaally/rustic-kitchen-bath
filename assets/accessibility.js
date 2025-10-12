@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(overlay);
                 if(overlay) {
                     setTimeout(() => {
-                        link.click()
+                        overlay.click()
                     }, 100);
                 }
             });
