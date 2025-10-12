@@ -158,7 +158,7 @@ var nt_currency = (sp_nt_storage) ? localStorage.getItem('nt_currency') : null, 
                 ModTouchevents = Modernizr.touchevents;
 
             body.on("click", ".push_side", function (e) {
-               console.log('click');
+               //console.log('click');
                var _this = $(this),
                    _id = _this.data('id'), 
                    $id = $(_id);
