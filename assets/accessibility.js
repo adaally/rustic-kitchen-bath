@@ -608,28 +608,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartCanvas = document.getElementById('nt_cart_canvas');
 
             const atag = document.querySelector('.icon_cart a');
-
-            atag.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    if (atag) {
-                        console.log('click')
-                    atag.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-                    atag.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
-                    }
-                }
-                });
-
-            atag.addEventListener('click', (e) => {
-                if (atag) {
-                    atag.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-                    atag.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
-                }
-                });
+            
             atag.addEventListener('click', (e) => {
                 const overlay = document.querySelector('.mask-overlay');
                 if(overlay) {
                     setTimeout(() => {
                         overlay.click()
+                        cartCanvas.classList.add('current_hover');
                     }, 100);
                 }
             });
