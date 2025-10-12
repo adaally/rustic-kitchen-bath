@@ -612,23 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
-            if (initialVisible) {
-                cartSection.removeAttribute('tabindex');
-            } else {
-                cartSection.setAttribute('tabindex', '-1');
-            }
-            cartSection.setAttribute('aria-hidden', !initialVisible);
+            toggleVisibility(cartSection, initialVisible);
 
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
                         const cartIsVisible = cartCanvas.classList.contains('current_hover');
-                        if (cartIsVisible) {
-                            cartSection.removeAttribute('tabindex');
-                        } else {
-                            cartSection.setAttribute('tabindex', '-1');
-                        }
-                        cartSection.setAttribute('aria-hidden', !cartIsVisible);
+                        toggleVisibility(cartSection, cartIsVisible);
                     }
                 });
             });
@@ -636,6 +626,16 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(cartCanvas, {
                 attributes: true
             });
+
+            function toggleVisibility(cartSection, isVisible) {
+                isVisible ? cartSection.removeAttribute('tabindex') : cartSection.setAttribute('tabindex', '-1');
+                cartSection.setAttribute('aria-hidden', !isVisible);
+
+                cartSection.querySelectorAll().forEach(element => {
+                    isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
+                    element.setAttribute('aria-hidden', !isVisible);
+                });
+            }
         }
     
         cartWidgetAccessibility();
