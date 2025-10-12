@@ -612,14 +612,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const initialVisible = cartCanvas.classList.contains('current_hover');
-            toggleVisibility(cartCanvas, !initialVisible);
-
+            // toggleVisibility(cartCanvas, !initialVisible);
+                        console.log(cartIsVisible, 'isActive')
+                        console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.attributeName === 'class') {
+                        const cartIsVisible = cartCanvas.classList.contains('current_hover');
                         console.log(cartIsVisible, 'isActive')
                         console.log(cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]'), 'elements')
-                        // const cartIsVisible = cartCanvas.classList.contains('current_hover');
+                        
                         // toggleVisibility(cartCanvas, !cartIsVisible);
                     }
                 });
