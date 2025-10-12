@@ -641,9 +641,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     element.setAttribute('aria-hidden', isVisible);
                 // });
 
-                cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
+                cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex], .mini_cart_dis, .mini_cart_note').forEach(element => {
                     element.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
-                    isVisible ? element.setAttribute('tabindex', '0') : element.setAttribute('tabindex', '-1');
+                    isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
                 });
             }
         }
