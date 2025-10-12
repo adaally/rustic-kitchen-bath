@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         overlay.click();
                         const active = cartCanvas.classList.contains('current_hover');
                         active ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
-                        if(active) {
+                        if(!active) {
                             const activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)');
                             console.log(activeContainer)
                             trapFocus(activeContainer, cartLink);
