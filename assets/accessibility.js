@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 cartCanvas.querySelectorAll('a[href], input:not([type="hidden"]), select, textarea, button, [tabindex]').forEach(element => {
                     element.setAttribute('aria-hidden', isVisible ? 'true' : 'false');
-                    isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
+                    isVisible ? element.setAttribute('tabindex', '0') : element.setAttribute('tabindex', '-1');
                 });
             }
         }
