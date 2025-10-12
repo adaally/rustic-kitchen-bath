@@ -630,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
             function toggleVisibility(cartSection, isVisible) {
                 isVisible ? cartSection.removeAttribute('tabindex') : cartSection.setAttribute('tabindex', '-1');
                 cartSection.setAttribute('aria-hidden', !isVisible);
-
+                console.log(cartSection.querySelectorAll('a, button, textarea, button'), 'elements')
                 cartSection.querySelectorAll('a, button, textarea, button').forEach(element => {
                     isVisible ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
                     element.setAttribute('aria-hidden', !isVisible);
