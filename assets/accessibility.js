@@ -422,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
 
                 if (mainLink && secondLink && infoBlock) {
+                    console.log('entered block')
                     mainLink.appendChild(infoBlock);
                     secondLink.remove();
                     mainLink.classList.add('boost-sd__product-link-wrapper');
@@ -535,7 +536,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 let processTimeout;
 
                 const processProductChanges = () => {
-                    console.log('CALLED')
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
