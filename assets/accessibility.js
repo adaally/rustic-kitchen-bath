@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function clearImageAlts() {
-                const productImages = document.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
+                const productImages = document.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""]), .boost-sd__product-item-list-view-layout .boost-sd__product-image-img[alt]:not([alt=""])');
                 productImages.forEach(img => {
                     img.alt = '';
                 });
@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     list.setAttribute('aria-label', getCollectionName());
                 }
 
-                const productItems = document.querySelectorAll('.boost-sd__product-item:not([role])');
+                const productItems = document.querySelectorAll('.boost-sd__product-item:not([role]), .boost-sd__product-item-list-view-layout:not([role])');
                 productItems.forEach(item => {
                     item.setAttribute('role', 'listitem');
                 });
@@ -512,9 +512,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const list = getProductList();
                 if (!list) return false;
 
-                const unprocessedItems = list.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
-                const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""])');
-                const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role])');
+                const unprocessedItems = list.querySelectorAll('.boost-sd__product-item:not(.structure-fixed), .boost-sd__product-item-list-view-layout:not(.structure-fixed)');
+                const imagesWithAlt = list.querySelectorAll('.boost-sd__product-item .boost-sd__product-image-img[alt]:not([alt=""]), .boost-sd__product-item-list-view-layout .boost-sd__product-image-img[alt]:not([alt=""])');
+                const itemsWithoutRole = list.querySelectorAll('.boost-sd__product-item:not([role]), .boost-sd__product-item-list-view-layout:not([role])');
                 const buttonsWithoutLabel = list.querySelectorAll('.boost-sd__btn-quick-view:not([aria-label])');
 
                 return unprocessedItems.length === 0 && 
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     processTimeout = setTimeout(() => {
                         
-                        const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed)');
+                        const itemsToProcess = document.querySelectorAll('.boost-sd__product-item:not(.structure-fixed), .boost-sd__product-item-list-view-layout:not(.structure-fixed)');
                         itemsToProcess.forEach(restructureProductItem);
 
                         addButtonRoleToGridIcons();
