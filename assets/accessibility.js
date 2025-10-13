@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.classList.remove('is_hover');
                     item.classList.remove('menu_item_hover');
                     
-                    const link = item.querySelector('a');
+                    const link = item.querySelector('.menu_link_icon');
                     if (link) link.setAttribute('aria-expanded', 'false');
                 });
                 
@@ -721,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
                 
         document.addEventListener('keydown', closeMenusOnEscape);
-        
+
         function listeningToMenuLinkIcon() {
             document.querySelectorAll('.menu_link_icon').forEach(element => {
                 const parentLi = element.parentElement;
