@@ -630,6 +630,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixThumbnailAccessibility();
 
+        function fixSelectedFilterItems() {
+            const observer = new MutationObserver(() => {
+                const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
+                if(!container) return;
+
+                const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
+                const listContainer = container.querySelector('.boost-sd__refine-by-vertical-refine-by-list');
+
+                title.id = 'current_filters_title';
+
+                listContainer.setAttribute('aria-labelledby', title.id);
+                listContainer.setAttribute('role', 'list');
+
+                listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
+                    const listitem = document.createElement('div');
+                    listitem.setAttribute('role', 'listitem');
+
+                    const hiddenText = document.createElement('span');
+                    hiddenText.innerText = 'Remove filter, ';
+                    hiddenText.classList.add('visually-hidden');
+                    
+                    element.prepend(hiddenText);
+                    element.removeAttribute('aria-label');
+                    listitem.appendChild(element);
+                    listContainer.appendChild(listitem);
+                });
+            });
+
+            observer.observe(document.body, {
+                subtree: true,
+                childList: true
+            });
+        }
+
+        fixSelectedFilterItems();
+
         function cartWidgetAccessibility() {
             const cartSection = document.getElementById('shopify-section-cart_widget');
             const cartCanvas = document.getElementById('nt_cart_canvas');
