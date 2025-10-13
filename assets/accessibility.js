@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     button.addEventListener('click', () => {
                         setTimeout(() => {
-                            initAccessibilityObserver();
+                            processProductChanges()
                         }, 300)
                     });
                 });
