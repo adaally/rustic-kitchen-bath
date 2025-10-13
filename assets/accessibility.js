@@ -698,30 +698,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixSearchPopup();
 
-    function closeMenusOnEscape(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            const nav = document.querySelector('.nt_navigation');
-            nav.classList.add('hover-disabled');
-            
-            document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
-                item.classList.remove('is_hover');
-                item.classList.remove('menu_item_hover');
+        function closeMenusOnEscape(e) {
+            if (e.key === 'Escape' || e.keyCode === 27) {
+                const nav = document.querySelector('.nt_navigation');
+                nav.classList.add('hover-disabled');
                 
-                const link = item.querySelector('a');
-                if (link) link.setAttribute('aria-expanded', 'false');
-            });
-            
-            function reactivateHover() {
-                nav.classList.remove('hover-disabled');
-                nav.removeEventListener('mouseleave', reactivateHover);
+                document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
+                    item.classList.remove('is_hover');
+                    item.classList.remove('menu_item_hover');
+                    
+                    const link = item.querySelector('a');
+                    if (link) link.setAttribute('aria-expanded', 'false');
+                });
+                
+                function reactivateHover() {
+                    nav.classList.remove('hover-disabled');
+                    nav.removeEventListener('mouseleave', reactivateHover);
+                }
+                
+                nav.addEventListener('mouseleave', reactivateHover);
             }
-            
-            nav.addEventListener('mouseleave', reactivateHover);
         }
-    }
-            
-    initMenuAriaExpanded();
-    document.addEventListener('keydown', closeMenusOnEscape);
+                
+        document.addEventListener('keydown', closeMenusOnEscape);
+        
         function listeningToMenuLinkIcon() {
             document.querySelectorAll('.menu_link_icon').forEach(element => {
                 const parentLi = element.parentElement;
@@ -736,7 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 element.addEventListener('click', () => {
                     const nextElement = element.nextElementSibling;
-                    
+
                     if(nextElement) {
                         const offEscape = onEscape(() => {
                             nextElement.classList.remove('li_hovered');
