@@ -605,13 +605,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         attributeFilter: ['class']
                     });
                 }
-            }
+
+                
 
             document.querySelectorAll('.boost-sd__pagination .boost-sd__pagination-number').forEach(element => {
                 element.addEventListener('click', () => {
                     processProductChanges();
                 })
             })
+            }
 
             initAccessibilityObserver();
         }
