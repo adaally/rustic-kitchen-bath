@@ -681,7 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const searchContainer = document.querySelector('#nt_search_canvas');
                     console.log(searchContainer)
                     if(searchContainer) {
-                        searchContainer.querySelectorAll('input, button').forEach((el, index) => {
+                        searchContainer.querySelectorAll('input:not([type="hidden"]), button').forEach((el, index) => {
                             // const tabindex = 
                             el.setAttribute('tabindex', index);
                         })
