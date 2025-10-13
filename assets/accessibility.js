@@ -198,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function trapFocus(container, btnOpenModal) {
             const focusables = getFocusableElements(container);
-            console.log(focusables, 'focusables')
             if (focusables.length === 0) return;
-
+            
+            console.log(focusables[0], 'focusables')
             // Focus first element
             focusables[0].focus();
 
