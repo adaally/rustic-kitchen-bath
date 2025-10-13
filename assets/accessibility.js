@@ -618,11 +618,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         active ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
                         if(!active) {
                             let activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)');
-                            console.log(activeContainer)
+                            
 
                             if(activeContainer.classList.contains('mini_cart_wrap')) {
                                 activeContainer = activeContainer.querySelector(':scope > div:not(.dn)');
                             }
+                            console.log(activeContainer)
 
                             const offEscape = onEscape(() => {
                                 cartCanvas.classList.remove('current_hover')
