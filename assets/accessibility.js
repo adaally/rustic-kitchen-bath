@@ -679,6 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(searchBtn) {
                 searchBtn.addEventListener('click', () => {
                     const searchContainer = document.querySelector('#nt_search_canvas');
+                    console.log(searchContainer)
                     if(searchContainer) {
                         trapFocus(searchContainer, searchBtn);
                     }
