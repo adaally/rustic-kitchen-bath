@@ -684,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(searchContainer) {
                         // searchBtnInner.setAttribute('tabindex', '-1');
                         // searchBtnInner.setAttribute('aria-hidden', 'true');
-                        trapFocus(searchContainer, searchBtn);
+                        // trapFocus(searchContainer, searchBtn);
                     }
                 });
             }
