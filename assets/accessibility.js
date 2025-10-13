@@ -680,10 +680,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchBtn.addEventListener('click', () => {
                     const searchContainer = document.querySelector('#nt_search_canvas');
                     const searchBtnInner = searchContainer.querySelector('.search_header__submit');
-                    const searchInput = searchContainer.querySelector('.search_header__submit');
+                    const searchInput = searchContainer.querySelector('.search_header__input');
                     if(searchContainer) {
-                        searchBtnInner.setAttribute('tabindex', '-1');
-                        searchBtnInner.setAttribute('aria-hidden', 'true');
+                        // searchBtnInner.setAttribute('tabindex', '-1');
+                        // searchBtnInner.setAttribute('aria-hidden', 'true');
                         trapFocus(searchContainer, searchBtn);
                     }
                 });
