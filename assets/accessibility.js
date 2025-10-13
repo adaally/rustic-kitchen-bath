@@ -687,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // fixSearchPopup();
+        fixSearchPopup();
     
     cartWidgetAccessibility();
 
