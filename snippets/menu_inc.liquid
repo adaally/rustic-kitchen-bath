@@ -26,8 +26,8 @@
          {%- when 'simple' -%}{% if block.settings.url != blank %}<li id="item_{{block.id}}" class="menu-item type_simple" {{ block.shopify_attributes }}><a class="lh__1 flex al_center pr" href="{{block.settings.url}}" target="{{block.settings.open_link}}"{% if block.settings.cus_cl %} style="color:{{block.settings.cl}}"{% endif %}>{%- render 'title_menu',block:block -%}</a></li>{% endif %}
          {%- else -%}
             <li id="item_{{block.id}}" class="type_{{block.type}} menu_wid_{{block.settings.wid}} menu-item has-children menu_has_offsets menu_{{block.settings.pos}} pos_{{block.settings.pos}}" {{ block.shopify_attributes }}>
-               <a class="lh__1 flex al_center pr" href="{{block.settings.url}}" target="{{block.settings.open_link}}"{% if block.settings.cus_cl %} style="color:{{block.settings.cl}}"{% endif %}>{%- render 'title_menu',block:block -%}</a>
-               <span role="button" tabindex="0">
+               <a class="lh__1 flex al_center pr" id="item_title{{block.id}}" href="{{block.settings.url}}" target="{{block.settings.open_link}}"{% if block.settings.cus_cl %} style="color:{{block.settings.cl}}"{% endif %}>{%- render 'title_menu',block:block -%}</a>
+               <span role="button" tabindex="0" aria-labelledby="item_title{{block.id}}">
                   <svg style="margin-left: -14px;"
                      xmlns="http://www.w3.org/2000/svg"
                      width="16"
