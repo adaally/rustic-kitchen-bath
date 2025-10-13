@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(nextElement, 'next')
                     if(nextElement) {
                         const isActive = nextElement.classList.contains('li_hovered');
-                        isActive ? nextElement.classList.add('li_hovered') : nextElement.classList.remove('li_hovered');
+                        !isActive ? nextElement.classList.add('li_hovered') : nextElement.classList.remove('li_hovered');
                     }
                 });
 
