@@ -621,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(activeContainer)
 
                             if(activeContainer.classList.contains('mini_cart_wrap')) {
-                                activeContainer = tactiveContainer.querySelector(':scope > div:not(.dn)');
+                                activeContainer = activeContainer.querySelector(':scope > div:not(.dn)');
                             }
 
                             trapFocus(activeContainer, cartLink);
