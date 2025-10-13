@@ -708,7 +708,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.classList.remove('menu_item_hover');
                     
                     const link = item.querySelector('.menu_link_icon');
-                    if (link) link.setAttribute('aria-expanded', 'false');
+                    const submenu = link.nextElementSibling;
+                    if (link && !submenu.classList.contains('li_hovered')) link.setAttribute('aria-expanded', 'false');
                 });
                 
                 function reactivateHover() {
