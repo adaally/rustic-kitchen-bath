@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 
 
-            document.querySelectorAll('.boost-sd__pagination .boost-sd__pagination-number').forEach(element => {
+            document.querySelectorAll('.boost-sd__pagination .boost-sd__pagination-number, .boost-sd__view-as .boost-sd__view-as-icon').forEach(element => {
                 element.addEventListener('click', () => {
                     processProductChanges();
                 })
