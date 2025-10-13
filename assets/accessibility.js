@@ -196,8 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(lazyImg, { attributes: true });
         }
 
-        function trapFocus(container, btnOpenModal) {
-            const focusables = getFocusableElements(container);
+        function trapFocus(container, btnOpenModal, focusableElements) {
+            let focusables = [];
+            if(focusableElements) {
+                focusables = focusableElements;
+            } else {
+                focusables = getFocusableElements(container);
+            }
+            
             if (focusables.length === 0) return;
             
             console.log(focusables[0], 'focusables')
