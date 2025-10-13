@@ -698,16 +698,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fixSearchPopup();
 
+    function closeMenusOnEscape(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            const nav = document.querySelector('.nt_navigation');
+            nav.classList.add('hover-disabled');
+            
+            document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
+                item.classList.remove('is_hover');
+                item.classList.remove('menu_item_hover');
+                
+                const link = item.querySelector('a');
+                if (link) link.setAttribute('aria-expanded', 'false');
+            });
+            
+            function reactivateHover() {
+                nav.classList.remove('hover-disabled');
+                nav.removeEventListener('mouseleave', reactivateHover);
+            }
+            
+            nav.addEventListener('mouseleave', reactivateHover);
+        }
+    }
+            
+    initMenuAriaExpanded();
+    document.addEventListener('keydown', closeMenusOnEscape);
         function listeningToMenuLinkIcon() {
             document.querySelectorAll('.menu_link_icon').forEach(element => {
+                const parentLi = element.parentElement;
+            
+                parentLi.addEventListener('mouseenter', function() {
+                    element.setAttribute('aria-expanded', 'true');
+                });
+                
+                parentLi.addEventListener('mouseleave', function() {
+                    element.setAttribute('aria-expanded', 'false');
+                });
+                
                 element.addEventListener('click', () => {
-                    const prevElement = element.nextElementSibling;
                     const nextElement = element.nextElementSibling;
+                    
                     if(nextElement) {
-
                         const offEscape = onEscape(() => {
                             nextElement.classList.remove('li_hovered');
-                            prevElement.setAttribute('aria-expanded', 'false');
+                            element.setAttribute('aria-expanded', 'false');
                         });
 
                         function onEscape(handler) {
@@ -719,15 +752,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             nextElement.addEventListener('keydown', listener);
                             return () => nextElement.removeEventListener('keydown', listener);
                         }
-                        nextElement.addEventListener('keydown')
-
+                        nextElement.addEventListener('keydown');
 
                         if(!nextElement.classList.contains('li_hovered')) {
                             nextElement.classList.add('li_hovered')
-                            prevElement.setAttribute('aria-expanded', 'true');
+                            element.setAttribute('aria-expanded', 'true');
                         } else {
                             nextElement.classList.remove('li_hovered');
-                            prevElement.setAttribute('aria-expanded', 'false');
+                            element.setAttribute('aria-expanded', 'false');
                         }
                     }
                 });
@@ -1023,45 +1055,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixProductImagesDisplay();
-
-    function initMenuAriaExpanded() {
-        document.querySelectorAll('.nt_menu .has-children > a').forEach(function(link) {
-            const parentLi = link.parentElement;
-            
-            parentLi.addEventListener('mouseenter', function() {
-            link.setAttribute('aria-expanded', 'true');
-            });
-            
-            parentLi.addEventListener('mouseleave', function() {
-            link.setAttribute('aria-expanded', 'false');
-            });
-        });
-    }
-
-    function closeMenusOnEscape(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            const nav = document.querySelector('.nt_navigation');
-            nav.classList.add('hover-disabled');
-            
-            document.querySelectorAll('.nt_menu .has-children').forEach(function(item) {
-                item.classList.remove('is_hover');
-                item.classList.remove('menu_item_hover');
-                
-                const link = item.querySelector('a');
-                if (link) link.setAttribute('aria-expanded', 'false');
-            });
-            
-            function reactivateHover() {
-                nav.classList.remove('hover-disabled');
-                nav.removeEventListener('mouseleave', reactivateHover);
-            }
-            
-            nav.addEventListener('mouseleave', reactivateHover);
-        }
-    }
-            
-    initMenuAriaExpanded();
-    document.addEventListener('keydown', closeMenusOnEscape);
 
     function fixProductSlider() {
         const elements = document.querySelectorAll('.related.product-extra');
