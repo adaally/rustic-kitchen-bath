@@ -665,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        fixSelectedFilterItems();
+        // fixSelectedFilterItems();
 
         function cartWidgetAccessibility() {
             const cartSection = document.getElementById('shopify-section-cart_widget');
