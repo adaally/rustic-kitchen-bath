@@ -9,7 +9,7 @@
    assign save_js = 'products.product.save_js' | t: saved_amount:'saved_amount' -%}
    
 <div class="nt_mini_cart flex column h__100">
-   <div class="mini_cart_header flex fl_between al_center"><div class="widget-title h3 tu fs__16 mg__0">{{ 'general.search.title' | t }}</div><i class="close_pp pegk pe-7s-close ts__03 cd"></i></div>
+   <div class="mini_cart_header flex fl_between al_center"><div aria-level="1" role="heading" class="widget-title h3 tu fs__16 mg__0">{{ 'general.search.title' | t }}</div><i class="close_pp pegk pe-7s-close ts__03 cd"></i></div>
    <div class="mini_cart_wrap">
       <form action="{{ routes.search_url }}" method="get" class="search_header mini_search_frm pr js_frm_search" role="search">
          <input type="hidden" name="type" value="product">
