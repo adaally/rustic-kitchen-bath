@@ -27,19 +27,21 @@
          {%- else -%}
             <li id="item_{{block.id}}" class="type_{{block.type}} menu_wid_{{block.settings.wid}} menu-item has-children menu_has_offsets menu_{{block.settings.pos}} pos_{{block.settings.pos}}" {{ block.shopify_attributes }}>
                <a class="lh__1 flex al_center pr" href="{{block.settings.url}}" target="{{block.settings.open_link}}"{% if block.settings.cus_cl %} style="color:{{block.settings.cl}}"{% endif %}>{%- render 'title_menu',block:block -%}</a>
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  >
-                  <polyline points="6 9 12 15 18 9" />
+               <span role="button" tabindex="0">
+                  <svg style="margin-left: -14px;"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="#3d1c1a73"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     >
+                     <polyline points="6 9 12 15 18 9" />
                   </svg>
+               </span>
                <div class="{{block.settings.wid}} sub-menu"><div class="container"{% if  block.settings.wid != 'full nav_t4cnt' %} style="width:{{block.settings.cus_wid}}px"{% endif %}><div class="row lazy_menu lazyload lazy_menu_mega" data-include="{{search_url}}?q={{block.id}}&view=header" data-jspackery='{ "itemSelector": ".sub-column-item","gutter": 0,"percentPosition": true,"originLeft": {{ltr}} }'><div class="lds_bginfinity pr"></div></div></div></div>
             </li>
       {%- endcase -%}
