@@ -478,12 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         button.setAttribute('aria-hidden', 'true');
                         button.setAttribute('tabindex', '-1');
                     }
-
-                    button.addEventListener('click', () => {
-                        setTimeout(() => {
-                            processProductChanges()
-                        }, 1300)
-                    });
                 });
 
                 const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev');
@@ -571,6 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productObserver = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                            console.log('changed', mutation)
                             processProductChanges();
                             return;
                         }
