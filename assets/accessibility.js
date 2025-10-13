@@ -673,6 +673,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
+
+        function fixSearchPopup() {
+            const searchBtn = document.querySelector('.icon_search');
+            if(searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    const searchContainer = document.querySelector('#nt_search_canvas');
+                    if(searchContainer) {
+                        trapFocus(searchContainer, searchBtn);
+                    }
+                });
+            }
+        }
     
     cartWidgetAccessibility();
 
