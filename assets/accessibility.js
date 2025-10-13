@@ -703,6 +703,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.addEventListener('click', () => {
                     const nextElement = element.nextElementSibling;
                     if(nextElement) {
+
+                        const offEscape = onEscape(() => {
+                            nextElement.classList.remove('li_hovered');
+                            element.setAttribute('aria-expanded', 'false');
+                        });
+
+                        function onEscape(handler) {
+                            function listener(e) {
+                                if (e.key === 'Escape' || e.key === 'Esc' || e.code === 'Escape') {
+                                    handler(e);
+                                }
+                            }
+                            nextElement.addEventListener('keydown', listener);
+                            return () => nextElement.removeEventListener('keydown', listener);
+                        }
+                        nextElement.addEventListener('keydown')
+
+
                         if(!nextElement.classList.contains('li_hovered')) {
                             nextElement.classList.add('li_hovered')
                             element.setAttribute('aria-expanded', 'true');
