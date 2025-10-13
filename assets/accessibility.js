@@ -633,6 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function fixSelectedFilterItems() {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
+                console.log(container)
                 if(!container) return;
 
                 const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
@@ -650,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const hiddenText = document.createElement('span');
                     hiddenText.innerText = 'Remove filter, ';
                     hiddenText.classList.add('visually-hidden');
-                    
+
                     element.prepend(hiddenText);
                     element.removeAttribute('aria-label');
                     listitem.appendChild(element);
