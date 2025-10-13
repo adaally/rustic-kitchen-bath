@@ -535,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let processTimeout;
 
                 const processProductChanges = () => {
+                    console.log('CALLED')
                     clearTimeout(processTimeout);
                     
                     processTimeout = setTimeout(() => {
