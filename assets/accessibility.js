@@ -634,8 +634,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         handler(e);
                                     }
                                 }
-                                container.addEventListener('keydown', listener);
-                                return () => container.removeEventListener('keydown', listener);
+                                activeContainer.addEventListener('keydown', listener);
+                                return () => activeContainer.removeEventListener('keydown', listener);
                             }
 
                             trapFocus(activeContainer, cartLink);
