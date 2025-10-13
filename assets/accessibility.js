@@ -478,6 +478,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         button.setAttribute('aria-hidden', 'true');
                         button.setAttribute('tabindex', '-1');
                     }
+
+                    button.addEventListener('click', () => {
+                        initAccessibilityObserver();
+                    });
                 });
 
                 const prevButton = pagination.querySelector('.boost-sd__pagination-button--prev');
@@ -503,9 +507,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const h1Element = document.querySelector('.boost-sd__header-title');
                 if (h1Element && h1Element.textContent.trim()) {
                     const collectionName = h1Element.textContent.trim();
-                    return `${collectionName}'s collection`;
+                    return `${collectionName}`;
                 }
-                return "Products collection";
+                return "Products";
             }
 
             function isProductProcessingComplete() {
