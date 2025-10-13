@@ -16,6 +16,20 @@
 
                              {%- if linklists[block.settings.menu].links.size > 0 -%}
                                  <li id="item_{{block.id}}" class="menu-item item-level-0 menu-item-has-children {{only_icon}}" {{ block.shopify_attributes }}>
+                                  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <polyline points="6 9 12 15 18 9" />
+</svg>
+
                                    <a href="{{block.settings.url}}" target="{{block.settings.open_link}}"><span class="nav_link_txt flex al_center"{% if block.settings.cus_cl %} style="color: {{block.settings.cl}}"{% endif %}>{% if block.settings.icon != blank %}<i class="las la-{{block.settings.icon | strip }} mr__10 fs__15"></i>{% endif %}{{block.settings.title}}{% if block.settings.lb != blank %}<span class="lbc_nav_mb ml__5" style="background-color: {{block.settings.lb_cl | default:'#01bad4'}}">{{block.settings.lb}}</span>{% endif %}</span><span class="nav_link_icon ml__5"></span></a>
                                    <ul class="sub-menu">
                                       {%- for link in linklists[block.settings.menu].links -%}
