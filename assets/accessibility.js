@@ -626,6 +626,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             console.log(activeContainer)
 
+                            trapFocus(activeContainer, cartLink);
+
                             const offEscape = onEscape(() => {
                                 cartCanvas.classList.remove('current_hover')
                             });
@@ -640,7 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 return () => activeContainer.removeEventListener('keydown', listener);
                             }
 
-                            trapFocus(activeContainer, cartLink);
+                            
                         }
 
                     }, 100);
