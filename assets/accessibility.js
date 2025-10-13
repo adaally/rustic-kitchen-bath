@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     button.addEventListener('click', () => {
                         setTimeout(() => {
                             processProductChanges()
-                        }, 300)
+                        }, 1300)
                     });
                 });
 
