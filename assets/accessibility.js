@@ -699,14 +699,17 @@ document.addEventListener('DOMContentLoaded', () => {
         fixSearchPopup();
 
         function listeningToMenuLinkIcon() {
-            console.log(document.querySelectorAll('.menu_link_icon'), 'icons')
             document.querySelectorAll('.menu_link_icon').forEach(element => {
                 element.addEventListener('click', () => {
                     const nextElement = element.nextElementSibling;
-                    console.log(nextElement, 'next')
                     if(nextElement) {
-                        const isActive = nextElement.classList.contains('li_hovered');
-                        !isActive ? nextElement.classList.add('li_hovered') : nextElement.classList.remove('li_hovered');
+                        if(!nextElement.classList.contains('li_hovered')) {
+                            nextElement.classList.add('li_hovered')
+                            element.setAttribute('aria-expanded', 'true');
+                        } else {
+                            nextElement.classList.remove('li_hovered');
+                            element.setAttribute('aria-expanded', 'false');
+                        }
                     }
                 });
 
