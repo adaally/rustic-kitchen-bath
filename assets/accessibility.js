@@ -726,17 +726,17 @@ document.addEventListener('DOMContentLoaded', () => {
         function listeningToMenuLinkIcon() {
             document.querySelectorAll('.menu_link_icon').forEach(element => {
                 const parentLi = element.parentElement;
+                const nextElement = element.nextElementSibling;
             
                 parentLi.addEventListener('mouseenter', function() {
                     element.setAttribute('aria-expanded', 'true');
                 });
                 
                 parentLi.addEventListener('mouseleave', function() {
-                    element.setAttribute('aria-expanded', 'false');
+                    if (!nextElement.classList.contains('li_hovered')) element.setAttribute('aria-expanded', 'false');
                 });
                 
                 element.addEventListener('click', () => {
-                    const nextElement = element.nextElementSibling;
 
                     if(nextElement) {
                         const offEscape = onEscape(() => {
