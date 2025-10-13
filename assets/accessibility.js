@@ -480,7 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     button.addEventListener('click', () => {
-                        initAccessibilityObserver();
+                        setTimeout(() => {
+                            initAccessibilityObserver();
+                        }, 300)
                     });
                 });
 
