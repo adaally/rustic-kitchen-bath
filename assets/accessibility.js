@@ -682,9 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const searchBtnInner = searchContainer.querySelector('.search_header__submit');
                     const searchInput = searchContainer.querySelector('.search_header__submit');
                     if(searchContainer) {
-                        trapFocus(searchContainer, searchBtn);
                         searchBtnInner.setAttribute('tabindex', '-1');
                         searchBtnInner.setAttribute('aria-hidden', 'true');
+                        trapFocus(searchContainer, searchBtn);
                     }
                 });
             }
