@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
 
                             const offEscape = onEscape(() => {
-                                cartCanvas.classList.remove('current_hover')
+                                cartCanvas.classList.remove('current_hover');
                             });
 
                             function onEscape(handler) {
