@@ -685,6 +685,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
+
+        fixSearchPopup();
     
     cartWidgetAccessibility();
 
