@@ -624,9 +624,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(activeContainer.classList.contains('mini_cart_wrap')) {
                                 activeContainer = activeContainer.querySelector(':scope > div:not(.dn)');
                             }
-                            console.log(activeContainer)
-
-                            trapFocus(activeContainer, cartLink);
 
                             const offEscape = onEscape(() => {
                                 cartCanvas.classList.remove('current_hover')
@@ -641,8 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 activeContainer.addEventListener('keydown', listener);
                                 return () => activeContainer.removeEventListener('keydown', listener);
                             }
-
-                            
+                            trapFocus(activeContainer, cartLink);
                         }
 
                     }, 100);
