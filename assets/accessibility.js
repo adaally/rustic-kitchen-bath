@@ -419,10 +419,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const mainLink = item.querySelector('.boost-sd__product-link-image');
                 const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
+
+                if(item.classList.contains('boost-sd__product-item-list-view-layout')){
+                    replaceLinkWithSpan(mainLink, secondLink)
+                    item.classList.add('structure-fixed');
+                    return;
+                }
+
                 const infoBlock = secondLink ? secondLink.querySelector('.boost-sd__product-info') : null;
 
                 if (mainLink && secondLink && infoBlock) {
-                    console.log('entered block')
                     mainLink.appendChild(infoBlock);
                     secondLink.remove();
                     mainLink.classList.add('boost-sd__product-link-wrapper');
@@ -1336,6 +1342,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixProductsFilter();
+
+    function replaceLinkWithSpan(link, secondLink) {
+        const newSpan = document.createElement('span');
+        copyAttributes(link, newSpan);
+        newSpan.removeAttribute('href');
+        newSpan.removeAttribute('target');
+        newSpan.style.cursor = 'pointer';
+        newSpan.innerHTML = link.innerHTML;
+        link.replaceWith(newSpan);
+        newSpan.addEventListener('click', () => {
+            secondLink.click();
+        });
+        return newSpan;
+    }
 
 
     function copyAttributes(source, target) {
