@@ -421,7 +421,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const secondLink = item.querySelector('a:not(.boost-sd__product-link-image)');
 
                 if(item.classList.contains('boost-sd__product-item-list-view-layout')){
-                    replaceLinkWithSpan(mainLink, secondLink)
+                    replaceLinkWithSpan(mainLink, secondLink);
+
+                    item.querySelectorAll('.boost-sd__product-item-list-view-layout-cta-buttons button').forEach(element => {
+                        element.removeAttribute('title');
+                    });
+
                     item.classList.add('structure-fixed');
                     return;
                 }
@@ -572,7 +577,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 productObserver = new MutationObserver((mutationsList) => {
                     for (const mutation of mutationsList) {
                         if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                            console.log('changed', mutation)
                             processProductChanges();
                             return;
                         }
