@@ -617,8 +617,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         const active = cartCanvas.classList.contains('current_hover');
                         active ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
                         if(!active) {
-                            const activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)');
+                            let activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)');
                             console.log(activeContainer)
+
+                            if(activeContainer.classList.contains('mini_cart_wrap')) {
+                                activeContainer = tactiveContainer.querySelector(':scope > div:not(.dn)');
+                            }
+
                             trapFocus(activeContainer, cartLink);
                         }
 
