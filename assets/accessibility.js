@@ -657,6 +657,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     listitem.appendChild(element);
                     listContainer.appendChild(listitem);
                 });
+
+                observer.disconnect();
             });
 
             observer.observe(document.body, {
