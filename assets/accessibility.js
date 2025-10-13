@@ -618,11 +618,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         active ? cartCanvas.classList.remove('current_hover') : cartCanvas.classList.add('current_hover');
                         if(!active) {
                             let activeContainer = cartCanvas.querySelector('.mini_cart_wrap:not(.pe_none), .mini_cart_note:not(.pe_none), .mini_cart_dis:not(.pe_none)');
-                            // console.log(activeContainer)
+                            console.log(activeContainer)
 
-                            // if(activeContainer.classList.contains('mini_cart_wrap')) {
-                            //     activeContainer = activeContainer.querySelector(':scope > div:not(.dn)');
-                            // }
+                            if(activeContainer.classList.contains('mini_cart_wrap')) {
+                                activeContainer = activeContainer.querySelector(':scope > div:not(.dn)');
+                            }
+
+                            const offEscape = onEscape(() => {
+                                cartCanvas.classList.remove('current_hover')
+                            });
+
+                            function onEscape(handler) {
+                                function listener(e) {
+                                    if (e.key === 'Escape' || e.key === 'Esc' || e.code === 'Escape') {
+                                        handler(e);
+                                    }
+                                }
+                                container.addEventListener('keydown', listener);
+                                return () => container.removeEventListener('keydown', listener);
+                            }
 
                             trapFocus(activeContainer, cartLink);
                         }
