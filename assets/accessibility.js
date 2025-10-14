@@ -646,11 +646,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 listContainer.setAttribute('aria-labelledby', title.id);
                 listContainer.setAttribute('role', 'list');
 
-                listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
-                    replaceChildElement(element, listContainer);
-                });
+                // listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
+                //     replaceChildElement(element, listContainer);
+                // });
 
-                observeChildren(listContainer);
+                // observeChildren(listContainer);
 
                 observer.disconnect();
             });
