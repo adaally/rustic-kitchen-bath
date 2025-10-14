@@ -647,7 +647,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 listContainer.setAttribute('role', 'list');
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
-                    console.log('element new')
                     replaceChildElement(element);
                 });
 
@@ -698,24 +697,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.removeAttribute('aria-label');
             }
 
-            function observeChildren(container, observer) {
-                const childObserver = new MutationObserver((mutations) => {
+            function observeChildren(container) {
+                const childObserver = new MutationObserver(mutations => {
                     mutations.forEach(mutation => {
                         mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === 1) {
-                                console.log('New child added:', node);
-                            }
+                            if (node.nodeType === 1) console.log('New child added:', node);
                         });
-
                         mutation.removedNodes.forEach(node => {
-                            if (node.nodeType === 1) {
-                            console.log('Child removed:', node);
-                            }
+                            if (node.nodeType === 1) console.log('Child removed:', node);
                         });
                     });
                 });
 
                 childObserver.observe(container, { childList: true, subtree: true });
+
+                // also observe the parent for container removal
+                if (container.parentNode) {
+                    const parentObserver = new MutationObserver(mutations => {
+                        mutations.forEach(mutation => {
+                            mutation.removedNodes.forEach(node => {
+                            if (node === container) {
+                                console.log('⚠️ Container itself was removed from DOM');
+                                parentObserver.disconnect();
+                                childObserver.disconnect();
+                            }
+                            });
+                        });
+                    });
+                    parentObserver.observe(container.parentNode, { childList: true });
+                }
             }
         }
 
