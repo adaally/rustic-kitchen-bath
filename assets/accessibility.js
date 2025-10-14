@@ -511,6 +511,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
             }
 
+            function soldOutLabel() {
+                document.querySelectorAll('.boost-sd__product-link').forEach((element, index) => {
+                    const soldOutContainer = element.querySelector('.boost-sd__product-label-text');
+                    if(soldOutContainer) {
+                        soldOutContainer.id='sold_out_'+index;
+                        element.setAttribute('aria-describedby', soldOutContainer.id);
+                    }
+                });
+            }
+
             function getCollectionName() {
                 const h1Element = document.querySelector('.boost-sd__header-title');
                 if (h1Element && h1Element.textContent.trim()) {
@@ -560,6 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearImageAlts();
                         addAccessibilityRoles();
                         addQuickViewLabels();
+                        soldOutLabel();
                         
                         setTimeout(() => {
                             if (isProductProcessingComplete()) {
