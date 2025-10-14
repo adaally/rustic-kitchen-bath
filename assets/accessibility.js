@@ -654,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
                     element.addEventListener('click', () => {
                         verifyActiveFilterlistener(observer);
-                        
+
                     });
                 });
 
@@ -707,6 +707,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 verifyActiveFilterlistener(observer);
                             }
                         });
+                    });
+
+                    mutation.removedNodes.forEach(node => {
+                        if (node.nodeType === 1) {
+                            verifyActiveFilterlistener(observer);
+                        }
                     });
                 });
 
