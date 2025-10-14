@@ -515,6 +515,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.boost-sd__product-link').forEach((element, index) => {
                     const soldOutContainer = element.querySelector('.boost-sd__product-label-text');
                     element.id = 'product_title_'+index;
+                    const title = element.querySelector('.boost-sd__product-title');
+                    if(title) {
+                        element.setAttribute('aria-label', title.innerText);
+                    }
                     if(soldOutContainer) {
                         soldOutContainer.id='sold_out_'+index;
                         element.setAttribute('aria-describedby', soldOutContainer.id);
@@ -523,7 +527,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(quickViewBtn) {
                         quickViewBtn.setAttribute('aria-describedby', element.id);
                     }
-                    
                 });
             }
 
