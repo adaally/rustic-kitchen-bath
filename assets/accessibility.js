@@ -666,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function verifyActiveFilterlistener(observer) {
+                console.log('called again')
                 setTimeout(() => {
                     const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
                     if(activeFiltersQty === 0) {
