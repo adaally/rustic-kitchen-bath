@@ -707,13 +707,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 verifyActiveFilterlistener(observer);
                             }
                         });
+
+                        m.removedNodes.forEach(node => {
+                            if (node.nodeType === 1) {
+                                verifyActiveFilterlistener(observer);
+                            }
+                        });
                     });
 
-                    mutation.removedNodes.forEach(node => {
-                        if (node.nodeType === 1) {
-                            verifyActiveFilterlistener(observer);
-                        }
-                    });
+                    
                 });
 
                 childObserver.observe(container, { childList: true, subtree: true });
