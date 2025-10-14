@@ -713,6 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // also observe the parent for container removal
                 const parent = container.parentNode;
+                console.log(parent, parent.parentNode)
                 if (parent.parentNode) {
                     const parentObserver = new MutationObserver(mutations => {
                         mutations.forEach(mutation => {
