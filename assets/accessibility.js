@@ -631,6 +631,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fixThumbnailAccessibility();
 
         function fixSelectedFilterItems() {
+            if (!window.location.pathname.includes('/collections/') && !window.location.pathname.includes('/search')) return;
+
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
                 console.log(container)
@@ -645,18 +647,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 listContainer.setAttribute('role', 'list');
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
-                    const listitem = document.createElement('div');
-                    listitem.setAttribute('role', 'listitem');
-
-                    const hiddenText = document.createElement('span');
-                    hiddenText.innerText = 'Remove filter, ';
-                    hiddenText.classList.add('visually-hidden');
-
-                    element.prepend(hiddenText);
-                    element.removeAttribute('aria-label');
-                    listitem.appendChild(element);
-                    listContainer.appendChild(listitem);
+                    replaceChildElement(element, listContainer);
                 });
+
+                observeChildren(listContainer);
 
                 observer.disconnect();
             });
@@ -665,6 +659,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 subtree: true,
                 childList: true
             });
+
+            function replaceChildElement(element, listContainer) {
+                const listitem = document.createElement('div');
+                listitem.setAttribute('role', 'listitem');
+
+                const hiddenText = document.createElement('span');
+                hiddenText.innerText = 'Remove filter, ';
+                hiddenText.classList.add('visually-hidden');
+
+                element.prepend(hiddenText);
+                element.removeAttribute('aria-label');
+                listitem.appendChild(element);
+                listContainer.appendChild(listitem);
+            }
+
+            function observeChildren(container) {
+                const childObserver = new MutationObserver(muts => {
+                    muts.forEach(m => {
+                    m.addedNodes.forEach(n => {
+                        if (n.nodeType === 1) {
+                            console.log('new child added inside .new:', n);
+                            replaceChildElement(n, container);
+                        }
+                    });
+                    });
+                });
+
+                childObserver.observe(container, { childList: true, subtree: true });
+            }
         }
 
         fixSelectedFilterItems();
