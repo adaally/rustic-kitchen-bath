@@ -1411,6 +1411,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if(!filterContent) return;
 
+            const productList = document.querySelector('.boost-sd-layout .boost-sd__product-list');
+            productList.id = 'product_list_id';
+            const productLink = document.createElement('a');
+            productLink.innerText = 'Skip to products';
+            productLink.className = 'screen-reader-text skip-link edac-removed-title';
+            productLink.setAttribute('href', '#' + productList.id);
+
+            const parent = filterContent.parentNode;
+            parent.prepend(productLink);
+
             filterContent.setAttribute('role', 'region');
 
             filterContent.querySelectorAll('.noUi-pips').forEach(element => {
