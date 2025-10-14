@@ -713,11 +713,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // also observe the parent for container removal
                 const parent = container.parentNode;
-                console.log(parent, parent.parentNode)
                 if (parent.parentNode) {
+                console.log(parent, parent.parentNode)
                     const parentObserver = new MutationObserver(mutations => {
                         mutations.forEach(mutation => {
                             mutation.removedNodes.forEach(node => {
+                                console.log(node, 'node')
                             if (node === container) {
                                 console.log('⚠️ Container itself was removed from DOM');
                                 parentObserver.disconnect();
