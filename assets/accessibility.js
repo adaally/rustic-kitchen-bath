@@ -648,7 +648,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
                     replaceChildElement(element);
-                    element.addEventListener('click', () => verifyActiveFilterlistener(observer);
+                });
+
+                
+                document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
+                    element.addEventListener('click', () => verifyActiveFilterlistener(observer));
                 });
 
                 observeChildren(listContainer);
@@ -661,9 +665,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 childList: true
             });
 
-            document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
-                element.addEventListener('click', () => verifyActiveFilterlistener(observer));
-            });
 
             function verifyActiveFilterlistener(observer) {
                 console.log('called again')
