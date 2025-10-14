@@ -1258,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // fixProductSlider(); NEED TO BE FIXED, PRODUCT SLIDER
+    fixProductSlider();
 
     function fixBlogList() {
         const blogContainer = document.querySelector('.dib-post-wrap');
