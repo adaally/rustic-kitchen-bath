@@ -310,10 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let isOpen = combobox.getAttribute('aria-expanded') === 'true';
                     let currentIndex = Array.from(options).findIndex(opt => opt.getAttribute('aria-selected') === 'true' || opt.classList.contains('boost-sd__sorting-option--active'));
-                    console.log(currentIndex)
-                    // if(currentIndex === -1) {
-
-                    // }
 
                     // Toggle open/close
                     function toggleList(open) {
@@ -643,117 +639,122 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
+                document.querySelectorAll('.boost-sd__pagination .boost-sd__pagination-number, .boost-sd__view-as .boost-sd__view-as-icon').forEach(element => {
+                    element.addEventListener('click', () => {
+                        processProductChanges();
+                    });
+                });
                 
 
-            document.querySelectorAll('.boost-sd__pagination .boost-sd__pagination-number, .boost-sd__view-as .boost-sd__view-as-icon').forEach(element => {
-                element.addEventListener('click', () => {
-                    processProductChanges();
-                })
-            })
+                
+
+                function fixSelectedFilterItems() {
+                    if (!window.location.pathname.includes('/collections/') && !window.location.pathname.includes('/search')) return;
+
+                    const observer = new MutationObserver(() => {
+                        const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
+                        
+                        if(!container) return;
+
+                        const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
+                        const listContainer = container.querySelector('.boost-sd__refine-by-vertical-refine-by-list');
+
+                        title.id = 'current_filters_title';
+
+                        listContainer.setAttribute('aria-labelledby', title.id);
+                        listContainer.setAttribute('role', 'list');
+
+                        listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
+                            replaceChildElement(element);
+                        });
+
+                        
+                        document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
+                            element.addEventListener('click', () => {
+                                verifyActiveFilterlistener(observer);
+                            });
+                        });
+
+                        observeChildren(listContainer, observer);
+
+                        observer.disconnect();
+                    });
+
+                    observer.observe(document.body, {
+                        subtree: true,
+                        childList: true
+                    });
+
+
+                    function verifyActiveFilterlistener(observer) {
+                        setTimeout(() => {
+                            const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
+                            if(activeFiltersQty === 0) {
+                                observer.observe(document.body, {
+                                    subtree: true,
+                                    childList: true
+                                });
+                            }
+                        }, 500);
+                    }
+
+                    function replaceChildElement(element) {
+                        const btnText = element.querySelector('.boost-sd__refine-by-vertical-refine-by-type');
+                        btnText.setAttribute('aria-hidden', 'true');
+                        const btnLabelText = 'Remove filter, ' + btnText.innerText;
+
+                        element.setAttribute('tabindex', '-1');
+                        element.setAttribute('role', 'listitem');
+
+                        const button = element.querySelector('svg');
+                        button.setAttribute('tabindex', '0');
+                        button.setAttribute('role', 'button');
+                        button.setAttribute('aria-label', btnLabelText);
+
+                        button.addEventListener('click', () => element.click());
+                        element.removeAttribute('aria-label');
+                    }
+
+                    function observeChildren(container, firstObserver) {
+                        const childObserver = new MutationObserver(mutations => {
+                            mutations.forEach(mutation => {
+                                mutation.addedNodes.forEach(node => {
+                                    if (node.nodeType === 1) {
+                                        replaceChildElement(node);
+                                        processProductChanges();
+                                    };
+                                });
+                            });
+                        });
+
+                        childObserver.observe(container, { childList: true, subtree: true });
+
+                        const parent = container.parentNode;
+                        if (parent.parentNode) {
+                            const parentObserver = new MutationObserver(mutations => {
+                                mutations.forEach(mutation => {
+                                    mutation.removedNodes.forEach(node => {
+                                    if (node === parent) {
+                                        verifyActiveFilterlistener(firstObserver);
+                                        processProductChanges();
+                                        parentObserver.disconnect();
+                                        childObserver.disconnect();
+                                    }
+                                    });
+                                });
+                            });
+                            parentObserver.observe(parent.parentNode, { childList: true });
+                        }
+                    }
+                }
+
+                fixSelectedFilterItems();
             }
 
             initAccessibilityObserver();
         }
 
         fixThumbnailAccessibility();
-
-        function fixSelectedFilterItems() {
-            if (!window.location.pathname.includes('/collections/') && !window.location.pathname.includes('/search')) return;
-
-            const observer = new MutationObserver(() => {
-                const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
-                console.log(container)
-                if(!container) return;
-
-                const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
-                const listContainer = container.querySelector('.boost-sd__refine-by-vertical-refine-by-list');
-
-                title.id = 'current_filters_title';
-
-                listContainer.setAttribute('aria-labelledby', title.id);
-                listContainer.setAttribute('role', 'list');
-
-                listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
-                    replaceChildElement(element);
-                });
-
-                
-                document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
-                    element.addEventListener('click', () => {
-                        verifyActiveFilterlistener(observer);
-                    });
-                });
-
-                observeChildren(listContainer, observer);
-
-                observer.disconnect();
-            });
-
-            observer.observe(document.body, {
-                subtree: true,
-                childList: true
-            });
-
-
-            function verifyActiveFilterlistener(observer) {
-                setTimeout(() => {
-                    const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
-                    if(activeFiltersQty === 0) {
-                        observer.observe(document.body, {
-                            subtree: true,
-                            childList: true
-                        });
-                    }
-                }, 500);
-            }
-
-            function replaceChildElement(element) {
-                const btnText = element.querySelector('.boost-sd__refine-by-vertical-refine-by-type');
-                btnText.setAttribute('aria-hidden', 'true');
-                const btnLabelText = 'Remove filter, ' + btnText.innerText;
-
-                element.setAttribute('tabindex', '-1');
-                element.setAttribute('role', 'listitem');
-
-                const button = element.querySelector('svg');
-                button.setAttribute('tabindex', '0');
-                button.setAttribute('role', 'button');
-                button.setAttribute('aria-label', btnLabelText);
-
-                button.addEventListener('click', () => element.click());
-                element.removeAttribute('aria-label');
-            }
-
-            function observeChildren(container, firstObserver) {
-                const childObserver = new MutationObserver(mutations => {
-                    mutations.forEach(mutation => {
-                        mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === 1) replaceChildElement(node);
-                        });
-                    });
-                });
-
-                childObserver.observe(container, { childList: true, subtree: true });
-
-                const parent = container.parentNode;
-                if (parent.parentNode) {
-                    const parentObserver = new MutationObserver(mutations => {
-                        mutations.forEach(mutation => {
-                            mutation.removedNodes.forEach(node => {
-                            if (node === parent) {
-                                verifyActiveFilterlistener(firstObserver);
-                                parentObserver.disconnect();
-                                childObserver.disconnect();
-                            }
-                            });
-                        });
-                    });
-                    parentObserver.observe(parent.parentNode, { childList: true });
-                }
-            }
-        }
-
-        fixSelectedFilterItems();
 
         function cartWidgetAccessibility() {
             const cartSection = document.getElementById('shopify-section-cart_widget');
@@ -1429,13 +1430,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 const handleLower = filterContent.querySelector('.noUi-handle.noUi-handle-lower');
-                console.log(handleLower, 'lower')
                 if(handleLower) {
                     handleLower.setAttribute('aria-label', 'Minimum Price');
                 }
 
                 const handleHigher = filterContent.querySelector('.noUi-handle.noUi-handle-upper');
-                console.log(handleHigher, 'higher')
                 if(handleHigher) {
                     handleHigher.setAttribute('aria-label', 'Maximun Price');
                 }
