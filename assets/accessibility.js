@@ -669,8 +669,8 @@ document.addEventListener('DOMContentLoaded', () => {
             function verifyActiveFilterlistener(observer) {
                 setTimeout(() => {
                     const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
-                    console.log('called again', activeFiltersQty)
                     if(activeFiltersQty === 0) {
+                    console.log('called again', activeFiltersQty)
                         observer.observe(document.body, {
                             subtree: true,
                             childList: true
