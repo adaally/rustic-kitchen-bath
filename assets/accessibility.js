@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function soldOutLabel() {
                 document.querySelectorAll('.boost-sd__product-link').forEach((element, index) => {
-                    const soldOutContainer = element.querySelector('.boost-sd__product-label-text');
+                    const extraProductContent = element.querySelector('.boost-sd__product-label-text');
                     element.id = 'product_title_'+index;
                     const title = element.querySelector('.boost-sd__product-title');
 
@@ -521,9 +521,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         element.setAttribute('aria-label', title.innerText);
                     }
 
-                    if(soldOutContainer) {
-                        soldOutContainer.id='sold_out_'+index;
-                        element.setAttribute('aria-describedby', soldOutContainer.id);
+                    if(extraProductContent) {
+                        extraProductContent.id='extra_product_content_'+index;
+                        element.setAttribute('aria-describedby', extraProductContent.id);
                     }
                     const quickViewBtn = element.querySelector('.boost-sd__btn-quick-view');
                     if(quickViewBtn) {
