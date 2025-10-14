@@ -647,6 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listContainer.setAttribute('role', 'list');
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
+                    console.log('element new')
                     replaceChildElement(element);
                 });
 
@@ -654,7 +655,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
                     element.addEventListener('click', () => {
                         verifyActiveFilterlistener(observer);
-
                     });
                 });
 
