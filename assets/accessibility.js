@@ -727,7 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                         });
                     });
-                    parentObserver.observe(container.parentNode, { childList: true });
+                    parentObserver.observe(parent.parentNode, { childList: true });
                 }
             }
         }
