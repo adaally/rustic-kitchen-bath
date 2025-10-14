@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-                observeChildren(listContainer);
+                observeChildren(listContainer, observer);
 
                 observer.disconnect();
             });
@@ -697,31 +697,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.removeAttribute('aria-label');
             }
 
-            function observeChildren(container) {
+            function observeChildren(container, firstObserver) {
                 const childObserver = new MutationObserver(mutations => {
                     mutations.forEach(mutation => {
                         mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === 1) console.log('New child added:', node);
-                        });
-                        mutation.removedNodes.forEach(node => {
-                            if (node.nodeType === 1) console.log('Child removed:', node);
+                            if (node.nodeType === 1) replaceChildElement(element);
                         });
                     });
                 });
 
                 childObserver.observe(container, { childList: true, subtree: true });
 
-                // also observe the parent for container removal
                 const parent = container.parentNode;
                 if (parent.parentNode) {
-                console.log(parent, parent.parentNode)
                     const parentObserver = new MutationObserver(mutations => {
                         mutations.forEach(mutation => {
                             mutation.removedNodes.forEach(node => {
-                                console.log(node, container)
-                                console.log(node === parent, node == parent)
                             if (node === parent) {
-                                console.log('⚠️ Container itself was removed from DOM');
+                                verifyActiveFilterlistener(firstObserver);
                                 parentObserver.disconnect();
                                 childObserver.disconnect();
                             }
