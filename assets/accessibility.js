@@ -710,6 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         m.removedNodes.forEach(node => {
                             if (node.nodeType === 1) {
+                                console.log('removed')
                                 verifyActiveFilterlistener(observer);
                             }
                         });
