@@ -661,13 +661,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function replaceChildElement(element) {
-                // const listitem = document.createElement('div');
-                // listitem.setAttribute('role', 'listitem');
-
-                // const hiddenText = document.createElement('span');
-                // hiddenText.innerText = 'Remove filter, ';
-                // hiddenText.classList.add('visually-hidden');
-
                 const btnLabelText = 'Remove filter, ' + element.querySelector('.boost-sd__refine-by-vertical-refine-by-type').innerText;
 
                 element.setAttribute('tabindex', '-1');
@@ -678,10 +671,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.setAttribute('role', 'button');
                 button.setAttribute('aria-label', btnLabelText);
 
-                // element.prepend(hiddenText);
+                button.addEventListener('click', () => element.click());
                 element.removeAttribute('aria-label');
-                // listitem.appendChild(element);
-                // listContainer.appendChild(listitem);
             }
 
             function observeChildren(container) {
