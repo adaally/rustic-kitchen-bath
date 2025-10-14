@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listContainer.setAttribute('role', 'list');
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
-                    replaceChildElement(element, listContainer);
+                    replaceChildElement(element);
                 });
 
                 observeChildren(listContainer);
@@ -660,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 childList: true
             });
 
-            function replaceChildElement(element, listContainer) {
+            function replaceChildElement(element) {
                 // const listitem = document.createElement('div');
                 // listitem.setAttribute('role', 'listitem');
 
@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // hiddenText.innerText = 'Remove filter, ';
                 // hiddenText.classList.add('visually-hidden');
 
-                const btnLabelText = 'Remove filter, ' + element.querySelector('boost-sd__refine-by-vertical-refine-by-type').innerText;
+                const btnLabelText = 'Remove filter, ' + element.querySelector('.boost-sd__refine-by-vertical-refine-by-type').innerText;
 
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('role', 'listitem');
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     m.addedNodes.forEach(n => {
                         if (n.nodeType === 1) {
                             console.log('new child added inside .new:', n);
-                            replaceChildElement(n, container);
+                            replaceChildElement(n);
                         }
                     });
                     });
