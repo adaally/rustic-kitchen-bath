@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
             }
 
-            function soldOutLabel() {
+            function extraProductContent() {
                 document.querySelectorAll('.boost-sd__product-link').forEach((element, index) => {
                     const extraProductContent = element.querySelector('.boost-sd__product-label-text');
                     element.id = 'product_title_'+index;
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearImageAlts();
                         addAccessibilityRoles();
                         addQuickViewLabels();
-                        soldOutLabel();
+                        extraProductContent();
                         
                         setTimeout(() => {
                             if (isProductProcessingComplete()) {
