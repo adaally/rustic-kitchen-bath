@@ -514,10 +514,16 @@ document.addEventListener('DOMContentLoaded', () => {
             function soldOutLabel() {
                 document.querySelectorAll('.boost-sd__product-link').forEach((element, index) => {
                     const soldOutContainer = element.querySelector('.boost-sd__product-label-text');
+                    element.id = 'product_title_'+index;
                     if(soldOutContainer) {
                         soldOutContainer.id='sold_out_'+index;
                         element.setAttribute('aria-describedby', soldOutContainer.id);
                     }
+                    const quickViewBtn = element.querySelector('.boost-sd__btn-quick-view');
+                    if(quickViewBtn) {
+                        quickViewBtn.setAttribute('aria-describedby', element.id);
+                    }
+                    
                 });
             }
 
