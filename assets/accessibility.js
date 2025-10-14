@@ -650,10 +650,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 function fixSelectedFilterItems() {
                     if (!window.location.pathname.includes('/collections/') && !window.location.pathname.includes('/search')) return;
-
+                    
                     const observer = new MutationObserver(() => {
                         const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
-                        
+                        console.log(container,'container')
                         if(!container) return;
 
                         const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
