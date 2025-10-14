@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-                observeChildren(listContainer, observer);
+                observeChildren(listContainer);
 
                 observer.disconnect();
             });
@@ -712,7 +712,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 childObserver.observe(container, { childList: true, subtree: true });
 
                 // also observe the parent for container removal
-                if (container.parentNode) {
+                const parent = container.parentNode;
+                if (parent.parentNode) {
                     const parentObserver = new MutationObserver(mutations => {
                         mutations.forEach(mutation => {
                             mutation.removedNodes.forEach(node => {
