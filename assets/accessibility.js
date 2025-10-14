@@ -1415,17 +1415,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('aria-hidden', 'true');
             });
 
-            const handleLower = filterContent.querySelector('.noUi-handle.noUi-handle-lower');
-            console.log(handleLower, 'lower')
-            if(handleLower) {
-                handleLower.setAttribute('aria-label', 'Minimum Price');
-            }
+            setTimeout(() => {
+                const handleLower = filterContent.querySelector('.noUi-handle.noUi-handle-lower');
+                console.log(handleLower, 'lower')
+                if(handleLower) {
+                    handleLower.setAttribute('aria-label', 'Minimum Price');
+                }
 
-            const handleHigher = filterContent.querySelector('.noUi-handle.noUi-handle-upper');
-            console.log(handleHigher, 'higher')
-            if(handleHigher) {
-                handleHigher.setAttribute('aria-label', 'Maximun Price');
-            }
+                const handleHigher = filterContent.querySelector('.noUi-handle.noUi-handle-upper');
+                console.log(handleHigher, 'higher')
+                if(handleHigher) {
+                    handleHigher.setAttribute('aria-label', 'Maximun Price');
+                }
+            }, 1000);
 
 
             filterContent.querySelectorAll('.boost-sd__filter-option').forEach(element => {
