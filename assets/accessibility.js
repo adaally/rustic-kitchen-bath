@@ -1416,11 +1416,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const handleLower = filterContent.querySelector('.noUi-handle.noUi-handle-lower');
+            console.log(handleLower, 'lower')
             if(handleLower) {
                 handleLower.setAttribute('aria-label', 'Minimum Price');
             }
 
             const handleHigher = filterContent.querySelector('.noUi-handle.noUi-handle-upper');
+            console.log(handleHigher, 'higher')
             if(handleHigher) {
                 handleHigher.setAttribute('aria-label', 'Maximun Price');
             }
