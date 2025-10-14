@@ -701,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const childObserver = new MutationObserver(mutations => {
                     mutations.forEach(mutation => {
                         mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === 1) replaceChildElement(element);
+                            if (node.nodeType === 1) replaceChildElement(node);
                         });
                     });
                 });
