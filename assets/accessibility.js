@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     replaceChildElement(element, listContainer);
                 });
 
-                // observeChildren(listContainer);
+                observeChildren(listContainer);
 
                 observer.disconnect();
             });
@@ -661,17 +661,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function replaceChildElement(element, listContainer) {
-                const listitem = document.createElement('div');
-                listitem.setAttribute('role', 'listitem');
+                // const listitem = document.createElement('div');
+                // listitem.setAttribute('role', 'listitem');
 
-                const hiddenText = document.createElement('span');
-                hiddenText.innerText = 'Remove filter, ';
-                hiddenText.classList.add('visually-hidden');
+                // const hiddenText = document.createElement('span');
+                // hiddenText.innerText = 'Remove filter, ';
+                // hiddenText.classList.add('visually-hidden');
 
-                element.prepend(hiddenText);
+                const btnLabelText = 'Remove filter, ' + element.querySelector('boost-sd__refine-by-vertical-refine-by-type').innerText;
+
+                element.setAttribute('tabindex', '-1');
+                element.setAttribute('role', 'listitem');
+
+                const button = element.querySelector('svg');
+                button.setAttribute('tabindex', '0');
+                button.setAttribute('role', 'button');
+                button.setAttribute('aria-label', btnLabelText);
+
+                // element.prepend(hiddenText);
                 element.removeAttribute('aria-label');
-                listitem.appendChild(element);
-                listContainer.appendChild(listitem);
+                // listitem.appendChild(element);
+                // listContainer.appendChild(listitem);
             }
 
             function observeChildren(container) {
