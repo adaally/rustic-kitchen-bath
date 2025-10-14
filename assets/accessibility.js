@@ -648,6 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 listContainer.querySelectorAll('.boost-sd__refine-by-vertical-refine-by-item').forEach(element => {
                     replaceChildElement(element);
+                    element.addEventListener('click', () => verifyActiveFilterlistener(observer);
                 });
 
                 observeChildren(listContainer);
@@ -659,6 +660,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 subtree: true,
                 childList: true
             });
+
+            document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
+                element.addEventListener('click', () => verifyActiveFilterlistener(observer));
+            });
+
+            function verifyActiveFilterlistener(observer) {
+                setTimeout(() => {
+                    const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
+                    if(activeFiltersQty === 0) {
+                        observer.observe(document.body, {
+                            subtree: true,
+                            childList: true
+                        });
+                    }
+                }, 100);
+            }
 
             function replaceChildElement(element) {
                 const btnText = element.querySelector('.boost-sd__refine-by-vertical-refine-by-type');
