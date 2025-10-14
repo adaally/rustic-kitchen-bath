@@ -655,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.addEventListener('click', () => verifyActiveFilterlistener(observer));
                 });
 
-                observeChildren(listContainer);
+                observeChildren(listContainer, observer);
 
                 observer.disconnect();
             });
@@ -670,7 +670,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
                     if(activeFiltersQty === 0) {
-                    console.log('called again', activeFiltersQty)
                         observer.observe(document.body, {
                             subtree: true,
                             childList: true
@@ -696,15 +695,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.removeAttribute('aria-label');
             }
 
-            function observeChildren(container) {
+            function observeChildren(container, observer) {
                 const childObserver = new MutationObserver(muts => {
                     muts.forEach(m => {
-                    m.addedNodes.forEach(n => {
-                        if (n.nodeType === 1) {
-                            console.log('new child added inside .new:', n);
-                            replaceChildElement(n);
-                        }
-                    });
+                        m.addedNodes.forEach(n => {
+                            if (n.nodeType === 1) {
+                                replaceChildElement(n);
+                                verifyActiveFilterlistener(observer);
+                            }
+                        });
                     });
                 });
 
