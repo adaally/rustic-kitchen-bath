@@ -719,8 +719,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         mutations.forEach(mutation => {
                             mutation.removedNodes.forEach(node => {
                                 console.log(node, container)
-                                console.log(node === container, node == container)
-                            if (node === container) {
+                                console.log(node === parent, node == parent)
+                            if (node === parent) {
                                 console.log('⚠️ Container itself was removed from DOM');
                                 parentObserver.disconnect();
                                 childObserver.disconnect();
