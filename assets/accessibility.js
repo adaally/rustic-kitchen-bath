@@ -667,16 +667,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             function verifyActiveFilterlistener(observer) {
-                console.log('called again')
                 setTimeout(() => {
                     const activeFiltersQty = document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').length;
+                    console.log('called again', activeFiltersQty)
                     if(activeFiltersQty === 0) {
                         observer.observe(document.body, {
                             subtree: true,
                             childList: true
                         });
                     }
-                }, 100);
+                }, 500);
             }
 
             function replaceChildElement(element) {
