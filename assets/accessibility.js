@@ -1411,6 +1411,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if(!filterContent) return;
 
+            filterContent.setAttribute('role', 'region');
+
             filterContent.querySelectorAll('.noUi-pips').forEach(element => {
                 element.setAttribute('aria-hidden', 'true');
             });
