@@ -652,7 +652,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 
                 document.querySelectorAll('.boost-sd__refine-by-vertical-refine-by button').forEach(element => {
-                    element.addEventListener('click', () => verifyActiveFilterlistener(observer));
+                    element.addEventListener('click', () => {
+                        verifyActiveFilterlistener(observer);
+                        
+                    });
                 });
 
                 observeChildren(listContainer, observer);
