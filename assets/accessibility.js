@@ -699,24 +699,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function observeChildren(container, observer) {
-                const childObserver = new MutationObserver(muts => {
-                    muts.forEach(m => {
-                        m.addedNodes.forEach(n => {
-                            if (n.nodeType === 1) {
-                                replaceChildElement(n);
-                                verifyActiveFilterlistener(observer);
-                            }
-                        });
-
-                        m.removedNodes.forEach(node => {
-                            if (node.nodeType === 1) {
-                                console.log('removed')
-                                verifyActiveFilterlistener(observer);
-                            }
-                        });
+                const childObserver = new MutationObserver((mutations) => {
+                    mutations.forEach(mutation => {
+                    
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) {
+                            console.log('New child added:', node);
+                        }
                     });
 
-                    
+                    mutation.removedNodes.forEach(node => {
+                        if (node.nodeType === 1) {
+                        console.log('Child removed:', node);
+                        }
+                    });
+                    });
                 });
 
                 childObserver.observe(container, { childList: true, subtree: true });
