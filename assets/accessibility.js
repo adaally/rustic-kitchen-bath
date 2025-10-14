@@ -661,7 +661,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function replaceChildElement(element) {
-                const btnLabelText = 'Remove filter, ' + element.querySelector('.boost-sd__refine-by-vertical-refine-by-type').innerText;
+                const btnText = element.querySelector('.boost-sd__refine-by-vertical-refine-by-type');
+                btnText.setAttribute('aria-hidden', 'true');
+                const btnLabelText = 'Remove filter, ' + btnText.innerText;
 
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('role', 'listitem');
