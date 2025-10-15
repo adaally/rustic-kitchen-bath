@@ -1270,7 +1270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             focusableElements.forEach(item => {
                 item.setAttribute('aria-hidden', isActive? 'false' : 'true');
-                isActive ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
+                isActive ? item.removeAttribute('tabindex') : item.setAttribute('tabindex', '-1');
             });
         }
     }
@@ -1815,5 +1815,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    enableAudioProgressKeyboard();
+    // enableAudioProgressKeyboard();
 });
