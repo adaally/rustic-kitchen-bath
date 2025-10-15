@@ -1207,10 +1207,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.related.product-extra');
         elements.forEach(element => {
             const observer = new MutationObserver(() => {
-                const sliderContainer = element.querySelector('.products');
+                const sliderContainer = element.querySelector('.flickity-slider');
                 if(!sliderContainer) return;
 
-
+                console.log(sliderContainer.querySelectorAll('.product'))
                 sliderContainer.querySelectorAll('.product').forEach(product => {
                     const observerThumbnail = new MutationObserver(() => {
                         const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
