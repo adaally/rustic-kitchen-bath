@@ -1155,34 +1155,27 @@ img {
 
   .dib-audio-drag-handle-focus {
       position: absolute;
-      left: -15px;
-      top: -15px;
-      width: 45px;
-      height: 45px;
-      background: rgba(0,0,0,0.05);
+      inset: 0;
+      width: 15px;
+      height: 15px;
+      margin: -7.5px;
       border-radius: 50%;
-      opacity: 0;
-      transition: all ease 0.2s;
       pointer-events: none;
-      display: block;
-      z-index: 1;
+      opacity: 0;
+      background: transparent;
+      box-shadow: 0 0 0 22.5px rgba(0,0,0,0.05);
+      transition: opacity .2s ease, box-shadow .2s ease;
   }
 
   #dib-audio:not(.dib-audio-touch) .dib-audio-progress-container .dib-audio-drag-handle .dib-audio-drag-handle-focus {
-      left: -17.5px;
-      top: -20px;
-      width: 35px;
-      height: 35px;
+      box-shadow: 0 0 0 17.5px rgba(0,0,0,0.05);
   }
 
   #dib-audio:not(.dib-audio-touch) .dib-audio-progress-container:hover .dib-audio-drag-handle .dib-audio-drag-handle-focus,
   .dib-audio-progress-container .dib-audio-drag-handle:focus .dib-audio-drag-handle-focus,
   .dib-audio-progress-container .dib-audio-drag-handle:focus-visible .dib-audio-drag-handle-focus {
-      left: -7.5px;
-      top: -7.5px;
-      width: 15px;
-      height: 15px;
       opacity: 1;
+      box-shadow: 0 0 0 7.5px rgba(0,0,0,0.1);
   }
 
 
