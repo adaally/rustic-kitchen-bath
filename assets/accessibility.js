@@ -1210,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sliderContainer = element.querySelector('.flickity-slider');
                 if(!sliderContainer) return;
 
-                console.log(sliderContainer.querySelectorAll('.product'))
+                console.log(sliderContainer.querySelectorAll('.product'), ' products')
                 sliderContainer.querySelectorAll('.product').forEach(product => {
                     const observerThumbnail = new MutationObserver(() => {
                         const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
