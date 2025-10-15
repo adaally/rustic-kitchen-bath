@@ -1768,13 +1768,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dragHandle.dataset.keyboardEnhanced = 'true';
             dragHandle.setAttribute('tabindex', '0');
 
-            if (!dragHandle.querySelector('.dib-audio-drag-handle-focus')) {
-                const focusRing = document.createElement('span');
-                focusRing.className = 'dib-audio-drag-handle-focus';
-                focusRing.setAttribute('aria-hidden', 'true');
-                dragHandle.appendChild(focusRing);
-            }
-
             const getStep = () => {
                 const duration = isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
                 return duration > 0 ? Math.max(duration / 100, 1) : 5;
@@ -1825,24 +1818,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     enableAudioProgressKeyboard();
-
-    function removeAudioDragHandleBefore() {
-        if (!window.location.pathname.includes('/blog/')) return;
-
-        const styleId = 'rk-remove-dib-audio-before';
-        if (document.getElementById(styleId)) {
-            return;
-        }
-
-        const style = document.createElement('style');
-        style.id = styleId;
-        style.textContent = `
-            .dib-audio-drag-handle::before {
-                content: none !important;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    removeAudioDragHandleBefore();
 });
