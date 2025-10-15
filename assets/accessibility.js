@@ -1608,22 +1608,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixAudioPlayerSection() {
         if (!window.location.pathname.includes('/blog/')) return;
 
-        const observer = new MutationObserver(() => {
-            const audioDiv = document.getElementById('dib-audio');
+        const postObserver = new MutationObserver(() => {
+            const postContainer = document.querySelector('.dib-post-single');
+            if (!postContainer) return;
 
-            if (!audioDiv) return;
+            const audioObserver = new MutationObserver(() => {
+                const audioDiv = document.getElementById('dib-audio');
+                if (!audioDiv) return;
 
-            const audioSection = document.createElement('section');
-            copyAttributes(audioDiv, audioSection);
-            audioSection.innerHTML = audioDiv.innerHTML;
-            audioSection.setAttribute('aria-label', 'Listen to article');
+                const audioSection = document.createElement('section');
+                copyAttributes(audioDiv, audioSection);
+                audioSection.innerHTML = audioDiv.innerHTML;
+                audioSection.setAttribute('aria-label', 'Listen to article');
 
-            audioDiv.replaceWith(audioSection);
+                audioDiv.replaceWith(audioSection);
 
-            observer.disconnect();
+                audioObserver.disconnect();
+            });
+
+            audioObserver.observe(postContainer, {
+                childList: true,
+                subtree: true
+            });
+
+            postObserver.disconnect();
         });
 
-        observer.observe(document.body, {
+        postObserver.observe(document.body, {
             childList: true,
             subtree: true
         });
