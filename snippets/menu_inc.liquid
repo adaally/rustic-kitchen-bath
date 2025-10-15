@@ -6,7 +6,8 @@
   else 
     assign ltr = true  
   endif -%}
-<nav class="nt_navigation {{section.settings.align}} {{section.settings.hover}} nav_arrow_{{section.settings.arrow}}" aria-label="main"> 
+{% comment %} Removed nav_arrow_ class {% endcomment %}
+<nav class="nt_navigation {{section.settings.align}} {{section.settings.hover}}" aria-label="main"> 
    <ul id="nt_menu_id" class="nt_menu in_flex wrap al_center">
    {%- for type in tp_blocks -%}
      
@@ -27,21 +28,23 @@
          {%- else -%}
             <li id="item_{{block.id}}" class="type_{{block.type}} menu_wid_{{block.settings.wid}} menu-item has-children menu_has_offsets menu_{{block.settings.pos}} pos_{{block.settings.pos}}" {{ block.shopify_attributes }}>
                <a class="lh__1 flex al_center pr" id="item_title{{block.id}}" href="{{block.settings.url}}" target="{{block.settings.open_link}}"{% if block.settings.cus_cl %} style="color:{{block.settings.cl}}"{% endif %}>{%- render 'title_menu',block:block -%}</a>
-               <span class="menu_link_icon" role="button" tabindex="0" aria-labelledby="item_title{{block.id}}" style="margin-left: -17px; margin-top: 5px;">
-                  <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="#3d1c1a73"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     >
-                     <polyline points="6 9 12 15 18 9" />
-                  </svg>
-               </span>
+               {% if {{section.settings.arrow}} %}
+                  <span class="menu_link_icon" role="button" tabindex="0" aria-labelledby="item_title{{block.id}}" style="margin-left: -17px; margin-top: 5px;">
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#3d1c1a73"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        >
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg>
+                  </span>
+               {% endif %}
                <div class="{{block.settings.wid}} sub-menu"><div class="container"{% if  block.settings.wid != 'full nav_t4cnt' %} style="width:{{block.settings.cus_wid}}px"{% endif %}><div class="row lazy_menu lazyload lazy_menu_mega" data-include="{{search_url}}?q={{block.id}}&view=header" data-jspackery='{ "itemSelector": ".sub-column-item","gutter": 0,"percentPosition": true,"originLeft": {{ltr}} }'><div class="lds_bginfinity pr"></div></div></div></div>
             </li>
       {%- endcase -%}
