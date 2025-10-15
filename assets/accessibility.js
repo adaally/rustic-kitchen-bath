@@ -1289,6 +1289,15 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 element.setAttribute('tabindex', '-1');
             }
+
+            thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
+                element.setAttribute('aria-hidden', isActive? 'false' : 'true');
+                if(isActive) {
+                    element.removeAttribute('tabindex');
+                } else {
+                    element.setAttribute('tabindex', '-1');
+                }
+            });
         }
     }
 
