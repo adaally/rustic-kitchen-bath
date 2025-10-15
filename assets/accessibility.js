@@ -1221,7 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
                     const isActive = product.classList.contains('is-selected');
-                    thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
+                    product.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                         element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                         element.setAttribute('tabindex', isActive ? '0' : '-1');
                     });
