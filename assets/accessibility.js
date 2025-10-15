@@ -1217,21 +1217,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('aria-hidden', 'true');
                     element.setAttribute('tabindex', '-1');
                 });
-
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
-                    // console.log(product.getAttribute('aria-hidden') != 'true', product.getAttribute('aria-hidden'));
                     const isActive = product.getAttribute('aria-hidden') != 'true';
-                    product.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
-                        element.setAttribute('aria-hidden', isActive? 'false' : 'true');
-                        element.setAttribute('tabindex', isActive ? '0' : '-1');
-                    });
-                    // console.log(product.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
+                    updateVisibiliteAttributes(product, isActive);
                         const newChatItemObserver = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
                                 mutation.addedNodes.forEach((node) => {
                                     if (node.nodeType === 1) {
-                                        updateVisibiliteAttributesForItem(node, isActive)
+                                        updateVisibiliteAttributes(node, isActive);
                                     }
                                 });
                             });
@@ -1243,21 +1237,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
 
 
-                    // const observerThumbnail = new MutationObserver(() => {
+                    const observerThumbnail = new MutationObserver(() => {
 
-
-
-
-                    //     updateVisibiliteAttributesForThumbnails(product);
-
-                    //     observerThumbnail.disconnect();
-                    // });
+                        observerThumbnail.disconnect();
+                    });
                     
                     
-                    // observerThumbnail.observe(product, {
-                    //     childList: true,
-                    //     subtree: true
-                    // });
+                    observerThumbnail.observe(product, {
+                        childList: true,
+                        subtree: true
+                    });
                 });
                 
 
@@ -1270,33 +1259,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        function updateVisibiliteAttributesForThumbnails(thumbnail) {
-            if(!thumbnail) return;
-            const isActive = thumbnail.classList.contains('is-selected');
-            thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
-                element.setAttribute('aria-hidden', isActive? 'false' : 'true');
-                element.setAttribute('tabindex', isActive ? '0' : '-1');
-            });
-        }
-
-        function updateVisibiliteAttributesForItem(element, isActive) {
+        function updateVisibiliteAttributes(element, isActive) {
             if(!element) return;
-            console.log(element, isActive)
             element.setAttribute('aria-hidden', isActive? 'false' : 'true');
-            
-            if(isActive) {
-                element.removeAttribute('tabindex');
-            } else {
-                element.setAttribute('tabindex', '-1');
-            }
+            isActive ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
 
-            element.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
-                element.setAttribute('aria-hidden', isActive? 'false' : 'true');
-                if(isActive) {
-                    element.removeAttribute('tabindex');
-                } else {
-                    element.setAttribute('tabindex', '-1');
-                }
+            const focusableElements = element.querySelectorAll('a, button, .input-text, [tabindex="0"]');
+
+            if(focusableElements.length === 0) return;
+
+            focusableElements.forEach(item => {
+                item.setAttribute('aria-hidden', isActive? 'false' : 'true');
+                isActive ? element.removeAttribute('tabindex') : element.setAttribute('tabindex', '-1');
             });
         }
     }
