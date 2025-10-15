@@ -1813,5 +1813,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    enableAudioProgressKeyboard();
+    // enableAudioProgressKeyboard();
 });
