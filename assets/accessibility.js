@@ -1573,6 +1573,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // fixBlogImagesAlt();
 
+    function fixBlogImagesAlt() {
+      if (!window.location.pathname.includes('/blog/')) return;
+
+      const observer = new MutationObserver(() => {
+          const postContainer = document.querySelector('.dib-post-single');
+          if (!postContainer) return;
+
+          const featuredImage = postContainer.querySelector('.dib-post-featured-image img');
+          if (featuredImage) {
+              featuredImage.setAttribute('alt', '');
+          }
+
+          observer.disconnect();
+      });
+
+      observer.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+  }
+
     function fixAudioPlayerAriaLabel() {
         if (!window.location.pathname.includes('/blog/')) return;
 
