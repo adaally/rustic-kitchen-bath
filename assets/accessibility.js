@@ -1221,7 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
                     
-                    console.log(product.classList.contains('is-selected'))
+                    console.log(product.classList.contains('is-selected'), product.querySelectorAll('a, button, .input-text, [tabindex="0"]'))
                     // console.log(product.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
                         // const newChatItemObserver = new MutationObserver((mutations) => {
                         //     mutations.forEach((mutation) => {
