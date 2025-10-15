@@ -1208,8 +1208,15 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach((element, index) => {
             if(index === 0) return
             const observer = new MutationObserver(() => {
-                const sliderContainer = element.querySelector('.flickity-slider');
+                const sliderContainer = element.querySelector('.products');
                 if(!sliderContainer) return;
+
+                sliderContainer.removeAttribute('tabindex');
+
+                sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                    element.setAttribute('aria-hidden', 'true');
+                    element.setAttribute('tabindex', '-1');
+                });
 
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
@@ -1220,6 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 mutation.addedNodes.forEach((node) => {
                                     if (node.nodeType === 1) {
                                         console.log(node, index)
+                                        updateVisibiliteAttributesForItem(node, product)
                                     }
                                 });
                             });
@@ -1234,12 +1242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // const observerThumbnail = new MutationObserver(() => {
 
 
-                    //     sliderContainer.removeAttribute('tabindex');
 
-                    //     sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-                    //         element.setAttribute('aria-hidden', 'true');
-                    //         element.setAttribute('tabindex', '-1');
-                    //     });
 
                     //     updateVisibiliteAttributesForThumbnails(product);
 
@@ -1270,6 +1273,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('aria-hidden', isActive? 'false' : 'true');
                 element.setAttribute('tabindex', isActive ? '0' : '-1');
             });
+        }
+
+        function updateVisibiliteAttributesForItem(element, isActive) {
+            if(!element) return;
+
+            element.setAttribute('aria-hidden', isActive? 'false' : 'true');
+            element.setAttribute('tabindex', isActive ? '0' : '-1');
         }
     }
 
