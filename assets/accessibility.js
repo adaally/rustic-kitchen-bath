@@ -1543,35 +1543,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixSocialSharingAccessibility();
 
-    function fixBlogImagesAlt() {
-        if (!window.location.pathname.includes('/blog/')) return;
+    // function fixBlogImagesAlt() {
+    //     if (!window.location.pathname.includes('/blog/')) return;
 
-        const observer = new MutationObserver(() => {
-            const postContainer = document.querySelector('.dib-post-single');
-            if (!postContainer) return;
+    //     const observer = new MutationObserver(() => {
+    //         const postContainer = document.querySelector('.dib-post-single');
+    //         if (!postContainer) return;
 
-            const selectors = [
-                '.dib-post-featured-image img',
-                '.dib-post-content img',
-                '.dib-related-posts img'
-            ];
+    //         const selectors = [
+    //             '.dib-post-featured-image img',
+    //             '.dib-post-content img',
+    //             '.dib-related-posts img'
+    //         ];
 
-            selectors.forEach(selector => {
-                postContainer.querySelectorAll(selector).forEach(img => {
-                    img.setAttribute('alt', '');
-                });
-            });
+    //         selectors.forEach(selector => {
+    //             postContainer.querySelectorAll(selector).forEach(img => {
+    //                 img.setAttribute('alt', '');
+    //             });
+    //         });
 
-            observer.disconnect();
-        });
+    //         observer.disconnect();
+    //     });
 
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
+    //     observer.observe(document.body, {
+    //         childList: true,
+    //         subtree: true
+    //     });
+    // }
 
-    fixBlogImagesAlt();
+    // fixBlogImagesAlt();
 
     function fixAudioPlayerAriaLabel() {
         if (!window.location.pathname.includes('/blog/')) return;
