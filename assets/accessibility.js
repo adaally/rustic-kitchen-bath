@@ -1220,24 +1220,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
-                    
-                    console.log(product.classList.contains('is-selected'), product.querySelectorAll('a, button, .input-text, [tabindex="0"]'))
+                    const isActive = product.classList.contains('is-selected');
+                    thumbnail.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
+                        element.setAttribute('aria-hidden', isActive? 'false' : 'true');
+                        element.setAttribute('tabindex', isActive ? '0' : '-1');
+                    });
                     // console.log(product.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
-                        // const newChatItemObserver = new MutationObserver((mutations) => {
-                        //     mutations.forEach((mutation) => {
-                        //         mutation.addedNodes.forEach((node) => {
-                        //             if (node.nodeType === 1) {
-                        //                 console.log(node, index)
-                        //                 updateVisibiliteAttributesForItem(node, product.classList.contains('is-selected'))
-                        //             }
-                        //         });
-                        //     });
-                        // });
+                        const newChatItemObserver = new MutationObserver((mutations) => {
+                            mutations.forEach((mutation) => {
+                                mutation.addedNodes.forEach((node) => {
+                                    if (node.nodeType === 1) {
+                                        updateVisibiliteAttributesForItem(node, isActive)
+                                    }
+                                });
+                            });
+                        });
 
-                        // newChatItemObserver.observe(product, {
-                        //     childList: true,
-                        //     subtree: true
-                        // });
+                        newChatItemObserver.observe(product, {
+                            childList: true,
+                            subtree: true
+                        });
 
 
                     // const observerThumbnail = new MutationObserver(() => {
