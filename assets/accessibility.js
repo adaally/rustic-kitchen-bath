@@ -1737,4 +1737,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixAudioDisclaimerNotice();
+
+    function enableAudioProgressKeyboard() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyEnhancements = () => {
+            const container = document.querySelector('.dib-audio-progress-container');
+            const dragHandle = container ? container.querySelector('.dib-audio-drag-handle') : null;
+            const audio = document.getElementById('dib-audio-element');
+
+            if (!container || !dragHandle || !audio) {
+                return false;
+            }
+
+            if (dragHandle.dataset.keyboardEnhanced === 'true') {
+                return true;
+            }
+
+            dragHandle.dataset.keyboardEnhanced = 'true';
+            dragHandle.setAttribute('tabindex', '0');
+
+            if (!dragHandle.querySelector('.dib-audio-drag-handle-focus')) {
+                const focusRing = document.createElement('span');
+                focusRing.className = 'dib-audio-drag-handle-focus';
+                focusRing.setAttribute('aria-hidden', 'true');
+                dragHandle.appendChild(focusRing);
+            }
+
+            const getStep = () => {
+                const duration = isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
+                return duration > 0 ? Math.max(duration / 100, 1) : 5;
+            };
+
+            const clampTime = (time) => {
+                if (isFinite(audio.duration) && audio.duration > 0) {
+                    return Math.min(Math.max(time, 0), audio.duration);
+                }
+                return Math.max(time, 0);
+            };
+
+            dragHandle.addEventListener('keydown', (event) => {
+                const step = getStep();
+                let handled = false;
+
+                if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+                    audio.currentTime = clampTime(audio.currentTime + step);
+                    handled = true;
+                } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+                    audio.currentTime = clampTime(audio.currentTime - step);
+                    handled = true;
+                }
+
+                if (handled) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            });
+
+            return true;
+        };
+
+        if (applyEnhancements()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyEnhancements()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    enableAudioProgressKeyboard();
 });
