@@ -1210,9 +1210,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sliderContainer = element.querySelector('.flickity-slider');
                 if(!sliderContainer) return;
 
-                setTimeout(() => {
-                    console.log(sliderContainer.querySelectorAll('.product'), ' products')
-                    sliderContainer.querySelectorAll('.product').forEach(product => {
+                console.log(sliderContainer.querySelectorAll('.product'), ' products')
+                sliderContainer.querySelectorAll('.product').forEach(product => {
                     const observerThumbnail = new MutationObserver(() => {
                         const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
                         
@@ -1240,8 +1239,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
 
                 observer.disconnect();
-                }, 4000)
-                
             });
 
             observer.observe(element, {
