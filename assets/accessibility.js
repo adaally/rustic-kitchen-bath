@@ -1220,7 +1220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
-                    console.log(product.getAttribute('aria-hidden') != 'true', product.getAttribute('aria-hidden'));
+                    // console.log(product.getAttribute('aria-hidden') != 'true', product.getAttribute('aria-hidden'));
                     const isActive = product.getAttribute('aria-hidden') != 'true';
                     product.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                         element.setAttribute('aria-hidden', isActive? 'false' : 'true');
@@ -1281,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateVisibiliteAttributesForItem(element, isActive) {
             if(!element) return;
-
+            console.log(element, isActive)
             element.setAttribute('aria-hidden', isActive? 'false' : 'true');
             
             if(isActive) {
