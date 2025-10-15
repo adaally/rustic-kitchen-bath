@@ -3855,7 +3855,7 @@
         "settings": {
           "height": 60,
           "height_2": 60,
-          "arrow": false,
+          "arrow": true,
           "border": false,
           "color": "#ffffff",
           "source": "0",
