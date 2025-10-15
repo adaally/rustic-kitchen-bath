@@ -1222,6 +1222,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         dot.setAttribute('tabindex', '0');
                         dot.setAttribute('role', 'button');
                         dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
+                        dot.addEventListener('click', () => {
+                            setTimeout(() => {
+                                sliderContainer.querySelectorAll('.product').forEach((product, index) => {
+                                    const isActive = product.getAttribute('aria-hidden') != 'true';
+                                    updateVisibiliteAttributes(product, isActive);
+                                })
+                            },400);
+                        });
                     });
                 }
 
@@ -1247,18 +1255,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             childList: true,
                             subtree: true
                         });
-
-
-                    const observerThumbnail = new MutationObserver(() => {
-
-                        observerThumbnail.disconnect();
-                    });
-                    
-                    
-                    observerThumbnail.observe(product, {
-                        childList: true,
-                        subtree: true
-                    });
                 });
                 
 
