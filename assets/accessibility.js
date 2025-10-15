@@ -1819,8 +1819,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     enableAudioProgressKeyboard();
 
-    function fixRelatedArticlesList() {
+     function fixRelatedArticlesList() {
         if (!window.location.pathname.includes('/blog/')) return;
+
+        const processedContainers = new WeakSet();
 
         const applyFix = () => {
             const containers = document.querySelectorAll('.dib-related-posts');
@@ -1829,7 +1831,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             containers.forEach((container) => {
-                if (container.dataset.relatedListFix === 'true') {
+                if (processedContainers.has(container)) {
                     return;
                 }
 
@@ -1854,7 +1856,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     childList: true
                 });
 
-                container.dataset.relatedListFix = 'true';
+                processedContainers.add(container);
             });
 
             return true;
