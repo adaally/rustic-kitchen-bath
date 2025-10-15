@@ -1818,4 +1818,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     enableAudioProgressKeyboard();
+
+    function fixRelatedArticlesList() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyFix = () => {
+            const containers = document.querySelectorAll('.dib-related-posts');
+            if (!containers.length) {
+                return false;
+            }
+
+            containers.forEach((container) => {
+                if (container.dataset.relatedListFix === 'true') {
+                    return;
+                }
+
+                container.setAttribute('role', 'list');
+
+                const applyItemsRole = () => {
+                    const items = container.querySelectorAll('.dib-related-post');
+                    items.forEach((item) => {
+                        if (!item.hasAttribute('role')) {
+                            item.setAttribute('role', 'listitem');
+                        }
+                    });
+                };
+
+                applyItemsRole();
+
+                const observer = new MutationObserver(() => {
+                    applyItemsRole();
+                });
+
+                observer.observe(container, {
+                    childList: true
+                });
+
+                container.dataset.relatedListFix = 'true';
+            });
+
+            return true;
+        };
+
+        if (applyFix()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyFix()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixRelatedArticlesList();
 });
