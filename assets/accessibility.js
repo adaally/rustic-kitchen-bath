@@ -1816,4 +1816,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     enableAudioProgressKeyboard();
+
+    function removeAudioDragHandleBefore() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const styleId = 'rk-remove-dib-audio-before';
+        if (document.getElementById(styleId)) {
+            return;
+        }
+
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            .dib-audio-drag-handle::before {
+                content: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    removeAudioDragHandleBefore();
 });
