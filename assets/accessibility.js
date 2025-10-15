@@ -1206,7 +1206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fixProductSlider() {
         const elements = document.querySelectorAll('.related.product-extra');
         elements.forEach((element, index) => {
-            if(index === 0) return
+            
             const observer = new MutationObserver(() => {
                 const sliderContainer = element.querySelector('.products');
                 if(!sliderContainer) return;
