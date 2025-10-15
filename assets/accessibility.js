@@ -1245,10 +1245,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // });
                     
                     
-                    observerThumbnail.observe(product, {
-                        childList: true,
-                        subtree: true
-                    });
+                    // observerThumbnail.observe(product, {
+                    //     childList: true,
+                    //     subtree: true
+                    // });
                 });
                 
 
