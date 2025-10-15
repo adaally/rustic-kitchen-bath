@@ -1282,7 +1282,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!element) return;
 
             element.setAttribute('aria-hidden', isActive? 'false' : 'true');
-            element.setAttribute('tabindex', isActive ? '0' : '-1');
+            
+            if(isActive) {
+                element.removeAttribute('tabindex');
+            } else {
+                element.setAttribute('tabindex', '-1');
+            }
         }
     }
 
