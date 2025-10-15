@@ -1630,4 +1630,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     // fixAudioPlayerSection();
+
+    function fixAudioSpeedAriaLabel() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const observer = new MutationObserver(() => {
+            const speedButton = document.querySelector('.dib-audio-speed');
+
+            if (!speedButton) return;
+
+            const currentSpeed = speedButton.textContent;
+            speedButton.setAttribute('aria-label', `Audio Speed: ${currentSpeed}`);
+
+            const textObserver = new MutationObserver(() => {
+                const speed = speedButton.textContent;
+                speedButton.setAttribute('aria-label', `Audio Speed: ${speed}`);
+            });
+
+            textObserver.observe(speedButton, {
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
+
+            observer.disconnect();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioSpeedAriaLabel();
 });
