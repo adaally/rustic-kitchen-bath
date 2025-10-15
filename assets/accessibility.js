@@ -1217,7 +1217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if(dotsList) {
                     dotsList.setAttribute('role', 'none');
-                    cost dots = dotsList.querySelectorAll('.dot');
+                    const dots = dotsList.querySelectorAll('.dot');
                     dots.forEach((dot, index) => {
                         dot.setAttribute('tabindex', '0');
                         dot.setAttribute('role', 'button');
