@@ -1519,7 +1519,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             sharingContainer.setAttribute('role', 'list');
             sharingContainer.setAttribute('aria-label', 'Social media');
-            sharingContainer.style.display = 'flex';
 
             const shareLinks = sharingContainer.querySelectorAll('.dib-share-link');
             shareLinks.forEach(link => {
@@ -1527,6 +1526,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const listItem = document.createElement('div');
                 listItem.setAttribute('role', 'listitem');
+                listItem.style.display = 'inline-block';
 
                 link.parentNode.insertBefore(listItem, link);
                 listItem.appendChild(link);
