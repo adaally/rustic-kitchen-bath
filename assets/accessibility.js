@@ -1212,8 +1212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     console.log(sliderContainer.querySelectorAll('.product'), ' products')
-                }, 4000)
-                sliderContainer.querySelectorAll('.product').forEach(product => {
+                    sliderContainer.querySelectorAll('.product').forEach(product => {
                     const observerThumbnail = new MutationObserver(() => {
                         const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
                         
@@ -1241,6 +1240,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
 
                 observer.disconnect();
+                }, 4000)
+                
             });
 
             observer.observe(element, {
