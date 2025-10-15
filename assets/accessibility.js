@@ -1508,4 +1508,37 @@ document.addEventListener('DOMContentLoaded', () => {
             target.setAttribute(attr.name, attr.value);
         }
     }
+
+    function fixSocialSharingAccessibility() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const observer = new MutationObserver(() => {
+            const sharingContainer = document.querySelector('.dib-sharing.dib-sharing-top');
+
+            if (!sharingContainer) return;
+
+            sharingContainer.setAttribute('role', 'list');
+            sharingContainer.setAttribute('aria-label', 'Social media');
+
+            const shareLinks = sharingContainer.querySelectorAll('.dib-share-link');
+            shareLinks.forEach(link => {
+                if (link.parentElement.getAttribute('role') === 'listitem') return;
+
+                const listItem = document.createElement('div');
+                listItem.setAttribute('role', 'listitem');
+
+                link.parentNode.insertBefore(listItem, link);
+                listItem.appendChild(link);
+            });
+
+            observer.disconnect();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixSocialSharingAccessibility();
 });
