@@ -1210,25 +1210,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sliderContainer = element.querySelector('.flickity-slider');
                 if(!sliderContainer) return;
 
-                console.log(sliderContainer.querySelectorAll('.product'), ' products')
-                sliderContainer.querySelectorAll('.product').forEach(product => {
-                    const observerThumbnail = new MutationObserver(() => {
-                        const elements = product.querySelectorAll('a, button, .input-text, [tabindex="0"]');
-                        
-                        // 2 is the default elements number but there are more that need to load
-                        if(elements.length <= 2) return;
-
-                        sliderContainer.removeAttribute('tabindex');
-
-                        sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
-                            element.setAttribute('aria-hidden', 'true');
-                            element.setAttribute('tabindex', '-1');
+                
+                sliderContainer.querySelectorAll('.product').forEach((product, index) => {
+                    console.log(sliderContainer.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
+                        const newChatItemObserver = new MutationObserver((mutations) => {
+                            mutations.forEach((mutation) => {
+                                mutation.addedNodes.forEach((node) => {
+                                    if (node.nodeType === 1) {
+                                        console.log(node, index)
+                                    }
+                                });
+                            });
                         });
 
-                        updateVisibiliteAttributesForThumbnails(product);
+                        newChatItemObserver.observe(product, {
+                            childList: true,
+                            subtree: true
+                        });
 
-                        observerThumbnail.disconnect();
-                    });
+
+                    // const observerThumbnail = new MutationObserver(() => {
+
+
+                    //     sliderContainer.removeAttribute('tabindex');
+
+                    //     sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
+                    //         element.setAttribute('aria-hidden', 'true');
+                    //         element.setAttribute('tabindex', '-1');
+                    //     });
+
+                    //     updateVisibiliteAttributesForThumbnails(product);
+
+                    //     observerThumbnail.disconnect();
+                    // });
                     
                     
                     observerThumbnail.observe(product, {
