@@ -1822,8 +1822,6 @@ document.addEventListener('DOMContentLoaded', () => {
      function fixRelatedArticlesList() {
         if (!window.location.pathname.includes('/blog/')) return;
 
-        const processedContainers = new WeakSet();
-
         const applyFix = () => {
             const containers = document.querySelectorAll('.dib-related-posts');
             if (!containers.length) {
@@ -1855,8 +1853,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(container, {
                     childList: true
                 });
-
-                processedContainers.add(container);
+              
             });
 
             return true;
