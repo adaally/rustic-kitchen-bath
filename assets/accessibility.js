@@ -1594,7 +1594,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-    function fixAudioPlayerAriaLabel() {
+  fixBlogImagesAlt();
+
+  function fixAudioPlayerAriaLabel() {
         if (!window.location.pathname.includes('/blog/')) return;
 
         const observer = new MutationObserver(() => {
