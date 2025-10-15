@@ -1572,4 +1572,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixBlogImagesAlt();
+
+    function fixAudioPlayerAriaLabel() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const observer = new MutationObserver(() => {
+            const playPauseButton = document.querySelector('.dib-audio-play-pause');
+            const audioElement = document.getElementById('dib-audio-element');
+
+            if (!playPauseButton || !audioElement) return;
+
+            audioElement.addEventListener('play', () => {
+                playPauseButton.setAttribute('aria-label', 'Pause');
+            });
+
+            audioElement.addEventListener('pause', () => {
+                playPauseButton.setAttribute('aria-label', 'Play');
+            });
+
+            audioElement.addEventListener('ended', () => {
+                playPauseButton.setAttribute('aria-label', 'Play');
+            });
+
+            observer.disconnect();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioPlayerAriaLabel();
 });
