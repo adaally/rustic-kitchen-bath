@@ -1291,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    fixProductSlider();
+    // fixProductSlider();
 
     function fixBlogList() {
         const blogContainer = document.querySelector('.dib-post-wrap');
