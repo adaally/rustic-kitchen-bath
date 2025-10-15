@@ -1205,14 +1205,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixProductSlider() {
         const elements = document.querySelectorAll('.related.product-extra');
-        elements.forEach(element => {
+        elements.forEach((element, index) => {
+            if(index === 0) return
             const observer = new MutationObserver(() => {
                 const sliderContainer = element.querySelector('.flickity-slider');
                 if(!sliderContainer) return;
 
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
-                    if(index === 0) return
+                    
                     // console.log(product.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
                         const newChatItemObserver = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
