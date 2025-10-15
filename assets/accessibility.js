@@ -1702,4 +1702,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixAudioSpeedAriaLabel();
+
+    function fixAudioDisclaimerNotice() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyAttributes = () => {
+            const infoLink = document.querySelector('span > a[href="https://dropinblog.com/ai-voice/"][rel="nofollow"]');
+            if (!infoLink) return false;
+
+            infoLink.setAttribute('tabindex', '-1');
+
+            const infoSpan = infoLink.closest('span');
+            if (infoSpan) {
+                infoSpan.setAttribute('aria-hidden', 'true');
+            }
+
+            return true;
+        };
+
+        if (applyAttributes()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyAttributes()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioDisclaimerNotice();
 });
