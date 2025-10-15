@@ -1224,6 +1224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
                         dot.addEventListener('click', () => {
                             setTimeout(() => {
+                                //CALL THE OBSERVER TOO
                                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
                                     const isActive = product.getAttribute('aria-hidden') != 'true';
                                     updateVisibiliteAttributes(product, isActive);
