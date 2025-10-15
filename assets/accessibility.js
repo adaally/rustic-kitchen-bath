@@ -1604,4 +1604,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixAudioPlayerAriaLabel();
+
+    function fixAudioPlayerSection() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const observer = new MutationObserver(() => {
+            const audioDiv = document.getElementById('dib-audio');
+
+            if (!audioDiv) return;
+
+            const audioSection = document.createElement('section');
+            copyAttributes(audioDiv, audioSection);
+            audioSection.innerHTML = audioDiv.innerHTML;
+            audioSection.setAttribute('aria-label', 'Listen to article');
+
+            audioDiv.replaceWith(audioSection);
+
+            observer.disconnect();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioPlayerSection();
 });
