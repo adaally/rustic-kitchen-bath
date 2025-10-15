@@ -1213,6 +1213,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 sliderContainer.removeAttribute('tabindex');
 
+                const dotsList = sliderContainer.querySelector('.flickity-page-dots');
+
+                if(dotsList) {
+                    dotsList.setAttribute('role', 'none');
+                    cost dots = dotsList.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.setAttribute('tabindex', '0');
+                        dot.setAttribute('role', 'button');
+                        dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
+                    });
+                }
+
                 sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
                     element.setAttribute('aria-hidden', 'true');
                     element.setAttribute('tabindex', '-1');
