@@ -1221,13 +1221,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
                     
+                    updateVisibiliteAttributesForThumbnails(product)
                     // console.log(product.querySelectorAll('a, button, .input-text, [tabindex="0"]'), index)
                         const newChatItemObserver = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
                                 mutation.addedNodes.forEach((node) => {
                                     if (node.nodeType === 1) {
                                         console.log(node, index)
-                                        updateVisibiliteAttributesForItem(node, product)
+                                        updateVisibiliteAttributesForItem(node, product.classList.contains('is-selected'))
                                     }
                                 });
                             });
