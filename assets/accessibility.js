@@ -1819,7 +1819,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     enableAudioProgressKeyboard();
 
-     function fixRelatedArticlesList() {
+    function fixRelatedArticlesList() {
         if (!window.location.pathname.includes('/blog/')) return;
 
         const applyFix = () => {
@@ -1829,10 +1829,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             containers.forEach((container) => {
-                if (processedContainers.has(container)) {
-                    return;
-                }
-
                 container.setAttribute('role', 'list');
 
                 const applyItemsRole = () => {
@@ -1845,15 +1841,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 applyItemsRole();
-
-                const observer = new MutationObserver(() => {
-                    applyItemsRole();
-                });
-
-                observer.observe(container, {
-                    childList: true
-                });
-              
             });
 
             return true;
