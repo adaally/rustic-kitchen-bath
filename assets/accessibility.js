@@ -1220,6 +1220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
+                    console.log(product.getAttribute('aria-hidden') == true);
                     const isActive = product.classList.contains('is-selected');
                     product.querySelectorAll('a, button, .input-text, [tabindex="0"]').forEach(element => {
                         element.setAttribute('aria-hidden', isActive? 'false' : 'true');
@@ -1291,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // fixProductSlider();
+    fixProductSlider();
 
     function fixBlogList() {
         const blogContainer = document.querySelector('.dib-post-wrap');
