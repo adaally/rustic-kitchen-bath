@@ -928,7 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const linkTextNext = link.nextElementSibling;
                                 const previousText = element.previousElementSibling;
                                 console.log(linkText.innerText, previousText.innerText)
-                                if(linkText.innerText !== element.innerText) {
+                                if(linkText.innerText !== previousText.innerText) {
                                     linkTextNext.classList.remove('li_hovered')
                                     link.setAttribute('aria-expanded', 'true');
                                 }
