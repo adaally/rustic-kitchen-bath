@@ -901,6 +901,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 
                 element.addEventListener('click', () => {
+                    document.querySelectorAll('.sub-menu').forEach(submenu => {
+                        submenu.classList.remove('li_hovered');
+                        const btn = submenu.previousElementSibling;
+                        btn.setAttribute('aria-expanded', 'false');
+                    });
 
                     if(nextElement) {
                         const offEscape = onEscape(() => {
