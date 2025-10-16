@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    fixModalProduct(element, prevSibling);
+                    fixModalProduct(element, prevSibling, prevSibling);
                 });
             });
         });
 
-        function fixModalProduct(element, prevSibling) {
+        function fixModalProduct(element, prevSibling, openBtn) {
             const id = element.getAttribute("data-opennt");
             const container = document.querySelector(id);
             let lazyImg = container.querySelector(".product-image.lazyload");
@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             const modal = container.closest('.mfp-wrap');
                             if(modal) {
-                               trapFocus(modal);
+                               trapFocus(modal, openBtn);
                             } else {
-                                trapFocus(container);
+                                trapFocus(container, openBtn);
                             }
                             
                             const stars = container.querySelector('.jdgm-prev-badge__stars');
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     document.body.click();
                                     setTimeout(() => {
-                                        prevSibling.focus();
+                                        // prevSibling.focus();
                                     }, 500);
                                 }
                             }
