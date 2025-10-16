@@ -1271,6 +1271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     if (node.nodeType === 1) {
                                         updateVisibiliteAttributes(node, isActive);
                                         if(node.classList.contains('.hover_button')) {
+                                            console.log('btn', node)
                                             quickViewListener(node.querySelector('.nt_add_qv'));
                                         }
                                         
