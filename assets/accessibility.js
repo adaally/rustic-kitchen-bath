@@ -1904,6 +1904,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
+                const dotsList = sliderContainer.querySelector('.flickity-page-dots');
+
+                if(dotsList) {
+                    dotsList.setAttribute('role', 'none');
+                    const dots = dotsList.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.setAttribute('tabindex', '0');
+                        dot.setAttribute('role', 'button');
+                        dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
+                    })
+                }
+
+
+
                 trapFocus(container, quickViewBtn);
 
                 observer.disconnect();
