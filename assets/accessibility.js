@@ -1213,16 +1213,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 sliderContainer.removeAttribute('tabindex');
 
-                const dotsList = sliderContainer.querySelector('.flickity-page-dots');
+                const dots = fixFlickityDots(sliderContainer);
 
-                if(dotsList) {
-                    dotsList.setAttribute('role', 'none');
-                    const dots = dotsList.querySelectorAll('.dot');
-                    dots.forEach((dot, index) => {
-                        dot.setAttribute('tabindex', '0');
-                        dot.setAttribute('role', 'button');
-                        dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
-                        dot.addEventListener('click', () => {
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
                             setTimeout(() => {
                                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
                                     const quickViewBtn = product.querySelector('.nt_add_qv');
@@ -1249,8 +1243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                             },400);
                         });
-                    });
-                }
+                });
 
                 sliderContainer.querySelectorAll('.flickity-button').forEach(element => {
                     element.setAttribute('aria-hidden', 'true');
@@ -1896,6 +1889,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixRelatedArticlesList();
 
+    function fixFlickityDots(container) {
+        const dotsList = container.querySelector('.flickity-page-dots');
+
+        if(dotsList) {
+            dotsList.setAttribute('role', 'none');
+            const dots = dotsList.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.setAttribute('tabindex', '0');
+                dot.setAttribute('role', 'button');
+                dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
+            })
+
+            return dots;
+        }
+
+        return [];
+    }
+
     function quickViewListener(quickViewBtn) {
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
 
@@ -1904,20 +1915,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
-                const dotsList = container.querySelector('.flickity-page-dots');
-
-                if(dotsList) {
-                    dotsList.setAttribute('role', 'none');
-                    const dots = dotsList.querySelectorAll('.dot');
-                    dots.forEach((dot, index) => {
-                        dot.setAttribute('tabindex', '0');
-                        dot.setAttribute('role', 'button');
-                        dot.setAttribute('aria-label', `Slide ${index+1} of ${dots.length} `);
-                    })
-                }
-
-
-
+                fixFlickityDots(container);
                 trapFocus(container, quickViewBtn);
 
                 observer.disconnect();
