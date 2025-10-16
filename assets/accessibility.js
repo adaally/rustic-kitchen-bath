@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let isOpen = combobox.getAttribute('aria-expanded') === 'true';
                     let currentIndex = Array.from(options).findIndex(opt => opt.getAttribute('aria-selected') === 'true' || opt.classList.contains('boost-sd__sorting-option--active'));
-
+                    console.log(currentIndex)
                     // Toggle open/close
                     function toggleList(open) {
                         isOpen = open;
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
                     // Handle keyboard on combobox
-                    listbox.addEventListener('keydown', e => {
+                    combobox.addEventListener('keydown', e => {
                         if(e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             toggleList(!isOpen);
