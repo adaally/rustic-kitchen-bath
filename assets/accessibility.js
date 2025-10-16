@@ -186,12 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             const closeBtn = modal.querySelector('.mfp-close');
                             if(closeBtn) {
+                                console.log(closeBtn)
                                 closeBtn.addEventListener('keydown', handleEsc);
                             }
 
                             function handleEsc(event) {
                                 if (event.key === "Enter") {
                                     setTimeout(() => {
+                                        console.log(prevSibling)
                                         document.body.click();
                                         prevSibling.focus();
                                     }, 500);
