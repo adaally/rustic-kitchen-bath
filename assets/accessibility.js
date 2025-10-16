@@ -1942,7 +1942,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 fixFlickityDots(container);
-                trapFocus(container, quickViewBtn);
+                setTimeout(() => {
+                    trapFocus(container, quickViewBtn);
+                }, 100);
 
                 observer.disconnect();
             });
