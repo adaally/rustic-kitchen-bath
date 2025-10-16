@@ -188,6 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(closeBtn) {
                                 console.log(closeBtn)
                                 closeBtn.addEventListener('keydown', handleEsc);
+                                closeBtn.addEventListener('click', () => {
+                                    console.log(prevSibling)
+                                    document.body.click();
+                                        prevSibling.focus();
+                                });
                             }
 
                             function handleEsc(event) {
