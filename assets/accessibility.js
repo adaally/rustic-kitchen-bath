@@ -191,9 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Enter") {
                                     setTimeout(() => {
-                                        document.body.click();
                                         prevSibling.focus();
                                     }, 500);
+                                        document.body.click();
+                                        document.body.click();
                                 }
                             }
                             
