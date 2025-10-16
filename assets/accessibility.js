@@ -231,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const offEscape = onEscape(() => {
                 if(btnOpenModal) {
+                    console.log(btnOpenModal, 'closed')
                     btnOpenModal.focus();
                 }
             });
@@ -250,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return Array.from(
                 container.querySelectorAll(
                     `
-                    a[href],
+                    a[href]:not([tabindex="-1"]),
                     button:not([disabled]):not([tabindex="-1"]),
                     input:not([disabled]):not([type="hidden"]),
                     select:not([disabled]),
