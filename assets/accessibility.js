@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 element.addEventListener('keydown', (e) => {
                     if(e.key === 'Enter') {
-                        element.click();
+                        prevSibling.click();
                     }
                 });
 
