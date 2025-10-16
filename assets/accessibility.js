@@ -378,9 +378,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     options.forEach((opt, index) => {
                         opt.addEventListener('click', () => selectOption(index));
                         opt.addEventListener('keydown', e => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            selectOption(index);
+                            if (e.key === 'Enter') {
+                                selectOption(index);
                             }
                         });
                     });
