@@ -320,9 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Toggle open/close
                     function toggleList(open) {
-                        console.log(open)
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
+                        console.log(isOpen)
                         listbox.style.display = open ? 'block' : 'none';
                         if (open) {
                             options[currentIndex].focus();
