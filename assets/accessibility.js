@@ -1869,12 +1869,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
                         }
-
-                        const imageLink = item.querySelector('.dib-post-featured-image a');
-                        const titleLink = item.querySelector('.dib-post-title-link');
-                        if (imageLink && titleLink) {
-                            replaceLinkWithSpan(imageLink, titleLink);
-                        }
                     });
                 };
 
@@ -1903,7 +1897,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fixRelatedArticlesList();
 
     function quickViewListener(quickViewBtn) {
-        if(quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv')) return;
+        if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
         console.log(document.querySelector('.mfp-ready'), 1)
         setTimeout(() => {
             console.log(document.querySelector('.mfp-ready'), 2)
