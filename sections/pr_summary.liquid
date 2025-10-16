@@ -571,7 +571,7 @@ assign locale_url = product.url | split:'/products/' | first -%}
  
    {%- endcase -%}
 {%- endfor -%}
-{%- if call_cl == "_qv" -%}<a href="{{product.url | within: collection}}" class="btn fwsb detail_link">{{ 'products.product.product_view_details' | t }} <span class="visually-hidden">for: {{ product.title }}</span> <i class="facl facl-right"></i></a> {%- endif -%}
+{%- if call_cl == "_qv" -%}<a href="{{product.url | within: collection}}" class="btn fwsb detail_link">{{ 'products.product.product_view_details' | t }}  <span class="visually-hidden">for: {{ product.title }}</span> <i class="facl facl-right"></i></a> {%- endif -%}
 
 {%- schema -%}
   {
