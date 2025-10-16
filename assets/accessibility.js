@@ -179,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                    console.log('scaped')
                                     document.body.click();
                                     setTimeout(() => {
                                         prevSibling.focus();
@@ -206,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (focusables.length === 0) return;
             
-            console.log(focusables, 'focusables')
             // Focus first element
             focusables[0].focus();
 
@@ -659,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const observer = new MutationObserver(() => {
                         const container = document.querySelector('.boost-sd__refine-by-vertical-refine-by');
-                        console.log(container,'container')
+                        
                         if(!container) return;
 
                         const title = container.querySelector('.boost-sd__refine-by-vertical-refine-by-heading');
@@ -1928,7 +1926,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function quickViewListener(quickViewBtn) {
         if(!quickViewBtn) return;
         if(!quickViewBtn.classList.contains('nt_add_qv')) return;
-        console.log(quickViewBtn, 'link')
+
         quickViewBtn.addEventListener('click', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
