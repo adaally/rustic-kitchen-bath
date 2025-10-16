@@ -1270,7 +1270,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 mutation.addedNodes.forEach((node) => {
                                     if (node.nodeType === 1) {
                                         updateVisibiliteAttributes(node, isActive);
-                                        quickViewListener(node);
+                                        if(node.classList.contains('.hover_button')) {
+                                            quickViewListener(node.querySelector('.nt_add_qv'));
+                                        }
+                                        
                                     }
                                 });
                             });
@@ -1921,9 +1924,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function quickViewListener(quickViewBtn) {
-        if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv') && !quickViewBtn.tagName === 'A')) return;
+        if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
 
-        console.log(quickViewBtn)
         quickViewBtn.addEventListener('click', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
