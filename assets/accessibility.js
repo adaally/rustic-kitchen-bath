@@ -1904,7 +1904,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
-                const dotsList = sliderContainer.querySelector('.flickity-page-dots');
+                const dotsList = container.querySelector('.flickity-page-dots');
 
                 if(dotsList) {
                     dotsList.setAttribute('role', 'none');
