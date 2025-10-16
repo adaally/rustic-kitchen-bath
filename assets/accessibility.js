@@ -190,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 closeBtn.addEventListener('keydown', handleEsc);
                                 closeBtn.addEventListener('click', () => {
                                     console.log(prevSibling)
-                                    document.body.click();
                                         prevSibling.focus();
+                                    document.body.click();
                                 });
                             }
 
