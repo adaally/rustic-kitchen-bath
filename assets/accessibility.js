@@ -343,29 +343,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             toggleList(!isOpen);
-                        } else if (isOpen) {
-                            switch (e.key) {
-                                case 'ArrowDown':
-                                    e.preventDefault();
-                                    currentIndex = (currentIndex + 1) % options.length;
-                                    options[currentIndex].focus();
-                                    break;
-                                case 'ArrowUp':
-                                    e.preventDefault();
-                                    currentIndex = (currentIndex - 1 + options.length) % options.length;
-                                    options[currentIndex].focus();
-                                    break;
-                                case 'Enter':
-                                    console.log('enter')
-                                    e.preventDefault();
-                                    selectOption(currentIndex);
-                                    toggleList(false);
-                                    break;
-                                case 'Escape':
-                                    e.preventDefault();
-                                    toggleList(false);
-                                    break;
-                            }
                         }
                     });
 
@@ -386,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     console.log('enter')
                                     e.preventDefault();
                                     selectOption(currentIndex);
-                                    toggleList(false);
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
