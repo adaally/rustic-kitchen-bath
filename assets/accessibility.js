@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             const closeBtn = modal.querySelector('.mfp-close');
                             if(closeBtn) {
                                 closeBtn.addEventListener('click', () => {
-                                    setTimeout(() => {
                                         document.body.click();
+                                    setTimeout(() => {
                                         prevSibling.focus();
                                     }, 500);
                                 });
