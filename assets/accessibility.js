@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Handle keyboard on combobox
                     combobox.addEventListener('keydown', e => {
-                        if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ')) {
+                        if (!isOpen && (e.key === 'Enter' || e.key === ' ')) {
                             e.preventDefault();
                             toggleList(true);
                         } else if (isOpen) {
