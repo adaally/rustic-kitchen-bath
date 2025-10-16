@@ -1862,12 +1862,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
                         }
-
-                        const imageLink = item.querySelector('.dib-post-featured-image a');
-                        const titleLink = item.querySelector('.dib-post-title-link');
-                        if (imageLink && titleLink) {
-                            replaceLinkWithSpan(imageLink, titleLink);
-                        }
                     });
                 };
 
@@ -1921,6 +1915,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
+
+                container.querySelectorAll('.product-images-slider, ')
+                container.querySelectorAll('.flickity-button, .product-images-slider, .jdgm-prev-badge__stars').forEach(element => {
+                    if(!element.classList.contains('jdgm-prev-badge__stars')) {
+                        element.setAttribute('aria-hidden', 'true');
+                    }
+                    
+                    element.setAttribute('tabindex', '-1');
+                });
+
                 fixFlickityDots(container);
                 trapFocus(container, quickViewBtn);
 
