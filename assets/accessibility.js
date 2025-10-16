@@ -1965,9 +1965,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    funtion listenToMenuLinkIcon() {
+    function listenToMenuLinkIcon() {
         document.querySelectorAll('.menu_link_icon').forEach(element => {
-            console.log(element)
             element.addEventListener('keydown', (e) => {
                 if(e.key === 'Enter') {
                     element.click();
