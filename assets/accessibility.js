@@ -1314,11 +1314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fixProductSlider();
 
     function fixBlogList() {
-        let blogContainer = document.querySelector('.dib-post-wrap');
-
-        if(!blogContainer) {
-            blogContainer = document.querySelector('.dib-related .dib-related-posts');
-        }
+        const blogContainer = document.querySelector('.dib-post-wrap');
 
         if(!blogContainer) return;
 
@@ -1907,7 +1903,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // fixRelatedArticlesList();
+    fixRelatedArticlesList();
 
     function fixFlickityDots(container) {
         const dotsList = container.querySelector('.flickity-page-dots');
