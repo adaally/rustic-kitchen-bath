@@ -893,6 +893,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 parentLi.addEventListener('mouseleave', function() {
                     if (!nextElement.classList.contains('li_hovered')) element.setAttribute('aria-expanded', 'false');
                 });
+
+                element.addEventListener('keydown', (e) => {
+                    if(e.key === 'Enter') {
+                        element.click();
+                    }
+                })
                 
                 element.addEventListener('click', () => {
 
@@ -1964,16 +1970,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
     }
-
-    function listenToMenuLinkIcon() {
-        document.querySelectorAll('.menu_link_icon').forEach(element => {
-            element.addEventListener('keydown', (e) => {
-                if(e.key === 'Enter') {
-                    element.click();
-                }
-            })
-        });
-    }
-
-    listenToMenuLinkIcon();
 });
