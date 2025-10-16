@@ -1884,4 +1884,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fixRelatedArticlesList();
+
+    function quickViewListener() {
+        const quickViewBtnListener = (e) => {
+            const quickViewBtn = e.target.closest('.nt_add_qv');
+            console.log(quickViewBtn)
+            if(!quickViewBtn) return;
+
+            
+        };
+        document.addEventListener('click', quickViewBtnListener);
+    }
+
+    quickViewListener();
 });
