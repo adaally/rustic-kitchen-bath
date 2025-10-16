@@ -184,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('tabindex');
                             }
                             const closeBtn = container.querySelector('.mfp-close');
-                            if(closeBtn) {
                                 console.log(closeBtn)
+                            if(closeBtn) {
                                 // closeBtn.addEventListener('keydown', handleEsc);
                             }
 
