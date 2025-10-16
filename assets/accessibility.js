@@ -1134,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const productContainer = document.querySelector('.product');
         if(!productContainer) return;
 
-        const linkReview = product.querySelector('.rating_sp_kl');
+        const linkReview = productContainer.querySelector('.rating_sp_kl');
         if(linkReview) {
             linkReview.setAttribute('tabindex', '-1');
             linkReview.setAttribute('aria-hidden', 'true');
