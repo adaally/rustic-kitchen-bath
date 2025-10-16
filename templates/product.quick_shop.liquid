@@ -183,6 +183,6 @@
 		        {%- endif -%}
 	  		</div>
   		</div><!--qs_swatch-->
-  		<a href="{{product.url | within: collection}}" class="btn fwsb detail_link dib mt__15">{{ 'products.product.product_view_details' | t }} <i class="facl facl-right"></i></a>
+  		<a href="{{product.url | within: collection}}" class="btn fwsb detail_link dib mt__15">{{ 'products.product.product_view_details' | t }}  <span class="visually-hidden">for: {{ product.title }}</span> <i class="facl facl-right"></i></a>
   	</div>
  </div>
