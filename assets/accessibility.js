@@ -332,16 +332,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update selection
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
-                        options[index].setAttribute('aria-selected', 'true');
 
                         if(options[index].getAttribute('clicked') !== 'true') {
+                        options[index].setAttribute('aria-selected', 'true');
                             options[index].setAttribute('clicked', 'true');
                             options[index].click();
-                        }
-                        
-                        currentIndex = index;
+                            currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
+                        }
+                        
+                        
                     }
 
                     // Make options focusable
