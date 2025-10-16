@@ -1921,10 +1921,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function quickViewListener(quickViewBtn) {
+        console.log(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv')), quickViewBtn)
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv') && !quickViewBtn.tagName === 'A')) return;
 
         quickViewBtn.addEventListener('click', () => {
-            console.log(quickViewBtn, 'btn')
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
