@@ -142,9 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     prevSibling.click();
                 });
 
-                element.addEventListener('keydown', (e) => {
+                prevSibling.addEventListener('keydown', (e) => {
                     if(e.key === 'Enter') {
-                        prevSibling.click();
+                        element.click();
                     }
                 });
 
