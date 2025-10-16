@@ -319,8 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     function toggleList(open) {
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
-                        listbox.style.display = open ? 'block' : 'none';
-                        console.log(listbox)
+                        const active = open ? 'block' : 'none'
+                        listbox.style.display = active;
+                        console.log(active, listbox)
                         if (open) {
                             options[currentIndex].focus();
                         }
