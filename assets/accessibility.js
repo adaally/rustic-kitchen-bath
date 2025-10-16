@@ -1924,7 +1924,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
 
         quickViewBtn.addEventListener('click', () => {
-
+            console.log(quickViewBtn, 'btn')
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
