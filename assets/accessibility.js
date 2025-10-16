@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    fixModalProduct(element, element);
+                    fixModalProduct(element, prevSibling);
                 });
             });
         });
@@ -186,8 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
-                                    document.body.click();
                                     setTimeout(() => {
+                                    document.body.click();
+                                        console.log(prevSibling)
                                         prevSibling.focus();
                                     }, 500);
                                 }
