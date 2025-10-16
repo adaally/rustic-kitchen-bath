@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
                         listbox.style.display = open ? 'block' : 'none';
-                        console.log(open)
+                        console.log(listbox)
                         if (open) {
                             options[currentIndex].focus();
                         }
