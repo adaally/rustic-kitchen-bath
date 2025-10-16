@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
                     // Handle keyboard on combobox
-                    combobox.addEventListener('keydown', e => {
+                    listbox.addEventListener('keydown', e => {
                         if(e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             toggleList(!isOpen);
