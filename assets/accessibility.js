@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             if(closeBtn) {
                                 closeBtn.addEventListener('click', () => {
                                     
-                                        document.body.click();
                                         setTimeout(() => {
+                                        document.body.click();
                                         prevSibling.focus();
                                     }, 500);
                                 });
