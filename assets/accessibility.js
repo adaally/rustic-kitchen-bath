@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (focusables.length === 0) return;
             
-            console.log(focusables[0], 'focusables')
+            console.log(focusables, 'focusables')
             // Focus first element
             focusables[0].focus();
 
@@ -1868,12 +1868,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             heading.className = title.className;
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
-                        }
-
-                        const imageLink = item.querySelector('.dib-post-featured-image a');
-                        const titleLink = item.querySelector('.dib-post-title-link');
-                        if (imageLink && titleLink) {
-                            replaceLinkWithSpan(imageLink, titleLink);
                         }
                     });
                 };
