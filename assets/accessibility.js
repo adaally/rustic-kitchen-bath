@@ -1900,9 +1900,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
 
         quickViewBtn.addEventListener('click', () => {
-            console.log(document.querySelector('.mfp-ready'), 1)
+            console.log(document.querySelector('.mfp-ready .mfp-content'), 1)
             setTimeout(() => {
-                console.log(document.querySelector('.mfp-ready'), 2)
+                console.log(document.querySelector('.mfp-ready .mfp-content'), 2)
             }, 2000)
         })
 
