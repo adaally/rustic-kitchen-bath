@@ -140,7 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 //We need to simulate the click to the correct element that is focusable
                 element.addEventListener('click', () => {
                     prevSibling.click();
-                })
+                });
+
+                element.addEventListener('keydown', (e) => {
+                    if(e.key === 'Enter') {
+                        element.click();
+                    }
+                });
+
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
                     fixModalProduct(element, prevSibling);
@@ -899,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(e.key === 'Enter') {
                         element.click();
                     }
-                })
+                });
                 
                 element.addEventListener('click', () => {
 
@@ -927,7 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const linkText = link.previousElementSibling;
                                 const linkTextNext = link.nextElementSibling;
                                 const previousText = element.previousElementSibling;
-                                console.log(linkText.innerText, previousText.innerText)
+
                                 if(linkText.innerText !== previousText.innerText) {
                                     linkTextNext.classList.remove('li_hovered')
                                     link.setAttribute('aria-expanded', 'true');
