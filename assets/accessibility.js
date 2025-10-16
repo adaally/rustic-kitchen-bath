@@ -345,9 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             toggleList(!isOpen);
-                        } else if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
-                            e.preventDefault();
-                            toggleList(true);
                         } else if (isOpen) {
                             switch (e.key) {
                                 case 'ArrowDown':
@@ -375,11 +372,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Handle clicking on an option
                     options.forEach((opt, index) => {
                         opt.addEventListener('click', () => selectOption(index));
-                        opt.addEventListener('keydown', e => {
-                            if (e.key === 'Enter') {
-                                selectOption(index);
-                            }
-                        });
+                        // opt.addEventListener('keydown', e => {
+                        //     if (e.key === 'Enter') {
+                        //         selectOption(index);
+                        //     }
+                        // });
                     });
 
                     // Close list if clicked outside
