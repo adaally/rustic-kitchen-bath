@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 case 'Enter':
                                     console.log('enter')
                                     e.preventDefault();
-                                    selectOption(currentIndex);
+                                    options[currentIndex].click();
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
