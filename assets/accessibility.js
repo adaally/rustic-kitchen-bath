@@ -321,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         combobox.setAttribute('aria-expanded', String(open));
                         const active = open ? 'block' : 'none'
                         listbox.style.display = active;
-                        console.log(active, listbox)
                         if (open) {
                             options[currentIndex].focus();
                         }
@@ -356,10 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     e.preventDefault();
                                     currentIndex = (currentIndex - 1 + options.length) % options.length;
                                     options[currentIndex].focus();
-                                    break;
-                                case 'Enter':
-                                    e.preventDefault();
-                                    selectOption(currentIndex);
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
