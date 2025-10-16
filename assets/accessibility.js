@@ -340,15 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Make options focusable
                     options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
-                    // Handle combobox button click
-                    // combobox.addEventListener('click', e => {
-                    //     if (e.target.closest('[role="option"]')) return;
-                    //     toggleList(!isOpen);
-                    // });
-
                     // Handle keyboard on combobox
                     combobox.addEventListener('keydown', e => {
-                        if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ')) {
+                        if(e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleList(!isOpen);
+                        } else if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
                             e.preventDefault();
                             toggleList(true);
                         } else if (isOpen) {
