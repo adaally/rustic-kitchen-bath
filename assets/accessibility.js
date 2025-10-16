@@ -882,7 +882,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', closeMenusOnEscape);
 
         function listeningToMenuLinkIcon() {
-            document.querySelectorAll('.menu_link_icon').forEach(element => {
+            const icons = document.querySelectorAll('.menu_link_icon');
+            icons.forEach(element => {
                 const parentLi = element.parentElement;
                 const nextElement = element.nextElementSibling;
             
@@ -901,11 +902,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 
                 element.addEventListener('click', () => {
-                    document.querySelectorAll('.sub-menu').forEach(submenu => {
-                        submenu.classList.remove('li_hovered');
-                        const btn = submenu.previousElementSibling;
-                        // btn.setAttribute('aria-expanded', 'false');
-                    });
 
                     if(nextElement) {
                         const offEscape = onEscape(() => {
