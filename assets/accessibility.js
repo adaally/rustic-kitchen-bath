@@ -923,6 +923,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(!nextElement.classList.contains('li_hovered')) {
                             nextElement.classList.add('li_hovered')
                             element.setAttribute('aria-expanded', 'true');
+                            icons.forEach(link => {
+                                const linkText = link.previousElementSibling;
+                                const linkTextNext = link.nextElementSibling;
+                                if(linkText.innerText !== nextElement.innerText) {
+                                    linkTextNext.classList.remove('li_hovered')
+                                    link.setAttribute('aria-expanded', 'true');
+                                }
+                            });
                         } else {
                             nextElement.classList.remove('li_hovered');
                             element.setAttribute('aria-expanded', 'false');
