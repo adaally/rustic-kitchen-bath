@@ -363,7 +363,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!isOpen && (e.key === 'Enter' || e.key === ' ')) {
                             e.preventDefault();
                             console.log(e.target)
-                            // toggleList(true);
+                            if(!e.target.classList.contains('boost-sd__sorting-option')) {
+                                toggleList(true);
+                            }
                         } else if (isOpen) {
                             switch (e.key) {
                                 case 'ArrowDown':
