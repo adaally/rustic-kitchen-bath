@@ -308,7 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const options = listbox.querySelectorAll('li');
 
-                    options.forEach(element => element.setAttribute('role', 'option'));
+                    options.forEach(element => {
+                        element.setAttribute('role', 'option');
+                        element.removeAttribute('clicked');
+                    });
 
                     const valueSpan = combobox.querySelector('.boost-sd__sorting-value');
 
@@ -330,6 +333,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
                         options[index].setAttribute('aria-selected', 'true');
+
+                        if(options[index].getAttribute('clicked') !== 'true') {
+                            options[index].setAttribute('clicked', 'true');
+                            options[index].click();
+                        }
+                        
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
