@@ -187,8 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
                                     setTimeout(() => {
-                                    document.body.click();
-                                        console.log(prevSibling)
+                                        document.body.click();
                                         prevSibling.focus();
                                     }, 500);
                                 }
