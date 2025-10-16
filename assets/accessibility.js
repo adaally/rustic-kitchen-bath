@@ -330,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
                         options[index].setAttribute('aria-selected', 'true');
-                        options[index].click();
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
