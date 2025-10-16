@@ -363,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     console.log('enter')
                                     e.preventDefault();
                                     options[currentIndex].click();
+                                    toggleList(false);
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
