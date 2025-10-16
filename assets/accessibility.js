@@ -926,7 +926,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             icons.forEach(link => {
                                 const linkText = link.previousElementSibling;
                                 const linkTextNext = link.nextElementSibling;
-                                console.log(linkText.innerText, element.innerText)
+                                const previousText = element.previousElementSibling;
+                                console.log(linkText.innerText, previousText.innerText)
                                 if(linkText.innerText !== element.innerText) {
                                     linkTextNext.classList.remove('li_hovered')
                                     link.setAttribute('aria-expanded', 'true');
