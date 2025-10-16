@@ -314,13 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let isOpen = combobox.getAttribute('aria-expanded') === 'true';
                     let currentIndex = Array.from(options).findIndex(opt => opt.getAttribute('aria-selected') === 'true' || opt.classList.contains('boost-sd__sorting-option--active'));
-                    console.log(currentIndex)
+
                     // Toggle open/close
                     function toggleList(open) {
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
-                        const active = open ? 'block' : 'none'
-                        listbox.style.display = active;
+                        listbox.style.display = open ? 'block' : 'none';
                         if (open) {
                             options[currentIndex].focus();
                         }
@@ -330,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
                         options[index].setAttribute('aria-selected', 'true');
+                        options[index].click();
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
@@ -338,16 +338,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Make options focusable
                     options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
-                    // Handle keyboard on combobox
-                    combobox.addEventListener('keydown', e => {
-                        if(e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            toggleList(!isOpen);
-                        }
+                    // Handle combobox button click
+                    combobox.addEventListener('click', e => {
+                        if (e.target.closest('[role="option"]')) return; // let option handler run
+                        toggleList(!isOpen);
                     });
 
-                    listbox.addEventListener('keydown', e => {
-                        if (isOpen) {
+                    // Handle keyboard on combobox
+                    combobox.addEventListener('keydown', e => {
+                        if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ')) {
+                            e.preventDefault();
+                            toggleList(true);
+                        } else if (isOpen) {
                             switch (e.key) {
                                 case 'ArrowDown':
                                     e.preventDefault();
@@ -360,10 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     options[currentIndex].focus();
                                     break;
                                 case 'Enter':
-                                    console.log('enter')
+                                case ' ':
                                     e.preventDefault();
-                                    options[currentIndex].click();
-                                    toggleList(false);
+                                    selectOption(currentIndex);
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
@@ -373,14 +374,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    
+                    // Handle clicking on an option
                     options.forEach((opt, index) => {
                         opt.addEventListener('click', () => selectOption(index));
-                        // opt.addEventListener('keydown', e => {
-                        //     if (e.key === 'Enter') {
-                        //         selectOption(index);
-                        //     }
-                        // });
+                        opt.addEventListener('keydown', e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            selectOption(index);
+                            }
+                        });
                     });
 
                     // Close list if clicked outside
