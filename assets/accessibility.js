@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.querySelectorAll(
                     `
                     a[href],
-                    button:not([disabled]),
+                    button:not([disabled]):not([tabindex="-1"]),
                     input:not([disabled]):not([type="hidden"]),
                     select:not([disabled]),
                     textarea:not([disabled]),
@@ -1942,9 +1942,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 fixFlickityDots(container);
-                setTimeout(() => {
-                    trapFocus(container, quickViewBtn);
-                }, 100);
+                trapFocus(container, quickViewBtn);
 
                 observer.disconnect();
             });
