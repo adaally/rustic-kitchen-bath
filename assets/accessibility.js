@@ -1921,7 +1921,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function quickViewListener(quickViewBtn) {
-        if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
+        if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv') && !quickViewBtn.tagName === 'A')) return;
 
         quickViewBtn.addEventListener('click', () => {
             console.log(quickViewBtn, 'btn')
