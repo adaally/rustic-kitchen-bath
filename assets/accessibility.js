@@ -372,15 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    // Handle clicking on an option
-                    // options.forEach((opt, index) => {
-                    //     opt.addEventListener('click', () => selectOption(index));
-                    //     opt.addEventListener('keydown', e => {
-                    //         if (e.key === 'Enter') {
-                    //             selectOption(index);
-                    //         }
-                    //     });
-                    // });
+                    Handle clicking on an option
+                    options.forEach((opt, index) => {
+                        opt.addEventListener('click', () => selectOption(index));
+                        // opt.addEventListener('keydown', e => {
+                        //     if (e.key === 'Enter') {
+                        //         selectOption(index);
+                        //     }
+                        // });
+                    });
 
                     // Close list if clicked outside
                     document.addEventListener('click', e => {
