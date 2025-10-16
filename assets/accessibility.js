@@ -186,10 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             const closeBtn = container.querySelector('.mfp-close');
                             if(closeBtn) {
                                 closeBtn.addEventListener('click', () => {
-                                    setTimeout(() => {
-                                        prevSibling.focus();
+                                    
                                         document.body.click();
-                                    }, 500);
+                                        prevSibling.focus();
                                 });
                             }
                             
