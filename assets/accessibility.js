@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     setTimeout(() => {
                                         document.body.click();
                                         prevSibling.focus();
-                                    }, 100);
+                                    }, 700);
                                 });
                             }
 
