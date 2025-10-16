@@ -185,13 +185,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             const closeBtn = container.querySelector('.mfp-close');
                             if(closeBtn) {
-                                closeBtn.addEventListener('click', () => {
-                                    
-                                        prevSibling.focus();
-                                        setTimeout(() => {
+                                closeBtn.addEventListener('keydown', handleEsc);
+                            }
+
+                            function handleEsc(event) {
+                                if (event.key === "Enter") {
+                                    setTimeout(() => {
                                         document.body.click();
+                                        prevSibling.focus();
                                     }, 500);
-                                });
+                                }
                             }
                             
 
