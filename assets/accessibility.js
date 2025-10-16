@@ -186,27 +186,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             const closeBtn = modal.querySelector('.mfp-close');
                             if(closeBtn) {
-                                console.log(closeBtn)
-                                closeBtn.addEventListener('keydown', handleEsc);
                                 closeBtn.addEventListener('click', () => {
                                     setTimeout(() => {
-                                        console.log(prevSibling)
                                         document.body.click();
                                         prevSibling.focus();
                                     }, 500);
                                 });
                             }
-
-                            function handleEsc(event) {
-                                if (event.key === "Enter") {
-                                    setTimeout(() => {
-                                        console.log(prevSibling)
-                                        document.body.click();
-                                        prevSibling.focus();
-                                    }, 500);
-                                }
-                            }
-                            
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
