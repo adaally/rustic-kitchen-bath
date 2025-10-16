@@ -183,6 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
                             }
+                            const closeBtn = container.querySelector('.mfp-close');
+                            if(closeBtn) {
+                                closeBtn.addEventListener('click', () => {
+                                    setTimeout(() => {
+                                        document.body.click();
+                                        prevSibling.focus();
+                                    }, 500);
+                                });
+                            }
+                            
 
                             function handleEsc(event) {
                                 if (event.key === "Escape" || event.key === "Esc") {
