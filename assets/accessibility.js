@@ -1867,7 +1867,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         const title = item.querySelector('h2');
                         if (title) {
-                            const heading = document.createElement('h3');
+                            const heading = document.createElement('div');
                             heading.className = title.className;
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
