@@ -369,6 +369,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
+                    listbox.addEventListener('keydown', e => {
+                        if (isOpen) {
+                            switch (e.key) {
+                                case 'ArrowDown':
+                                    e.preventDefault();
+                                    currentIndex = (currentIndex + 1) % options.length;
+                                    options[currentIndex].focus();
+                                    break;
+                                case 'ArrowUp':
+                                    e.preventDefault();
+                                    currentIndex = (currentIndex - 1 + options.length) % options.length;
+                                    options[currentIndex].focus();
+                                    break;
+                                case 'Enter':
+                                    console.log('enter')
+                                    e.preventDefault();
+                                    selectOption(currentIndex);
+                                    toggleList(false);
+                                    break;
+                                case 'Escape':
+                                    e.preventDefault();
+                                    toggleList(false);
+                                    break;
+                            }
+                        }
+                    });
+
                     // Handle clicking on an option
                     // options.forEach((opt, index) => {
                     //     opt.addEventListener('click', () => selectOption(index));
