@@ -1964,4 +1964,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
     }
+
+    funtion listenToMenuLinkIcon() {
+        document.querySelectorAll('.menu_link_icon').forEach(element => {
+            element.addEventListener('keydown', (e) => {
+                if(e.key = 'Enter') {
+                    element.click();
+                }
+            })
+        });
+    }
+
+    listenToMenuLinkIcon();
 });
