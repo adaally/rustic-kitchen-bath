@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 closeBtn.addEventListener('click', () => {
                                     
                                         setTimeout(() => {
-                                        document.body.click();
                                         prevSibling.focus();
+                                        document.body.click();
                                     }, 500);
                                 });
                             }
