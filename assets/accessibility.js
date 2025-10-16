@@ -320,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
                         listbox.style.display = open ? 'block' : 'none';
+                        console.log(open)
                         if (open) {
                             options[currentIndex].focus();
                         }
@@ -332,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         options[index].click();
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
+                        console.log(index)
                         toggleList(false);
                     }
 
