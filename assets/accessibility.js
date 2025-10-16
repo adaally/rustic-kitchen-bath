@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     combobox.addEventListener('keydown', e => {
                         if (!isOpen && (e.key === 'Enter' || e.key === ' ')) {
                             e.preventDefault();
-                            toggleList(true);
+                            // toggleList(true);
                         } else if (isOpen) {
                             switch (e.key) {
                                 case 'ArrowDown':
