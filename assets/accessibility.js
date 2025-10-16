@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    Handle clicking on an option
+                    
                     options.forEach((opt, index) => {
                         opt.addEventListener('click', () => selectOption(index));
                         // opt.addEventListener('keydown', e => {
