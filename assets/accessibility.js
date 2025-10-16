@@ -183,22 +183,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                 stars.removeAttribute('role');
                                 stars.removeAttribute('tabindex');
                             }
-                            const closeBtn = container.querySelector('.mfp-close');
-                                console.log(closeBtn)
 
-                                const closeBtn2 = modal.querySelector('.mfp-close');
-                                console.log(closeBtn2)
+                            const closeBtn = modal.querySelector('.mfp-close');
                             if(closeBtn) {
-                                // closeBtn.addEventListener('keydown', handleEsc);
+                                closeBtn.addEventListener('keydown', handleEsc);
                             }
 
                             function handleEsc(event) {
                                 if (event.key === "Enter") {
                                     setTimeout(() => {
+                                        document.body.click();
                                         prevSibling.focus();
                                     }, 500);
-                                        document.body.click();
-                                        document.body.click();
                                 }
                             }
                             
