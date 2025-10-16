@@ -1134,6 +1134,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const productContainer = document.querySelector('.product');
         if(!productContainer) return;
 
+        const linkReview = product.querySelector('.rating_sp_kl');
+        if(linkReview) {
+            linkReview.setAttribute('tabindex', '-1');
+            linkReview.setAttribute('aria-hidden', 'true');
+        }
+
         const observer = new MutationObserver(() => {
             const btns = productContainer.querySelectorAll('.product-images .n-item');
             if(btns.length === 0) return;
