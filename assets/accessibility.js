@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Listen when clicked to add focus trap
                 prevSibling.addEventListener('click', () => {
-                    fixModalProduct(element, prevSibling);
+                    fixModalProduct(element, element);
                 });
             });
         });
