@@ -308,10 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const options = listbox.querySelectorAll('li');
 
-                    options.forEach(element => {
-                        element.setAttribute('role', 'option');
-                        element.removeAttribute('clicked');
-                    });
+                    options.forEach(element => element.setAttribute('role', 'option'));
 
                     const valueSpan = combobox.querySelector('.boost-sd__sorting-value');
 
@@ -322,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     function toggleList(open) {
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
-                        console.log(isOpen)
                         listbox.style.display = open ? 'block' : 'none';
                         if (open) {
                             options[currentIndex].focus();
@@ -332,17 +328,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update selection
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
-
-                        if(options[index].getAttribute('clicked') !== 'true') {
                         options[index].setAttribute('aria-selected', 'true');
-                            options[index].setAttribute('clicked', 'true');
-                            options[index].click();
-                            currentIndex = index;
+                        options[index].click();
+                        currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
-                        }
-                        
-                        
+                        combobox.focus();
                     }
 
                     // Make options focusable
