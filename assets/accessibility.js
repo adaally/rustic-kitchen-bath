@@ -333,18 +333,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         options[index].click();
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
-                        console.log(index)
-                        toggleList(true);
+                        toggleList(false);
                     }
 
                     // Make options focusable
                     options.forEach(opt => opt.setAttribute('tabindex', '-1'));
 
                     // Handle combobox button click
-                    combobox.addEventListener('click', e => {
-                        if (e.target.closest('[role="option"]')) return; // let option handler run
-                        toggleList(!isOpen);
-                    });
+                    // combobox.addEventListener('click', e => {
+                    //     if (e.target.closest('[role="option"]')) return;
+                    //     toggleList(!isOpen);
+                    // });
 
                     // Handle keyboard on combobox
                     combobox.addEventListener('keydown', e => {
@@ -364,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     options[currentIndex].focus();
                                     break;
                                 case 'Enter':
-                                case ' ':
                                     e.preventDefault();
                                     selectOption(currentIndex);
                                     break;
