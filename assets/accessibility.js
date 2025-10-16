@@ -1862,6 +1862,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
                         }
+
+                        const imageLink = item.querySelector('.dib-post-featured-image a');
+                        const titleLink = item.querySelector('.dib-post-title-link');
+                        if (imageLink && titleLink) {
+                            replaceLinkWithSpan(imageLink, titleLink);
+                        }
                     });
                 };
 
