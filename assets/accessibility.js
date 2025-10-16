@@ -1935,6 +1935,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('tabindex', '-1');
                 });
 
+                const linkReview = container.querySelector('.rating_sp_kl');
+                if(linkReview) {
+                    linkReview.setAttribute('tabindex', '-1');
+                    linkReview.setAttribute('aria-hidden', 'true');
+                }
+
                 fixFlickityDots(container);
                 trapFocus(container, quickViewBtn);
 
