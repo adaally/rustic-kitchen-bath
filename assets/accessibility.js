@@ -1869,12 +1869,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             heading.innerHTML = title.innerHTML;
                             title.replaceWith(heading);
                         }
-
-                        const imageLink = item.querySelector('.dib-post-featured-image a');
-                        const titleLink = item.querySelector('.dib-post-title-link');
-                        if (imageLink && titleLink) {
-                            replaceLinkWithSpan(imageLink, titleLink);
-                        }
                     });
                 };
 
@@ -1906,13 +1900,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
 
         quickViewBtn.addEventListener('click', () => {
-            console.log(document.querySelector('.mfp-ready .mfp-content'), 1)
-            setTimeout(() => {
-                console.log(document.querySelector('.mfp-ready .mfp-content'), 2)
-            }, 2000)
+
+            const observer = new MutationObserver(() => {
+                const container = document.querySelector('.mfp-ready .mfp-content');
+                if(!container) return;
+                trapFocus(container, quickViewBtn);
+
+                observer.disconnect();
+            });
+
+            observer.observe(document.body, {
+                subtree: true,
+                childList: true
+            });
         })
-
-
-
     }
 });
