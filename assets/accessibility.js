@@ -330,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     function selectOption(index) {
                         options.forEach(opt => opt.removeAttribute('aria-selected'));
                         options[index].setAttribute('aria-selected', 'true');
-                        options[index].click();
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         toggleList(false);
@@ -355,6 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     e.preventDefault();
                                     currentIndex = (currentIndex - 1 + options.length) % options.length;
                                     options[currentIndex].focus();
+                                    break;
+                                case 'Enter':
+                                    e.preventDefault();
+                                    selectOption(currentIndex);
+                                    toggleList(false);
                                     break;
                                 case 'Escape':
                                     e.preventDefault();
