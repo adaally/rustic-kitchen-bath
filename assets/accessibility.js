@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         currentIndex = index;
                         valueSpan.textContent = options[index].textContent;
                         console.log(index)
-                        toggleList(false);
+                        toggleList(true);
                     }
 
                     // Make options focusable
