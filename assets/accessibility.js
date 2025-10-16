@@ -231,8 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const offEscape = onEscape(() => {
                 if(btnOpenModal) {
-                    console.log(btnOpenModal, 'closed')
-                    btnOpenModal.focus();
+                    const btn = btnOpenModal.querySelector('a');
+                    if(btn) {
+                        btn.focus();
+                    } else {
+                        btnOpenModal.focus();
+                    }
+                    
                 }
             });
 
