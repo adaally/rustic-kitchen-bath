@@ -317,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Toggle open/close
                     function toggleList(open) {
+                        console.log(open)
                         isOpen = open;
                         combobox.setAttribute('aria-expanded', String(open));
                         listbox.style.display = open ? 'block' : 'none';
