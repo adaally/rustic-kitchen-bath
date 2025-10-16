@@ -363,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     break;
                                 case 'Enter':
                                 case ' ':
-                                    e.preventDefault();
                                     selectOption(currentIndex);
                                     break;
                                 case 'Escape':
