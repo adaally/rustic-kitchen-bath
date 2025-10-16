@@ -1225,6 +1225,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         dot.addEventListener('click', () => {
                             setTimeout(() => {
                                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
+                                    const quickViewBtn = product.querySelector('.nt_add_qv');
+                                    if(quickViewBtn) {
+                                        quickViewListener(quickViewBtn);
+                                    }
                                     const isActive = product.getAttribute('aria-hidden') != 'true';
                                     updateVisibiliteAttributes(product, isActive);
                                         const newChatItemObserver = new MutationObserver((mutations) => {
@@ -1232,6 +1236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 mutation.addedNodes.forEach((node) => {
                                                     if (node.nodeType === 1) {
                                                         updateVisibiliteAttributes(node, isActive);
+                                                        quickViewListener(node);
                                                     }
                                                 });
                                             });
@@ -1253,6 +1258,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 sliderContainer.querySelectorAll('.product').forEach((product, index) => {
+                    const quickViewBtn = product.querySelector('.nt_add_qv');
+                    if(quickViewBtn) {
+                        quickViewListener(quickViewBtn);
+                    }
+
                     const isActive = product.getAttribute('aria-hidden') != 'true';
                     updateVisibiliteAttributes(product, isActive);
                         const newChatItemObserver = new MutationObserver((mutations) => {
@@ -1260,6 +1270,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 mutation.addedNodes.forEach((node) => {
                                     if (node.nodeType === 1) {
                                         updateVisibiliteAttributes(node, isActive);
+                                        quickViewListener(node);
                                     }
                                 });
                             });
@@ -1885,16 +1896,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixRelatedArticlesList();
 
-    function quickViewListener() {
-        const quickViewBtnListener = (e) => {
-            const quickViewBtn = e.target.closest('.nt_add_qv');
-            console.log(quickViewBtn)
-            if(!quickViewBtn) return;
+    function quickViewListener(quickViewBtn) {
+        if(quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv')) return;
 
-            
-        };
-        document.addEventListener('click', quickViewBtnListener);
+
+
     }
-
-    quickViewListener();
 });
