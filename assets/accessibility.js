@@ -1898,10 +1898,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function quickViewListener(quickViewBtn) {
         if(!quickViewBtn && (quickViewBtn && !quickViewBtn.classList.contains('nt_add_qv'))) return;
-        console.log(document.querySelector('.mfp-ready'), 1)
-        setTimeout(() => {
-            console.log(document.querySelector('.mfp-ready'), 2)
-        }, 2000)
+
+        quickViewBtn.addEventListener('click', () => {
+            console.log(document.querySelector('.mfp-ready'), 1)
+            setTimeout(() => {
+                console.log(document.querySelector('.mfp-ready'), 2)
+            }, 2000)
+        })
+
 
 
     }
