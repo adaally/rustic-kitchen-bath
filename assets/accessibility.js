@@ -1915,8 +1915,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const observer = new MutationObserver(() => {
                 const container = document.querySelector('.mfp-ready .mfp-content');
                 if(!container) return;
-
-                container.querySelectorAll('.product-images-slider, ')
                 container.querySelectorAll('.flickity-button, .product-images-slider, .jdgm-prev-badge__stars').forEach(element => {
                     if(!element.classList.contains('jdgm-prev-badge__stars')) {
                         element.setAttribute('aria-hidden', 'true');
