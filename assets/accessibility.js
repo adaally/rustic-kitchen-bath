@@ -185,6 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             const closeBtn = container.querySelector('.mfp-close');
                                 console.log(closeBtn)
+
+                                const closeBtn2 = modal.querySelector('.mfp-close');
+                                console.log(closeBtn2)
                             if(closeBtn) {
                                 // closeBtn.addEventListener('keydown', handleEsc);
                             }
