@@ -356,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     options[currentIndex].focus();
                                     break;
                                 case 'Enter':
+                                    console.log('enter')
                                     e.preventDefault();
                                     selectOption(currentIndex);
                                     toggleList(false);
@@ -369,14 +370,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     // Handle clicking on an option
-                    options.forEach((opt, index) => {
-                        opt.addEventListener('click', () => selectOption(index));
-                        opt.addEventListener('keydown', e => {
-                            if (e.key === 'Enter') {
-                                selectOption(index);
-                            }
-                        });
-                    });
+                    // options.forEach((opt, index) => {
+                    //     opt.addEventListener('click', () => selectOption(index));
+                    //     opt.addEventListener('keydown', e => {
+                    //         if (e.key === 'Enter') {
+                    //             selectOption(index);
+                    //         }
+                    //     });
+                    // });
 
                     // Close list if clicked outside
                     document.addEventListener('click', e => {
