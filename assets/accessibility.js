@@ -2194,8 +2194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new MutationObserver(() => {
             const list = container.querySelector('.EVMLookbookgrid');
             if(!list) return;
-
-            console.log(list)
+            
+            console.log(list.querySelectorAll('.evmhash a'))
         });
 
         observer.observe(container, {
