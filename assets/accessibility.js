@@ -2070,6 +2070,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fixFaqAccessibility() {
         if (!window.location.pathname.includes('/blog/')) return;
+        const faqId = document.querySelector('#faqs-5');
+        if (!faqId) return;
 
         const applyFix = () => {
             const faqItems = document.querySelectorAll('.dib-faq .dib-faq-item');
