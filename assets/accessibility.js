@@ -2077,7 +2077,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return false;
             }
 
-            console.log(faqItems);
+            let faqPanelIdCounter = 0;
 
             faqItems.forEach((item) => {
                 const content = item.querySelector('.dib-faq-item-content');
