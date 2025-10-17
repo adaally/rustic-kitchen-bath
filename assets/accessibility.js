@@ -2030,4 +2030,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
     }
+
+    function removeTabindexFromSliderContainer() {
+        const slideShow document.querySelector('.slideshow');
+        if(slideShow) {
+            slideShow.removeAttribute('tabindex');
+        }
+    }
+
+    removeTabindexFromSliderContainer();
 });
