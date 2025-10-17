@@ -2124,9 +2124,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.slideshow').forEach(slideShow => {
             slideShow.removeAttribute('tabindex');
 
-            slideShow.querySelectorAll('a.pe_none').forEach(item => {
-                item.setAttribute('tabindex', '-1');
-            })
+            // slideShow.querySelectorAll('a.pe_none').forEach(item => {
+            //     item.setAttribute('tabindex', '-1');
+            // })
         });
     }
 
