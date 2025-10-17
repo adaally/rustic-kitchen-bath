@@ -2121,9 +2121,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function removeTabindexFromSliderContainer() {
-        document.querySelectorAll('.slideshow, .nt_banner_holder').forEach(slideShow => {
-            slideShow.removeAttribute('tabindex');
-        });
+        setTimeout(() => {
+            document.querySelectorAll('.slideshow, .nt_banner_holder').forEach(slideShow => {
+                slideShow.removeAttribute('tabindex');
+            });
+        }, 1000);
     }
 
     removeTabindexFromSliderContainer();
