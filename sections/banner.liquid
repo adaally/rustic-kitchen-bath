@@ -13,7 +13,7 @@
     {%- for block in section.blocks -%}{%- assign image = block.settings.image -%}{%- assign cat_design = block.settings.cat_design -%}
       <div class="cat_space_item bk_{{block.id}} {{ccol}}">
         <div class="nt_promotion oh pr middle center banner_design_{{cat_design}}">
-          <a href="{{ block.settings.url | default:'#' }}" class="db" target="{{block.settings.open_link}}">
+          <a href="{{ block.settings.url | default:'#' }}" class="db" target="{{block.settings.open_link}}" {% if block.settings.url == blank %} tabindex="-1"{% endif %}>
             {%- if image != blank -%}
               <div class="nt_bg_lz lazyload item__position {{block.settings.img_align}}" data-bgset="{{ image | img_url: '1x1' }}" data-ratio="{{image.aspect_ratio}}" data-sizes="auto" data-parent-fit="cover"{% if ck %} style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%"{% endif %}></div>
             {%- else -%}
