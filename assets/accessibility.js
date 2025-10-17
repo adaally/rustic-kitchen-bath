@@ -2068,6 +2068,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixRelatedArticlesList();
 
+    function fixFaqAccessibility() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyFix = () => {
+            const faqItems = document.querySelectorAll('.dib-faq .dib-faq-item');
+            if (!faqItems.length) {
+                return false;
+            }
+
+            faqItems.forEach((item) => {
+                const content = item.querySelector('.dib-faq-item-content');
+                if (!content) return;
+
+                if (!content.id) {
+                    faqPanelIdCounter += 1;
+                    content.id = `faq_panel_${faqPanelIdCounter}`;
+                }
+
+                const updateHidden = () => {
+                    const isOpen = item.hasAttribute('open');
+                    content.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                };
+
+                updateHidden();
+
+                if (!item.dataset.faqEnhanced) {
+                    item.addEventListener('toggle', updateHidden);
+                    item.dataset.faqEnhanced = 'true';
+                }
+            });
+
+            return true;
+        };
+
+        if (applyFix()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyFix()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixFaqAccessibility();
+
     function fixFlickityDots(container) {
         const dotsList = container.querySelector('.flickity-page-dots');
 
