@@ -2196,7 +2196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!list) return;
             list.querySelectorAll('.evmhash').forEach(element => {
                 element.addEventListener('click', () => {
-                    fixModal();
+                    setTimeout(fixModal, 300);
                 });
             });
             list.querySelectorAll('.evmhash a').forEach(element => {
