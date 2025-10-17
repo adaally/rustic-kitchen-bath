@@ -1756,6 +1756,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixAudioPlayerContainerAttributes();
 
+    function fixAudioTimeToggleAriaLabel() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyFix = () => {
+            const button = document.querySelector('.dib-audio-time-remaining');
+            const audio = document.getElementById('dib-audio-element');
+
+            if (!button || !audio) {
+                return false;
+            }
+
+            if (button.dataset.timeLabelEnhanced === 'true') {
+                return true;
+            }
+
+            button.dataset.timeLabelEnhanced = 'true';
+
+            let showingRemaining = true;
+
+            const updateLabel = () => {
+                const timeValue = (button.textContent || '').trim();
+
+                const label = showingRemaining
+                    ? `Time remaining ${timeValue}. Click to switch to elapsed time.`
+                    : `Time elapsed ${timeValue}. Click to switch to time remaining.`;
+
+                button.setAttribute('aria-label', label);
+            };
+
+            updateLabel();
+
+            audio.addEventListener('timeupdate', updateLabel);
+            audio.addEventListener('loadedmetadata', updateLabel);
+
+            button.addEventListener('click', () => {
+                showingRemaining = !showingRemaining;
+                updateLabel();
+            });
+
+            return true;
+        };
+
+        if (applyFix()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyFix()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioTimeToggleAriaLabel();
+
+
     // function fixAudioPlayerSection() {
     //     if (!window.location.pathname.includes('/blog/')) return;
 
@@ -2036,11 +2097,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('slideShow', slideShow)
         if(slideShow) {
             slideShow.removeAttribute('tabindex');
-            slideShow.querySelectorAll('a').forEach(element => {
-                if(element.classList.contains('pe_none')) {
-                    element.setAttribute('tabindex', '-1');
-                }
-            });
         }
     }
 
