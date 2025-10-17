@@ -2121,7 +2121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function removeTabindexFromSliderContainer() {
-        document.querySelectorAll('.slideshow').forEach(slideShow => {
+        document.querySelectorAll('.slideshow, .nt_banner_holder').forEach(slideShow => {
             slideShow.removeAttribute('tabindex');
         });
     }
