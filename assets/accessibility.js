@@ -1701,6 +1701,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!playPauseButton || !audioElement) return;
 
+            playPauseButton.setAttribute('aria-label', 'Play');
+
             audioElement.addEventListener('play', () => {
                 playPauseButton.setAttribute('aria-label', 'Pause');
             });
