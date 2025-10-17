@@ -2194,7 +2194,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new MutationObserver(() => {
             const list = container.querySelector('.EVMLookbookgrid');
             if(!list) return;
-            
+            list.querySelectorAll('.evmhash').forEach(element => {
+                element.addEventListener('click', () => {
+                    console.log('clicked')
+                })
+            });
             list.querySelectorAll('.evmhash a').forEach(element => {
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('aria-hidden', 'true');
