@@ -186,12 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             const closeBtn = modal.querySelector('.mfp-close');
                             if(closeBtn) {
-                                closeBtn.addEventListener('click', () => {
-                                    setTimeout(() => {
-                                        document.body.click();
-                                        prevSibling.focus();
-                                    }, 700);
-                                });
+                                // closeBtn.addEventListener('click', () => {
+                                //     setTimeout(() => {
+                                //         document.body.click();
+                                //         prevSibling.focus();
+                                //     }, 700);
+                                // });
                             }
 
                             function handleEsc(event) {
