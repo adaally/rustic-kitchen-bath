@@ -2121,14 +2121,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function removeTabindexFromSliderContainer() {
-        const slideShow =  document.querySelector('.slideshow');
-        if(slideShow) {
+        document.querySelectorAll('.slideshow').forEach(slideShow => {
             slideShow.removeAttribute('tabindex');
 
             slideShow.querySelectorAll('a.pe_none').forEach(item => {
                 item.setAttribute('tabindex', '-1');
             })
-        }
+        });
     }
 
     removeTabindexFromSliderContainer();
