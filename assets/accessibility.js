@@ -2077,6 +2077,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return false;
             }
 
+            console.log(faqItems);
+
             faqItems.forEach((item) => {
                 const content = item.querySelector('.dib-faq-item-content');
                 if (!content) return;
@@ -2102,21 +2104,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         };
 
-        const MAX_ATTEMPTS = 20;
-        let attempts = 0;
+        if (applyFix()) {
+            return;
+        }
 
-        const tryApply = () => {
+        const observer = new MutationObserver(() => {
             if (applyFix()) {
-                return;
+                observer.disconnect();
             }
+        });
 
-            attempts += 1;
-            if (attempts < MAX_ATTEMPTS) {
-                setTimeout(tryApply, 250);
-            }
-        };
-
-        tryApply();
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     }
 
     fixFaqAccessibility();
