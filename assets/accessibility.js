@@ -2215,7 +2215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.evm_fancybox-overlay');
             if(!modal) return;
 
-            const focusableElements = modal.querySelectorAll('.evm_fancybox-skin > a, .evm_fancybox-skin .evm_fancybox-outer > a, .evm_fancybox-skin .evm_fancybox-outer .evm-list .evm_tag_view > a');
+            const focusableElements = modal.querySelectorAll('.evm_fancybox-skin .evm_fancybox-close, .evm_fancybox-skin .evm_fancybox-nav, .evm_fancybox-skin .evm_fancybox-outer .evm-list .evm_tag_view > a');
 
             trapFocus(modal, btn, focusableElements);
         }
