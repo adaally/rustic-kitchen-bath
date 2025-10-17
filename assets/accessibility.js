@@ -2033,6 +2033,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function removeTabindexFromSliderContainer() {
         const slideShow document.querySelector('.slideshow');
+        console.log('slideShow', slideShow)
         if(slideShow) {
             slideShow.removeAttribute('tabindex');
         }
