@@ -2196,8 +2196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!list) return;
             list.querySelectorAll('.evmhash').forEach(element => {
                 element.addEventListener('click', () => {
-                    console.log('clicked')
-                })
+                    fixModal();
+                });
             });
             list.querySelectorAll('.evmhash a').forEach(element => {
                 element.setAttribute('tabindex', '-1');
@@ -2210,6 +2210,10 @@ document.addEventListener('DOMContentLoaded', () => {
             subtree: true,
             childList: true
         });
+
+        function fixModal() {
+            console.log(document.querySelector('.evm_fancybox-overlay'));
+        }
     }
 
     fixShopTheLook()
