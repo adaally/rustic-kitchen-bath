@@ -2102,20 +2102,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         };
 
-        if (applyFix()) {
-            return;
-        }
+        const MAX_ATTEMPTS = 20;
+        let attempts = 0;
 
-        const observer = new MutationObserver(() => {
+        const tryApply = () => {
             if (applyFix()) {
-                observer.disconnect();
+                return;
             }
-        });
 
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+            attempts += 1;
+            if (attempts < MAX_ATTEMPTS) {
+                setTimeout(tryApply, 250);
+            }
+        };
+
+        tryApply();
     }
 
     fixFaqAccessibility();
