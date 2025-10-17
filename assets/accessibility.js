@@ -2186,4 +2186,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     removeTabindexFromSliderContainer();
+
+    function fixShopTheLook() {
+        console.log(document.querySelector('.evm_lookbook_block'), 'shop')
+    }
+
+    fixShopTheLook()
 });
