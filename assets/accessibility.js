@@ -2188,7 +2188,20 @@ document.addEventListener('DOMContentLoaded', () => {
     removeTabindexFromSliderContainer();
 
     function fixShopTheLook() {
-        console.log(document.querySelector('.evm_lookbook_block .EVMLookbookgrid'), 'shop')
+        const container = document.querySelector('.evm_lookbook_block');
+        if(!container) return;
+
+        const observer = new MutationObserver(() => {
+            const list = container.querySelector('.EVMLookbookgrid');
+            if(!list) return;
+
+            console.log(list)
+        });
+
+        observer.observe(container, {
+            subtree: true,
+            childList: true
+        });
     }
 
     fixShopTheLook()
