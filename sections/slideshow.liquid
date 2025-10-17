@@ -62,7 +62,7 @@
                      </div>
                   </div> 
                  </div>
-                 <a href="{{url}}" target="{{open_link}}" class="pa t__0 l__0 b__0 r__0{% if url == blank %} pe_none{% endif %}"></a>
+                 <a href="{{url}}" target="{{open_link}}" class="pa t__0 l__0 b__0 r__0{% if url == blank %} pe_none{% endif %}" {% if url == blank %} tabindex="-1" aria-hidden="true"{% endif %}></a>
                </div>
             </div>
          {%- else %}{% assign url = block.settings.link_img1 %}{% assign open_link = block.settings.open_link -%}
@@ -107,7 +107,7 @@
                      </div>
                   </div> 
                  </div>
-                 <a href="{{url}}" target="{{open_link}}" class="pa t__0 l__0 b__0 r__0{% if url == blank %} pe_none{% endif %}"></a>
+                 <a href="{{url}}" target="{{open_link}}" class="pa t__0 l__0 b__0 r__0{% if url == blank %} pe_none{% endif %}" {% if url == blank %} tabindex="-1" aria-hidden="true" {% endif %}></a>
                </div>
             </div>
          {%- endif -%}
