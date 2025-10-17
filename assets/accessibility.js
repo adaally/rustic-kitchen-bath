@@ -2124,6 +2124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const slideShow =  document.querySelector('.slideshow');
         if(slideShow) {
             slideShow.removeAttribute('tabindex');
+
+            slideShow.querySelectorAll('a.pe_none').forEach(item => {
+                item.setAttribute('tabindex', '-1');
+            })
         }
     }
 
