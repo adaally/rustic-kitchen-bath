@@ -2195,7 +2195,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const list = container.querySelector('.EVMLookbookgrid');
             if(!list) return;
             
-            console.log(list.querySelectorAll('.evmhash a'))
+            list.querySelectorAll('.evmhash a').forEach(element => {
+                element.setAttribute('tabindex', '-1');
+                element.setAttribute('aria-hidden', 'true');
+            });
         });
 
         observer.observe(container, {
