@@ -1930,7 +1930,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dragHandle.dataset.keyboardEnhanced = 'true';
             dragHandle.setAttribute('tabindex', '0');
             dragHandle.setAttribute('role', 'slider');
-            dragHandle.setAttribute('aria-valuemin', '0');
+            dragHandle.setAttribute('aria-valuemin', '0:00');
 
             const getStep = () => {
                 const duration = isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
@@ -1944,16 +1944,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 return Math.max(time, 0);
             };
 
+            const formatSeconds = (seconds) => {
+                if (!isFinite(seconds) || seconds <= 0) return '0:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            };
+
             const updateSliderAria = () => {
-                const duration = isFinite(audio.duration) && audio.duration > 0
-                    ? Math.floor(audio.duration)
-                    : Math.floor(audio.currentTime || 0);
-                const current = isFinite(audio.currentTime) && audio.currentTime > 0
-                    ? Math.floor(audio.currentTime)
-                    : 0;
-                const max = Math.max(duration, current);
-                dragHandle.setAttribute('aria-valuemax', String(max));
-                dragHandle.setAttribute('aria-valuenow', String(Math.min(current, max)));
+                const timeButton = document.querySelector('.dib-audio-time-remaining');
+                const timeText = timeButton && timeButton.textContent
+                    ? timeButton.textContent.trim()
+                    : '0:00';
+
+                dragHandle.setAttribute('aria-valuenow', timeText);
+
+                if (audio.duration && isFinite(audio.duration)) {
+                    dragHandle.setAttribute('aria-valuemax', formatSeconds(audio.duration));
+                }
             };
 
             updateSliderAria();
