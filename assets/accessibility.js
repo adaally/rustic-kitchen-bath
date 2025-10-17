@@ -2036,6 +2036,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('slideShow', slideShow)
         if(slideShow) {
             slideShow.removeAttribute('tabindex');
+            slideShow.querySelectorAll('a').forEach(element => {
+                if(element.classList.contains('pe_none')) {
+                    element.setAttribute('tabindex', '-1');
+                }
+            });
         }
     }
 
