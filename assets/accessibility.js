@@ -1929,6 +1929,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dragHandle.dataset.keyboardEnhanced = 'true';
             dragHandle.setAttribute('tabindex', '0');
+            dragHandle.setAttribute('role', 'slider');
+            dragHandle.setAttribute('aria-valuemin', '0');
 
             const getStep = () => {
                 const duration = isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
@@ -1941,6 +1943,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return Math.max(time, 0);
             };
+
+            const updateSliderAria = () => {
+                const duration = isFinite(audio.duration) && audio.duration > 0
+                    ? Math.floor(audio.duration)
+                    : Math.floor(audio.currentTime || 0);
+                const current = isFinite(audio.currentTime) && audio.currentTime > 0
+                    ? Math.floor(audio.currentTime)
+                    : 0;
+                const max = Math.max(duration, current);
+                dragHandle.setAttribute('aria-valuemax', String(max));
+                dragHandle.setAttribute('aria-valuenow', String(Math.min(current, max)));
+            };
+
+            updateSliderAria();
+
+            audio.addEventListener('timeupdate', updateSliderAria);
+            audio.addEventListener('loadedmetadata', updateSliderAria);
 
             dragHandle.addEventListener('keydown', (event) => {
                 const step = getStep();
@@ -1955,6 +1974,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (handled) {
+                    updateSliderAria();
                     event.preventDefault();
                     event.stopPropagation();
                 }
