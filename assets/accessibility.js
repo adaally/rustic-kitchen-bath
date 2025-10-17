@@ -2203,6 +2203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('aria-hidden', 'true');
             });
+            observer.disconnect();
         });
 
         observer.observe(container, {
