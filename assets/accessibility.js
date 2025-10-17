@@ -1724,6 +1724,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fixAudioPlayerAriaLabel();
 
+    function fixAudioPlayerContainerAttributes() {
+        if (!window.location.pathname.includes('/blog/')) return;
+
+        const applyAttributes = () => {
+            const audioContainer = document.getElementById('dib-audio');
+            if (!audioContainer) return false;
+
+            audioContainer.setAttribute('role', 'region');
+            audioContainer.setAttribute('aria-label', 'Listen to article');
+            return true;
+        };
+
+        if (applyAttributes()) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (applyAttributes()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    fixAudioPlayerContainerAttributes();
+
     // function fixAudioPlayerSection() {
     //     if (!window.location.pathname.includes('/blog/')) return;
 
