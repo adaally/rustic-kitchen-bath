@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 focusables = getFocusableElements(container);
             }
-            
+            console.log(focusables)
             if (focusables.length === 0) return;
             
             // Focus first element
@@ -2211,10 +2211,10 @@ document.addEventListener('DOMContentLoaded', () => {
             childList: true
         });
 
-        function fixModal() {
+        function fixModal(btn) {
             const modal = document.querySelector('.evm_fancybox-overlay');
             if(!modal) return;
-            trapFocus(modal);
+            trapFocus(modal, btn);
         }
     }
 
